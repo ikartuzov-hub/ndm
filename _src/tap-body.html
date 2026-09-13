@@ -1,0 +1,1065 @@
+<title>Documentos TAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF6F1; --surface:#FFFFFF; --surface-2:#F3EBE2;
+  --ink:#1A1512; --ink-soft:#6B5C51;
+  --accent:#B23A0E; --accent-soft:#F6E3D8;
+  --line:#E6D9CC; --line-2:#D6C4B3;
+  --alert:#8F2B14; --alert-bg:#FBEAE2; --alert-line:#E9B79F;
+  --ok:#1B6B4A; --ok-bg:#E6F1EA;
+  --shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.05);
+  --display:"Bitter", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+    --ink:#F2EAE2; --ink-soft:#B7A797;
+    --accent:#FF8A4C; --accent-soft:#3A2418;
+    --line:#382C23; --line-2:#4C3B2E;
+    --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+    --ok:#5FD39A; --ok-bg:#14291F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+  --ink:#F2EAE2; --ink-soft:#B7A797;
+  --accent:#FF8A4C; --accent-soft:#3A2418;
+  --line:#382C23; --line-2:#4C3B2E;
+  --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+  --ok:#5FD39A; --ok-bg:#14291F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:740px; margin:0 auto; padding-left:20px; padding-right:20px; padding-block:0 0}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0}
+strong{font-weight:600}
+code{font-family:var(--mono)}
+
+/* ---------- topbar ---------- */
+.bar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding-block:18px 10px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand svg{width:30px; height:30px; display:block}
+.brand b{font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:.01em}
+.ctrls{display:flex; gap:8px}
+.rb{
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--line-2); background:var(--surface); color:var(--ink);
+  font-family:var(--mono); font-size:13px; font-weight:600; cursor:pointer;
+  display:grid; place-items:center; padding:0; line-height:1;
+}
+.rb:hover{border-color:var(--accent); color:var(--accent)}
+.rb:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.lang-wrap{position:relative}
+.menu{
+  position:absolute; right:0; top:47px; z-index:30;
+  background:var(--surface); border:1px solid var(--line-2); border-radius:6px;
+  box-shadow:var(--shadow); padding:6px; min-width:172px; display:grid; gap:2px;
+}
+.menu button{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  width:100%; background:none; border:0; color:var(--ink);
+  font-family:var(--body); font-size:15.5px; padding:9px 11px; border-radius:4px;
+  cursor:pointer; text-align:left;
+}
+.menu button:hover{background:var(--surface-2); color:var(--accent)}
+.menu button[aria-current="true"]{color:var(--accent); font-weight:600}
+.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+.menu button[aria-current="true"] .code{color:var(--accent)}
+
+/* ---------- open / copy the TAP form ---------- */
+.act{
+  margin:24px 0 0; background:var(--surface-2); border:1px solid var(--line);
+  border-radius:4px; padding:18px;
+}
+.act .row{display:flex; flex-wrap:wrap; gap:10px}
+.act .url{
+  font-family:var(--mono); font-size:13.5px; color:var(--ink-soft);
+  margin:0 0 14px; word-break:break-all;
+}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  font-family:var(--body); font-size:16px; font-weight:600;
+  padding:12px 18px; border-radius:3px; border:1px solid transparent;
+  text-decoration:none; line-height:1.2;
+}
+.btn-go{background:var(--accent); color:#fff}
+.btn-go:hover{filter:brightness(1.08)}
+.btn-copy{background:var(--surface); border-color:var(--line-2); color:var(--ink)}
+.btn-copy:hover{border-color:var(--accent); color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.act .hint{font-size:14.5px; color:var(--ink-soft); margin:14px 0 0}
+
+/* ---------- cover ---------- */
+.cover{padding-block:14px 8px}
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 14px;
+}
+h1{font-size:clamp(34px,8.4vw,52px); line-height:1.06; font-weight:700; letter-spacing:-.015em}
+.lead{font-size:19.5px; color:var(--ink-soft); margin-top:16px; max-width:34em}
+.by{font-size:15.5px; color:var(--ink-soft); margin:16px 0 0}
+.by a{
+  color:var(--ink); text-decoration:underline;
+  text-decoration-color:var(--accent); text-underline-offset:3px;
+}
+.by a:hover{color:var(--accent)}
+.facts{
+  display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0; padding:0; list-style:none;
+}
+.facts li{
+  font-family:var(--mono); font-size:12.5px; font-weight:500;
+  border:1px solid var(--line-2); border-radius:999px; padding:5px 12px; color:var(--ink-soft);
+}
+
+/* ---------- ticket stub ---------- */
+.stub{
+  margin:30px 0 0; background:var(--surface); border:1px solid var(--line);
+  border-radius:4px; box-shadow:var(--shadow); overflow:hidden;
+  position:relative;
+}
+.stub::before{
+  content:""; position:absolute; inset:0 auto 0 0; width:5px;
+  background:repeating-linear-gradient(var(--accent) 0 10px, transparent 10px 18px);
+}
+.stub-head{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); padding:14px 18px 0 26px;
+}
+.flds{display:grid; gap:2px; padding:10px 18px 16px 26px; margin:0}
+.fld{
+  padding:9px 12px; border-radius:3px; border:2px solid transparent;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px;
+}
+.fld dt{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); min-width:190px}
+.fld dd{margin:0; font-family:var(--mono); font-size:17px; font-weight:600; letter-spacing:.04em}
+.fld.on{border-color:var(--accent); background:var(--accent-soft)}
+@media (prefers-reduced-motion: no-preference){
+  .fld{transition:background .45s ease, border-color .45s ease}
+}
+.stub-note{
+  font-size:14.5px; color:var(--ink-soft); margin:0; padding:0 18px 16px 26px;
+  border-top:1px dashed var(--line-2); padding-top:13px;
+}
+
+/* ---------- generic sections ---------- */
+h2{font-size:clamp(23px,5vw,29px); font-weight:600; line-height:1.2; letter-spacing:-.01em}
+.sect{padding-block:44px 0}
+.rule{height:1px; background:var(--line); border:0; margin:44px 0 0}
+
+.need{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:12px}
+.need li{
+  display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start;
+  font-size:16.5px;
+}
+.need li::before{
+  content:""; width:9px; height:9px; margin-top:.55em; border-radius:2px;
+  background:var(--accent);
+}
+
+/* ---------- steps ---------- */
+.step{padding-block:40px 0}
+.step-h{display:flex; align-items:baseline; gap:14px; margin-bottom:14px}
+.num{
+  font-family:var(--mono); font-size:14px; font-weight:600; color:var(--accent);
+  border:1.5px solid var(--accent); border-radius:50%;
+  width:32px; height:32px; flex:0 0 32px; display:grid; place-items:center;
+  transform:translateY(2px);
+}
+.step h3{font-size:clamp(20px,4.4vw,25px); font-weight:600; line-height:1.22}
+.step > p, .step > ol{margin-left:0}
+figure{margin:22px 0 0}
+figure img{
+  display:block; width:100%; height:auto; max-width:100%;
+  border:1px solid var(--line-2); border-radius:3px; background:var(--surface);
+}
+figcaption{
+  font-size:14px; color:var(--ink-soft); margin-top:9px; font-family:var(--mono);
+}
+.fields{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:14px}
+.fields li{display:grid; grid-template-columns:auto 1fr; gap:12px; font-size:16.5px}
+.mk{
+  font-family:var(--mono); font-size:12.5px; font-weight:600; color:#fff;
+  background:var(--alert); border-radius:50%; width:24px; height:24px;
+  display:grid; place-items:center; transform:translateY(3px);
+}
+.pt{
+  font-family:var(--mono); font-size:.9em; font-weight:600; color:var(--accent);
+  background:var(--accent-soft); padding:1px 6px; border-radius:3px;
+  white-space:nowrap;
+}
+.warn{
+  margin:22px 0 0; background:var(--alert-bg); border:1px solid var(--alert-line);
+  border-left:4px solid var(--alert); border-radius:3px; padding:16px 18px;
+}
+.warn h4{
+  font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--alert); margin:0 0 8px; font-weight:600;
+}
+.warn p{margin:0; font-size:16px}
+.warn p + p{margin-top:.7em}
+
+/* ---------- mail cards ---------- */
+.mail{display:grid; gap:16px; margin-top:24px}
+@media (min-width:640px){.mail{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:20px; box-shadow:var(--shadow);
+}
+.card .fn{
+  font-family:var(--mono); font-size:13px; color:var(--accent);
+  word-break:break-all; display:block; margin-bottom:10px;
+}
+.card h3{font-family:var(--display); font-size:20px; font-weight:600; margin:0 0 8px}
+.card p{font-size:15.5px; color:var(--ink-soft); margin:0}
+.card p + p{margin-top:.6em}
+
+.times{
+  width:100%; border-collapse:collapse; margin-top:20px; font-size:15.5px;
+  font-variant-numeric:tabular-nums;
+}
+.times th,.times td{text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--line)}
+.times th{
+  font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:600;
+}
+.times td:first-child{font-family:var(--mono); white-space:nowrap}
+.tw{overflow-x:auto}
+
+/* ---------- share + footer ---------- */
+.end{padding-block:44px 0}
+.share{
+  display:inline-flex; align-items:center; gap:9px; margin-top:18px;
+  background:var(--accent); color:#fff; border:0; border-radius:3px;
+  font-family:var(--body); font-size:16.5px; font-weight:600;
+  padding:13px 22px; cursor:pointer;
+}
+.share:hover{filter:brightness(1.08)}
+.share:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+footer{
+  text-align:center; font-size:15px; color:var(--ink-soft);
+  padding-block:40px 60px; margin-top:44px; border-top:1px solid var(--line);
+}
+footer a{
+  color:inherit; display:inline-block; padding:8px 4px;
+  text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px;
+}
+footer a:hover{color:var(--accent)}
+</style>
+
+<div class="wrap">
+
+  <div class="bar">
+    <a class="brand" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+           style="color:var(--accent)">
+        <path d="M33 18 L33 70"/>
+        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
+      </svg>
+      <b>nDm</b>
+    </a>
+    <div class="ctrls">
+      <div class="lang-wrap">
+        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">RU</button>
+        <div class="menu" id="langmenu" hidden></div>
+      </div>
+      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </div>
+  </div>
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <p class="by" data-t="by"></p>
+    <ul class="facts" id="facts"></ul>
+
+    <div class="stub">
+      <div class="stub-head" data-t="stubHead"></div>
+      <dl class="flds">
+        <div class="fld" id="f0"><dt>Código de Reserva</dt><dd>ABC123</dd></div>
+        <div class="fld" id="f1"><dt>Número do Bilhete</dt><dd>047 1234567890</dd></div>
+        <div class="fld" id="f2"><dt>Apelido</dt><dd>SILVA</dd></div>
+      </dl>
+      <p class="stub-note" data-t="stubNote"></p>
+    </div>
+  </header>
+
+  <section class="sect">
+    <h2 data-t="needH"></h2>
+    <ul class="need" id="need"></ul>
+  </section>
+
+  <hr class="rule">
+
+  <div id="steps"></div>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="mailH"></h2>
+    <p data-t="mailP" style="margin-top:14px"></p>
+    <div class="tw">
+      <table class="times">
+        <thead><tr><th data-t="tTime"></th><th data-t="tFile"></th><th data-t="tWhat"></th></tr></thead>
+        <tbody id="times"></tbody>
+      </table>
+    </div>
+    <p data-t="mailSubj" style="margin-top:22px"></p>
+    <div class="mail" id="mail"></div>
+  </section>
+
+  <section class="end">
+    <h2 data-t="endH"></h2>
+    <p data-t="endP" style="margin-top:14px"></p>
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> <a href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/ikartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var P = function(s){ return '<span class="pt">'+s+'</span>'; };
+
+  var T = {
+    ru: {
+      eyebrow: "TAP · Subsídio de Mobilidade",
+      h1: "Документы TAP",
+      lead: "Чтобы получить субсидию на мобильность, нужны два документа от авиакомпании. Их заказывают на сайте TAP примерно за пятнадцать минут. Аккаунт заводить не надо — хватит электронного билета.",
+      facts: ["Без регистрации", "≈ 15 минут", "Одна бронь — все пассажиры"],
+      stubHead: "Что берём из билета",
+      stubNote: "Три поля из письма, которое TAP прислала при покупке. Данные на картинке вымышленные.",
+      needH: "Что держать под рукой",
+      need: [
+        "Электронное письмо с билетом от TAP — в нём и код брони, и номер билета",
+        "NIF каждого пассажира",
+        "Номер <strong>паспорта</strong> каждого пассажира — не ВНЖ",
+        "Адрес и отдельный e-mail на каждого"
+      ],
+      steps: [
+        { h:"Откройте форму",
+          p:"Форма живёт на отдельном сайте TAP — <code>receipts.flytap.com</code>. Пароль и регистрация не нужны. Через меню путь такой: на flytap.com откройте "+P("Os meus voos")+" → "+P("Gerir reserva")+" → "+P("Fatura online")+".",
+          img:"img/s1.jpg", cap:"Экран 1 — Pedido de Emissão de Documento",
+          fields:[
+            P("Código de Reserva")+" — шесть знаков, буквы и цифры. В билете подписано «Código de reserva / Booking ref».",
+            P("Número de bilhete")+" — слева уже впечатано <strong>047</strong>, это начало номера. Вводите только оставшиеся десять цифр.",
+            P("Apelido")+" — одна фамилия, без имени."
+          ],
+          after:"Нажмите "+P("Submeter")+". Если письмо с билетом потерялось — те же два числа напечатаны внизу посадочного талона: <strong>PNR</strong> и <strong>E-TICKET</strong>.",
+          warn:{ h:"Если ничего не нашлось",
+            p:"Ответ <strong>Não foram encontrados resultados</strong> означает, что по этой брони документы уже выпускались раньше. Заказывайте сразу после покупки билета — по старым перелётам форма молчит." }
+        },
+        { h:"Отметьте документы и разделите данные",
+          p:"Сверху — все пассажиры брони. Одного запроса хватит на всех сразу. Ниже две галочки: "+P("Fatura")+" (счёт) и "+P("Comprovativo de viagem")+" (подтверждение перелёта). Обе нужны и обе уже стоят — не снимайте.",
+          img:"img/s2.jpg", cap:"Экран 2 — пассажиры и типы документов",
+          fields:[
+            "Счёт — из него портал субсидии берёт тариф, налоги и сборы.",
+            "Переключатель фискальных данных — <strong>главное место этого экрана</strong>.",
+            "Подтверждение перелёта — доказательство, что вы действительно летели."
+          ],
+          warn:{ h:"Самая дорогая ошибка",
+            p:"По умолчанию выбрано "+P("Usar os mesmos dados fiscais para todos os documentos")+". <strong>Переключите на "+P("Usar diferentes dados fiscais para cada documento")+".</strong>",
+            p2:"Иначе все счета выйдут на один NIF и придут на один адрес — и второй пассажир субсидию не получит. Вернуться назад и переиграть этот выбор форма не даст: только начинать с первого экрана." }
+        },
+        { h:"NIF каждого пассажира",
+          p:"Теперь у каждого пассажира свой блок. "+P("País fiscal")+" оставьте PORTUGAL, в "+P("Identificação fiscal")+" впишите NIF — каждому свой, в свой блок.",
+          img:"img/s3.jpg", cap:"Экран 3 — Informação fiscal, по блоку на пассажира"
+        },
+        { h:"Имя подставится само — впишите почту",
+          p:"TAP сверяет NIF с Finanças и сама заполняет поле "+P("Nome")+". Оно серое и не редактируется — так и должно быть. Остаётся "+P("E-mail")+": <strong>у каждого свой</strong>, тогда документы придут каждому на его адрес.",
+          img:"img/s4.jpg", cap:"Экран 4 — имя из Finanças и личная почта",
+          after:"Нажмите "+P("Submeter Pedido")+"."
+        },
+        { h:"Паспорт и адрес",
+          p:"Последний экран с полями — снова по блоку на каждого пассажира.",
+          img:"img/s5.jpg", cap:"Экран 5 — данные пассажира для подтверждения перелёта",
+          fields:[
+            P("Documento de Identificação")+" — <strong>номер паспорта</strong>. Не ВНЖ и не NIF.",
+            P("Morada")+" — адрес проживания.",
+            P("Código postal")+" и "+P("Cidade")+" — индекс и город."
+          ],
+          after:"Нажмите "+P("Seguinte")+".",
+          warn:{ h:"Два похожих поля, две разные вещи",
+            p:"На этом экране чаще всего вписывают номер ВНЖ — и документ выходит негодным. Подтверждение перелёта удостоверяет, что летел конкретный человек, поэтому номер должен совпадать с паспортом, по которому куплен билет и пройдена посадка.",
+            p2:P("Identificação fiscal")+" — это NIF. "+P("Documento de Identificação")+" — это паспорт." }
+        },
+        { h:"Не закрывайте страницу",
+          p:"Зелёная плашка сообщает, что запрос принят. Но это половина дела: внизу справа стоит зелёная кнопка "+P("Pedir subsídio de mobilidade")+". Её легко принять за баннер и закрыть вкладку. Нажмите её.",
+          img:"img/s6.jpg", cap:"Экран 6 — подтверждение и кнопка, которую пропускают"
+        },
+        { h:"Второй запрос — только NIF",
+          p:"Короткая форма: по одному полю "+P("Identificação fiscal")+" на каждого пассажира. Паспорта и адреса здесь уже не спрашивают.",
+          img:"img/s7.jpg", cap:"Экран 7 — Pedido de Emissão do Subsídio de Mobilidade",
+          after:"Нажмите "+P("Submeter Pedido")+"."
+        },
+        { h:"Готово",
+          p:"Вторая зелёная плашка: оба запроса ушли. Больше нажимать нечего — дальше TAP работает сама.",
+          img:"img/s8.jpg", cap:"Экран 8 — оба запроса приняты"
+        }
+      ],
+      mailH: "Что придёт на почту",
+      mailP: "Письма приходят не вместе и не сразу. Вот как это выглядело по реальному заказу на двух пассажиров: счета вечером, подтверждения — через пять с половиной часов, уже следующей ночью. В другой раз разрыв был час, в третий — пятнадцать часов, и подтверждения пришли первыми. Считайте, что всё будет на руках в течение суток-полутора.",
+      tTime: "Время", tFile: "Вложение", tWhat: "Что это",
+      times: [
+        ["22.08 22:10", "AIE APXIE026_…709.pdf", "счёт, пассажир 1"],
+        ["22.08 22:10", "AIE APXIE026_…710.pdf", "счёт, пассажир 2"],
+        ["23.08 03:37", "BoardingProofTAP_…053.pdf", "подтверждение, пассажир 1"],
+        ["23.08 03:37", "BoardingProofTAP_…054.pdf", "подтверждение, пассажир 2"]
+      ],
+      mailSubj: "У всех писем <strong>одинаковая тема</strong> — «Envio de documento / Document delivery». Различить их можно только по имени вложения.",
+      mail: [
+        { fn:"AIE APXIE…pdf", h:"Fatura",
+          p:"Счёт: тариф, налоги и сборы — именно от этих цифр портал считает возмещение.",
+          p2:"На второй странице того же файла — <strong>Declaração para efeitos de Subsídio de Mobilidade</strong>. Отдельным письмом она не приходит, искать её не нужно." },
+        { fn:"BoardingProofTAP…pdf", h:"Comprovativo de Viagem",
+          p:"Подтверждение, что перелёт состоялся: маршрут, даты, номер билета и номер документа, который вы вписали на пятом экране.",
+          p2:"Выпускается после вылета — поэтому запрос и подаётся заранее." }
+      ],
+      endH: "Дальше — подача",
+      endP: "Документы на руках — это первый шаг. Второй: подать заявление на портале субсидии. Эта инструкция закрывает только часть с авиакомпанией, и она бесплатна — перешлите её тому, кому пригодится.",
+      by: "Инструкцию собрал <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Игорь Картузов</a> · SeedWave, Мадейра",
+      openBtn: "Открыть форму TAP",
+      copyBtn: "Скопировать адрес",
+      copiedLink: "Адрес скопирован ✓",
+      openHint: "Откроется отдельным окном — на компьютере встанет рядом, чтобы инструкция осталась перед глазами.",
+      shareBtn: "Переслать другу",
+      shareText: "Как правильно заказать документы у TAP для субсидии на мобильность — пошагово, с картинками:",
+      copied: "Ссылка скопирована ✓"
+    },
+
+    pt: {
+      eyebrow: "TAP · Subsídio de Mobilidade",
+      h1: "Documentos TAP",
+      lead: "Para pedir o subsídio de mobilidade são precisos dois documentos da companhia aérea. Pedem-se no site da TAP em cerca de quinze minutos. Não precisa de criar conta — basta o bilhete eletrónico.",
+      facts: ["Sem registo", "≈ 15 minutos", "Uma reserva, todos os passageiros"],
+      stubHead: "O que se tira do bilhete",
+      stubNote: "Três campos do email que a TAP enviou na compra. Os dados da imagem são fictícios.",
+      needH: "O que ter à mão",
+      need: [
+        "O email com o bilhete eletrónico da TAP — traz o código de reserva e o número do bilhete",
+        "O NIF de cada passageiro",
+        "O número do <strong>passaporte</strong> de cada passageiro — não o título de residência",
+        "A morada e um e-mail próprio para cada um"
+      ],
+      steps: [
+        { h:"Abra o formulário",
+          p:"O formulário vive num site separado da TAP — <code>receipts.flytap.com</code>. Não pede palavra-passe nem registo. Pelo menu, o caminho é: em flytap.com abra "+P("Os meus voos")+" → "+P("Gerir reserva")+" → "+P("Fatura online")+".",
+          img:"img/s1.jpg", cap:"Ecrã 1 — Pedido de Emissão de Documento",
+          fields:[
+            P("Código de Reserva")+" — seis caracteres, letras e números. No bilhete aparece como «Código de reserva / Booking ref».",
+            P("Número de bilhete")+" — à esquerda já está o <strong>047</strong>, que é o início do número. Escreva apenas os dez dígitos restantes.",
+            P("Apelido")+" — só o apelido, sem o nome próprio."
+          ],
+          after:"Carregue em "+P("Submeter")+". Se perdeu o email do bilhete, os mesmos dois números estão impressos no fundo do cartão de embarque: <strong>PNR</strong> e <strong>E-TICKET</strong>.",
+          warn:{ h:"Se não encontrar nada",
+            p:"A resposta <strong>Não foram encontrados resultados</strong> quer dizer que os documentos desta reserva já foram emitidos antes. Peça-os logo depois de comprar o bilhete — para viagens antigas o formulário não devolve nada." }
+        },
+        { h:"Marque os documentos e separe os dados",
+          p:"Em cima aparecem todos os passageiros da reserva: um só pedido chega para todos. Em baixo, duas caixas: "+P("Fatura")+" e "+P("Comprovativo de viagem")+". São precisas as duas e já vêm marcadas — não as desmarque.",
+          img:"img/s2.jpg", cap:"Ecrã 2 — passageiros e tipos de documento",
+          fields:[
+            "A fatura — é dela que o portal retira a tarifa, os impostos e as taxas.",
+            "O seletor de dados fiscais — <strong>o ponto decisivo deste ecrã</strong>.",
+            "O comprovativo — a prova de que a viagem foi mesmo feita."
+          ],
+          warn:{ h:"O erro mais caro",
+            p:"Por omissão está escolhido "+P("Usar os mesmos dados fiscais para todos os documentos")+". <strong>Mude para "+P("Usar diferentes dados fiscais para cada documento")+".</strong>",
+            p2:"Caso contrário, todas as faturas saem com um só NIF e vão para o mesmo endereço — e o segundo passageiro fica sem subsídio. O formulário não deixa voltar atrás para corrigir: só recomeçando do primeiro ecrã." }
+        },
+        { h:"O NIF de cada passageiro",
+          p:"Agora cada passageiro tem o seu bloco. Deixe "+P("País fiscal")+" em PORTUGAL e escreva o NIF em "+P("Identificação fiscal")+" — cada um no seu bloco.",
+          img:"img/s3.jpg", cap:"Ecrã 3 — Informação fiscal, um bloco por passageiro"
+        },
+        { h:"O nome aparece sozinho — escreva o e-mail",
+          p:"A TAP confirma o NIF nas Finanças e preenche o campo "+P("Nome")+" sozinha. Fica cinzento e não se edita — é assim mesmo. Falta o "+P("E-mail")+": <strong>um para cada passageiro</strong>, para que cada um receba os seus documentos.",
+          img:"img/s4.jpg", cap:"Ecrã 4 — nome vindo das Finanças e e-mail próprio",
+          after:"Carregue em "+P("Submeter Pedido")+"."
+        },
+        { h:"Passaporte e morada",
+          p:"O último ecrã com campos — outra vez um bloco por passageiro.",
+          img:"img/s5.jpg", cap:"Ecrã 5 — dados do passageiro para o comprovativo",
+          fields:[
+            P("Documento de Identificação")+" — o <strong>número do passaporte</strong>. Não é o título de residência nem o NIF.",
+            P("Morada")+" — a morada de residência.",
+            P("Código postal")+" e "+P("Cidade")+"."
+          ],
+          after:"Carregue em "+P("Seguinte")+".",
+          warn:{ h:"Dois campos parecidos, duas coisas diferentes",
+            p:"É aqui que mais gente escreve o número do título de residência — e o documento sai inútil. O comprovativo atesta que foi aquela pessoa que viajou, por isso o número tem de coincidir com o passaporte com que o bilhete foi comprado e o embarque feito.",
+            p2:P("Identificação fiscal")+" é o NIF. "+P("Documento de Identificação")+" é o passaporte." }
+        },
+        { h:"Não feche a página",
+          p:"A faixa verde diz que o pedido foi feito. Mas é só metade: em baixo à direita está o botão verde "+P("Pedir subsídio de mobilidade")+". É fácil confundi-lo com publicidade e fechar o separador. Carregue nele.",
+          img:"img/s6.jpg", cap:"Ecrã 6 — confirmação e o botão que se costuma perder"
+        },
+        { h:"Segundo pedido — só o NIF",
+          p:"Um formulário curto: um campo "+P("Identificação fiscal")+" por passageiro. Aqui já não pedem passaporte nem morada.",
+          img:"img/s7.jpg", cap:"Ecrã 7 — Pedido de Emissão do Subsídio de Mobilidade",
+          after:"Carregue em "+P("Submeter Pedido")+"."
+        },
+        { h:"Está feito",
+          p:"Segunda faixa verde: os dois pedidos seguiram. Não há mais nada para carregar — o resto é com a TAP.",
+          img:"img/s8.jpg", cap:"Ecrã 8 — os dois pedidos aceites"
+        }
+      ],
+      mailH: "O que chega por e-mail",
+      mailP: "Os emails não chegam juntos nem de imediato. Foi assim num pedido real para dois passageiros: as faturas ao fim da tarde, os comprovativos cinco horas e meia depois, já na madrugada seguinte. Noutra vez o intervalo foi de uma hora, noutra de quinze — e os comprovativos vieram primeiro. Conte com tudo em mãos dentro de um dia a dia e meio.",
+      tTime: "Hora", tFile: "Anexo", tWhat: "O que é",
+      times: [
+        ["22.08 22:10", "AIE APXIE026_…709.pdf", "fatura, passageiro 1"],
+        ["22.08 22:10", "AIE APXIE026_…710.pdf", "fatura, passageiro 2"],
+        ["23.08 03:37", "BoardingProofTAP_…053.pdf", "comprovativo, passageiro 1"],
+        ["23.08 03:37", "BoardingProofTAP_…054.pdf", "comprovativo, passageiro 2"]
+      ],
+      mailSubj: "Todos os emails têm <strong>o mesmo assunto</strong> — «Envio de documento / Document delivery». Só se distinguem pelo nome do anexo.",
+      mail: [
+        { fn:"AIE APXIE…pdf", h:"Fatura",
+          p:"A fatura: tarifa, impostos e taxas — são estes valores que o portal usa para calcular o reembolso.",
+          p2:"Na segunda página do mesmo ficheiro está a <strong>Declaração para efeitos de Subsídio de Mobilidade</strong>. Não chega em email separado, não vale a pena procurá-la." },
+        { fn:"BoardingProofTAP…pdf", h:"Comprovativo de Viagem",
+          p:"A prova de que a viagem se realizou: rota, datas, número do bilhete e o número do documento que escreveu no quinto ecrã.",
+          p2:"É emitido depois do voo — por isso o pedido se faz com antecedência." }
+      ],
+      endH: "A seguir — o pedido",
+      endP: "Ter os documentos é o primeiro passo. O segundo é submeter o pedido no portal do subsídio. Este guia cobre só a parte da companhia aérea, e é gratuito — reenvie-o a quem precisar.",
+      by: "Guia preparado por <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      openBtn: "Abrir o formulário da TAP",
+      copyBtn: "Copiar o endereço",
+      copiedLink: "Endereço copiado ✓",
+      openHint: "Abre numa janela separada — no computador fica ao lado, para o guia continuar à vista.",
+      shareBtn: "Enviar a um amigo",
+      shareText: "Como pedir corretamente os documentos da TAP para o subsídio de mobilidade — passo a passo, com imagens:",
+      copied: "Ligação copiada ✓"
+    },
+
+    en: {
+      eyebrow: "TAP · Subsídio de Mobilidade",
+      h1: "TAP Documents",
+      lead: "To claim the mobility subsidy you need two documents from the airline. You order them on the TAP site in about fifteen minutes. No account required — the e-ticket is enough.",
+      facts: ["No sign-up", "≈ 15 minutes", "One booking, all passengers"],
+      stubHead: "What you take from the ticket",
+      stubNote: "Three fields from the email TAP sent when you bought the ticket. The data shown is made up.",
+      needH: "What to have at hand",
+      need: [
+        "The e-ticket email from TAP — it carries both the booking code and the ticket number",
+        "The NIF of each passenger",
+        "The <strong>passport</strong> number of each passenger — not the residence permit",
+        "An address and a separate e-mail for each person"
+      ],
+      steps: [
+        { h:"Open the form",
+          p:"The form lives on a separate TAP site — <code>receipts.flytap.com</code>. No password, no registration. Through the menu the path is: on flytap.com open "+P("Os meus voos")+" → "+P("Gerir reserva")+" → "+P("Fatura online")+".",
+          img:"img/s1.jpg", cap:"Screen 1 — Pedido de Emissão de Documento",
+          fields:[
+            P("Código de Reserva")+" — six characters, letters and digits. On the ticket it is labelled «Código de reserva / Booking ref».",
+            P("Número de bilhete")+" — <strong>047</strong> is already printed on the left; that is the start of the number. Type only the remaining ten digits.",
+            P("Apelido")+" — surname only, no first name."
+          ],
+          after:"Press "+P("Submeter")+". If the ticket email is gone, the same two numbers are printed at the bottom of the boarding pass: <strong>PNR</strong> and <strong>E-TICKET</strong>.",
+          warn:{ h:"If nothing is found",
+            p:"The answer <strong>Não foram encontrados resultados</strong> means the documents for this booking have already been issued once. Order them right after buying the ticket — for older flights the form returns nothing." }
+        },
+        { h:"Tick both documents and split the data",
+          p:"At the top are all the passengers on the booking: one request covers everyone. Below are two checkboxes — "+P("Fatura")+" (the invoice) and "+P("Comprovativo de viagem")+" (proof of travel). You need both and both are already ticked; leave them alone.",
+          img:"img/s2.jpg", cap:"Screen 2 — passengers and document types",
+          fields:[
+            "The invoice — the subsidy portal takes the fare, taxes and fees from it.",
+            "The fiscal-data switch — <strong>the decisive part of this screen</strong>.",
+            "Proof of travel — evidence that the flight actually happened."
+          ],
+          warn:{ h:"The most expensive mistake",
+            p:"By default "+P("Usar os mesmos dados fiscais para todos os documentos")+" is selected. <strong>Switch it to "+P("Usar diferentes dados fiscais para cada documento")+".</strong>",
+            p2:"Otherwise every invoice comes out under a single NIF and lands in one mailbox — and the second passenger gets no subsidy. The form will not let you go back and change it: you would have to start again from the first screen." }
+        },
+        { h:"The NIF of each passenger",
+          p:"Each passenger now has their own block. Leave "+P("País fiscal")+" as PORTUGAL and type the NIF into "+P("Identificação fiscal")+" — each one in their own block.",
+          img:"img/s3.jpg", cap:"Screen 3 — Informação fiscal, one block per passenger"
+        },
+        { h:"The name fills itself — add the e-mail",
+          p:"TAP checks the NIF against Finanças and fills "+P("Nome")+" on its own. The field is grey and cannot be edited — that is normal. What is left is "+P("E-mail")+": <strong>a different one for each passenger</strong>, so everyone receives their own documents.",
+          img:"img/s4.jpg", cap:"Screen 4 — name from Finanças and a personal e-mail",
+          after:"Press "+P("Submeter Pedido")+"."
+        },
+        { h:"Passport and address",
+          p:"The last screen with fields — again one block per passenger.",
+          img:"img/s5.jpg", cap:"Screen 5 — passenger data for the proof of travel",
+          fields:[
+            P("Documento de Identificação")+" — the <strong>passport number</strong>. Not the residence permit, not the NIF.",
+            P("Morada")+" — your home address.",
+            P("Código postal")+" and "+P("Cidade")+" — postcode and town."
+          ],
+          after:"Press "+P("Seguinte")+".",
+          warn:{ h:"Two similar fields, two different things",
+            p:"This is where most people type their residence-permit number — and the document comes out useless. Proof of travel certifies that a particular person flew, so the number must match the passport the ticket was bought with and boarding was done with.",
+            p2:P("Identificação fiscal")+" is the NIF. "+P("Documento de Identificação")+" is the passport." }
+        },
+        { h:"Do not close the page",
+          p:"The green banner says the request went through. That is only half of it: at the bottom right sits a green "+P("Pedir subsídio de mobilidade")+" button. It is easy to mistake for an ad and close the tab. Press it.",
+          img:"img/s6.jpg", cap:"Screen 6 — confirmation and the button people miss"
+        },
+        { h:"Second request — NIF only",
+          p:"A short form: one "+P("Identificação fiscal")+" field per passenger. No passports and no addresses this time.",
+          img:"img/s7.jpg", cap:"Screen 7 — Pedido de Emissão do Subsídio de Mobilidade",
+          after:"Press "+P("Submeter Pedido")+"."
+        },
+        { h:"Done",
+          p:"A second green banner: both requests are in. Nothing left to press — the rest is up to TAP.",
+          img:"img/s8.jpg", cap:"Screen 8 — both requests accepted"
+        }
+      ],
+      mailH: "What arrives by e-mail",
+      mailP: "The emails do not come together, and not straight away. This is how one real request for two passengers played out: the invoices in the evening, the proofs five and a half hours later, already in the small hours. Another time the gap was one hour; a third time fifteen, and the proofs came first. Count on having everything within a day to a day and a half.",
+      tTime: "Time", tFile: "Attachment", tWhat: "What it is",
+      times: [
+        ["22.08 22:10", "AIE APXIE026_…709.pdf", "invoice, passenger 1"],
+        ["22.08 22:10", "AIE APXIE026_…710.pdf", "invoice, passenger 2"],
+        ["23.08 03:37", "BoardingProofTAP_…053.pdf", "proof, passenger 1"],
+        ["23.08 03:37", "BoardingProofTAP_…054.pdf", "proof, passenger 2"]
+      ],
+      mailSubj: "Every email carries <strong>the same subject</strong> — «Envio de documento / Document delivery». The attachment name is the only way to tell them apart.",
+      mail: [
+        { fn:"AIE APXIE…pdf", h:"Fatura",
+          p:"The invoice: fare, taxes and fees — these are the figures the portal uses to work out the refund.",
+          p2:"The second page of the same file is the <strong>Declaração para efeitos de Subsídio de Mobilidade</strong>. It never arrives as a separate email, so there is no point looking for it." },
+        { fn:"BoardingProofTAP…pdf", h:"Comprovativo de Viagem",
+          p:"Proof that the flight took place: route, dates, ticket number and the document number you typed on the fifth screen.",
+          p2:"It is issued after the flight — which is why the request is made in advance." }
+      ],
+      endH: "Next comes the claim",
+      endP: "Having the documents is the first step. The second is submitting the claim on the subsidy portal. This guide covers the airline part only, and it is free — forward it to anyone who needs it.",
+      by: "Guide put together by <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      openBtn: "Open the TAP form",
+      copyBtn: "Copy the address",
+      copiedLink: "Address copied ✓",
+      openHint: "Opens in a separate window — on a computer it sits alongside, so the guide stays in view.",
+      shareBtn: "Send to a friend",
+      shareText: "How to order the TAP documents for the mobility subsidy — step by step, with pictures:",
+      copied: "Link copied ✓"
+    },
+
+    de: {
+      eyebrow: "TAP · Subsídio de Mobilidade",
+      h1: "TAP-Dokumente",
+      lead: "Für den Mobilitätszuschuss braucht man zwei Dokumente der Fluggesellschaft. Man bestellt sie auf der TAP-Seite in etwa fünfzehn Minuten. Ein Konto ist nicht nötig — das elektronische Ticket genügt.",
+      facts: ["Ohne Registrierung", "≈ 15 Minuten", "Eine Buchung, alle Passagiere"],
+      stubHead: "Was man vom Ticket braucht",
+      stubNote: "Drei Felder aus der E-Mail, die TAP beim Kauf geschickt hat. Die gezeigten Daten sind erfunden.",
+      needH: "Was bereitliegen sollte",
+      need: [
+        "Die Ticket-E-Mail von TAP — sie enthält Buchungscode und Ticketnummer",
+        "Die NIF jedes Passagiers",
+        "Die <strong>Passnummer</strong> jedes Passagiers — nicht die Aufenthaltskarte",
+        "Anschrift und je eine eigene E-Mail-Adresse"
+      ],
+      steps: [
+        { h:"Formular öffnen",
+          p:"Das Formular liegt auf einer eigenen TAP-Seite — <code>receipts.flytap.com</code>. Kein Passwort, keine Registrierung. Über das Menü: auf flytap.com "+P("Os meus voos")+" → "+P("Gerir reserva")+" → "+P("Fatura online")+".",
+          img:"img/s1.jpg", cap:"Bildschirm 1 — Pedido de Emissão de Documento",
+          fields:[
+            P("Código de Reserva")+" — sechs Zeichen, Buchstaben und Ziffern. Im Ticket steht «Código de reserva / Booking ref».",
+            P("Número de bilhete")+" — links steht bereits <strong>047</strong>, der Anfang der Nummer. Nur die übrigen zehn Ziffern eintragen.",
+            P("Apelido")+" — nur der Nachname, ohne Vornamen."
+          ],
+          after:P("Submeter")+" drücken. Ist die Ticket-E-Mail weg, stehen dieselben zwei Nummern unten auf der Bordkarte: <strong>PNR</strong> und <strong>E-TICKET</strong>.",
+          warn:{ h:"Wenn nichts gefunden wird",
+            p:"Die Antwort <strong>Não foram encontrados resultados</strong> heißt, dass die Dokumente zu dieser Buchung schon einmal ausgestellt wurden. Bestellen Sie sie gleich nach dem Ticketkauf — für ältere Flüge liefert das Formular nichts." }
+        },
+        { h:"Dokumente ankreuzen und Daten trennen",
+          p:"Oben stehen alle Passagiere der Buchung: eine Anfrage reicht für alle. Darunter zwei Kästchen — "+P("Fatura")+" (die Rechnung) und "+P("Comprovativo de viagem")+" (der Flugnachweis). Beide werden gebraucht und sind bereits angekreuzt; so lassen.",
+          img:"img/s2.jpg", cap:"Bildschirm 2 — Passagiere und Dokumenttypen",
+          fields:[
+            "Die Rechnung — daraus nimmt das Portal Tarif, Steuern und Gebühren.",
+            "Der Schalter für die Steuerdaten — <strong>der entscheidende Punkt dieses Bildschirms</strong>.",
+            "Der Flugnachweis — der Beleg, dass der Flug tatsächlich stattfand."
+          ],
+          warn:{ h:"Der teuerste Fehler",
+            p:"Voreingestellt ist "+P("Usar os mesmos dados fiscais para todos os documentos")+". <strong>Auf "+P("Usar diferentes dados fiscais para cada documento")+" umstellen.</strong>",
+            p2:"Sonst laufen alle Rechnungen auf eine einzige NIF und landen in einem Postfach — und der zweite Passagier bekommt keinen Zuschuss. Zurück lässt das Formular nicht: nur ganz von vorn." }
+        },
+        { h:"Die NIF jedes Passagiers",
+          p:"Jetzt hat jeder Passagier einen eigenen Block. "+P("País fiscal")+" auf PORTUGAL lassen und die NIF in "+P("Identificação fiscal")+" eintragen — jeder in seinen Block.",
+          img:"img/s3.jpg", cap:"Bildschirm 3 — Informação fiscal, ein Block je Passagier"
+        },
+        { h:"Der Name erscheint von selbst — E-Mail eintragen",
+          p:"TAP gleicht die NIF mit Finanças ab und füllt "+P("Nome")+" selbst aus. Das Feld ist grau und nicht änderbar — das gehört so. Bleibt "+P("E-mail")+": <strong>für jeden eine eigene</strong>, damit jeder seine Dokumente bekommt.",
+          img:"img/s4.jpg", cap:"Bildschirm 4 — Name aus Finanças und eigene E-Mail",
+          after:P("Submeter Pedido")+" drücken."
+        },
+        { h:"Pass und Anschrift",
+          p:"Der letzte Bildschirm mit Feldern — wieder ein Block je Passagier.",
+          img:"img/s5.jpg", cap:"Bildschirm 5 — Passagierdaten für den Flugnachweis",
+          fields:[
+            P("Documento de Identificação")+" — die <strong>Passnummer</strong>. Nicht die Aufenthaltskarte, nicht die NIF.",
+            P("Morada")+" — die Wohnanschrift.",
+            P("Código postal")+" und "+P("Cidade")+" — Postleitzahl und Ort."
+          ],
+          after:P("Seguinte")+" drücken.",
+          warn:{ h:"Zwei ähnliche Felder, zwei verschiedene Dinge",
+            p:"Hier tragen die meisten die Nummer der Aufenthaltskarte ein — und das Dokument ist unbrauchbar. Der Flugnachweis bescheinigt, dass eine bestimmte Person geflogen ist; die Nummer muss also zu dem Pass passen, mit dem Ticket und Boarding liefen.",
+            p2:P("Identificação fiscal")+" ist die NIF. "+P("Documento de Identificação")+" ist der Pass." }
+        },
+        { h:"Die Seite nicht schließen",
+          p:"Das grüne Feld meldet, dass die Anfrage angekommen ist. Das ist erst die Hälfte: unten rechts steht der grüne Knopf "+P("Pedir subsídio de mobilidade")+". Man hält ihn leicht für Werbung und schließt den Tab. Drücken Sie ihn.",
+          img:"img/s6.jpg", cap:"Bildschirm 6 — Bestätigung und der übersehene Knopf"
+        },
+        { h:"Zweite Anfrage — nur die NIF",
+          p:"Ein kurzes Formular: ein Feld "+P("Identificação fiscal")+" je Passagier. Pass und Anschrift werden hier nicht mehr verlangt.",
+          img:"img/s7.jpg", cap:"Bildschirm 7 — Pedido de Emissão do Subsídio de Mobilidade",
+          after:P("Submeter Pedido")+" drücken."
+        },
+        { h:"Fertig",
+          p:"Zweites grünes Feld: beide Anfragen sind raus. Mehr ist nicht zu tun — den Rest erledigt TAP.",
+          img:"img/s8.jpg", cap:"Bildschirm 8 — beide Anfragen angenommen"
+        }
+      ],
+      mailH: "Was per E-Mail kommt",
+      mailP: "Die E-Mails kommen weder zusammen noch sofort. So lief eine echte Bestellung für zwei Passagiere: die Rechnungen am Abend, die Nachweise fünfeinhalb Stunden später, schon in der Nacht darauf. Ein anderes Mal lag eine Stunde dazwischen, ein drittes Mal fünfzehn — und die Nachweise kamen zuerst. Rechnen Sie mit allem binnen ein bis anderthalb Tagen.",
+      tTime: "Uhrzeit", tFile: "Anhang", tWhat: "Was es ist",
+      times: [
+        ["22.08 22:10", "AIE APXIE026_…709.pdf", "Rechnung, Passagier 1"],
+        ["22.08 22:10", "AIE APXIE026_…710.pdf", "Rechnung, Passagier 2"],
+        ["23.08 03:37", "BoardingProofTAP_…053.pdf", "Nachweis, Passagier 1"],
+        ["23.08 03:37", "BoardingProofTAP_…054.pdf", "Nachweis, Passagier 2"]
+      ],
+      mailSubj: "Alle E-Mails tragen <strong>denselben Betreff</strong> — «Envio de documento / Document delivery». Unterscheiden lassen sie sich nur am Namen des Anhangs.",
+      mail: [
+        { fn:"AIE APXIE…pdf", h:"Fatura",
+          p:"Die Rechnung: Tarif, Steuern und Gebühren — mit diesen Zahlen rechnet das Portal die Erstattung aus.",
+          p2:"Auf der zweiten Seite derselben Datei steht die <strong>Declaração para efeitos de Subsídio de Mobilidade</strong>. Sie kommt nie als eigene E-Mail, man muss sie nicht suchen." },
+        { fn:"BoardingProofTAP…pdf", h:"Comprovativo de Viagem",
+          p:"Der Beleg, dass der Flug stattfand: Strecke, Daten, Ticketnummer und die Dokumentnummer aus dem fünften Bildschirm.",
+          p2:"Er wird nach dem Flug ausgestellt — deshalb wird im Voraus bestellt." }
+      ],
+      endH: "Danach folgt der Antrag",
+      endP: "Die Dokumente zu haben ist der erste Schritt. Der zweite ist der Antrag im Portal des Zuschusses. Diese Anleitung deckt nur den Teil der Fluggesellschaft ab und ist kostenlos — leiten Sie sie weiter.",
+      by: "Anleitung von <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      openBtn: "TAP-Formular öffnen",
+      copyBtn: "Adresse kopieren",
+      copiedLink: "Adresse kopiert ✓",
+      openHint: "Öffnet sich in einem eigenen Fenster — am Computer daneben, damit die Anleitung sichtbar bleibt.",
+      shareBtn: "An einen Freund senden",
+      shareText: "Wie man bei TAP die Dokumente für den Mobilitätszuschuss richtig bestellt — Schritt für Schritt, mit Bildern:",
+      copied: "Link kopiert ✓"
+    },
+
+    es: {
+      eyebrow: "TAP · Subsídio de Mobilidade",
+      h1: "Documentos TAP",
+      lead: "Para pedir el subsidio de movilidad hacen falta dos documentos de la aerolínea. Se solicitan en la web de TAP en unos quince minutos. No hace falta crear cuenta: basta con el billete electrónico.",
+      facts: ["Sin registro", "≈ 15 minutos", "Una reserva, todos los pasajeros"],
+      stubHead: "Qué se toma del billete",
+      stubNote: "Tres campos del correo que TAP envió al comprar. Los datos de la imagen son ficticios.",
+      needH: "Qué tener a mano",
+      need: [
+        "El correo con el billete electrónico de TAP: trae el código de reserva y el número de billete",
+        "El NIF de cada pasajero",
+        "El número de <strong>pasaporte</strong> de cada pasajero, no el permiso de residencia",
+        "La dirección y un correo propio para cada uno"
+      ],
+      steps: [
+        { h:"Abra el formulario",
+          p:"El formulario vive en una web aparte de TAP: <code>receipts.flytap.com</code>. No pide contraseña ni registro. Por el menú, la ruta es: en flytap.com abra "+P("Os meus voos")+" → "+P("Gerir reserva")+" → "+P("Fatura online")+".",
+          img:"img/s1.jpg", cap:"Pantalla 1 — Pedido de Emissão de Documento",
+          fields:[
+            P("Código de Reserva")+" — seis caracteres, letras y números. En el billete aparece como «Código de reserva / Booking ref».",
+            P("Número de bilhete")+" — a la izquierda ya está el <strong>047</strong>, que es el inicio del número. Escriba solo los diez dígitos restantes.",
+            P("Apelido")+" — solo el apellido, sin el nombre."
+          ],
+          after:"Pulse "+P("Submeter")+". Si se perdió el correo del billete, esos dos números están impresos al pie de la tarjeta de embarque: <strong>PNR</strong> y <strong>E-TICKET</strong>.",
+          warn:{ h:"Si no encuentra nada",
+            p:"La respuesta <strong>Não foram encontrados resultados</strong> significa que los documentos de esta reserva ya se emitieron antes. Pídalos justo después de comprar el billete: para vuelos antiguos el formulario no devuelve nada." }
+        },
+        { h:"Marque los documentos y separe los datos",
+          p:"Arriba aparecen todos los pasajeros de la reserva: una sola solicitud vale para todos. Debajo, dos casillas — "+P("Fatura")+" (la factura) y "+P("Comprovativo de viagem")+" (el justificante del vuelo). Hacen falta las dos y ya vienen marcadas; no las desmarque.",
+          img:"img/s2.jpg", cap:"Pantalla 2 — pasajeros y tipos de documento",
+          fields:[
+            "La factura: de ella el portal toma la tarifa, los impuestos y las tasas.",
+            "El selector de datos fiscales: <strong>lo decisivo de esta pantalla</strong>.",
+            "El justificante: la prueba de que el vuelo se realizó."
+          ],
+          warn:{ h:"El error más caro",
+            p:"Por defecto está elegido "+P("Usar os mesmos dados fiscais para todos os documentos")+". <strong>Cámbielo a "+P("Usar diferentes dados fiscais para cada documento")+".</strong>",
+            p2:"De lo contrario todas las facturas salen con un solo NIF y llegan a un único correo, y el segundo pasajero se queda sin subsidio. El formulario no deja volver atrás: habría que empezar desde la primera pantalla." }
+        },
+        { h:"El NIF de cada pasajero",
+          p:"Ahora cada pasajero tiene su bloque. Deje "+P("País fiscal")+" en PORTUGAL y escriba el NIF en "+P("Identificação fiscal")+", cada uno en su bloque.",
+          img:"img/s3.jpg", cap:"Pantalla 3 — Informação fiscal, un bloque por pasajero"
+        },
+        { h:"El nombre se rellena solo: escriba el correo",
+          p:"TAP comprueba el NIF en Finanças y rellena "+P("Nome")+" por su cuenta. El campo queda gris y no se edita: es lo normal. Queda el "+P("E-mail")+": <strong>uno para cada pasajero</strong>, para que cada cual reciba sus documentos.",
+          img:"img/s4.jpg", cap:"Pantalla 4 — nombre de Finanças y correo propio",
+          after:"Pulse "+P("Submeter Pedido")+"."
+        },
+        { h:"Pasaporte y dirección",
+          p:"La última pantalla con campos, otra vez un bloque por pasajero.",
+          img:"img/s5.jpg", cap:"Pantalla 5 — datos del pasajero para el justificante",
+          fields:[
+            P("Documento de Identificação")+" — el <strong>número de pasaporte</strong>. Ni el permiso de residencia ni el NIF.",
+            P("Morada")+" — la dirección.",
+            P("Código postal")+" y "+P("Cidade")+" — código postal y ciudad."
+          ],
+          after:"Pulse "+P("Seguinte")+".",
+          warn:{ h:"Dos campos parecidos, dos cosas distintas",
+            p:"Aquí es donde más gente escribe el número del permiso de residencia, y el documento sale inservible. El justificante acredita que voló una persona concreta, así que el número debe coincidir con el pasaporte con el que se compró el billete y se embarcó.",
+            p2:P("Identificação fiscal")+" es el NIF. "+P("Documento de Identificação")+" es el pasaporte." }
+        },
+        { h:"No cierre la página",
+          p:"La franja verde dice que la solicitud se ha hecho. Pero es la mitad: abajo a la derecha está el botón verde "+P("Pedir subsídio de mobilidade")+". Es fácil tomarlo por publicidad y cerrar la pestaña. Púlselo.",
+          img:"img/s6.jpg", cap:"Pantalla 6 — confirmación y el botón que se pasa por alto"
+        },
+        { h:"Segunda solicitud: solo el NIF",
+          p:"Un formulario corto: un campo "+P("Identificação fiscal")+" por pasajero. Aquí ya no piden pasaporte ni dirección.",
+          img:"img/s7.jpg", cap:"Pantalla 7 — Pedido de Emissão do Subsídio de Mobilidade",
+          after:"Pulse "+P("Submeter Pedido")+"."
+        },
+        { h:"Listo",
+          p:"Segunda franja verde: las dos solicitudes han salido. No queda nada que pulsar; el resto lo hace TAP.",
+          img:"img/s8.jpg", cap:"Pantalla 8 — las dos solicitudes aceptadas"
+        }
+      ],
+      mailH: "Qué llega al correo",
+      mailP: "Los correos no llegan juntos ni de inmediato. Así fue en una solicitud real para dos pasajeros: las facturas por la tarde y los justificantes cinco horas y media después, ya de madrugada. Otra vez el intervalo fue de una hora; otra, de quince, y los justificantes llegaron primero. Cuente con tenerlo todo en un día o día y medio.",
+      tTime: "Hora", tFile: "Adjunto", tWhat: "Qué es",
+      times: [
+        ["22.08 22:10", "AIE APXIE026_…709.pdf", "factura, pasajero 1"],
+        ["22.08 22:10", "AIE APXIE026_…710.pdf", "factura, pasajero 2"],
+        ["23.08 03:37", "BoardingProofTAP_…053.pdf", "justificante, pasajero 1"],
+        ["23.08 03:37", "BoardingProofTAP_…054.pdf", "justificante, pasajero 2"]
+      ],
+      mailSubj: "Todos los correos llevan <strong>el mismo asunto</strong> — «Envio de documento / Document delivery». Solo se distinguen por el nombre del adjunto.",
+      mail: [
+        { fn:"AIE APXIE…pdf", h:"Fatura",
+          p:"La factura: tarifa, impuestos y tasas; con esas cifras el portal calcula el reembolso.",
+          p2:"En la segunda página del mismo archivo está la <strong>Declaração para efeitos de Subsídio de Mobilidade</strong>. No llega en un correo aparte, no hace falta buscarla." },
+        { fn:"BoardingProofTAP…pdf", h:"Comprovativo de Viagem",
+          p:"La prueba de que el vuelo se realizó: ruta, fechas, número de billete y el número de documento que escribió en la quinta pantalla.",
+          p2:"Se emite después del vuelo, por eso la solicitud se hace con antelación." }
+      ],
+      endH: "Después viene la solicitud",
+      endP: "Tener los documentos es el primer paso. El segundo es presentar la solicitud en el portal del subsidio. Esta guía cubre solo la parte de la aerolínea y es gratuita: reenvíela a quien la necesite.",
+      by: "Guía preparada por <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      openBtn: "Abrir el formulario de TAP",
+      copyBtn: "Copiar la dirección",
+      copiedLink: "Dirección copiada ✓",
+      openHint: "Se abre en una ventana aparte: en el ordenador queda al lado, para no perder de vista la guía.",
+      shareBtn: "Enviar a un amigo",
+      shareText: "Cómo pedir bien los documentos de TAP para el subsidio de movilidad, paso a paso y con imágenes:",
+      copied: "Enlace copiado ✓"
+    }
+  };
+
+  var LANGS = ["pt", "en", "ru", "de", "es"];
+  var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
+
+  var TAPURL = "https://receipts.flytap.com/PaxReceiptsWAR/spring/docs?locale=pt";
+  var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
+
+  /* язык: ?lang= → сохранённый выбор → язык браузера → PT */
+  function pickLang(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (LANGS.indexOf(q) >= 0) return q;
+    var st = null;
+    try { st = localStorage.getItem('ndm-lang'); } catch(e){}
+    if (LANGS.indexOf(st) >= 0) return st;
+    var nav = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (LANGS.indexOf(nav) >= 0) return nav;
+    return 'pt';
+  }
+  var lang = pickLang();
+
+  function actBlock(t){
+    return '<div class="act">' +
+      '<p class="url">receipts.flytap.com</p>' +
+      '<div class="row">' +
+        '<a class="btn btn-go" id="openTap" href="' + TAPURL + '" target="_blank" rel="noopener">' + t.openBtn + '</a>' +
+        '<button class="btn btn-copy" id="copyTap" type="button"><span>' + t.copyBtn + '</span></button>' +
+      '</div>' +
+      '<p class="hint">' + t.openHint + '</p>' +
+    '</div>';
+  }
+
+  function render(){
+    var t = T[lang];
+    document.documentElement.lang = TAGS[lang];
+    document.getElementById('lang').textContent = lang.toUpperCase();
+    document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
+      return '<button type="button" data-l="' + L + '"' +
+             (L === lang ? ' aria-current="true"' : '') + '>' +
+             '<span>' + LNAMES[L] + '</span><span class="code">' + L.toUpperCase() + '</span></button>';
+    }).join('');
+
+    var nodes = document.querySelectorAll('[data-t]');
+    for (var i = 0; i < nodes.length; i++){
+      var k = nodes[i].getAttribute('data-t');
+      if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
+    }
+
+    document.getElementById('facts').innerHTML =
+      t.facts.map(function(f){ return '<li>' + f + '</li>'; }).join('');
+
+    document.getElementById('need').innerHTML =
+      t.need.map(function(n){ return '<li><span>' + n + '</span></li>'; }).join('');
+
+    document.getElementById('steps').innerHTML = t.steps.map(function(s, i){
+      var h = '<section class="step">';
+      h += '<div class="step-h"><span class="num">' + (i + 1) + '</span><h3>' + s.h + '</h3></div>';
+      h += '<p>' + s.p + '</p>';
+      if (i === 0) h += actBlock(t);
+      h += '<figure><img src="' + s.img + '" alt="' + s.cap + '" loading="lazy">';
+      h += '<figcaption>' + s.cap + '</figcaption></figure>';
+      if (s.fields){
+        h += '<ul class="fields">' + s.fields.map(function(f, j){
+          return '<li><span class="mk">' + (j + 1) + '</span><span>' + f + '</span></li>';
+        }).join('') + '</ul>';
+      }
+      if (s.after) h += '<p style="margin-top:18px">' + s.after + '</p>';
+      if (s.warn){
+        h += '<div class="warn"><h4>' + s.warn.h + '</h4><p>' + s.warn.p + '</p>';
+        if (s.warn.p2) h += '<p>' + s.warn.p2 + '</p>';
+        h += '</div>';
+      }
+      return h + '</section>';
+    }).join('');
+
+    document.getElementById('times').innerHTML = t.times.map(function(r){
+      return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>';
+    }).join('');
+
+    document.getElementById('mail').innerHTML = t.mail.map(function(m){
+      return '<div class="card"><span class="fn">' + m.fn + '</span><h3>' + m.h +
+             '</h3><p>' + m.p + '</p><p>' + m.p2 + '</p></div>';
+    }).join('');
+
+    /* open the TAP form in a window that sits beside the guide on a desktop */
+    var go = document.getElementById('openTap');
+    go.addEventListener('click', function(e){
+      if (window.innerWidth < 900) return;           /* phone: normal new tab */
+      var w = Math.max(560, Math.round(screen.availWidth / 2));
+      var h = screen.availHeight;
+      var f = 'noopener,noreferrer,width=' + w + ',height=' + h +
+              ',left=' + (screen.availLeft + screen.availWidth - w) + ',top=' + screen.availTop;
+      var win = window.open(TAPURL, 'tapform', f);
+      if (win) e.preventDefault();
+    });
+
+    var cp = document.getElementById('copyTap');
+    cp.addEventListener('click', function(){
+      var span = cp.querySelector('span'), old = span.textContent;
+      var done = function(){
+        span.textContent = t.copiedLink;
+        setTimeout(function(){ span.textContent = old; }, 2200);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(TAPURL).then(done, done);
+      else done();
+    });
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  render();
+
+  var lbtn = document.getElementById('lang'), lmenu = document.getElementById('langmenu');
+
+  function closeMenu(){ lmenu.hidden = true; lbtn.setAttribute('aria-expanded', 'false'); }
+
+  lbtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = lmenu.hidden;
+    lmenu.hidden = !open;
+    lbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  lmenu.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-l]');
+    if (!b) return;
+    lang = b.getAttribute('data-l');
+    try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+    closeMenu();
+    render();
+    try {
+      var u = new URL(location.href);
+      u.searchParams.set('lang', lang);
+      history.replaceState(null, '', u);
+    } catch(err){}
+  });
+
+  document.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+  /* theme */
+  var root = document.documentElement, tb = document.getElementById('theme');
+  var stored = null;
+  try { stored = localStorage.getItem('ndm-theme'); } catch(e){}
+  if (stored) root.setAttribute('data-theme', stored);
+  function isDark(){
+    var a = root.getAttribute('data-theme');
+    if (a) return a === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paint(){ tb.textContent = isDark() ? '☀' : '☾'; }
+  paint();
+  tb.addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ndm-theme', next); } catch(e){}
+    paint();
+  });
+
+  /* ticket stub highlight */
+  var flds = [document.getElementById('f0'), document.getElementById('f1'), document.getElementById('f2')];
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){
+    flds.forEach(function(f){ f.classList.add('on'); });
+  } else {
+    var k = 0;
+    flds[0].classList.add('on');
+    setInterval(function(){
+      flds[k].classList.remove('on');
+      k = (k + 1) % 3;
+      flds[k].classList.add('on');
+    }, 1900);
+  }
+
+  /* share */
+  var sb = document.getElementById('share');
+  sb.addEventListener('click', function(){
+    var t = T[lang];
+    var url = location.href;
+    if (navigator.share){
+      navigator.share({ title: t.h1, text: t.shareText, url: url }).catch(function(){});
+      return;
+    }
+    var done = function(){
+      var span = sb.querySelector('span');
+      var old = span.textContent;
+      span.textContent = t.copied;
+      setTimeout(function(){ span.textContent = old; }, 2200);
+    };
+    if (navigator.clipboard){
+      navigator.clipboard.writeText(t.shareText + ' ' + url).then(done, done);
+    } else { done(); }
+  });
+})();
+</script>

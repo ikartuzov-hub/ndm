@@ -1,0 +1,269 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF6F1; --surface:#FFFFFF; --surface-2:#F3EBE2;
+  --ink:#1A1512; --ink-soft:#6B5C51;
+  --accent:#B23A0E; --accent-soft:#F6E3D8;
+  --line:#E6D9CC; --line-2:#D6C4B3;
+  --shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.05);
+  --display:"Bitter", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+    --ink:#F2EAE2; --ink-soft:#B7A797;
+    --accent:#FF8A4C; --accent-soft:#3A2418;
+    --line:#382C23; --line-2:#4C3B2E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+  --ink:#F2EAE2; --ink-soft:#B7A797;
+  --accent:#FF8A4C; --accent-soft:#3A2418;
+  --line:#382C23; --line-2:#4C3B2E;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--body);
+     font-size:17px; line-height:1.62; -webkit-text-size-adjust:100%}
+.wrap{max-width:740px; margin:0 auto; padding-left:20px; padding-right:20px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0}
+
+.bar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:18px 10px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand svg{width:30px; height:30px; display:block; color:var(--accent)}
+.brand b{font-family:var(--display); font-weight:700; font-size:19px}
+.ctrls{display:flex; gap:8px}
+.rb{width:40px; height:40px; border-radius:50%; border:1px solid var(--line-2);
+    background:var(--surface); color:var(--ink); font-family:var(--mono);
+    font-size:13px; font-weight:600; cursor:pointer; display:grid; place-items:center;
+    padding:0; line-height:1}
+.rb:hover{border-color:var(--accent); color:var(--accent)}
+.rb:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.lang-wrap{position:relative}
+.menu{position:absolute; right:0; top:47px; z-index:30; background:var(--surface);
+      border:1px solid var(--line-2); border-radius:6px; box-shadow:var(--shadow);
+      padding:6px; min-width:172px; display:grid; gap:2px}
+.menu button{display:flex; align-items:center; justify-content:space-between; gap:14px;
+      width:100%; background:none; border:0; color:var(--ink); font-family:var(--body);
+      font-size:15.5px; padding:9px 11px; border-radius:4px; cursor:pointer; text-align:left}
+.menu button:hover{background:var(--surface-2); color:var(--accent)}
+.menu button[aria-current="true"]{color:var(--accent); font-weight:600}
+.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+
+.cover{padding-block:26px 0}
+.slogan{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.16em;
+        text-transform:uppercase; color:var(--accent); margin:0 0 16px}
+h1{font-size:clamp(32px,7.4vw,46px); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+.full{font-family:var(--display); font-size:clamp(17px,3.6vw,21px); color:var(--ink-soft);
+      margin-top:8px; font-weight:500}
+.lead{font-size:19px; color:var(--ink-soft); margin-top:18px; max-width:34em}
+
+h2{font-size:clamp(21px,4.6vw,26px); font-weight:600; margin-top:52px}
+.issues{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:14px}
+.issue{background:var(--surface); border:1px solid var(--line); border-radius:4px;
+       padding:20px; box-shadow:var(--shadow); display:grid; gap:8px}
+.issue.soon{background:none; box-shadow:none; border-style:dashed}
+.issue .top{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.issue h3{font-size:20px; font-weight:600}
+.issue p{margin:0; font-size:16px; color:var(--ink-soft)}
+.tag{font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+     color:var(--ink-soft); border:1px solid var(--line-2); border-radius:999px; padding:3px 10px}
+.go{display:inline-flex; align-items:center; gap:8px; margin-top:6px; text-decoration:none;
+    font-weight:600; color:var(--accent); font-size:16.5px}
+.go:hover{text-decoration:underline; text-underline-offset:4px}
+a.issue{text-decoration:none; color:inherit}
+a.issue:hover{border-color:var(--accent)}
+
+footer{text-align:center; font-size:15px; color:var(--ink-soft);
+       padding-block:40px 60px; margin-top:56px; border-top:1px solid var(--line)}
+footer a{color:inherit; display:inline-block; padding:8px 4px; text-decoration:underline;
+         text-decoration-color:var(--accent); text-underline-offset:4px}
+footer a:hover{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M33 18 L33 70"/>
+        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
+      </svg>
+      <b>nDm</b>
+    </a>
+    <div class="ctrls">
+      <div class="lang-wrap">
+        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">PT</button>
+        <div class="menu" id="langmenu" hidden></div>
+      </div>
+      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </div>
+  </div>
+
+  <header class="cover">
+    <p class="slogan">Damos o caminho</p>
+    <h1>nDm</h1>
+    <p class="full">Nova Dádiva da Madeira</p>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <h2 data-t="issuesH"></h2>
+  <ul class="issues" id="issues"></ul>
+
+  <footer>
+    © <span id="yr"></span> <a href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/ikartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var LANGS = ["pt","en","ru","de","es"];
+  var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
+  var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
+
+  var T = {
+    pt: {
+      lead:"Guias gratuitos sobre a burocracia portuguesa — em linguagem simples, com imagens e em cinco línguas. Escrevemos aquilo por que passámos nós próprios.",
+      issuesH:"Edições", open:"Abrir", soon:"em preparação",
+      issues:[
+        { t:"Documentos TAP", href:"tap/",
+          d:"Como pedir à companhia aérea a fatura e o comprovativo de viagem — os dois documentos sem os quais não há subsídio de mobilidade." },
+        { t:"Subsídio de Mobilidade",
+          d:"O pedido no portal: entrada com a chave digital, campos do formulário, prazos e dinheiro." },
+        { t:"Descontos TAP",
+          d:"O que um residente da Madeira tem direito a pagar a menos — e como consegui-lo." }
+      ]
+    },
+    en: {
+      lead:"Free guides to Portuguese bureaucracy — plain language, screenshots, five languages. We write about what we have been through ourselves.",
+      issuesH:"Issues", open:"Open", soon:"in the works",
+      issues:[
+        { t:"Documentos TAP", href:"tap/",
+          d:"How to order the invoice and the proof of travel from the airline — the two documents without which there is no mobility subsidy." },
+        { t:"Subsídio de Mobilidade",
+          d:"The claim on the portal: signing in with the digital key, the form fields, the deadlines and the money." },
+        { t:"Descontos TAP",
+          d:"What a Madeira resident is entitled to pay less for — and how to actually get it." }
+      ]
+    },
+    ru: {
+      lead:"Бесплатные инструкции по португальской бюрократии — простым языком, с картинками, на пяти языках. Пишем о том, через что прошли сами.",
+      issuesH:"Выпуски", open:"Открыть", soon:"готовится",
+      issues:[
+        { t:"Documentos TAP", href:"tap/",
+          d:"Как заказать у авиакомпании фактуру и подтверждение перелёта — два документа, без которых субсидию на мобильность не дадут." },
+        { t:"Subsídio de Mobilidade",
+          d:"Подача заявления на портале: вход по электронному ключу, поля формы, сроки и деньги." },
+        { t:"Descontos TAP",
+          d:"За что резидент Мадейры имеет право платить меньше — и как этого добиться." }
+      ]
+    },
+    de: {
+      lead:"Kostenlose Anleitungen durch die portugiesische Bürokratie — einfache Sprache, Bilder, fünf Sprachen. Wir schreiben über das, was wir selbst durchgemacht haben.",
+      issuesH:"Ausgaben", open:"Öffnen", soon:"in Arbeit",
+      issues:[
+        { t:"Documentos TAP", href:"tap/",
+          d:"Wie man bei der Fluggesellschaft die Rechnung und den Flugnachweis bestellt — die zwei Dokumente, ohne die es keinen Mobilitätszuschuss gibt." },
+        { t:"Subsídio de Mobilidade",
+          d:"Der Antrag im Portal: Anmeldung mit dem digitalen Schlüssel, die Formularfelder, Fristen und Geld." },
+        { t:"Descontos TAP",
+          d:"Wofür ein Einwohner Madeiras weniger zahlen darf — und wie man das tatsächlich bekommt." }
+      ]
+    },
+    es: {
+      lead:"Guías gratuitas sobre la burocracia portuguesa — en lenguaje sencillo, con imágenes y en cinco idiomas. Escribimos lo que hemos pasado nosotros mismos.",
+      issuesH:"Ediciones", open:"Abrir", soon:"en preparación",
+      issues:[
+        { t:"Documentos TAP", href:"tap/",
+          d:"Cómo pedir a la aerolínea la factura y el justificante del vuelo: los dos documentos sin los cuales no hay subsidio de movilidad." },
+        { t:"Subsídio de Mobilidade",
+          d:"La solicitud en el portal: entrada con la clave digital, los campos del formulario, los plazos y el dinero." },
+        { t:"Descontos TAP",
+          d:"En qué un residente de Madeira tiene derecho a pagar menos, y cómo conseguirlo." }
+      ]
+    }
+  };
+
+  function pickLang(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (LANGS.indexOf(q) >= 0) return q;
+    var st = null;
+    try { st = localStorage.getItem('ndm-lang'); } catch(e){}
+    if (LANGS.indexOf(st) >= 0) return st;
+    var nav = (navigator.language || '').slice(0,2).toLowerCase();
+    if (LANGS.indexOf(nav) >= 0) return nav;
+    return 'pt';
+  }
+  var lang = pickLang();
+
+  function render(){
+    var t = T[lang];
+    document.documentElement.lang = TAGS[lang];
+    document.getElementById('lang').textContent = lang.toUpperCase();
+    document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
+      return '<button type="button" data-l="'+L+'"'+(L===lang?' aria-current="true"':'')+'>'+
+             '<span>'+LNAMES[L]+'</span><span class="code">'+L.toUpperCase()+'</span></button>';
+    }).join('');
+    var q = '?lang=' + lang;
+    document.querySelectorAll('[data-t]').forEach(function(n){
+      var k = n.getAttribute('data-t');
+      if (typeof t[k] === 'string') n.innerHTML = t[k];
+    });
+    document.getElementById('issues').innerHTML = t.issues.map(function(it){
+      var inner = '<div class="top"><h3>'+it.t+'</h3>'+
+                  (it.href ? '' : '<span class="tag">'+t.soon+'</span>')+'</div>'+
+                  '<p>'+it.d+'</p>'+
+                  (it.href ? '<span class="go">'+t.open+' →</span>' : '');
+      return it.href
+        ? '<li><a class="issue" href="'+it.href+q+'">'+inner+'</a></li>'
+        : '<li class="issue soon">'+inner+'</li>';
+    }).join('');
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  render();
+
+  var lbtn = document.getElementById('lang'), lmenu = document.getElementById('langmenu');
+  function closeMenu(){ lmenu.hidden = true; lbtn.setAttribute('aria-expanded','false'); }
+  lbtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = lmenu.hidden; lmenu.hidden = !open;
+    lbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  lmenu.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-l]'); if (!b) return;
+    lang = b.getAttribute('data-l');
+    try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+    closeMenu(); render();
+    try { var u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null,'',u); } catch(err){}
+  });
+  document.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+  var root = document.documentElement, tb = document.getElementById('theme');
+  var stored = null; try { stored = localStorage.getItem('ndm-theme'); } catch(e){}
+  if (stored) root.setAttribute('data-theme', stored);
+  function isDark(){
+    var a = root.getAttribute('data-theme');
+    if (a) return a === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paint(){ tb.textContent = isDark() ? '☀' : '☾'; }
+  paint();
+  tb.addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ndm-theme', next); } catch(e){}
+    paint();
+  });
+})();
+</script>
