@@ -334,8 +334,8 @@ footer a:hover{color:var(--accent)}
   </section>
 
   <footer>
-    © <span id="yr"></span> <a href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
-    · <a href="https://www.linkedin.com/in/ikartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
+    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
   </footer>
 
 </div>
@@ -440,7 +440,7 @@ footer a:hover{color:var(--accent)}
       ],
       endH: "Дальше — подача",
       endP: "Документы на руках — это первый шаг. Второй: подать заявление на портале субсидии. Эта инструкция закрывает только часть с авиакомпанией, и она бесплатна — перешлите её тому, кому пригодится.",
-      by: "Инструкцию собрал <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Игорь Картузов</a> · SeedWave, Мадейра",
+      by: "Инструкцию собрал <a href=\"https://www.linkedin.com/in/igor-kartuzov/\" target=\"_blank\" rel=\"noopener\">Игорь Картузов</a> · SeedWave, Мадейра",
       openBtn: "Открыть форму TAP",
       copyBtn: "Скопировать адрес",
       copiedLink: "Адрес скопирован ✓",
@@ -545,7 +545,7 @@ footer a:hover{color:var(--accent)}
       ],
       endH: "A seguir — o pedido",
       endP: "Ter os documentos é o primeiro passo. O segundo é submeter o pedido no portal do subsídio. Este guia cobre só a parte da companhia aérea, e é gratuito — reenvie-o a quem precisar.",
-      by: "Guia preparado por <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      by: "Guia preparado por <a href=\"https://www.linkedin.com/in/igor-kartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
       openBtn: "Abrir o formulário da TAP",
       copyBtn: "Copiar o endereço",
       copiedLink: "Endereço copiado ✓",
@@ -650,7 +650,7 @@ footer a:hover{color:var(--accent)}
       ],
       endH: "Next comes the claim",
       endP: "Having the documents is the first step. The second is submitting the claim on the subsidy portal. This guide covers the airline part only, and it is free — forward it to anyone who needs it.",
-      by: "Guide put together by <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      by: "Guide put together by <a href=\"https://www.linkedin.com/in/igor-kartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
       openBtn: "Open the TAP form",
       copyBtn: "Copy the address",
       copiedLink: "Address copied ✓",
@@ -755,7 +755,7 @@ footer a:hover{color:var(--accent)}
       ],
       endH: "Danach folgt der Antrag",
       endP: "Die Dokumente zu haben ist der erste Schritt. Der zweite ist der Antrag im Portal des Zuschusses. Diese Anleitung deckt nur den Teil der Fluggesellschaft ab und ist kostenlos — leiten Sie sie weiter.",
-      by: "Anleitung von <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      by: "Anleitung von <a href=\"https://www.linkedin.com/in/igor-kartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
       openBtn: "TAP-Formular öffnen",
       copyBtn: "Adresse kopieren",
       copiedLink: "Adresse kopiert ✓",
@@ -860,7 +860,7 @@ footer a:hover{color:var(--accent)}
       ],
       endH: "Después viene la solicitud",
       endP: "Tener los documentos es el primer paso. El segundo es presentar la solicitud en el portal del subsidio. Esta guía cubre solo la parte de la aerolínea y es gratuita: reenvíela a quien la necesite.",
-      by: "Guía preparada por <a href=\"https://www.linkedin.com/in/ikartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
+      by: "Guía preparada por <a href=\"https://www.linkedin.com/in/igor-kartuzov/\" target=\"_blank\" rel=\"noopener\">Igor Kartuzov</a> · SeedWave, Madeira",
       openBtn: "Abrir el formulario de TAP",
       copyBtn: "Copiar la dirección",
       copiedLink: "Dirección copiada ✓",
@@ -916,6 +916,9 @@ footer a:hover{color:var(--accent)}
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+
+    var hub = document.getElementById('hubLink');
+    if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
 
     document.getElementById('facts').innerHTML =
       t.facts.map(function(f){ return '<li>' + f + '</li>'; }).join('');

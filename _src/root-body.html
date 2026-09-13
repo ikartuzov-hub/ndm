@@ -119,8 +119,8 @@ footer a:hover{color:var(--accent)}
   <ul class="issues" id="issues"></ul>
 
   <footer>
-    © <span id="yr"></span> <a href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
-    · <a href="https://www.linkedin.com/in/ikartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
+    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
   </footer>
 </div>
 
@@ -213,6 +213,8 @@ footer a:hover{color:var(--accent)}
       return '<button type="button" data-l="'+L+'"'+(L===lang?' aria-current="true"':'')+'>'+
              '<span>'+LNAMES[L]+'</span><span class="code">'+L.toUpperCase()+'</span></button>';
     }).join('');
+    var hub = document.getElementById('hubLink');
+    if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
     var q = '?lang=' + lang;
     document.querySelectorAll('[data-t]').forEach(function(n){
       var k = n.getAttribute('data-t');
