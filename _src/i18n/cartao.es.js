@@ -16,6 +16,7 @@ need3:"Escaneo del documento: permiso de residencia por las dos caras, o pasapor
 need4:"Justificante del NIF — certificado del Portal das Finanças, gratuito e inmediato.",
 need5:"Justificante de más de 6 meses de residencia — véase el paso 5, hay dos caminos.",
 s1t:"Entrar en el portal",s1:"Abra simplifica.madeira.gov.pt y acceda con la Chave Móvel Digital. La cuenta se crea sola en el primer acceso.",
+s1cta:"Abrir SIMplifica — la página del servicio",
 s2t:"Encontrar el servicio",s2:"Área Mobilidade, servicio «Emissão do Cartão de Residente na RAM». El portal comprueba enseguida si ya tiene una tarjeta válida.",
 s3t:"Correo, teléfono y dos casillas",s3:"Escriba el correo y el teléfono: a ese correo llega la tarjeta. Debajo hay dos casillas con asterisco, ambas obligatorias: el compromiso de honor sobre las reglas del subsidio de Porto Santo y el consentimiento de datos. La referencia a Porto Santo no le obliga a nada — la tarjeta nació para ese subsidio.",
 s4t:"Revisar sus propios datos",s4:"Nombre, fecha de nacimiento, NIF y dirección vienen del perfil, en campos grises que no se editan. Basta con leerlos. El bloque «Preencher apenas no caso de Cartão do Cidadão» es solo para quien tiene el Cartão de Cidadão portugués. Si no es su caso, se deja en blanco y se sigue.",

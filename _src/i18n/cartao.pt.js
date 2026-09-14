@@ -16,6 +16,7 @@ need3:"Digitalização do documento: título de residência frente e verso, ou p
 need4:"Comprovativo do NIF — certidão do Portal das Finanças, gratuita e imediata.",
 need5:"Comprovativo de residência há mais de 6 meses — ver o passo 5, há duas hipóteses.",
 s1t:"Entrar no portal",s1:"Abre simplifica.madeira.gov.pt e autentica-se com a Chave Móvel Digital. A conta é criada no primeiro acesso.",
+s1cta:"Abrir o SIMplifica — o serviço do cartão",
 s2t:"Encontrar o serviço",s2:"Área Mobilidade, serviço «Emissão do Cartão de Residente na RAM». O portal verifica logo se já tem cartão válido.",
 s3t:"Email, telefone e duas caixas",s3:"Escreva o email e o telefone — é para esse email que o cartão chega. Em baixo há duas caixas com asterisco, ambas obrigatórias: o compromisso de honra sobre as regras do subsídio do Porto Santo e o consentimento de dados. A referência ao Porto Santo não o obriga a nada — o cartão nasceu para esse subsídio.",
 s4t:"Conferir os seus dados",s4:"Nome, data de nascimento, NIF e morada vêm do perfil, em campos cinzentos que não se editam. Confira-os à vista. O bloco «Preencher apenas no caso de Cartão do Cidadão» é só para quem tem Cartão de Cidadão português. Não tem — deixa em branco e avança.",
