@@ -70,6 +70,28 @@ window.NDM = (function(){
     } catch(e){ return href; }
   }
 
+  /* Заголовок вкладки и описание — на языке страницы.
+     Пререндер снимает DOM ПОСЛЕ рендера, поэтому языковые адреса уезжают
+     в поиск и в карточку мессенджера уже с переведёнными метатегами.
+     До этого на всех 32 непортугальских адресах висел португальский title. */
+  function strip(s){ return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+  function clip(s, n){
+    s = strip(s);
+    if (s.length <= n) return s;
+    var c = s.slice(0, n), i = c.lastIndexOf(' ');
+    return (i > 60 ? c.slice(0, i) : c).replace(/[ ,;:.\u2013\u2014-]+$/, '') + '\u2026';
+  }
+  function meta(sel, val){
+    var e = document.querySelector(sel);
+    if (e && val) e.setAttribute('content', val);
+  }
+  function setMeta(t){
+    var title = t.shareTitle || (t.h1 ? strip(t.h1).replace(/[.\s]+$/, '') + ' \u2014 nDm' : '');
+    var desc = clip(t.lead || '', 165);
+    if (title){ document.title = title; meta('meta[property="og:title"]', title); }
+    if (desc){ meta('meta[name="description"]', desc); meta('meta[property="og:description"]', desc); }
+  }
+
   function render(){
     var t = T[lang];
     document.documentElement.lang = TAGS[lang];
@@ -89,6 +111,8 @@ window.NDM = (function(){
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+    setMeta(t);
+
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
 

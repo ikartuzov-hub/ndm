@@ -3,15 +3,15 @@
 <script>window.NDM_LANG="es";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Subsídio de Mobilidade: o pedido em cinco passos — nDm</title>
-<meta name="description" content="Cada ecrã do portal ssm.gov.pt e cada campo, com imagens reais e a fatura da TAP ao lado. Onde as pessoas perdem dinheiro. PT · EN · RU · DE · ES.">
+<title>La solicitud en cinco pasos — nDm</title>
+<meta name="description" content="El Estado le devuelve a los residentes de las islas la mayor parte del precio del billete. El dinero llega a la cuenta bancaria si supera las cinco pantallas del…">
 <link rel="icon" href="../../icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Subsídio">
 <meta name="theme-color" content="#FAF6F1">
-<meta property="og:title" content="O pedido em cinco passos — Damos o Caminho">
-<meta property="og:description" content="Cada ecrã do portal ssm.gov.pt e cada campo, com imagens reais e a fatura da TAP ao lado. Onde as pessoas perdem dinheiro. PT · EN · RU · DE · ES.">
+<meta property="og:title" content="La solicitud en cinco pasos — nDm">
+<meta property="og:description" content="El Estado le devuelve a los residentes de las islas la mayor parte del precio del billete. El dinero llega a la cuenta bancaria si supera las cinco pantallas del…">
 <meta property="og:image" content="https://ajuda.seedwave.pt/subsidio/og-image.png">
 <meta property="og:url" content="https://ajuda.seedwave.pt/subsidio/es/">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "La solicitud en cinco pasos", "description": "Cada ecrã do portal ssm.gov.pt e cada campo, com imagens reais e a fatura da TAP ao lado. Onde as pessoas perdem dinheiro. PT · EN · RU · DE · ES.", "inLanguage": "es", "url": "https://ajuda.seedwave.pt/subsidio/es/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "La solicitud en cinco pasos", "description": "El Estado le devuelve a los residentes de las islas la mayor parte del precio del billete. El dinero llega a la cuenta bancaria si supera las cinco pantallas del…", "inLanguage": "es", "url": "https://ajuda.seedwave.pt/subsidio/es/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -475,6 +475,28 @@ window.NDM = (function(){
     } catch(e){ return href; }
   }
 
+  /* Заголовок вкладки и описание — на языке страницы.
+     Пререндер снимает DOM ПОСЛЕ рендера, поэтому языковые адреса уезжают
+     в поиск и в карточку мессенджера уже с переведёнными метатегами.
+     До этого на всех 32 непортугальских адресах висел португальский title. */
+  function strip(s){ return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+  function clip(s, n){
+    s = strip(s);
+    if (s.length <= n) return s;
+    var c = s.slice(0, n), i = c.lastIndexOf(' ');
+    return (i > 60 ? c.slice(0, i) : c).replace(/[ ,;:.\u2013\u2014-]+$/, '') + '\u2026';
+  }
+  function meta(sel, val){
+    var e = document.querySelector(sel);
+    if (e && val) e.setAttribute('content', val);
+  }
+  function setMeta(t){
+    var title = t.shareTitle || (t.h1 ? strip(t.h1).replace(/[.\s]+$/, '') + ' \u2014 nDm' : '');
+    var desc = clip(t.lead || '', 165);
+    if (title){ document.title = title; meta('meta[property="og:title"]', title); }
+    if (desc){ meta('meta[name="description"]', desc); meta('meta[property="og:description"]', desc); }
+  }
+
   function render(){
     var t = T[lang];
     document.documentElement.lang = TAGS[lang];
@@ -494,6 +516,8 @@ window.NDM = (function(){
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+    setMeta(t);
+
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
 

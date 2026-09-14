@@ -216,7 +216,7 @@ footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color
   <!-- ================= HOME ================= -->
   <main id="v-home">
     <section class="stage">
-      <h1 class="wordmark">Subsídio<br><span>de Mobilidade</span></h1>
+      <h1 class="wordmark">Subsídio <br><span>de Mobilidade</span></h1>
       <div class="flightbox">
         <svg id="flight" viewBox="0 0 400 210" role="img" aria-hidden="true">
           <!-- Portugal: costa oeste, do Minho ao Algarve -->
@@ -337,6 +337,8 @@ footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color
 const L = {
 
 pt:{name:"Português",
+ mt:"Subsídio de Mobilidade: tem direito? — nDm",
+ md:"Três perguntas para saber se tem direito, o guia do pedido passo a passo e o que mudou na lei. Gratuito, em cinco línguas.",
  scaleNote:"≈ 970 km · sem escala",
  hook:"O Estado devolve-lhe parte do custo do voo entre a Madeira e o continente. Quase ninguém trata disso.",
  newsLink:"O que mudou na lei",
@@ -417,6 +419,8 @@ pt:{name:"Português",
  bcta:"Ver apoios para empresas"},
 
 en:{name:"English",
+ mt:"Madeira flight subsidy: do you qualify? — nDm",
+ md:"Three questions to check if you qualify, a step-by-step guide to the claim, and what changed in the law. Free, in five languages.",
  scaleNote:"≈ 970 km · not to scale",
  hook:"The State gives you back part of what your flight between Madeira and the mainland cost. Almost nobody claims it.",
  newsLink:"What changed in the law",
@@ -497,6 +501,8 @@ en:{name:"English",
  bcta:"See business support"},
 
 ru:{name:"Русский",
+ mt:"Субсидия за перелёт с Мадейры: положено ли вам? — nDm",
+ md:"Три вопроса — положено ли вам. Пошаговый гид по подаче и что изменилось в законе. Бесплатно, на пяти языках.",
  scaleNote:"≈ 970 км · не в масштабе",
  hook:"Государство возвращает часть стоимости перелёта между Мадейрой и континентом. Почти никто этим не занимается.",
  newsLink:"Что изменилось в законе",
@@ -577,6 +583,8 @@ ru:{name:"Русский",
  bcta:"Посмотреть субсидии для бизнеса"},
 
 de:{name:"Deutsch",
+ mt:"Flugzuschuss Madeira: steht er Ihnen zu? — nDm",
+ md:"Drei Fragen, ob Ihnen der Zuschuss zusteht, eine Anleitung zum Antrag Schritt für Schritt und was sich im Gesetz geändert hat. Kostenlos, fünfsprachig.",
  scaleNote:"≈ 970 km · nicht maßstabsgetreu",
  hook:"Der Staat erstattet Ihnen einen Teil der Kosten Ihres Fluges zwischen Madeira und dem Festland. Fast niemand beantragt das.",
  newsLink:"Was sich im Gesetz geändert hat",
@@ -657,6 +665,8 @@ de:{name:"Deutsch",
  bcta:"Förderung für Unternehmen ansehen"},
 
 es:{name:"Español",
+ mt:"Subsidio de vuelo de Madeira: ¿le corresponde? — nDm",
+ md:"Tres preguntas para saber si le corresponde, la guía paso a paso de la solicitud y qué cambió en la ley. Gratis, en cinco idiomas.",
  scaleNote:"≈ 970 km · sin escala",
  hook:"El Estado le devuelve parte del coste de su vuelo entre Madeira y el continente. Casi nadie lo tramita.",
  newsLink:"Qué cambió en la ley",
@@ -848,6 +858,15 @@ function renderChecker(){
   linkify();
 }
 
+// метатеги на языке страницы: пререндер снимает DOM после render(),
+// поэтому /ru/ /en/ /de/ /es/ уходят в поиск и в карточку мессенджера
+// уже с переведёнными title и description, а не с португальскими
+function setMeta(t){
+  const mset = (sel, v) => { const e = document.querySelector(sel); if (e && v) e.setAttribute("content", v); };
+  if (t.mt){ document.title = t.mt; mset('meta[property="og:title"]', t.mt); }
+  if (t.md){ mset('meta[name="description"]', t.md); mset('meta[property="og:description"]', t.md); }
+}
+
 function render(){
   const t = L[lang];
   document.documentElement.lang = lang;
@@ -857,6 +876,7 @@ function render(){
     if (el.hasAttribute("data-html")) el.innerHTML = v; else el.textContent = v;
   });
   $("langBtn").textContent = lang.toUpperCase();
+  setMeta(t);
   const hl = $("hubLink"); if (hl) hl.href = "https://seedwave.pt/hub/?lang=" + lang;
   if ($("scaleNote")) $("scaleNote").textContent = t.scaleNote;
 
@@ -899,6 +919,9 @@ function render(){
 }
 
 const menu = $("langMenu"), lbtn = $("langBtn");
+// меню перерисовывается с нуля: пререндер сохраняет кнопки в HTML, и дописывание
+// вторым заходом давало десять пунктов, первые пять — без обработчика
+menu.innerHTML = "";
 Object.keys(L).forEach(k => {
   const b = document.createElement("button");
   b.textContent = L[k].name;

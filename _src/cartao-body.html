@@ -152,6 +152,18 @@ function langHref(h){var u=new URL(h,location.href);
     return u.origin+'/'+(p.length?p.join('/')+'/':'')+u.hash;}
   u.searchParams.set('lang',lang);return u.toString();}
 function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+// метатеги на языке страницы: пререндер снимает DOM после apply(),
+// поэтому языковые адреса уходят в поиск уже с переведённым title
+function mstrip(x){return String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();}
+function mclip(x,n){x=mstrip(x);if(x.length<=n)return x;var c=x.slice(0,n),i=c.lastIndexOf(' ');
+  return (i>60?c.slice(0,i):c).replace(/[ ,;:.\u2013\u2014-]+$/,'')+'\u2026';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function setMeta(t){
+  var title=t.h1?mstrip(t.h1).replace(/[.\s]+$/,'')+' \u2014 nDm':'';
+  var desc=mclip(t.lead||'',165);
+  if(title){document.title=title;mset('meta[property="og:title"]',title);}
+  if(desc){mset('meta[name="description"]',desc);mset('meta[property="og:description"]',desc);}
+}
 function apply(){
   var t=L[lang];
   document.documentElement.lang=lang;
@@ -164,6 +176,7 @@ function apply(){
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';});
   lsSet('ndm-lang',lang);
+  setMeta(t);
   crumble();
 }
 var m=document.getElementById('langmenu');

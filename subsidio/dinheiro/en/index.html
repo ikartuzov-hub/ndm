@@ -3,15 +3,15 @@
 <script>window.NDM_LANG="en";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quanto dinheiro e por quê — nDm</title>
-<meta name="description" content="O que o Subsídio de Mobilidade devolve e o que não devolve: tarifa, taxas, copagamento, desconto e o tecto que já não existe.">
+<title>How much money and what for — nDm</title>
+<meta name="description" content="The portal decides on its own whether you are eligible, and calculates the amount itself. But what exactly it refunds and what it does not is hidden behind a small…">
 <link rel="icon" href="../../../icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
 <link rel="manifest" href="../../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Subsídio">
 <meta name="theme-color" content="#FAF6F1">
-<meta property="og:title" content="Quanto dinheiro e por quê — Damos o Caminho">
-<meta property="og:description" content="O que o Subsídio de Mobilidade devolve e o que não devolve: tarifa, taxas, copagamento, desconto e o tecto que já não existe.">
+<meta property="og:title" content="How much money and what for — nDm">
+<meta property="og:description" content="The portal decides on its own whether you are eligible, and calculates the amount itself. But what exactly it refunds and what it does not is hidden behind a small…">
 <meta property="og:image" content="https://ajuda.seedwave.pt/subsidio/og-image.png">
 <meta property="og:url" content="https://ajuda.seedwave.pt/subsidio/dinheiro/en/">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "How much money and what for", "description": "O que o Subsídio de Mobilidade devolve e o que não devolve: tarifa, taxas, copagamento, desconto e o tecto que já não existe.", "inLanguage": "en", "url": "https://ajuda.seedwave.pt/subsidio/dinheiro/en/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "How much money and what for", "description": "The portal decides on its own whether you are eligible, and calculates the amount itself. But what exactly it refunds and what it does not is hidden behind a small…", "inLanguage": "en", "url": "https://ajuda.seedwave.pt/subsidio/dinheiro/en/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -412,6 +412,28 @@ window.NDM = (function(){
     } catch(e){ return href; }
   }
 
+  /* Заголовок вкладки и описание — на языке страницы.
+     Пререндер снимает DOM ПОСЛЕ рендера, поэтому языковые адреса уезжают
+     в поиск и в карточку мессенджера уже с переведёнными метатегами.
+     До этого на всех 32 непортугальских адресах висел португальский title. */
+  function strip(s){ return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+  function clip(s, n){
+    s = strip(s);
+    if (s.length <= n) return s;
+    var c = s.slice(0, n), i = c.lastIndexOf(' ');
+    return (i > 60 ? c.slice(0, i) : c).replace(/[ ,;:.\u2013\u2014-]+$/, '') + '\u2026';
+  }
+  function meta(sel, val){
+    var e = document.querySelector(sel);
+    if (e && val) e.setAttribute('content', val);
+  }
+  function setMeta(t){
+    var title = t.shareTitle || (t.h1 ? strip(t.h1).replace(/[.\s]+$/, '') + ' \u2014 nDm' : '');
+    var desc = clip(t.lead || '', 165);
+    if (title){ document.title = title; meta('meta[property="og:title"]', title); }
+    if (desc){ meta('meta[name="description"]', desc); meta('meta[property="og:description"]', desc); }
+  }
+
   function render(){
     var t = T[lang];
     document.documentElement.lang = TAGS[lang];
@@ -431,6 +453,8 @@ window.NDM = (function(){
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+    setMeta(t);
+
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
 

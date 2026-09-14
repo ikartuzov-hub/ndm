@@ -3,15 +3,15 @@
 <script>window.NDM_LANG="en";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>O tecto de 400 € saiu da lei — nDm</title>
-<meta name="description" content="A Lei 23/2026 acabou com o limite máximo de reembolso das viagens entre a Madeira e o continente. A página oficial continua a dizer 400 €.">
+<title>The €400 cap left the law. It is still on the website — nDm</title>
+<meta name="description" content="Law 23/2026 removed the maximum reimbursement for flights between Madeira and mainland Portugal. The official page, updated on 9 September, still says €400. On two…">
 <link rel="icon" href="../../icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Subsídio">
 <meta name="theme-color" content="#FAF6F1">
-<meta property="og:title" content="O tecto de 400 € saiu da lei — Damos o Caminho">
-<meta property="og:description" content="A Lei 23/2026 acabou com o limite máximo de reembolso das viagens entre a Madeira e o continente. A página oficial continua a dizer 400 €.">
+<meta property="og:title" content="The €400 cap left the law. It is still on the website — nDm">
+<meta property="og:description" content="Law 23/2026 removed the maximum reimbursement for flights between Madeira and mainland Portugal. The official page, updated on 9 September, still says €400. On two…">
 <meta property="og:image" content="https://ajuda.seedwave.pt/og-image.png">
 <meta property="og:url" content="https://ajuda.seedwave.pt/lei-23-2026/en/">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "The €400 cap left the law. It is still on the website.", "description": "A Lei 23/2026 acabou com o limite máximo de reembolso das viagens entre a Madeira e o continente. A página oficial continua a dizer 400 €.", "inLanguage": "en", "datePublished": "2026-09-13", "dateModified": "2026-09-14", "mainEntityOfPage": "https://ajuda.seedwave.pt/lei-23-2026/en/", "url": "https://ajuda.seedwave.pt/lei-23-2026/en/", "image": "https://ajuda.seedwave.pt/og-image.png", "author": {"@type": "Person", "name": "Igor Kartuzov", "url": "https://www.linkedin.com/in/igor-kartuzov/"}, "publisher": {"@type": "Organization", "name": "SeedWave", "url": "https://seedwave.pt/"}, "isAccessibleForFree": true}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "The €400 cap left the law. It is still on the website.", "description": "Law 23/2026 removed the maximum reimbursement for flights between Madeira and mainland Portugal. The official page, updated on 9 September, still says €400. On two…", "inLanguage": "en", "datePublished": "2026-09-13", "dateModified": "2026-09-14", "mainEntityOfPage": "https://ajuda.seedwave.pt/lei-23-2026/en/", "url": "https://ajuda.seedwave.pt/lei-23-2026/en/", "image": "https://ajuda.seedwave.pt/og-image.png", "author": {"@type": "Person", "name": "Igor Kartuzov", "url": "https://www.linkedin.com/in/igor-kartuzov/"}, "publisher": {"@type": "Organization", "name": "SeedWave", "url": "https://seedwave.pt/"}, "isAccessibleForFree": true}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Is the €400 cap still in force?", "acceptedAnswer": {"@type": "Answer", "text": "No. Law 23/2026 has been in force since 6 June 2026 and removed the maximum reimbursement amount from the scheme. The gov.pt service page, updated on 9 September 2026, still states €400 — that is an outdated figure, not the rule now in force."}}, {"@type": "Question", "name": "How much do I get back for a trip that cost €600?", "acceptedAnswer": {"@type": "Answer", "text": "Under the new rules, €521: only the co-payment, €79 for a resident, is subtracted from the cost. Under the old rule it would have been €321, because only amounts up to €400 were taken into account. In this example the difference is €200."}}, {"@type": "Question", "name": "What is the co-payment (copagamento) and can it be avoided?", "acceptedAnswer": {"@type": "Answer", "text": "It is the share the passenger pays out of pocket: €79 for a resident and €59 for a student. It is deducted from every claim and cannot be avoided."}}, {"@type": "Question", "name": "Who is entitled to the mobility subsidy?", "acceptedAnswer": {"@type": "Answer", "text": "Anyone who has lived in Madeira or Porto Santo for more than six months, flew between the island and the mainland or between the autonomous regions, and bought the ticket in their own name on or after 15 January 2026. Foreign nationals need a valid residence permit."}}, {"@type": "Question", "name": "Where do you submit the claim?", "acceptedAnswer": {"@type": "Answer", "text": "Online, at www.ssm.gov.pt, logging in with Chave Móvel Digital or Cartão de Cidadão. Two documents from the airline are required: the invoice and proof of travel."}}, {"@type": "Question", "name": "How long does payment take?", "acceptedAnswer": {"@type": "Answer", "text": "In our three claims, 15, 12 and 2 days passed between submission and payment. The claim is reviewed by an operator, who approves each attachment separately — hence the difference."}}]}</script>
 </head>
 <body>
@@ -457,6 +457,28 @@ window.NDM = (function(){
     } catch(e){ return href; }
   }
 
+  /* Заголовок вкладки и описание — на языке страницы.
+     Пререндер снимает DOM ПОСЛЕ рендера, поэтому языковые адреса уезжают
+     в поиск и в карточку мессенджера уже с переведёнными метатегами.
+     До этого на всех 32 непортугальских адресах висел португальский title. */
+  function strip(s){ return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim(); }
+  function clip(s, n){
+    s = strip(s);
+    if (s.length <= n) return s;
+    var c = s.slice(0, n), i = c.lastIndexOf(' ');
+    return (i > 60 ? c.slice(0, i) : c).replace(/[ ,;:.\u2013\u2014-]+$/, '') + '\u2026';
+  }
+  function meta(sel, val){
+    var e = document.querySelector(sel);
+    if (e && val) e.setAttribute('content', val);
+  }
+  function setMeta(t){
+    var title = t.shareTitle || (t.h1 ? strip(t.h1).replace(/[.\s]+$/, '') + ' \u2014 nDm' : '');
+    var desc = clip(t.lead || '', 165);
+    if (title){ document.title = title; meta('meta[property="og:title"]', title); }
+    if (desc){ meta('meta[name="description"]', desc); meta('meta[property="og:description"]', desc); }
+  }
+
   function render(){
     var t = T[lang];
     document.documentElement.lang = TAGS[lang];
@@ -476,6 +498,8 @@ window.NDM = (function(){
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+    setMeta(t);
+
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
 

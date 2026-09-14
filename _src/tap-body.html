@@ -879,6 +879,10 @@ footer a:hover{color:var(--accent)}
 
   /* язык: ?lang= → сохранённый выбор → язык браузера → PT */
   function pickLang(){
+    // язык, заданный пререндером, главнее всего: без этой строки Chromium
+    // при сборке отдавал navigator.language = en, и все пять адресов
+    // выпуска 1 запекались по-английски, включая канонический /tap/
+    if (window.NDM_LANG && LANGS.indexOf(window.NDM_LANG) >= 0) return window.NDM_LANG;
     var q = new URLSearchParams(location.search).get('lang');
     if (LANGS.indexOf(q) >= 0) return q;
     var st = null;
@@ -901,6 +905,20 @@ footer a:hover{color:var(--accent)}
     '</div>';
   }
 
+  // метатеги на языке страницы: пререндер снимает DOM после render(),
+  // поэтому /tap/ru/ и остальные уходят в поиск с переведённым title
+  function mstrip(x){ return String(x == null ? '' : x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim(); }
+  function mclip(x, n){ x = mstrip(x); if (x.length <= n) return x;
+    var c = x.slice(0, n), i = c.lastIndexOf(' ');
+    return (i > 60 ? c.slice(0, i) : c).replace(/[ ,;:.\u2013\u2014-]+$/,'') + '\u2026'; }
+  function mset(sel, v){ var e = document.querySelector(sel); if (e && v) e.setAttribute('content', v); }
+  function setMeta(t){
+    var title = t.h1 ? mstrip(t.h1).replace(/[.\s]+$/,'') + ' \u2014 nDm' : '';
+    var desc = mclip(t.lead || '', 165);
+    if (title){ document.title = title; mset('meta[property="og:title"]', title); }
+    if (desc){ mset('meta[name="description"]', desc); mset('meta[property="og:description"]', desc); }
+  }
+
   function render(){
     var t = T[lang];
     document.documentElement.lang = TAGS[lang];
@@ -916,6 +934,7 @@ footer a:hover{color:var(--accent)}
       var k = nodes[i].getAttribute('data-t');
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
+    setMeta(t);
 
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
@@ -999,6 +1018,16 @@ footer a:hover{color:var(--accent)}
     if (!b) return;
     lang = b.getAttribute('data-l');
     try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+    // на языковых адресах переключатель уводит на соседний адрес, а не
+    // перерисовывает страницу на месте: иначе /tap/ru/?lang=de отдавал бы
+    // немецкий текст по русскому адресу с русским canonical
+    if (window.NDM_LANG){
+      var parts = location.pathname.split('/').filter(Boolean);
+      if (parts.length && LANGS.indexOf(parts[parts.length - 1]) >= 0) parts.pop();
+      if (lang !== 'pt') parts.push(lang);
+      location.href = '/' + (parts.length ? parts.join('/') + '/' : '');
+      return;
+    }
     closeMenu();
     render();
     try {

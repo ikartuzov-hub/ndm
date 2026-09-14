@@ -3,15 +3,15 @@
 <script>window.NDM_LANG="de";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cartão de Residente na RAM: o pedido ecrã a ecrã — nDm</title>
-<meta name="description" content="Como pedir o Cartão de Residente na RAM no portal SIMplifica — ecrã a ecrã, com imagens de um pedido real. Trilhos a 0 € e subsídio do Porto Santo. PT · EN · RU · DE · ES.">
+<title>Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm — nDm</title>
+<meta name="description" content="Von zu Hause aus, in 15 Minuten. Unten: jeder Bildschirm und wohin man klickt.">
 <link rel="icon" href="../../icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Cartão">
 <meta name="theme-color" content="#FAF6F1">
-<meta property="og:title" content="Cartão de Residente — Damos o Caminho">
-<meta property="og:description" content="Como pedir o Cartão de Residente na RAM no portal SIMplifica — ecrã a ecrã, com imagens de um pedido real. Trilhos a 0 € e subsídio do Porto Santo. PT · EN · RU · DE · ES.">
+<meta property="og:title" content="Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm — nDm">
+<meta property="og:description" content="Von zu Hause aus, in 15 Minuten. Unten: jeder Bildschirm und wohin man klickt.">
 <meta property="og:image" content="https://ajuda.seedwave.pt/cartao/og-image.png">
 <meta property="og:url" content="https://ajuda.seedwave.pt/cartao/de/">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cartao/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cartao/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm", "description": "Como pedir o Cartão de Residente na RAM no portal SIMplifica — ecrã a ecrã, com imagens de um pedido real. Trilhos a 0 € e subsídio do Porto Santo. PT · EN · RU · DE · ES.", "inLanguage": "de", "url": "https://ajuda.seedwave.pt/cartao/de/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm", "description": "Von zu Hause aus, in 15 Minuten. Unten: jeder Bildschirm und wohin man klickt.", "inLanguage": "de", "url": "https://ajuda.seedwave.pt/cartao/de/", "dateModified": "2026-09-14", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -364,6 +364,18 @@ function langHref(h){var u=new URL(h,location.href);
     return u.origin+'/'+(p.length?p.join('/')+'/':'')+u.hash;}
   u.searchParams.set('lang',lang);return u.toString();}
 function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+// метатеги на языке страницы: пререндер снимает DOM после apply(),
+// поэтому языковые адреса уходят в поиск уже с переведённым title
+function mstrip(x){return String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();}
+function mclip(x,n){x=mstrip(x);if(x.length<=n)return x;var c=x.slice(0,n),i=c.lastIndexOf(' ');
+  return (i>60?c.slice(0,i):c).replace(/[ ,;:.\u2013\u2014-]+$/,'')+'\u2026';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function setMeta(t){
+  var title=t.h1?mstrip(t.h1).replace(/[.\s]+$/,'')+' \u2014 nDm':'';
+  var desc=mclip(t.lead||'',165);
+  if(title){document.title=title;mset('meta[property="og:title"]',title);}
+  if(desc){mset('meta[name="description"]',desc);mset('meta[property="og:description"]',desc);}
+}
 function apply(){
   var t=L[lang];
   document.documentElement.lang=lang;
@@ -376,6 +388,7 @@ function apply(){
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';});
   lsSet('ndm-lang',lang);
+  setMeta(t);
   crumble();
 }
 var m=document.getElementById('langmenu');
