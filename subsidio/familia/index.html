@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Família e ajudar outra pessoa — nDm</title>
+<meta name="description" content="Como acrescentar cônjuge e filhos ao Subsídio de Mobilidade — e a regra número um se está a tratar do pedido por outra pessoa.">
+<link rel="icon" href="../../icon.svg?v=1" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Subsídio">
+<meta name="theme-color" content="#FAF6F1">
+<meta property="og:title" content="Família e ajudar outra pessoa — Damos o Caminho">
+<meta property="og:description" content="Como acrescentar cônjuge e filhos ao Subsídio de Mobilidade — e a regra número um se está a tratar do pedido por outra pessoa.">
+<meta property="og:image" content="https://ajuda.seedwave.pt/subsidio/og-image.png">
+<meta property="og:url" content="https://ajuda.seedwave.pt/subsidio/familia/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ajuda.seedwave.pt/subsidio/familia/">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF6F1; --surface:#FFFFFF; --surface-2:#F3EBE2;
+  --ink:#1A1512; --ink-soft:#6B5C51;
+  --accent:#B23A0E; --accent-soft:#F6E3D8;
+  --line:#E6D9CC; --line-2:#D6C4B3;
+  --alert:#8F2B14; --alert-bg:#FBEAE2; --alert-line:#E9B79F;
+  --ok:#1B6B4A; --ok-bg:#E6F1EA;
+  --shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.05);
+  --display:"Bitter", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+    --ink:#F2EAE2; --ink-soft:#B7A797;
+    --accent:#FF8A4C; --accent-soft:#3A2418;
+    --line:#382C23; --line-2:#4C3B2E;
+    --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+    --ok:#5FD39A; --ok-bg:#14291F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+  --ink:#F2EAE2; --ink-soft:#B7A797;
+  --accent:#FF8A4C; --accent-soft:#3A2418;
+  --line:#382C23; --line-2:#4C3B2E;
+  --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+  --ok:#5FD39A; --ok-bg:#14291F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:740px; margin:0 auto; padding-left:20px; padding-right:20px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0}
+strong,b{font-weight:600}
+code{font-family:var(--mono)}
+.lnk{color:var(--ink); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px; font-weight:500}
+.lnk:hover{color:var(--accent)}
+
+/* ---------- topbar ---------- */
+.bar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:18px 10px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand svg{width:30px; height:30px; display:block}
+.brand b{font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:.01em}
+.ctrls{display:flex; gap:8px}
+.rb{
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--line-2); background:var(--surface); color:var(--ink);
+  font-family:var(--mono); font-size:13px; font-weight:600; cursor:pointer;
+  display:grid; place-items:center; padding:0; line-height:1; text-decoration:none;
+}
+.rb:hover{border-color:var(--accent); color:var(--accent)}
+.rb:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.lang-wrap{position:relative}
+.menu{
+  position:absolute; right:0; top:47px; z-index:30;
+  background:var(--surface); border:1px solid var(--line-2); border-radius:6px;
+  box-shadow:var(--shadow); padding:6px; min-width:172px; display:grid; gap:2px;
+}
+.menu button{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  width:100%; background:none; border:0; color:var(--ink);
+  font-family:var(--body); font-size:15.5px; padding:9px 11px; border-radius:4px;
+  cursor:pointer; text-align:left;
+}
+.menu button:hover{background:var(--surface-2); color:var(--accent)}
+.menu button[aria-current="true"]{color:var(--accent); font-weight:600}
+.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+.menu button[aria-current="true"] .code{color:var(--accent)}
+
+/* ---------- crumbs ---------- */
+.crumbs{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); margin:6px 0 0}
+.crumbs a{color:inherit; text-decoration:none}
+.crumbs a:hover{color:var(--accent)}
+.crumbs span{margin:0 6px}
+
+/* ---------- open / copy the portal ---------- */
+.act{margin:24px 0 0; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:18px}
+.act .row{display:flex; flex-wrap:wrap; gap:10px}
+.act .url{font-family:var(--mono); font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; word-break:break-all}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  font-family:var(--body); font-size:16px; font-weight:600;
+  padding:12px 18px; border-radius:3px; border:1px solid transparent;
+  text-decoration:none; line-height:1.2;
+}
+.btn-go{background:var(--accent); color:#fff}
+.btn-go:hover{filter:brightness(1.08)}
+.btn-copy{background:var(--surface); border-color:var(--line-2); color:var(--ink)}
+.btn-copy:hover{border-color:var(--accent); color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.act .hint{font-size:14.5px; color:var(--ink-soft); margin:14px 0 0}
+
+/* ---------- cover ---------- */
+.cover{padding-block:14px 8px}
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 14px;
+}
+h1{font-size:clamp(32px,7.6vw,48px); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+.lead{font-size:19.5px; color:var(--ink-soft); margin-top:16px; max-width:34em}
+.by{font-size:15.5px; color:var(--ink-soft); margin:16px 0 0}
+.by a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px}
+.by a:hover{color:var(--accent)}
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0; padding:0; list-style:none}
+.facts li{font-family:var(--mono); font-size:12.5px; font-weight:500; border:1px solid var(--line-2); border-radius:999px; padding:5px 12px; color:var(--ink-soft)}
+
+/* ---------- generic sections ---------- */
+h2{font-size:clamp(23px,5vw,29px); font-weight:600; line-height:1.2; letter-spacing:-.01em}
+.sect{padding-block:44px 0}
+.rule{height:1px; background:var(--line); border:0; margin:44px 0 0}
+.subh{font-family:var(--display); font-size:20px; font-weight:600; margin:34px 0 0}
+.note{margin-top:22px}
+
+.need{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:12px}
+.need li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; font-size:16.5px}
+.need li::before{content:""; width:9px; height:9px; margin-top:.55em; border-radius:2px; background:var(--accent)}
+
+/* ---------- steps ---------- */
+.step{padding-block:40px 0}
+.step-h{display:flex; align-items:baseline; gap:14px; margin-bottom:14px}
+.num{
+  font-family:var(--mono); font-size:14px; font-weight:600; color:var(--accent);
+  border:1.5px solid var(--accent); border-radius:50%;
+  width:32px; height:32px; flex:0 0 32px; display:grid; place-items:center; transform:translateY(2px);
+}
+.step h3{font-size:clamp(20px,4.4vw,25px); font-weight:600; line-height:1.22}
+figure{margin:22px 0 0}
+figure img{display:block; width:100%; height:auto; max-width:100%; border:1px solid var(--line-2); border-radius:3px; background:var(--surface)}
+figcaption{font-size:14px; color:var(--ink-soft); margin-top:9px; font-family:var(--mono)}
+.fields{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:14px}
+.fields li{display:grid; grid-template-columns:auto 1fr; gap:12px; font-size:16.5px}
+.mk{
+  font-family:var(--mono); font-size:12.5px; font-weight:600; color:#fff;
+  background:var(--alert); border-radius:50%; width:24px; height:24px;
+  display:grid; place-items:center; transform:translateY(3px);
+}
+.pt{font-family:var(--mono); font-size:.9em; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:1px 6px; border-radius:3px; white-space:nowrap}
+.warn{margin:22px 0 0; background:var(--alert-bg); border:1px solid var(--alert-line); border-left:4px solid var(--alert); border-radius:3px; padding:16px 18px}
+.warn h4{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--alert); margin:0 0 8px; font-weight:600}
+.warn p{margin:0; font-size:16px}
+.warn p + p{margin-top:.7em}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto}
+.times,.map{width:100%; border-collapse:collapse; margin-top:20px; font-size:15.5px}
+.times{font-variant-numeric:tabular-nums}
+.times th,.times td,.map th,.map td{text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--line); vertical-align:top}
+.times th,.map th{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
+.times td:first-child,.map td:first-child{white-space:nowrap}
+.map td:last-child{color:var(--ink-soft); font-size:14.5px}
+
+/* ---------- calc card ---------- */
+.calc{margin:30px 0 0; background:var(--surface); border:1px solid var(--line); border-radius:4px; box-shadow:var(--shadow); overflow:hidden; position:relative}
+.calc::before{content:""; position:absolute; inset:0 auto 0 0; width:5px; background:repeating-linear-gradient(var(--accent) 0 10px, transparent 10px 18px)}
+.calc-head{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); padding:14px 18px 4px 26px}
+.calc dl{margin:0; padding:6px 18px 14px 26px; display:grid; gap:1px}
+.calc .cr{display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding:7px 12px; border-radius:3px; border:2px solid transparent}
+.calc .cr dt{font-family:var(--mono); font-size:13px; color:var(--ink-soft)}
+.calc .cr dd{margin:0; font-family:var(--mono); font-size:16px; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.calc .cr.sum{border-top:1px solid var(--line); border-radius:0; margin-top:6px; padding-top:12px}
+.calc .cr.sum dt{color:var(--ink); font-weight:600}
+.calc .cr.big dd{font-size:21px; color:var(--accent)}
+.calc .cr.on{border-color:var(--accent); background:var(--accent-soft)}
+@media (prefers-reduced-motion: no-preference){.calc .cr{transition:background .45s ease, border-color .45s ease}}
+.calc-note{font-size:14.5px; color:var(--ink-soft); margin:0; padding:0 18px 16px 26px; border-top:1px dashed var(--line-2); padding-top:13px}
+
+/* ---------- who / yes-no ---------- */
+.who{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:14px}
+.who li{border-left:3px solid var(--accent); padding:2px 0 2px 14px}
+.who b{display:block; font-family:var(--mono); font-size:14.5px; color:var(--accent); font-weight:600}
+.who span{font-size:16.5px}
+.cols{display:grid; gap:18px; margin-top:22px}
+@media (min-width:640px){.cols{grid-template-columns:1fr 1fr; gap:22px}}
+.col{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:18px 20px; box-shadow:var(--shadow)}
+.col h4{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 12px; font-weight:600}
+.col.yes h4{color:var(--ok)}
+.col.no h4{color:var(--alert)}
+.col ul{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.col li{font-size:15.5px; display:grid; grid-template-columns:auto 1fr; gap:9px; align-items:start}
+.col li::before{content:"+"; font-family:var(--mono); font-weight:600; color:var(--ok)}
+.col.no li::before{content:"−"; color:var(--alert)}
+
+/* ---------- status list / quote ---------- */
+.stat{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:11px}
+.stat li{display:grid; grid-template-columns:auto 1fr; gap:12px; font-size:16px; align-items:start}
+.quote{margin:22px 0 0; padding:16px 20px; background:var(--surface-2); border-left:3px solid var(--line-2); border-radius:0 3px 3px 0; font-size:15.5px; color:var(--ink-soft)}
+.quote p{margin:0}
+.quote p + p{margin-top:.7em}
+
+/* ---------- link-out cards ---------- */
+.out{display:block; margin:24px 0 0; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line-2); border-radius:4px; padding:18px 20px; box-shadow:var(--shadow)}
+.out:hover{border-color:var(--accent)}
+.out .k{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
+.out .t{font-family:var(--display); font-size:20px; font-weight:600; display:block}
+.out .d{font-size:15px; color:var(--ink-soft); display:block; margin-top:5px}
+.refs{display:grid; gap:14px; margin-top:22px}
+.refs .out{margin:0}
+
+/* ---------- share + footer ---------- */
+.end{padding-block:44px 0}
+.share{
+  display:inline-flex; align-items:center; gap:9px; margin-top:18px;
+  background:var(--accent); color:#fff; border:0; border-radius:3px;
+  font-family:var(--body); font-size:16.5px; font-weight:600; padding:13px 22px; cursor:pointer;
+}
+.share:hover{filter:brightness(1.08)}
+.share:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+footer{text-align:center; font-size:15px; color:var(--ink-soft); padding-block:40px 60px; margin-top:44px; border-top:1px solid var(--line)}
+footer a{color:inherit; display:inline-block; padding:8px 4px; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px}
+footer a:hover{color:var(--accent)}
+</style>
+<div class="wrap">
+
+  <div class="bar">
+    <a class="brand" href="/" rel="noopener">
+      <svg viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M33 18 L33 70"/>
+        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
+      </svg>
+      <b>nDm</b>
+    </a>
+    <div class="ctrls">
+      <div class="lang-wrap">
+        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">PT</button>
+        <div class="menu" id="langmenu" hidden></div>
+      </div>
+      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </div>
+  </div>
+  <p class="crumbs"><a href="/">Damos o Caminho</a><span>›</span><a href="../">Subsídio</a><span>›</span>Família</p>
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <div id="content"></div>
+
+  <section class="sect">
+    <h2 data-t="refH"></h2>
+    <div class="refs" id="refs"></div>
+  </section>
+
+  <section class="end">
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/igor-kartuzov" target="_blank" rel="noopener">Igor Kartuzov</a>
+  </footer>
+
+</div>
+
+<script>
+/* nDm page engine: language, theme, share, common renderers. Expects a global T = {pt:{…}, …}. */
+window.NDM = (function(){
+  var ORDER = ["pt","en","ru","de","es"];
+  var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
+  var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
+  var SSMURL = "https://www.ssm.gov.pt/";
+  var LANGS = [], lang, pageRender;
+
+  function pickLang(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (LANGS.indexOf(q) >= 0) return q;
+    var st = null;
+    try { st = localStorage.getItem('ndm-lang'); } catch(e){}
+    if (LANGS.indexOf(st) >= 0) return st;
+    var nav = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (LANGS.indexOf(nav) >= 0) return nav;
+    return LANGS.indexOf('pt') >= 0 ? 'pt' : LANGS[0];
+  }
+
+  var P = function(s){ return '<span class="pt">' + s + '</span>'; };
+
+  function warnBlock(w){
+    if (!w) return '';
+    var h = '<h4>' + w.h + '</h4><p>' + w.p + '</p>';
+    if (w.p2) h += '<p>' + w.p2 + '</p>';
+    return h;
+  }
+  function figs(list){
+    if (!list || !list.length) return '';
+    return list.map(function(f){
+      return '<figure><img src="' + f.src + '" alt="" loading="lazy"><figcaption>' + f.cap + '</figcaption></figure>';
+    }).join('');
+  }
+  function marks(list){
+    if (!list || !list.length) return '';
+    return '<ul class="fields">' + list.map(function(f, j){
+      return '<li><span class="mk">' + (j + 1) + '</span><span>' + f + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  function actBlock(t){
+    return '<div class="act">' +
+      '<p class="url">ssm.gov.pt</p>' +
+      '<div class="row">' +
+        '<a class="btn btn-go" id="openSsm" href="' + SSMURL + '" target="_blank" rel="noopener">' + t.openBtn + '</a>' +
+        '<button class="btn btn-copy" id="copySsm" type="button"><span>' + t.copyBtn + '</span></button>' +
+      '</div>' +
+      '<p class="hint">' + t.openHint + '</p>' +
+    '</div>';
+  }
+  function withLang(href){
+    try {
+      var u = new URL(href, location.href);
+      u.searchParams.set('lang', lang);
+      return u.pathname + u.search + u.hash;
+    } catch(e){ return href; }
+  }
+
+  function render(){
+    var t = T[lang];
+    document.documentElement.lang = TAGS[lang];
+
+    var lb = document.getElementById('lang');
+    if (lb){
+      lb.textContent = lang.toUpperCase();
+      lb.parentNode.style.display = LANGS.length > 1 ? '' : 'none';
+      document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
+        return '<button type="button" data-l="' + L + '"' + (L === lang ? ' aria-current="true"' : '') + '>' +
+               '<span>' + LNAMES[L] + '</span><span class="code">' + L.toUpperCase() + '</span></button>';
+      }).join('');
+    }
+
+    var nodes = document.querySelectorAll('[data-t]');
+    for (var i = 0; i < nodes.length; i++){
+      var k = nodes[i].getAttribute('data-t');
+      if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
+    }
+    var hub = document.getElementById('hubLink');
+    if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
+
+    if (pageRender) pageRender(t, lang);
+
+    // every internal link carries the current language
+    var links = document.querySelectorAll('a[data-ll]');
+    for (var j = 0; j < links.length; j++) links[j].href = withLang(links[j].getAttribute('data-ll'));
+    var inl = document.querySelectorAll('a[href^="/"], a[href^="../"], a[href^="./"], a[href^="#"]');
+    for (var m = 0; m < inl.length; m++){
+      var a = inl[m], h = a.getAttribute('href');
+      if (h.charAt(0) === '#' || a.hasAttribute('data-ll') || /[?&]lang=/.test(h)) continue;
+      a.href = withLang(h);
+    }
+
+    var go = document.getElementById('openSsm');
+    if (go) go.addEventListener('click', function(e){
+      if (window.innerWidth < 900) return;
+      var w = Math.max(560, Math.round(screen.availWidth / 2));
+      var f = 'noopener,noreferrer,width=' + w + ',height=' + screen.availHeight +
+              ',left=' + (screen.availLeft + screen.availWidth - w) + ',top=' + screen.availTop;
+      var win = window.open(SSMURL, 'ssmportal', f);
+      if (win) e.preventDefault();
+    });
+    var cp = document.getElementById('copySsm');
+    if (cp) cp.addEventListener('click', function(){
+      var span = cp.querySelector('span'), old = span.textContent;
+      var done = function(){ span.textContent = t.copiedLink; setTimeout(function(){ span.textContent = old; }, 2200); };
+      if (navigator.clipboard) navigator.clipboard.writeText(SSMURL).then(done, done); else done();
+    });
+  }
+
+  function init(fn){
+    pageRender = fn;
+    LANGS = ORDER.filter(function(l){ return window.T && T[l]; });
+    lang = pickLang();
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+    render();
+
+    var lbtn = document.getElementById('lang'), lmenu = document.getElementById('langmenu');
+    if (lbtn){
+      var closeMenu = function(){ lmenu.hidden = true; lbtn.setAttribute('aria-expanded', 'false'); };
+      lbtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var open = lmenu.hidden;
+        lmenu.hidden = !open;
+        lbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      lmenu.addEventListener('click', function(e){
+        var b = e.target.closest('button[data-l]');
+        if (!b) return;
+        lang = b.getAttribute('data-l');
+        try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+        closeMenu(); render();
+        try { var u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null, '', u); } catch(err){}
+      });
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    }
+
+    var root = document.documentElement, tb = document.getElementById('theme');
+    if (tb){
+      var stored = null;
+      try { stored = localStorage.getItem('ndm-theme'); } catch(e){}
+      if (stored) root.setAttribute('data-theme', stored);
+      var isDark = function(){
+        var a = root.getAttribute('data-theme');
+        if (a) return a === 'dark';
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      };
+      var paint = function(){ tb.textContent = isDark() ? '☀' : '☾'; };
+      paint();
+      tb.addEventListener('click', function(){
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('ndm-theme', next); } catch(e){}
+        paint();
+      });
+    }
+
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#calc .cr'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (rows.length && !reduce){
+      var k = 0;
+      rows[0].classList.add('on');
+      setInterval(function(){
+        rows = Array.prototype.slice.call(document.querySelectorAll('#calc .cr'));
+        if (!rows.length) return;
+        rows.forEach(function(r){ r.classList.remove('on'); });
+        k = (k + 1) % rows.length;
+        rows[k].classList.add('on');
+      }, 1500);
+    }
+
+    var sb = document.getElementById('share');
+    if (sb) sb.addEventListener('click', function(){
+      var t = T[lang], url = withLang(location.pathname);
+      url = location.origin + url;
+      if (navigator.share){ navigator.share({ title: t.shareTitle || document.title, text: t.shareText, url: url }).catch(function(){}); return; }
+      var done = function(){
+        var span = sb.querySelector('span'), old = span.textContent;
+        span.textContent = t.copied;
+        setTimeout(function(){ span.textContent = old; }, 2200);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(t.shareText + ' ' + url).then(done, done); else done();
+    });
+  }
+
+  return { init: init, P: P, warn: warnBlock, figs: figs, marks: marks, act: actBlock, lang: function(){ return lang; } };
+})();
+</script>
+<script>
+var T = {}; var P = NDM.P;
+T.pt = {
+  eyebrow: "nDm · Ficha 3",
+  h1: "Família e ajudar outra pessoa",
+  lead: "A esposa, os filhos e outros dependentes têm o mesmo direito ao subsídio. Mas para que as suas viagens entrem no pedido, é preciso adicioná-los uma vez ao perfil — e o portal não diz isso em lado nenhum. E se está a tratar do pedido de outra pessoa, há uma regra mais importante do que todas as outras.",
+  blocks: [
+    { t: "h2", v: "Como adicionar a família", p: "Faz-se uma vez, na área pessoal, antes de submeter o pedido. Enquanto a lista estiver vazia, não é possível submeter viagens familiares — no quarto passo do assistente os campos delas simplesmente não aparecem." },
+    { t: "step", h: "Secção Situação Familiar",
+      p: "Página principal → " + P("Aceder à Área Pessoal") + " → " + P("Situação Familiar") + ". Aqui carrega-se a " + P("Prova de Agregado Familiar") + " — o comprovativo de composição do agregado familiar — e há o botão " + P("Adicionar Membro") + ". É a única forma de obter o subsídio para as viagens da esposa e dos filhos.",
+      src: "../img/b3.jpg", cap: "Enquanto a lista estiver vazia, não é possível submeter viagens familiares." },
+    { t: "step", h: "Ficha de um membro da família",
+      p: "Na ficha escolhe-se o " + P("Parentesco") + ": " + P("Cônjuge") + ", " + P("Filho") + " ou " + P("Dependente") + ", e anexa-se o " + P("Comprovativo de Parentesco") + " — certidão de casamento ou de nascimento. O tipo de beneficiário do filho ou do cônjuge pode ser diferente do seu: um estudante, por exemplo, tem a sua própria parte — 59 € em vez de 79 €.",
+      src: "../img/b4.jpg", cap: "O Comprovativo de Parentesco é obrigatório — campo com asterisco." },
+    { t: "fields", v: [
+      "A julgar por como o portal verifica o " + P("Comprovativo do IBAN") + ", os documentos da família também são abertos por um operador humano — conte com um ou dois dias antes de submeter.",
+      "Para ser honesto: ainda não submetemos um pedido de família. Como fica o quarto passo com vários passageiros e para onde vai o dinheiro — acrescentaremos depois do primeiro pedido real.",
+      "A TAP emite uma fatura separada por passageiro. Ao pedir os documentos, escolha dados fiscais separados, para que cada um tenha o seu próprio ficheiro — como se faz isto, mostra-se em <a class=\"lnk\" href=\"../../tap/\">Documentos TAP</a>.",
+      "Se a esposa ou um filho maior de idade estiverem registados no portal por conta própria, é mais simples submeter dois pedidos separados — cada um com a sua própria " + P("Chave Móvel Digital") + "."
+    ] },
+
+    { t: "rule" },
+    { t: "h2", id: "ajudar", v: "Se está a tratar do pedido de outra pessoa", p: "É frequente ajudar pais idosos, vizinhos, conhecidos — e o portal permite-o. Mas há uma regra mais importante do que todas as outras." },
+    { t: "warn", h: "O telefone e o email têm de ser dela",
+      p: "No perfil e no pedido da pessoa a quem está a ajudar têm de estar <b>o seu</b> telefone e <b>o seu</b> email — os mesmos usados para obter a " + P("Chave Móvel Digital") + " dela. Não os seus.",
+      p2: "Caso real: uma pessoa que ajudava a irmã inseriu o seu próprio telefone e email no pedido dela. A irmã recebeu o subsídio — mas quem ajudou ficou com o acesso à sua própria área danificado, e está agora a mudar o email através da Loja do Cidadão. Se a pessoa não tiver email de trabalho, crie-lhe um novo: vinte minutos agora evitam meses de idas e voltas." },
+    { t: "fields", v: [
+      "A entrada no portal é só com a " + P("Chave Móvel Digital") + " dela ou o seu Cartão de Cidadão. O código de confirmação chega ao telefone dela, por isso é mais prático tratar disto em conjunto, em vez de «depois sozinho».",
+      "O IBAN — é dela. O dinheiro só é enviado para a conta do beneficiário do subsídio; não é possível inserir o seu próprio, «para depois entregar».",
+      "Todo o resto no pedido são os mesmos cinco ecrãs de quando se faz para si próprio: <a class=\"lnk\" href=\"../\">O pedido em cinco passos</a>."
+    ] }
+  ],
+  refH: "A seguir",
+  refs: [
+    ["../", "Instrução", "O pedido em cinco passos", "Cada ecrã do portal e cada campo — com imagens reais e as páginas da fatura."],
+    ["../dinheiro/", "Ficha 1", "Quanto dinheiro e porquê", "Categorias de beneficiários, o que devolvem e o que não, o desconto e o tecto que já não existe."],
+    ["../rejeitado/", "Ficha 2", "Primeiro acesso: «Rejeitado» não é recusa", "Porque é que o portal marca recusa logo no registo e o que há na área pessoal."]
+  ],
+  shareBtn: "Enviar esta página",
+  shareTitle: "Família e ajudar outra pessoa — nDm",
+  shareText: "Subsídio de voos para a família e se está a tratar do pedido de outra pessoa —",
+  copied: "Ligação copiada"
+};
+T.en = {
+  eyebrow: "nDm · Note 3",
+  h1: "Family and helping someone else",
+  lead: "A spouse, children and dependants have the same right to the subsidy. But for their flights to go into the claim, they must be added to the profile once — and the portal says nothing about this anywhere. And if you are filing on behalf of someone else, one rule matters more than all the others.",
+  blocks: [
+    { t: "h2", v: "How to add family", p: "Done once, in the personal area, before submitting a claim. While the list is empty, family flights cannot be filed — at step four of the wizard their fields simply will not be there." },
+    { t: "step", h: "The Situação Familiar section",
+      p: "Home page → " + P("Aceder à Área Pessoal") + " → " + P("Situação Familiar") + ". This is where you upload the " + P("Prova de Agregado Familiar") + " — the certificate of household composition — and there is an " + P("Adicionar Membro") + " button. This is the only way to get the subsidy for a spouse's or children's flights.",
+      src: "../img/b3.jpg", cap: "While the list is empty, family flights cannot be filed." },
+    { t: "step", h: "The family member card",
+      p: "The card lets you pick " + P("Parentesco") + ": " + P("Cônjuge") + ", " + P("Filho") + " or " + P("Dependente") + ", and attach the " + P("Comprovativo de Parentesco") + " — a marriage or birth certificate. A child's or spouse's beneficiary type can differ from your own: a student, for example, has their own share — €59 instead of €79.",
+      src: "../img/b4.jpg", cap: "Comprovativo de Parentesco is required — the field carries an asterisk." },
+    { t: "fields", v: [
+      "Judging by how the portal checks the " + P("Comprovativo do IBAN") + ", family documents are also opened by a human operator — allow a day or two before submitting.",
+      "To be honest: we have not yet submitted a family claim. What step four looks like with several passengers, and where the money goes — we will add this after the first real claim.",
+      "TAP issues a separate invoice for each passenger. When requesting the documents, choose separate fiscal details so each person has their own file — how this is done is shown in <a class=\"lnk\" href=\"../../tap/\">Documentos TAP</a>.",
+      "If a spouse or adult child is registered on the portal themselves, it is simpler to file two separate claims — each with their own " + P("Chave Móvel Digital") + "."
+    ] },
+
+    { t: "rule" },
+    { t: "h2", id: "ajudar", v: "If you are filing for someone else", p: "Elderly parents, neighbours and acquaintances are often helped this way — and the portal allows it. But one rule matters more than all the others." },
+    { t: "warn", h: "The phone and email must be their own",
+      p: "In the profile and in the claim of the person you are helping, <b>their</b> phone number and <b>their</b> email must appear — the same ones used to obtain their " + P("Chave Móvel Digital") + ". Not yours.",
+      p2: "A real case: a helper entered her own phone number and email into her sister's claim. The sister received the subsidy — but the helper's access to her own account broke, and she is now changing her email through Loja do Cidadão. If a person has no working email, set up a new one for them: twenty minutes now saves months of running around." },
+    { t: "fields", v: [
+      "Logging into the portal requires only their own " + P("Chave Móvel Digital") + " or their own citizen card. The confirmation code goes to their phone, so it is easier to do this together than to leave it for “later, on their own”.",
+      "The IBAN — theirs. The money only goes to the account of the subsidy recipient; entering your own to “pass it on later” is not possible.",
+      "Everything else in the claim is the same five screens as for yourself: <a class=\"lnk\" href=\"../\">The claim in five steps</a>."
+    ] }
+  ],
+  refH: "More",
+  refs: [
+    ["../", "Instruction", "The claim in five steps", "Every portal screen and every field — with real screenshots and the invoice alongside."],
+    ["../dinheiro/", "Note 1", "How much money and what for", "Categories of recipients, what is refunded and what is not, the discount and the cap that no longer exists."],
+    ["../rejeitado/", "Note 2", "First login: “Rejeitado” is not a refusal", "Why the portal marks a refusal right at registration, and what the personal area holds."]
+  ],
+  shareBtn: "Send this page",
+  shareTitle: "Family and helping someone else — nDm",
+  shareText: "Flight subsidy for family, and if you are filing for someone else —",
+  copied: "Link copied"
+};
+T.ru = {
+  eyebrow: "nDm · Справочная 3",
+  h1: "Семья и помощь другому человеку",
+  lead: "Жена, дети и иждивенцы имеют то же право на субсидию. Но чтобы их перелёты попали в заявку, их нужно один раз добавить в профиль — и портал нигде об этом не говорит. А если вы оформляете не за себя, есть правило, которое важнее всех остальных.",
+  blocks: [
+    { t: "h2", v: "Как добавить семью", p: "Делается один раз, в личном кабинете, до подачи заявки. Пока в списке пусто, семейные перелёты подать нельзя — на четвёртом шаге мастера просто не будет их полей." },
+    { t: "step", h: "Раздел Situação Familiar",
+      p: "Главная → " + P("Aceder à Área Pessoal") + " → " + P("Situação Familiar") + ". Здесь загружается " + P("Prova de Agregado Familiar") + " — справка о составе семьи — и есть кнопка " + P("Adicionar Membro") + ". Это единственный способ получить субсидию за перелёты жены и детей.",
+      src: "../img/b3.jpg", cap: "Пока в списке пусто, семейные перелёты подать нельзя." },
+    { t: "step", h: "Карточка члена семьи",
+      p: "В карточке выбирается " + P("Parentesco") + ": " + P("Cônjuge") + ", " + P("Filho") + " или " + P("Dependente") + ", и прикладывается " + P("Comprovativo de Parentesco") + " — свидетельство о браке или о рождении. Тип бенефициара у ребёнка или супруга может отличаться от вашего: у студента, например, своя доля — 59 € вместо 79 €.",
+      src: "../img/b4.jpg", cap: "Comprovativo de Parentesco обязателен — поле со звёздочкой." },
+    { t: "fields", v: [
+      "Судя по тому, как портал проверяет " + P("Comprovativo do IBAN") + ", документы семьи тоже открывает живой оператор — закладывайте на это день-два до подачи.",
+      "Честно: семейную заявку мы пока не подавали. Как выглядит четвёртый шаг с несколькими пассажирами и куда приходят деньги — дополним после первой живой заявки.",
+      "На каждого пассажира TAP выставляет отдельный счёт. При заказе документов выбирайте раздельные фискальные данные, чтобы у каждого был свой файл — как это делается, показано в <a class=\"lnk\" href=\"../../tap/\">Documentos TAP</a>.",
+      "Если жена или совершеннолетний ребёнок зарегистрированы на портале сами, проще подать две отдельные заявки — каждый со своей " + P("Chave Móvel Digital") + "."
+    ] },
+
+    { t: "rule" },
+    { t: "h2", id: "ajudar", v: "Если вы оформляете за другого человека", p: "Пожилым родителям, соседям, знакомым помогают часто — и портал это позволяет. Но одно правило важнее всех остальных." },
+    { t: "warn", h: "Телефон и почта должны быть его собственные",
+      p: "В профиле и в заявке того, кому вы помогаете, должны стоять <b>его</b> телефон и <b>его</b> почта — те же, что использованы при получении его " + P("Chave Móvel Digital") + ". Не ваши.",
+      p2: "Живой случай: помощница вписала свои телефон и почту в заявку сестры. Сестра субсидию получила — а у помощницы сломался доступ в её собственный кабинет, и теперь она меняет почту через Loja do Cidadão. Нет у человека рабочей почты — заведите ему новую: двадцать минут сейчас избавят от месяцев хождений." },
+    { t: "fields", v: [
+      "Вход на портал — только его " + P("Chave Móvel Digital") + " или его карта гражданина. Код подтверждения приходит на его телефон, поэтому оформлять удобнее вместе, а не «потом сам».",
+      "IBAN — его. Деньги уходят только на счёт получателя субсидии; вписать свой, чтобы «потом передать», нельзя.",
+      "Всё остальное в заявке — те же пять экранов, что и для себя: <a class=\"lnk\" href=\"../\">Подача: пять шагов</a>."
+    ] }
+  ],
+  refH: "Дальше",
+  refs: [
+    ["../", "Инструкция", "Подача: пять шагов", "Каждый экран портала и каждое поле — с живыми снимками и разворотами счёта."],
+    ["../dinheiro/", "Справочная 1", "Сколько денег и за что", "Категории получателей, что возвращают и не возвращают, скидка и потолок, которого больше нет."],
+    ["../rejeitado/", "Справочная 2", "Первый вход: Rejeitado — не отказ", "Почему при регистрации портал сразу ставит отказ и что вообще есть в личном кабинете."]
+  ],
+  shareBtn: "Отправить эту страницу",
+  shareTitle: "Семья и помощь другому человеку — nDm",
+  shareText: "Субсидия за перелёты для семьи и если оформляете за другого —",
+  copied: "Ссылка скопирована"
+};
+T.de = {
+  eyebrow: "nDm · Merkblatt 3",
+  h1: "Familie und für andere beantragen",
+  lead: "Ehepartner, Kinder und Angehörige haben denselben Anspruch auf die Subsidie. Damit ihre Flüge aber in den Antrag gelangen, müssen sie einmal im Profil hinzugefügt werden — und das Portal erwähnt das nirgends. Und wenn Sie nicht für sich selbst beantragen, gibt es eine Regel, die wichtiger ist als alle anderen.",
+  blocks: [
+    { t: "h2", v: "Wie Sie die Familie hinzufügen", p: "Das geschieht einmal, im persönlichen Bereich, vor der Antragstellung. Solange die Liste leer ist, lassen sich Familienflüge nicht beantragen — im vierten Schritt des Assistenten fehlen einfach ihre Felder." },
+    { t: "step", h: "Der Bereich Situação Familiar",
+      p: "Startseite → " + P("Aceder à Área Pessoal") + " → " + P("Situação Familiar") + ". Hier wird der " + P("Prova de Agregado Familiar") + " hochgeladen — der Nachweis über die Familienzusammensetzung — und es gibt die Schaltfläche " + P("Adicionar Membro") + ". Das ist der einzige Weg, die Subsidie für die Flüge von Ehepartner und Kindern zu erhalten.",
+      src: "../img/b3.jpg", cap: "Solange die Liste leer ist, lassen sich Familienflüge nicht beantragen." },
+    { t: "step", h: "Die Karte des Familienmitglieds",
+      p: "In der Karte wird " + P("Parentesco") + " gewählt: " + P("Cônjuge") + ", " + P("Filho") + " oder " + P("Dependente") + ", und der " + P("Comprovativo de Parentesco") + " wird beigefügt — die Heirats- oder Geburtsurkunde. Der Begünstigtentyp von Kind oder Ehepartner kann von Ihrem abweichen: Bei Studierenden gilt zum Beispiel ein eigener Eigenanteil — 59 € statt 79 €.",
+      src: "../img/b4.jpg", cap: "Comprovativo de Parentesco ist Pflicht — ein Feld mit Sternchen." },
+    { t: "fields", v: [
+      "Nach der Art, wie das Portal den " + P("Comprovativo do IBAN") + " prüft, öffnet auch die Familiendokumente ein Sachbearbeiter — rechnen Sie dafür ein bis zwei Tage vor der Antragstellung ein.",
+      "Ehrlich gesagt: Einen Familienantrag haben wir bisher nicht gestellt. Wie der vierte Schritt mit mehreren Passagieren aussieht und wohin das Geld geht — ergänzen wir nach dem ersten echten Antrag.",
+      "TAP stellt für jeden Passagier eine eigene Rechnung aus. Wählen Sie beim Bestellen der Dokumente getrennte Rechnungsdaten, damit jeder seine eigene Datei bekommt — wie das geht, zeigt <a class=\"lnk\" href=\"../../tap/\">Documentos TAP</a>.",
+      "Sind Ehepartner oder volljähriges Kind selbst im Portal registriert, ist es einfacher, zwei getrennte Anträge zu stellen — jeder mit der eigenen " + P("Chave Móvel Digital") + "."
+    ] },
+
+    { t: "rule" },
+    { t: "h2", id: "ajudar", v: "Wenn Sie für eine andere Person beantragen", p: "Älteren Eltern, Nachbarn, Bekannten wird oft geholfen — und das Portal lässt das zu. Aber eine Regel ist wichtiger als alle anderen." },
+    { t: "warn", h: "Telefon und E-Mail müssen die eigenen der Person sein",
+      p: "Im Profil und im Antrag der Person, der Sie helfen, müssen <b>ihre</b> Telefonnummer und <b>ihre</b> E-Mail stehen — dieselben, die bei ihrer " + P("Chave Móvel Digital") + " verwendet wurden. Nicht Ihre.",
+      p2: "Ein echter Fall: Eine Helferin trug ihre eigene Telefonnummer und E-Mail in den Antrag ihrer Schwester ein. Die Schwester bekam die Subsidie — der Helferin aber brach der Zugang zu ihrem eigenen Bereich weg, und jetzt ändert sie ihre E-Mail über die Loja do Cidadão. Hat die Person keine funktionierende E-Mail, richten Sie ihr eine neue ein: zwanzig Minuten jetzt ersparen Monate an Behördenwegen." },
+    { t: "fields", v: [
+      "Der Zugang zum Portal erfolgt nur mit ihrer " + P("Chave Móvel Digital") + " oder ihrem Cartão de Cidadão. Der Bestätigungscode kommt auf ihr Telefon, deshalb ist es einfacher, gemeinsam zu beantragen, statt „später allein“.",
+      "Die IBAN — ihre. Das Geld geht nur auf das Konto der Person, die die Subsidie erhält; die eigene einzutragen, um sie „später weiterzugeben“, geht nicht.",
+      "Alles Übrige im Antrag — dieselben fünf Bildschirme wie für sich selbst: <a class=\"lnk\" href=\"../\">Der Antrag in fünf Schritten</a>."
+    ] }
+  ],
+  refH: "Weiter",
+  refs: [
+    ["../", "Anleitung", "Der Antrag in fünf Schritten", "Jeder Bildschirm des Portals und jedes Feld — mit echten Bildschirmfotos und der Rechnung daneben."],
+    ["../dinheiro/", "Merkblatt 1", "Wie viel Geld und wofür", "Empfängerkategorien, was erstattet wird und was nicht, der Rabatt und die Grenze, die es nicht mehr gibt."],
+    ["../rejeitado/", "Merkblatt 2", "Erster Zugang: „Rejeitado“ ist keine Ablehnung", "Warum das Portal schon bei der Registrierung ablehnt und was der persönliche Bereich überhaupt enthält."]
+  ],
+  shareBtn: "Diese Seite senden",
+  shareTitle: "Familie und für andere beantragen — nDm",
+  shareText: "Subsidie für Flüge für die Familie und wenn Sie für jemand anderen beantragen —",
+  copied: "Link kopiert"
+};
+T.es = {
+  eyebrow: "nDm · Ficha 3",
+  h1: "Familia y tramitar por otra persona",
+  lead: "El cónyuge, los hijos y las personas dependientes tienen el mismo derecho a la subsidio. Pero para que sus vuelos entren en la solicitud hay que añadirlos una vez al perfil — y el portal no lo dice en ningún sitio. Y si tramita la solicitud no para usted mismo, hay una regla que pesa más que todas las demás.",
+  blocks: [
+    { t: "h2", v: "Cómo añadir a la familia", p: "Se hace una sola vez, en el área personal, antes de presentar la solicitud. Mientras la lista esté vacía, no se pueden presentar vuelos familiares — en el cuarto paso del asistente simplemente no habrá campos para ellos." },
+    { t: "step", h: "El apartado Situação Familiar",
+      p: "Página principal → " + P("Aceder à Área Pessoal") + " → " + P("Situação Familiar") + ". Aquí se sube el " + P("Prova de Agregado Familiar") + " — el certificado de composición familiar — y hay un botón " + P("Adicionar Membro") + ". Es la única manera de conseguir la subsidio por los vuelos del cónyuge y los hijos.",
+      src: "../img/b3.jpg", cap: "Mientras la lista esté vacía, no se pueden presentar vuelos familiares." },
+    { t: "step", h: "La ficha de un familiar",
+      p: "En la ficha se elige el " + P("Parentesco") + ": " + P("Cônjuge") + ", " + P("Filho") + " o " + P("Dependente") + ", y se adjunta el " + P("Comprovativo de Parentesco") + " — el certificado de matrimonio o de nacimiento. El tipo de beneficiario de un hijo o del cónyuge puede ser distinto del suyo: un estudiante, por ejemplo, tiene su propia aportación, 59 € en vez de 79 €.",
+      src: "../img/b4.jpg", cap: "El Comprovativo de Parentesco es obligatorio: campo con asterisco." },
+    { t: "fields", v: [
+      "A juzgar por cómo comprueba el portal el " + P("Comprovativo do IBAN") + ", los documentos de la familia también los abre un operador real — cuente con uno o dos días antes de presentar.",
+      "Para ser honestos: todavía no hemos presentado una solicitud familiar. Cómo se ve el cuarto paso con varios pasajeros y adónde llega el dinero — lo añadiremos después de la primera solicitud real.",
+      "Por cada pasajero, TAP emite una factura aparte. Al pedir los documentos, elija datos fiscales separados para que cada uno tenga su propio archivo — cómo se hace se muestra en <a class=\"lnk\" href=\"../../tap/\">Documentos TAP</a>.",
+      "Si el cónyuge o un hijo mayor de edad están registrados en el portal por su cuenta, es más sencillo presentar dos solicitudes separadas, cada uno con su propia " + P("Chave Móvel Digital") + "."
+    ] },
+
+    { t: "rule" },
+    { t: "h2", id: "ajudar", v: "Si tramita la solicitud por otra persona", p: "Es habitual ayudar a padres mayores, vecinos, conocidos — y el portal lo permite. Pero hay una regla que pesa más que todas las demás." },
+    { t: "warn", h: "El teléfono y el correo deben ser los suyos, de la persona ayudada",
+      p: "En el perfil y en la solicitud de la persona a la que ayuda deben figurar <b>su</b> teléfono y <b>su</b> correo — los mismos que se usaron al obtener <b>su</b> " + P("Chave Móvel Digital") + ". No los de usted.",
+      p2: "Un caso real: una persona escribió su propio teléfono y correo en la solicitud de su hermana. La hermana recibió la subsidio, pero a la ayudante se le rompió el acceso a su propia área, y ahora está cambiando el correo a través de la Loja do Cidadão. Si la persona no tiene un correo propio, créele uno nuevo: veinte minutos ahora ahorran meses de trámites." },
+    { t: "fields", v: [
+      "El acceso al portal es solo con la " + P("Chave Móvel Digital") + " o el carné de ciudadano de esa persona. El código de confirmación llega a su teléfono, así que es más cómodo tramitarlo juntos que «después, solo».",
+      "El IBAN — el suyo, de la persona ayudada. El dinero solo se ingresa en la cuenta del beneficiario de la subsidio; no se puede poner el propio para «pasarlo después».",
+      "Todo lo demás de la solicitud son las mismas cinco pantallas que para uno mismo: <a class=\"lnk\" href=\"../\">La solicitud en cinco pasos</a>."
+    ] }
+  ],
+  refH: "Siga leyendo",
+  refs: [
+    ["../", "Instrucción", "La solicitud en cinco pasos", "Cada pantalla del portal y cada campo — con capturas reales y la factura desplegada al lado."],
+    ["../dinheiro/", "Ficha 1", "Cuánto dinero y por qué", "Categorías de beneficiarios, qué se devuelve y qué no, el descuento y el techo que ya no existe."],
+    ["../rejeitado/", "Ficha 2", "Primer acceso: «Rejeitado» no es un rechazo", "Por qué el portal marca rechazo nada más registrarse y qué hay realmente en el área personal."]
+  ],
+  shareBtn: "Enviar esta página",
+  shareTitle: "Familia y tramitar por otra persona — nDm",
+  shareText: "Subsidio por vuelos para la familia y si tramita por otra persona —",
+  copied: "Enlace copiado"
+};
+</script>
+<script>
+NDM.init(function(t){
+  var P = NDM.P, figs = NDM.figs, marks = NDM.marks, warn = NDM.warn;
+  var html = '';
+  t.blocks.forEach(function(b){
+    switch (b.t){
+      case 'h2':    html += '<section class="sect"><h2' + (b.id ? ' id="' + b.id + '"' : '') + '>' + b.v + '</h2>'; if (b.p) html += '<p>' + b.p + '</p>'; html += '</section>'; break;
+      case 'h3':    html += '<h3 class="subh">' + b.v + '</h3>'; break;
+      case 'p':     html += '<p class="note">' + b.v + '</p>'; break;
+      case 'fig':   html += figs([{ src: b.src, cap: b.cap }]); break;
+      case 'fields':html += marks(b.v); break;
+      case 'warn':  html += '<div class="warn">' + warn(b) + '</div>'; break;
+      case 'rule':  html += '<hr class="rule">'; break;
+      case 'who':   html += '<ul class="who">' + b.v.map(function(w){ return '<li><b>' + w[0] + '</b><span>' + w[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'cols':  html += '<div class="cols">' +
+                      '<div class="col yes"><h4>' + b.yesH + '</h4><ul>' + b.yes.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div>' +
+                      '<div class="col no"><h4>' + b.noH + '</h4><ul>' + b.no.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div></div>'; break;
+      case 'calc':  html += '<div class="calc"><div class="calc-head">' + b.head + '</div><dl id="calc">' +
+                      b.rows.map(function(r){ return '<div class="cr ' + (r[2] || '') + '"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') +
+                      '</dl><p class="calc-note">' + b.note + '</p></div>'; break;
+      case 'stat':  html += '<ul class="stat">' + b.v.map(function(r){ return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'quote': html += '<div class="quote">' + b.v.map(function(p){ return '<p>' + p + '</p>'; }).join('') + '</div>'; break;
+      case 'step':  html += '<section class="step"><div class="step-h"><h3>' + b.h + '</h3></div><p>' + b.p + '</p>' + (b.src ? figs([{ src: b.src, cap: b.cap }]) : '') + '</section>'; break;
+    }
+  });
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('refs').innerHTML = t.refs.map(function(r){
+    return '<a class="out" href="' + r[0] + '"><span class="k">' + r[1] + '</span><span class="t">' + r[2] + '</span><span class="d">' + r[3] + '</span></a>';
+  }).join('');
+});
+</script>
+</body>
+</html>

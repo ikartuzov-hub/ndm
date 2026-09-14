@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Собирает готовые к заливке страницы репозитория ndm из исходников."""
-import io, os, re
+"""Собирает готовые к заливке страницы репозитория ndm из исходников.
+
+Запуск из корня репозитория:  python3 _src/build.py
+"""
+import io, os, re, glob
 
 SITE = "https://ajuda.seedwave.pt"
+LANG_ORDER = ["pt", "en", "ru", "de", "es"]
 
 HEAD = """<!doctype html>
 <html lang="{lang}">
@@ -23,41 +27,130 @@ HEAD = """<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{url}">
 <style>html{{color-scheme:light dark}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 </head>
 <body>
 """
 FOOT = "\n</body>\n</html>\n"
 
+FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+"""
+
+MARK = """<svg viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M33 18 L33 70"/>
+        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
+      </svg>"""
+
+# шапка страниц выпуска 2: брендмарк ведёт на «Damos o Caminho» (корень домена)
+BAR = """<div class="bar">
+    <a class="brand" href="/" rel="noopener">
+      %s
+      <b>nDm</b>
+    </a>
+    <div class="ctrls">
+      <div class="lang-wrap">
+        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">PT</button>
+        <div class="menu" id="langmenu" hidden></div>
+      </div>
+      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </div>
+  </div>
+  <p class="crumbs">{crumbs}</p>""" % MARK
+
+FOOTER = """<footer>
+    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/igor-kartuzov" target="_blank" rel="noopener">Igor Kartuzov</a>
+  </footer>"""
+
+
+def read(p):
+    return io.open(p, encoding="utf-8").read()
+
+
+def write(p, s):
+    os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
+    io.open(p, "w", encoding="utf-8").write(s)
+
 
 def wrap(body, **kw):
     return HEAD.format(**kw) + body.strip() + FOOT
 
 
-# ---------- /tap/ ----------------------------------------------------
-tap = io.open("_src/tap-body.html", encoding="utf-8").read()
-# в артефакте <title> идёт первой строкой — на сайте он живёт в <head>
-tap = re.sub(r"^<title>.*?</title>\s*", "", tap, count=1, flags=re.S)
-# брендмарк ведёт на витрину nDm, а не в Хаб (Хаб — в футере)
-tap = tap.replace('<a class="brand" href="https://seedwave.pt/hub/">',
-                  '<a class="brand" href="../">')
+def i18n(name):
+    """Склеивает _src/i18n/<name>.<lang>.js в порядке PT · EN · RU · DE · ES."""
+    parts = []
+    for L in LANG_ORDER:
+        p = "_src/i18n/%s.%s.js" % (name, L)
+        if os.path.exists(p):
+            parts.append(read(p).strip())
+    return "var T = {}; var P = NDM.P;\n" + "\n".join(parts)
 
+
+def page(body_file, name, out, crumbs, **meta):
+    body = read(body_file)
+    body = body.replace("{{BAR}}", BAR.format(crumbs=crumbs)).replace("{{FOOTER}}", FOOTER)
+    head = FONTS + "<style>\n" + read("_src/ndm.css").strip() + "\n</style>\n"
+    scripts = ("<script>\n" + read("_src/ndm.js").strip() + "\n</script>\n" +
+               "<script>\n" + i18n(name) + "\n</script>\n")
+    # тело страницы: разметка, затем движок + тексты, затем её собственный <script>
+    idx = body.rfind("<script>")
+    body = body[:idx] + scripts + body[idx:]
+    write(out, wrap(head + body, **meta))
+    print("built:", out)
+
+
+# ---------- / — «Damos o Caminho» --------------------------------------
+root = read("_src/root-body.html")
+root = re.sub(r"^<title>.*?</title>\s*", "", root, count=1, flags=re.S)
+DESC_ROOT = ("Subsídio de Mobilidade: tem direito? Três perguntas, o guia passo a passo e o que mudou "
+             "na lei. Gratuito, em cinco línguas. nDm — Nova Dádiva da Madeira.")
+write("index.html", wrap(root, lang="pt", title="Damos o Caminho — nDm", desc=DESC_ROOT,
+      app="nDm", root="", ogtitle="Subsídio de Mobilidade — Damos o Caminho",
+      og=SITE + "/subsidio/og-image.png", url=SITE + "/"))
+print("built: index.html")
+
+# ---------- /tap/ — выпуск 1 --------------------------------------------
+tap = read("_src/tap-body.html")
+tap = re.sub(r"^<title>.*?</title>\s*", "", tap, count=1, flags=re.S)
+tap = tap.replace('<a class="brand" href="https://seedwave.pt/hub/">', '<a class="brand" href="../">')
 DESC_TAP = ("Como pedir à TAP a fatura e o comprovativo de viagem para o subsídio de "
             "mobilidade — passo a passo, com imagens. PT · EN · RU · DE · ES.")
+write("tap/index.html", wrap(tap, lang="pt", title="Documentos TAP — nDm", desc=DESC_TAP,
+      app="Documentos TAP", root="../", ogtitle="Documentos TAP — Damos o caminho",
+      og=SITE + "/tap/og-image.png", url=SITE + "/tap/"))
+print("built: tap/index.html")
 
-os.makedirs("tap", exist_ok=True)
-io.open("tap/index.html", "w", encoding="utf-8").write(wrap(
-    tap, lang="pt", title="Documentos TAP — nDm", desc=DESC_TAP,
-    app="Documentos TAP", root="../", ogtitle="Documentos TAP — Damos o caminho",
-    og=SITE + "/tap/og-image.png", url=SITE + "/tap/"))
+# ---------- /subsidio/ — выпуск 2: подача + три справочных -------------
+OG2 = SITE + "/subsidio/og-image.png"
+CR = '<a href="/">Damos o Caminho</a><span>›</span>'
+page("_src/subsidio-body.html", "subsidio", "subsidio/index.html",
+     CR + "Subsídio de Mobilidade",
+     lang="pt", title="Subsídio de Mobilidade: o pedido em cinco passos — nDm",
+     desc="Cada ecrã do portal ssm.gov.pt e cada campo, com imagens reais e a fatura da TAP ao lado. Onde as pessoas perdem dinheiro. PT · EN · RU · DE · ES.",
+     app="Subsídio", root="../", ogtitle="O pedido em cinco passos — Damos o Caminho",
+     og=OG2, url=SITE + "/subsidio/")
 
-# ---------- / --------------------------------------------------------
-root = io.open("_src/root-body.html", encoding="utf-8").read()
-DESC_ROOT = ("Guias gratuitos sobre a burocracia portuguesa, em cinco línguas. "
-             "nDm — Nova Dádiva da Madeira.")
-io.open("index.html", "w", encoding="utf-8").write(wrap(
-    root, lang="pt", title="nDm — Nova Dádiva da Madeira", desc=DESC_ROOT,
-    app="nDm", root="", ogtitle="nDm — Damos o caminho",
-    og=SITE + "/tap/og-image.png", url=SITE + "/"))
+page("_src/ref-body.html", "dinheiro", "subsidio/dinheiro/index.html",
+     CR + '<a href="../">Subsídio</a><span>›</span>Quanto e porquê',
+     lang="pt", title="Quanto dinheiro e por quê — nDm",
+     desc="O que o Subsídio de Mobilidade devolve e o que não devolve: tarifa, taxas, copagamento, desconto e o tecto que já não existe.",
+     app="Subsídio", root="../../", ogtitle="Quanto dinheiro e por quê — Damos o Caminho",
+     og=OG2, url=SITE + "/subsidio/dinheiro/")
 
-print("built: index.html, tap/index.html")
+page("_src/ref-body.html", "rejeitado", "subsidio/rejeitado/index.html",
+     CR + '<a href="../">Subsídio</a><span>›</span>Rejeitado',
+     lang="pt", title="Primeiro acesso: «Rejeitado» não é recusa — nDm",
+     desc="Porque é que o portal ssm.gov.pt marca «Rejeitado» logo no registo, o que fazer, e o que existe na área pessoal.",
+     app="Subsídio", root="../../", ogtitle="«Rejeitado» não é recusa — Damos o Caminho",
+     og=OG2, url=SITE + "/subsidio/rejeitado/")
+
+page("_src/ref-body.html", "familia", "subsidio/familia/index.html",
+     CR + '<a href="../">Subsídio</a><span>›</span>Família',
+     lang="pt", title="Família e ajudar outra pessoa — nDm",
+     desc="Como acrescentar cônjuge e filhos ao Subsídio de Mobilidade — e a regra número um se está a tratar do pedido por outra pessoa.",
+     app="Subsídio", root="../../", ogtitle="Família e ajudar outra pessoa — Damos o Caminho",
+     og=OG2, url=SITE + "/subsidio/familia/")

@@ -1,271 +1,1036 @@
+<title>Damos o Caminho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&display=swap">
 <style>
 :root{
   --bg:#FAF6F1; --surface:#FFFFFF; --surface-2:#F3EBE2;
-  --ink:#1A1512; --ink-soft:#6B5C51;
-  --accent:#B23A0E; --accent-soft:#F6E3D8;
-  --line:#E6D9CC; --line-2:#D6C4B3;
-  --shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.05);
-  --display:"Bitter", Georgia, "Times New Roman", serif;
-  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ink:#1A1512; --ink-soft:#6B5C51; --line:#E6D9CC;
+  --accent:#B23A0E; --accent-ink:#FFFFFF; --accent-wash:#F6E3D8;
+  --ok:#1B6B4A; --water:#5E7F93;
+  --display:"Bitter",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --wrap:62rem; --read:38rem;
 }
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
-    --ink:#F2EAE2; --ink-soft:#B7A797;
-    --accent:#FF8A4C; --accent-soft:#3A2418;
-    --line:#382C23; --line-2:#4C3B2E;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+    --ink:#F2EAE2; --ink-soft:#B7A797; --line:#382C23;
+    --accent:#FF8A4C; --accent-ink:#1A0E06; --accent-wash:#3A2418; --ok:#5FD39A; --water:#7F9AAB;
   }
 }
 :root[data-theme="dark"]{
   --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
-  --ink:#F2EAE2; --ink-soft:#B7A797;
-  --accent:#FF8A4C; --accent-soft:#3A2418;
-  --line:#382C23; --line-2:#4C3B2E;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  --ink:#F2EAE2; --ink-soft:#B7A797; --line:#382C23;
+  --accent:#FF8A4C; --accent-ink:#1A0E06; --accent-wash:#3A2418; --ok:#5FD39A; --water:#7F9AAB;
 }
 *{box-sizing:border-box}
-body{background:var(--bg); color:var(--ink); font-family:var(--body);
-     font-size:17px; line-height:1.62; -webkit-text-size-adjust:100%}
-.wrap{max-width:740px; margin:0 auto; padding-left:20px; padding-right:20px}
-p{margin:0 0 1em}
-h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap); margin:0 auto; padding-inline:20px}
+h1,h2,h3{font-family:var(--display); font-weight:700; text-wrap:balance; margin:0}
+p{margin:0}
+a{color:var(--accent)}
+[hidden]{display:none!important}
 
-.bar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:18px 10px}
-.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
-.brand svg{width:30px; height:30px; display:block; color:var(--accent)}
-.brand b{font-family:var(--display); font-weight:700; font-size:19px}
-.ctrls{display:flex; gap:8px}
-.rb{width:40px; height:40px; border-radius:50%; border:1px solid var(--line-2);
-    background:var(--surface); color:var(--ink); font-family:var(--mono);
-    font-size:13px; font-weight:600; cursor:pointer; display:grid; place-items:center;
-    padding:0; line-height:1}
-.rb:hover{border-color:var(--accent); color:var(--accent)}
-.rb:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-.lang-wrap{position:relative}
-.menu{position:absolute; right:0; top:47px; z-index:30; background:var(--surface);
-      border:1px solid var(--line-2); border-radius:6px; box-shadow:var(--shadow);
-      padding:6px; min-width:172px; display:grid; gap:2px}
-.menu button{display:flex; align-items:center; justify-content:space-between; gap:14px;
-      width:100%; background:none; border:0; color:var(--ink); font-family:var(--body);
-      font-size:15.5px; padding:9px 11px; border-radius:4px; cursor:pointer; text-align:left}
-.menu button:hover{background:var(--surface-2); color:var(--accent)}
+.top{display:flex; align-items:center; gap:12px; padding-block:18px; border-bottom:1px solid var(--line)}
+.mark{display:flex; align-items:center; gap:9px; margin-right:auto; text-decoration:none; color:inherit; background:none; border:0; cursor:pointer; padding:0}
+.mark svg{width:26px; height:26px; display:block}
+.mark b{font-family:var(--display); font-size:1rem}
+.rnd{width:40px; height:40px; border-radius:50%; border:1px solid var(--line);
+  background:var(--surface); color:var(--ink); font:600 .8rem/1 var(--body); cursor:pointer;
+  display:grid; place-items:center}
+.rnd:hover{border-color:var(--accent)}
+.rnd:focus-visible,button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.langwrap{position:relative}
+.menu{position:absolute; right:0; top:46px; z-index:20; background:var(--surface);
+  border:1px solid var(--line); border-radius:4px; padding:6px; min-width:118px;
+  box-shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.08)}
+.menu button{display:block; width:100%; text-align:left; background:none; border:0; cursor:pointer;
+  color:var(--ink); font:400 .95rem/1 var(--body); padding:9px 11px; border-radius:3px}
+.menu button:hover{background:var(--surface-2)}
 .menu button[aria-current="true"]{color:var(--accent); font-weight:600}
-.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
 
-.cover{padding-block:26px 0}
-.slogan{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.16em;
-        text-transform:uppercase; color:var(--accent); margin:0 0 16px}
-h1{font-size:clamp(32px,7.4vw,46px); line-height:1.08; font-weight:700; letter-spacing:-.015em}
-.full{font-family:var(--display); font-size:clamp(17px,3.6vw,21px); color:var(--ink-soft);
-      margin-top:8px; font-weight:500}
-.lead{font-size:19px; color:var(--ink-soft); margin-top:18px; max-width:34em}
+.hero{padding-block:48px 36px; max-width:var(--read)}
+.eyebrow{font:500 .72rem/1 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:18px}
+h1{font-size:clamp(2rem,5.6vw,3rem); line-height:1.08; letter-spacing:-.015em}
+.lead{margin-top:18px; font-size:1.1rem; color:var(--ink-soft)}
+.stamp{margin-top:20px; font:500 .78rem/1.5 var(--mono); color:var(--ink-soft)}
 
-h2{font-size:clamp(21px,4.6vw,26px); font-weight:600; margin-top:52px}
-.issues{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:14px}
-.issue{background:var(--surface); border:1px solid var(--line); border-radius:4px;
-       padding:20px; box-shadow:var(--shadow); display:grid; gap:8px}
-.issue.soon{background:none; box-shadow:none; border-style:dashed}
-.issue .top{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
-.issue h3{font-size:20px; font-weight:600}
-.issue p{margin:0; font-size:16px; color:var(--ink-soft)}
-.tag{font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
-     color:var(--ink-soft); border:1px solid var(--line-2); border-radius:999px; padding:3px 10px}
-.go{display:inline-flex; align-items:center; gap:8px; margin-top:6px; text-decoration:none;
-    font-weight:600; color:var(--accent); font-size:16.5px}
-.go:hover{text-decoration:underline; text-underline-offset:4px}
-a.issue{text-decoration:none; color:inherit}
-a.issue:hover{border-color:var(--accent)}
+.actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+.btn{border:0; cursor:pointer; text-decoration:none; font:600 1rem/1 var(--body);
+  padding:14px 22px; border-radius:3px; background:var(--accent); color:var(--accent-ink); display:inline-block}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--accent); filter:none}
 
-footer{text-align:center; font-size:15px; color:var(--ink-soft);
-       padding-block:40px 60px; margin-top:56px; border-top:1px solid var(--line)}
-footer a{color:inherit; display:inline-block; padding:8px 4px; text-decoration:underline;
-         text-decoration-color:var(--accent); text-underline-offset:4px}
-footer a:hover{color:var(--accent)}
+.sources{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
+  border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-block:20px 48px}
+@media (max-width:720px){.sources{grid-template-columns:1fr}}
+.src{background:var(--surface); padding:22px 20px 24px; display:flex; flex-direction:column; gap:10px}
+.src .tag{font:500 .7rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft)}
+.src .big{font-family:var(--display); font-size:1.8rem; line-height:1.1; font-variant-numeric:tabular-nums}
+.src p{font-size:.95rem; color:var(--ink-soft)}
+.src.now{background:var(--accent-wash)}
+.src.now .big{color:var(--accent)}
+
+.calc{border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:26px 22px; margin-bottom:48px}
+.calc h2{font-size:1.3rem}
+.hint{margin-top:8px; color:var(--ink-soft); font-size:.95rem; max-width:34rem}
+.field{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px}
+.field label{font:600 .95rem/1 var(--body)}
+.field input{width:150px; font:500 1.1rem/1 var(--mono); color:var(--ink); background:var(--surface-2);
+  border:1px solid var(--line); border-radius:3px; padding:12px 14px; font-variant-numeric:tabular-nums}
+.out{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px}
+@media (max-width:620px){.out{grid-template-columns:1fr}}
+.o{border-top:2px solid var(--line); padding-top:12px}
+.o .k{font:500 .7rem/1.4 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+.o .v{font-family:var(--display); font-size:1.65rem; margin-top:6px; font-variant-numeric:tabular-nums}
+.o.win{border-top-color:var(--accent)}
+.o.win .v{color:var(--accent)}
+.note{margin-top:16px; font-size:.85rem; color:var(--ink-soft)}
+
+.sec-head{max-width:var(--read); margin-bottom:24px}
+.sec-head h2{font-size:clamp(1.45rem,4vw,1.95rem)}
+.sec-head p{margin-top:12px; color:var(--ink-soft)}
+.traps{display:flex; flex-direction:column; border-top:1px solid var(--line)}
+.trap{display:grid; grid-template-columns:8.5rem 1fr; gap:20px; padding-block:20px;
+  border-bottom:1px solid var(--line); align-items:start}
+@media (max-width:620px){.trap{grid-template-columns:1fr; gap:8px}}
+.code{font:500 .7rem/1.6 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); padding-top:.2rem}
+.trap h3{font-size:1.05rem; font-weight:600; font-family:var(--body)}
+.trap p{margin-top:6px; color:var(--ink-soft); font-size:.96rem; max-width:42rem}
+
+/* ---- hero stage (home) ---- */
+.stage{padding-block:30px 44px; max-width:44rem}
+.wordmark{font-family:var(--display); font-weight:700; line-height:.98;
+  font-size:clamp(2.3rem,9vw,4.1rem); letter-spacing:-.02em}
+.wordmark span{color:var(--accent)}
+.flightbox{margin-block:14px 6px}
+#flight{width:100%; height:auto; display:block; max-width:100%}
+#flight .land{fill:var(--line); stroke:var(--ink-soft); stroke-width:.7; opacity:.75}
+#flight .river{fill:none; stroke:var(--water); stroke-linecap:round; stroke-linejoin:round}
+#flight .trail{fill:none; stroke:var(--accent); stroke-width:2;
+  stroke-dasharray:3 6; stroke-linecap:round; opacity:.55}
+#flight .node circle{fill:var(--bg); stroke:var(--ink-soft); stroke-width:2}
+#flight .node.lit circle{fill:var(--accent); stroke:var(--accent)}
+#flight .node text{fill:var(--ink-soft); font:500 13px var(--mono); text-anchor:middle; letter-spacing:.08em}
+#plane path{fill:var(--accent)}
+#flight .scale{fill:var(--ink-soft); font:500 10px var(--mono); opacity:.8}
+#flight .payout{fill:var(--accent); font-family:var(--display); font-weight:700; font-size:23px}
+.hook{margin-top:10px; font-size:1.18rem; max-width:30rem}
+.btn.big{font-size:1.08rem; padding:17px 30px}
+.heroNote{margin-top:20px; font-size:.92rem; color:var(--ink-soft)}
+.linkish{background:none; border:0; padding:0; cursor:pointer; color:var(--accent);
+  font:inherit; text-decoration:underline; text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){#plane{display:none}}
+
+/* ---- checker ---- */
+.qcard{border:1px solid var(--line); border-radius:4px; background:var(--surface);
+  padding:26px 22px; max-width:var(--read); margin-top:8px}
+.q{padding-block:18px; border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:0}
+.q p{font-weight:600}
+.q .opts{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+.opt{border:1px solid var(--line); background:var(--surface-2); color:var(--ink); cursor:pointer;
+  font:600 .95rem/1 var(--body); padding:12px 20px; border-radius:3px}
+.opt[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+.verdict{margin-top:22px; padding:20px; border-radius:4px; background:var(--accent-wash); max-width:var(--read)}
+.verdict h3{font-family:var(--display); font-size:1.25rem}
+.verdict p{margin-top:8px; color:var(--ink-soft)}
+.extras{margin-top:22px; border-top:1px solid var(--line); padding-top:6px}
+.x{padding-block:14px; border-bottom:1px solid var(--line)}
+.x:last-child{border-bottom:0}
+.x .xq{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.x .xq p{margin:0; font-weight:600; color:var(--ink)}
+.x .xt{margin-top:10px; color:var(--ink-soft); font-size:.96rem}
+
+/* ---- guide ---- */
+.rule1{border:2px solid var(--accent); border-radius:4px; background:var(--accent-wash);
+  padding:24px 22px; max-width:var(--read); margin-bottom:34px}
+.rule1 .tag{font:500 .7rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--accent)}
+.rule1 h2{font-size:1.25rem; margin-top:12px}
+.rule1 p{margin-top:10px}
+.checklist{max-width:var(--read); margin-bottom:34px}
+.checklist h2{font-size:1.3rem; margin-bottom:14px}
+.checklist ul{margin:0; padding-left:1.1rem}
+.checklist li{margin-block:8px}
+.steps{counter-reset:s; border-top:1px solid var(--line); max-width:46rem}
+.step{border-bottom:1px solid var(--line); padding-block:22px}
+.step h3{font-family:var(--body); font-size:1.15rem; font-weight:600; display:flex; gap:12px; align-items:baseline}
+.step h3::before{counter-increment:s; content:counter(s); font:500 .8rem/1 var(--mono); color:var(--accent); min-width:1.4rem}
+.step .do{margin-top:8px; margin-left:2.4rem; font-size:1.05rem}
+.step details{margin-top:12px; margin-left:2.4rem}
+.step summary{cursor:pointer; font:600 .92rem/1 var(--body); color:var(--accent); padding-block:6px}
+.step details p{margin-top:10px; color:var(--ink-soft); font-size:.96rem}
+.step details a{word-break:break-word}
+.step.go{background:var(--accent-wash); margin-inline:-14px; padding-inline:14px; border-radius:4px}
+.step.go .do a{font-weight:600}
+kbd{font:500 .9em var(--mono); background:var(--surface-2); border:1px solid var(--line);
+  border-radius:3px; padding:2px 6px}
+
+.refs{max-width:46rem; margin-top:44px}
+.refs h2{font-size:1.3rem; margin-bottom:14px}
+.refs .grid{display:grid; gap:12px}
+@media (min-width:640px){.refs .grid{grid-template-columns:1fr 1fr}}
+.ref{display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line);
+  border-radius:4px; padding:16px 18px}
+.ref:hover{border-color:var(--accent)}
+.ref .k{font:500 .68rem/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
+.ref .t{font-family:var(--display); font-size:1.08rem; font-weight:700; display:block}
+.ref .d{font-size:.92rem; color:var(--ink-soft); display:block; margin-top:4px}
+
+.bridge{margin-block:48px 0; padding:30px 26px 32px; border-radius:4px;
+  background:var(--surface); border:1px solid var(--line)}
+.bridge h2{font-size:1.35rem}
+.bridge p{margin-top:12px; color:var(--ink-soft); max-width:40rem}
+.toast{position:fixed; left:50%; transform:translateX(-50%); bottom:26px; z-index:50;
+  background:var(--ink); color:var(--bg); padding:12px 20px; border-radius:3px; font-weight:600}
+footer{margin-top:52px; padding-block:26px 64px; border-top:1px solid var(--line);
+  text-align:center; font-size:.95rem; color:var(--ink-soft)}
+footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color:var(--accent);
+  text-underline-offset:4px; display:inline-block; padding:8px 4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
 </style>
 
 <div class="wrap">
-  <div class="bar">
-    <a class="brand" href="./">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7"
+  <div class="top">
+    <button class="mark" id="home">
+      <svg viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M33 18 L33 70"/>
-        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M33 18 L33 70"/><path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
         <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
       </svg>
       <b>nDm</b>
-    </a>
-    <div class="ctrls">
-      <div class="lang-wrap">
-        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">PT</button>
-        <div class="menu" id="langmenu" hidden></div>
-      </div>
-      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </button>
+    <button class="rnd" id="shareTop" title="share">↗</button>
+    <div class="langwrap">
+      <button class="rnd" id="langBtn" aria-haspopup="true" aria-expanded="false">PT</button>
+      <div class="menu" id="langMenu" hidden></div>
     </div>
+    <button class="rnd" id="themeBtn" aria-label="tema">☾</button>
   </div>
 
-  <header class="cover">
-    <p class="slogan">Damos o caminho</p>
-    <h1>nDm</h1>
-    <p class="full">Nova Dádiva da Madeira</p>
-    <p class="lead" data-t="lead"></p>
-  </header>
+  <!-- ================= HOME ================= -->
+  <main id="v-home">
+    <section class="stage">
+      <p class="wordmark">Subsídio<br><span>de Mobilidade</span></p>
+      <div class="flightbox">
+        <svg id="flight" viewBox="0 0 400 210" role="img" aria-hidden="true">
+          <!-- Portugal: costa oeste, do Minho ao Algarve -->
+          <path class="land" d="M346,0 C343,11 340,21 336,31
+                                 C332,40 328,46 325,52
+                                 C322,56 322,60 326,63
+                                 C332,67 339,73 345,79
+                                 C341,84 335,87 329,90
+                                 C325,94 322,97 321,101
+                                 C325,105 332,108 337,111
+                                 C341,114 343,118 342,123
+                                 C339,130 335,137 332,145
+                                 C330,153 330,161 332,169
+                                 C336,180 343,189 353,196
+                                 C365,204 381,209 395,210
+                                 L400,210 L400,0 Z"/>
+          <!-- Tejo: nasce no fundo do estuário, já em terra -->
+          <path class="river" stroke-width="3.2" d="M345,79 C352,74 358,69 364,64"/>
+          <path class="river" stroke-width="1.9" d="M364,64 C370,59 375,55 381,50"/>
+          <path class="river" stroke-width="1.2" d="M381,50 C385,47 389,44 393,41"/>
+          <!-- Madeira -->
+          <path class="land" d="M39,156 C40,150 48,146 57,144
+                                 C67,143 77,143 86,145
+                                 C93,146 99,148 105,150
+                                 L116,155 C113,157 107,159 100,161
+                                 C91,163 79,165 67,164
+                                 C56,163 46,162 41,160
+                                 C38,159 37,158 38,157 Z"/>
+          <!-- Porto Santo -->
+          <path class="land" d="M124,127 C128,125 133,125 136,127
+                                 C137,129 134,131 130,132 C126,132 123,130 124,127 Z"/>
 
-  <h2 data-t="issuesH"></h2>
-  <ul class="issues" id="issues"></ul>
+          <path id="trailA" class="trail" d="" />
+          <path id="trailB" class="trail" d="" />
+          <text class="scale" id="scaleNote" x="150" y="106" text-anchor="middle"></text>
+          <g class="node" id="nFNC"><circle cx="86" cy="152" r="6"/><text x="86" y="181">FNC</text></g>
+          <g class="node" id="nLIS"><circle cx="356" cy="59" r="6"/><text x="356" y="39">LIS</text></g>
+          <g id="plane"><g transform="scale(.8)"><path d="M22,0 C22,-1.6 20.8,-2.6 18.8,-3 L8.5,-2.8 C7.2,-3.4 6.4,-4 6,-4.8 C4.4,-9.6 2.4,-14.6 0.6,-18.2 C0,-19.3 -1.2,-19.8 -2.4,-19.5 C-3.5,-19.2 -4.1,-18.2 -4.2,-17.2 C-4.9,-12.4 -5.7,-8.2 -6.3,-5.4 C-6.6,-4.2 -7.4,-3.6 -8.4,-3.3 L-12.8,-2.7 C-13.9,-5.6 -15,-7.6 -16.2,-9.1 C-16.9,-9.9 -17.9,-10.1 -18.6,-9.6 C-19.3,-9.1 -19.6,-8.2 -19.7,-7.2 C-19.9,-5 -20.2,-3 -20.4,-1.6 C-20.5,-0.9 -20.6,-0.4 -20.6,0 C-20.6,0.4 -20.5,0.9 -20.4,1.6 C-20.2,3 -19.9,5 -19.7,7.2 C-19.6,8.2 -19.3,9.1 -18.6,9.6 C-17.9,10.1 -16.9,9.9 -16.2,9.1 C-15,7.6 -13.9,5.6 -12.8,3.5 L-8.4,3.3 C-7.4,3.6 -6.6,4.2 -6.3,5.4 C-5.7,8.2 -4.9,12.4 -4.2,17.2 C-4.1,18.2 -3.5,19.2 -2.4,19.5 C-1.2,19.8 0,19.3 0.6,18.2 C2.4,14.6 4.4,9.6 6,5.2 C6.4,4.8 7.2,3.4 8.5,2.8 L18.8,2.4 C20.8,2 22,1.6 22,0 Z"/></g></g>
+          <text id="payout" class="payout" x="58" y="114" text-anchor="middle" opacity="0">+365,15 €</text>
+        </svg>
+      </div>
+      <p class="hook" data-t="hook"></p>
+      <div class="actions">
+        <button class="btn big" data-go="check" data-t="goCheck"></button>
+        <button class="btn ghost" data-go="guia" data-t="goGuia"></button>
+      </div>
+      <p class="heroNote">
+        <button class="linkish" data-go="news" data-t="newsLink"></button>
+        <span aria-hidden="true"> · </span>
+        <button class="linkish" data-share data-t="shareBtn"></button>
+      </p>
+    </section>
+  </main>
+
+  <!-- ================= NEWS ================= -->
+  <main id="v-news" hidden>
+    <header class="hero">
+      <div class="eyebrow" data-t="eyebrow"></div>
+      <h1 data-t="h1"></h1>
+      <p class="lead" data-t="lead"></p>
+      <p class="stamp" data-t="stamp"></p>
+    </header>
+
+    <section class="sources">
+      <div class="src"><span class="tag" data-t="s1t"></span><span class="big" data-t="s1v"></span><p data-t="s1p"></p></div>
+      <div class="src"><span class="tag" data-t="s2t"></span><span class="big" data-t="s2v"></span><p data-t="s2p"></p></div>
+      <div class="src now"><span class="tag" data-t="s3t"></span><span class="big" data-t="s3v"></span><p data-t="s3p"></p></div>
+    </section>
+
+    <section class="calc">
+      <h2 data-t="ch"></h2>
+      <p class="hint" data-t="chint"></p>
+      <div class="field">
+        <label for="cost" data-t="clabel"></label>
+        <input id="cost" type="text" inputmode="decimal" value="444,15">
+      </div>
+      <div class="out">
+        <div class="o"><div class="k" data-t="cold"></div><div class="v" id="vOld">—</div></div>
+        <div class="o"><div class="k" data-t="cnew"></div><div class="v" id="vNew">—</div></div>
+        <div class="o win"><div class="k" data-t="cdiff"></div><div class="v" id="vDiff">—</div></div>
+      </div>
+      <p class="note" data-t="cnote"></p>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2 data-t="th"></h2><p data-t="tp"></p></div>
+      <div class="traps" id="traps"></div>
+      <div class="actions"><a class="btn" data-ll="/subsidio/" data-t="goPedido"></a></div>
+    </section>
+  </main>
+
+  <!-- ================= CHECKER ================= -->
+  <main id="v-check" hidden>
+    <header class="hero">
+      <div class="eyebrow" data-t="kEyebrow"></div>
+      <h1 data-t="kH1"></h1>
+      <p class="lead" data-t="kLead"></p>
+    </header>
+    <section class="qcard" id="qbox"></section>
+    <div class="verdict" id="verdict" hidden>
+      <h3 id="vTitle"></h3>
+      <p id="vBody"></p>
+      <div class="actions">
+        <button class="btn" data-go="guia" data-t="goGuia"></button>
+        <a class="btn ghost" data-ll="/subsidio/" data-t="goPedido"></a>
+      </div>
+      <div class="extras" id="extras"></div>
+    </div>
+  </main>
+
+  <!-- ================= GUIDE ================= -->
+  <main id="v-guia" hidden>
+    <header class="hero">
+      <div class="eyebrow" data-t="gEyebrow"></div>
+      <h1 data-t="gH1"></h1>
+      <p class="lead" data-t="gLead"></p>
+      <div class="actions">
+        <button class="btn ghost" data-share data-t="shareBtn"></button>
+      </div>
+    </header>
+
+    <section class="rule1">
+      <span class="tag" data-t="r1tag"></span>
+      <h2 data-t="r1h"></h2>
+      <p data-t="r1p" data-html></p>
+    </section>
+
+    <section class="checklist">
+      <h2 data-t="clh"></h2>
+      <ul id="clist"></ul>
+    </section>
+
+    <section class="steps" id="steps"></section>
+
+    <section class="refs">
+      <h2 data-t="refsH"></h2>
+      <div class="grid" id="refs"></div>
+    </section>
+  </main>
+
+  <section class="bridge">
+    <h2 data-t="bh"></h2>
+    <p data-t="bp"></p>
+    <div class="actions"><a class="btn" href="https://apoios.seedwave.pt/" data-t="bcta"></a></div>
+  </section>
 
   <footer>
-    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
-    · <a href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
+    © <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink" target="_blank" rel="noopener">SeedWave</a> ·
+    <a href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener">Igor Kartuzov</a>
   </footer>
 </div>
+<div class="toast" id="toast" hidden></div>
 
 <script>
-(function(){
-  var LANGS = ["pt","en","ru","de","es"];
-  var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
-  var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
+const L = {
 
-  var T = {
-    pt: {
-      lead:"Guias gratuitos sobre a burocracia portuguesa — em linguagem simples, com imagens e em cinco línguas. Escrevemos aquilo por que passámos nós próprios.",
-      issuesH:"Edições", open:"Abrir", soon:"em preparação",
-      issues:[
-        { t:"Documentos TAP", href:"tap/",
-          d:"Como pedir à companhia aérea a fatura e o comprovativo de viagem — os dois documentos sem os quais não há subsídio de mobilidade." },
-        { t:"Subsídio de Mobilidade",
-          d:"O pedido no portal: entrada com a chave digital, campos do formulário, prazos e dinheiro." },
-        { t:"Descontos TAP",
-          d:"O que um residente da Madeira tem direito a pagar a menos — e como consegui-lo." }
-      ]
-    },
-    en: {
-      lead:"Free guides to Portuguese bureaucracy — plain language, screenshots, five languages. We write about what we have been through ourselves.",
-      issuesH:"Issues", open:"Open", soon:"in the works",
-      issues:[
-        { t:"Documentos TAP", href:"tap/",
-          d:"How to order the invoice and the proof of travel from the airline — the two documents without which there is no mobility subsidy." },
-        { t:"Subsídio de Mobilidade",
-          d:"The claim on the portal: signing in with the digital key, the form fields, the deadlines and the money." },
-        { t:"Descontos TAP",
-          d:"What a Madeira resident is entitled to pay less for — and how to actually get it." }
-      ]
-    },
-    ru: {
-      lead:"Бесплатные инструкции по португальской бюрократии — простым языком, с картинками, на пяти языках. Пишем о том, через что прошли сами.",
-      issuesH:"Выпуски", open:"Открыть", soon:"готовится",
-      issues:[
-        { t:"Documentos TAP", href:"tap/",
-          d:"Как заказать у авиакомпании фактуру и подтверждение перелёта — два документа, без которых субсидию на мобильность не дадут." },
-        { t:"Subsídio de Mobilidade",
-          d:"Подача заявления на портале: вход по электронному ключу, поля формы, сроки и деньги." },
-        { t:"Descontos TAP",
-          d:"За что резидент Мадейры имеет право платить меньше — и как этого добиться." }
-      ]
-    },
-    de: {
-      lead:"Kostenlose Anleitungen durch die portugiesische Bürokratie — einfache Sprache, Bilder, fünf Sprachen. Wir schreiben über das, was wir selbst durchgemacht haben.",
-      issuesH:"Ausgaben", open:"Öffnen", soon:"in Arbeit",
-      issues:[
-        { t:"Documentos TAP", href:"tap/",
-          d:"Wie man bei der Fluggesellschaft die Rechnung und den Flugnachweis bestellt — die zwei Dokumente, ohne die es keinen Mobilitätszuschuss gibt." },
-        { t:"Subsídio de Mobilidade",
-          d:"Der Antrag im Portal: Anmeldung mit dem digitalen Schlüssel, die Formularfelder, Fristen und Geld." },
-        { t:"Descontos TAP",
-          d:"Wofür ein Einwohner Madeiras weniger zahlen darf — und wie man das tatsächlich bekommt." }
-      ]
-    },
-    es: {
-      lead:"Guías gratuitas sobre la burocracia portuguesa — en lenguaje sencillo, con imágenes y en cinco idiomas. Escribimos lo que hemos pasado nosotros mismos.",
-      issuesH:"Ediciones", open:"Abrir", soon:"en preparación",
-      issues:[
-        { t:"Documentos TAP", href:"tap/",
-          d:"Cómo pedir a la aerolínea la factura y el justificante del vuelo: los dos documentos sin los cuales no hay subsidio de movilidad." },
-        { t:"Subsídio de Mobilidade",
-          d:"La solicitud en el portal: entrada con la clave digital, los campos del formulario, los plazos y el dinero." },
-        { t:"Descontos TAP",
-          d:"En qué un residente de Madeira tiene derecho a pagar menos, y cómo conseguirlo." }
-      ]
-    }
-  };
+pt:{name:"Português",
+ scaleNote:"≈ 970 km · sem escala",
+ hook:"O Estado devolve-lhe parte do custo do voo entre a Madeira e o continente. Quase ninguém trata disso.",
+ newsLink:"O que mudou na lei",
+ eyebrow:"Mecanismo de Continuidade Territorial",
+ h1:"O tecto de 400 € saiu da lei. Continua no site.",
+ lead:"A Lei 23/2026 acabou com o limite máximo de reembolso das viagens entre a Madeira e o continente. A página oficial, atualizada a 9 de setembro, continua a dizer 400 €. Em duas viagens nossas acima desse valor, o limite não foi aplicado.",
+ stamp:"Verificado a 13.09.2026",
+ goCheck:"Tenho direito?", goGuia:"Guia passo a passo", goPedido:"O pedido em cinco passos", shareBtn:"Enviar a um amigo",
+ shareText:"Como receber o reembolso do seu voo da Madeira — guia gratuito, passo a passo:",
+ copied:"Ligação copiada ✓",
+ s1t:"A lei",s1v:"sem tecto",s1p:"Em vigor desde 6 de junho de 2026. O montante máximo elegível foi eliminado do regime.",
+ s2t:"O site",s2v:"400 €",s2p:"Página do serviço no gov.pt, atualizada a 9 de setembro de 2026. Continua a indicar o limite antigo.",
+ s3t:"Na prática",s3v:"444,15 €",s3p:"Pedido MCT20260194708: custo 444,15 €, copagamento 79 €, reembolso 365,15 €. Pago a 8 de setembro.",
+ ch:"Quanto lhe muda isto?",
+ chint:"Escreva o custo elegível da sua viagem de ida e volta, em classe económica.",
+ clabel:"Custo da viagem",cold:"Pela regra antiga",cnew:"Sem tecto",cdiff:"Diferença",
+ cnote:"Só é reembolsada a tarifa em classe económica. Copagamento de residente: 79 € (estudante 59 €). Isto é uma comparação, não uma garantia — a decisão é sempre do serviço.",
+ th:"Seis sítios onde o portal lhe tira dinheiro",
+ tp:"Levantados em pedidos reais, não na documentação. Cada um está mostrado no ecrã certo do pedido em cinco passos.",
+ traps:[
+  ["Tecto","O limite de 400 € já não está na lei","Quem escolhe o bilhete a pensar no tecto está a limitar-se sozinho. Dois pedidos nossos acima de 400 € foram pagos na íntegra, menos o copagamento."],
+  ["Participar","O portal começa com «Não»","No quarto passo, a pergunta «Vai participar na viagem?» abre em «Não». Nesse estado não há campos de valores e o reembolso fica a 0 €."],
+  ["Taxas","Os campos das taxas não têm asterisco","YP, YQ, PT, XP e J9 passam vazios sem erro. Num bilhete normal são cerca de 157 € — mais de um terço do reembolso."],
+  ["YQ","A coluna «Tarifa» da fatura já inclui o YQ","Copiar esse número para o campo da tarifa duplica a sobretaxa de combustível e devolve o pedido para correção."],
+  ["Rascunho","O rascunho perde campos","Ao reabrir um rascunho de ida e volta, o e-ticket e a tarifa do regresso aparecem vazios. Ao sair, o total da lista também cai — num pedido nosso, de 208 € para 118 €. Preencha e submeta de uma vez."],
+  ["Cancelar","«Cancelar Pedido» não funciona","O link está lá e não faz nada. Um rascunho começado fica na sua lista para sempre."]],
+ kEyebrow:"Três perguntas",
+ kH1:"Tem direito ao reembolso?",
+ kLead:"Responda a três perguntas. Nada é guardado, nada lhe é pedido.",
+ q:["Vive na Madeira ou em Porto Santo há mais de 6 meses?",
+    "Voou entre a ilha e o continente (ou entre regiões autónomas)?",
+    "O bilhete foi comprado em seu nome, a partir de 15 de janeiro de 2026?"],
+ yes:"Sim", no:"Não",
+ okT:"Sim, tem direito.",
+ okB:"Cumpre as três condições. O pedido faz-se online, em www.ssm.gov.pt, e é pago cerca de duas semanas depois. O guia leva-o passo a passo.",
+ noT:"Provavelmente não, nesta viagem.",
+ noB:"Falta pelo menos uma das condições. Não quer dizer que nunca tenha direito — as regras mudam com a situação de residência, de estudante e com a data do bilhete. Vale a pena ler o guia e confirmar na página oficial.",
+ xFamQ:"Viajou acompanhado — cônjuge, filhos?",
+ xFamT:"Também têm direito. Os membros da família acrescentam-se uma vez na área pessoal, em «Situação Familiar» → «Adicionar Membro», com comprovativo de parentesco. Depois disso as viagens deles entram no mesmo pedido. A TAP emite uma fatura por passageiro. Com imagens: <a data-ll=\"/subsidio/familia/\">Família e ajudar outra pessoa</a>.",
+ xHelpQ:"Está a tratar disto por outra pessoa?",
+ xHelpT:"Então uma regra vale mais do que todas as outras: no pedido dela têm de estar o telemóvel e o email dela — os mesmos da Chave Móvel Digital. Contactos de outra pessoa estragam o acesso à sua própria área. Se não tem email, crie-lhe um: são vinte minutos. O caso real e o resto das regras: <a data-ll=\"/subsidio/familia/#ajudar\">Ajudar outra pessoa</a>.",
+ gEyebrow:"Guia passo a passo",
+ gH1:"Como receber o dinheiro do seu voo",
+ gLead:"Seis passos. Cada um numa frase. Se quiser saber porquê, abra «Porquê».",
+ r1tag:"Antes de tudo",
+ r1h:"O telemóvel e o email têm de ser os seus",
+ r1p:"Se está a ajudar outra pessoa, use o telemóvel e o email dela — os mesmos da Chave Móvel Digital. Quem põe os seus próprios contactos nos dados de outra pessoa arrisca perder o acesso à sua própria área. O caso real e o que fazer: <a data-ll=\"/subsidio/familia/#ajudar\">Ajudar outra pessoa</a>.",
+ clh:"O que precisa de ter à mão",
+ cl:["Chave Móvel Digital ou Cartão de Cidadão com leitor",
+     "Título de residência válido, se for estrangeiro",
+     "IBAN preenchido no seu perfil da plataforma",
+     "Fatura da companhia aérea, com o seu NIF",
+     "Comprovativo de viagem (bilhete eletrónico)"],
+ more:"Porquê",
+ steps:[
+  ["A chave de acesso","Ative a Chave Móvel Digital, se ainda não tem.",
+   "A plataforma aceita apenas dois meios: Chave Móvel Digital (CMD) ou Cartão de Cidadão com leitor. Não há entrada com as credenciais das Finanças. Faz-se uma vez na vida: autenticacao.gov.pt"],
+  ["Comprar o bilhete","Indique o passaporte, não o título de residência.",
+   "É o passaporte que é verificado no check-in e no embarque, e é esse número que a companhia imprime nos documentos. No check-in, escolha o cartão de embarque eletrónico: fica guardado e não se perde."],
+  ["Depois do voo","Peça a fatura à companhia aérea.",
+   "A TAP emite a fatura depois do voo realizado — pede-se na área pessoal ou pelo número de reserva e apelido, e chega normalmente no dia seguinte. Confirme que a fatura traz a segunda página, «Declaração para efeitos de Subsídio de Mobilidade»: é dela que saem todos os números."],
+  ["Juntar a pasta","Reúna a fatura e o bilhete antes de abrir o formulário.",
+   "O formulário não avança sem os dois documentos, em dois campos separados: a fatura em «Fatura(s) de Viagem» e o comprovativo em «Título(s) de Viagem» — ambos com asterisco. Formatos aceites: .jpg, .pdf, .png. Na TAP os dois pedem-se no mesmo sítio, sem conta: <a data-ll=\"/tap/\">Documentos TAP</a>."],
+  ["Submeter","Abra <a data-ll=\"/subsidio/\">O pedido em cinco passos</a> e faça-o de uma vez.",
+   "São cinco ecrãs: dados do beneficiário, IBAN, dados da viagem, dados dos passageiros e anexos. A instrução mostra cada ecrã e cada campo, com a fatura da TAP ao lado — e as sete cifras que se copiam dela. Faça tudo numa sessão: o rascunho perde campos.", "go"],
+  ["Esperar","Acompanhe o estado em «Histórico de Pedidos».",
+   "O pedido fica «Em Análise» e um operador aprova os anexos um a um — podem passar dias entre documentos, é normal. Se aparecer «Correção Solicitada», corrija e siga. Nos nossos pedidos, entre submeter e receber passaram cerca de duas semanas. Os estados, os prazos e um aviso de correção real: <a data-ll=\"/subsidio/#depois\">Depois de submeter</a>."]],
+ refsH:"Para ler à parte",
+ refs:[
+  ["/subsidio/","Instrução","O pedido em cinco passos","Cada ecrã do portal e cada campo, com imagens reais e a fatura ao lado."],
+  ["/subsidio/dinheiro/","Ficha 1","Quanto dinheiro e porquê","O que devolvem e o que não, o copagamento, o desconto e o tecto que já não existe."],
+  ["/subsidio/rejeitado/","Ficha 2","Primeiro acesso: «Rejeitado» não é recusa","Porque é que o portal marca recusa logo no registo, e o que há na área pessoal."],
+  ["/subsidio/familia/","Ficha 3","Família e ajudar outra pessoa","Como acrescentar cônjuge e filhos — e a regra número um se trata do pedido por outra pessoa."],
+  ["/tap/","Edição 1","Documentos TAP","Como pedir à companhia aérea a fatura e o comprovativo. Oito ecrãs, três armadilhas."]],
+ bh:"O mais pequeno de todos os apoios",
+ bp:"Recuperar o custo de um voo é a coisa mais pequena que pode pedir ao Estado. Os programas de apoio a empresas na Madeira contam-se em milhares de euros — e a maior parte fica por pedir, porque ninguém sabe que existem nem por onde se começa.",
+ bcta:"Ver apoios para empresas"},
 
-  function pickLang(){
-    var q = new URLSearchParams(location.search).get('lang');
-    if (LANGS.indexOf(q) >= 0) return q;
-    var st = null;
-    try { st = localStorage.getItem('ndm-lang'); } catch(e){}
-    if (LANGS.indexOf(st) >= 0) return st;
-    var nav = (navigator.language || '').slice(0,2).toLowerCase();
-    if (LANGS.indexOf(nav) >= 0) return nav;
-    return 'pt';
+en:{name:"English",
+ scaleNote:"≈ 970 km · not to scale",
+ hook:"The State gives you back part of what your flight between Madeira and the mainland cost. Almost nobody claims it.",
+ newsLink:"What changed in the law",
+ eyebrow:"Territorial Continuity Mechanism",
+ h1:"The €400 cap left the law. It is still on the website.",
+ lead:"Law 23/2026 removed the maximum reimbursement for flights between Madeira and mainland Portugal. The official page, updated on 9 September, still says €400. On two of our own trips above that figure, the cap was not applied.",
+ stamp:"Checked 13.09.2026",
+ goCheck:"Am I eligible?", goGuia:"Step-by-step guide", goPedido:"The claim in five steps", shareBtn:"Send to a friend",
+ shareText:"How to get your Madeira flight refunded — a free step-by-step guide:",
+ copied:"Link copied ✓",
+ s1t:"The law",s1v:"no cap",s1p:"In force since 6 June 2026. The maximum eligible amount was removed from the scheme.",
+ s2t:"The website",s2v:"€400",s2p:"Service page on gov.pt, updated 9 September 2026. Still shows the old limit.",
+ s3t:"In practice",s3v:"€444.15",s3p:"Claim MCT20260194708: cost €444.15, co-payment €79, reimbursed €365.15. Paid on 8 September.",
+ ch:"What does it change for you?",
+ chint:"Enter the eligible cost of your return trip, economy class.",
+ clabel:"Trip cost",cold:"Under the old rule",cnew:"With no cap",cdiff:"Difference",
+ cnote:"Only the economy-class fare is reimbursed. Resident co-payment: €79 (students €59). This is a comparison, not a guarantee — the decision is always the service's.",
+ th:"Six places where the portal costs you money",
+ tp:"Found in real claims, not in the documentation. Each one is shown on the right screen of the claim in five steps.",
+ traps:[
+  ["Cap","The €400 limit is no longer in the law","Choosing a cheaper ticket to stay under the cap now costs you money. Two of our claims above €400 were paid in full, less the co-payment."],
+  ["Traveller","The portal starts on “No”","On step four, “Will you take this trip?” opens set to No. In that state there are no amount fields and the reimbursement stays at €0."],
+  ["Taxes","The tax fields carry no asterisk","YP, YQ, PT, XP and J9 pass through empty without an error. On a normal ticket that is about €157 — over a third of the refund."],
+  ["YQ","The invoice “Fare” column already contains YQ","Copying that number into the fare field doubles the fuel surcharge and sends the claim back for correction."],
+  ["Draft","Drafts lose fields","Reopen a return-trip draft and the return e-ticket and fare are empty. On leaving, the total in the list drops too — in one of our claims from €208 to €118. Fill it in and submit in one sitting."],
+  ["Cancel","“Cancel request” does nothing","The link is there and it is dead. A draft you started stays in your list forever."]],
+ kEyebrow:"Three questions",
+ kH1:"Are you eligible?",
+ kLead:"Three questions. Nothing is stored, nothing is asked of you.",
+ q:["Have you lived in Madeira or Porto Santo for more than 6 months?",
+    "Did you fly between the island and the mainland (or between autonomous regions)?",
+    "Was the ticket bought in your name, on or after 15 January 2026?"],
+ yes:"Yes", no:"No",
+ okT:"Yes, you are eligible.",
+ okB:"All three conditions are met. The claim is filed online at www.ssm.gov.pt and paid about two weeks later. The guide walks you through it.",
+ noT:"Probably not for this trip.",
+ noB:"At least one condition is missing. That does not mean you never qualify — the rules differ by residence status, student status and ticket date. Read the guide and check the official page.",
+ xFamQ:"Did family travel with you — spouse, children?",
+ xFamT:"They are eligible too. Family members are added once in the personal area, under «Situação Familiar» → «Adicionar Membro», with proof of kinship. After that their trips go into the same claim. TAP issues one invoice per passenger. With screenshots: <a data-ll=\"/subsidio/familia/\">Family and helping someone else</a>.",
+ xHelpQ:"Are you doing this for someone else?",
+ xHelpT:"Then one rule matters more than all the others: their claim must carry their own phone and email — the ones tied to their Chave Móvel Digital. Someone else's contacts break access to your own account. If they have no email, create one for them: twenty minutes. The real case and the other rules: <a data-ll=\"/subsidio/familia/#ajudar\">Helping someone else</a>.",
+ gEyebrow:"Step-by-step guide",
+ gH1:"How to get your flight money back",
+ gLead:"Six steps, one sentence each. Open “Why” if you want the reasoning.",
+ r1tag:"Before anything else",
+ r1h:"The phone number and email must be the person's own",
+ r1p:"If you are helping someone else, use their phone and their email — the same ones used for their Chave Móvel Digital. Putting your own contacts into another person's record risks losing access to your own account. The real case and what to do: <a data-ll=\"/subsidio/familia/#ajudar\">Helping someone else</a>.",
+ clh:"What you need at hand",
+ cl:["Chave Móvel Digital, or a Cartão de Cidadão with a card reader",
+     "A valid residence permit, if you are a foreign national",
+     "Your IBAN filled in on your platform profile",
+     "The airline invoice, showing your NIF",
+     "The travel proof (electronic ticket)"],
+ more:"Why",
+ steps:[
+  ["The access key","Activate the Chave Móvel Digital if you do not have one.",
+   "The platform accepts only two means: Chave Móvel Digital (CMD) or a Cartão de Cidadão with a reader. There is no login with tax-office credentials. It is a one-time setup: autenticacao.gov.pt"],
+  ["Buying the ticket","Give your passport, not your residence permit.",
+   "The passport is what is checked at check-in and boarding, and that is the number the airline prints on the documents. At check-in, choose the electronic boarding pass: it is saved and cannot be lost."],
+  ["After the flight","Request the invoice from the airline.",
+   "TAP issues the invoice after the flight has been taken — request it in your account or with the booking reference and surname; it usually arrives the next day. Check that it includes page two, the «Declaração para efeitos de Subsídio de Mobilidade»: every figure comes from there."],
+  ["Assemble the folder","Have the invoice and the ticket before opening the form.",
+   "The form will not move on without both documents, in two separate fields: the invoice under «Fatura(s) de Viagem», the travel proof under «Título(s) de Viagem» — both marked with an asterisk. Accepted formats: .jpg, .pdf, .png. With TAP both are requested in one place, no account needed: <a data-ll=\"/tap/\">Documentos TAP</a>."],
+  ["Submit","Open <a data-ll=\"/subsidio/\">The claim in five steps</a> and do it in one sitting.",
+   "Five screens: beneficiary details, IBAN, trip details, passenger details and attachments. The instruction shows every screen and every field, with the TAP invoice alongside — and the seven figures copied from it. Do it all in one session: the draft loses fields.", "go"],
+  ["Wait","Follow the status under «Histórico de Pedidos».",
+   "The claim sits in «Em Análise» and an operator approves attachments one by one — days can pass between documents, which is normal. If «Correção Solicitada» appears, fix it and carry on. In our claims, filing to payment took about two weeks. Statuses, timings and a real correction notice: <a data-ll=\"/subsidio/#depois\">After submitting</a>."]],
+ refsH:"Read separately",
+ refs:[
+  ["/subsidio/","Instruction","The claim in five steps","Every portal screen and every field, with real screenshots and the invoice alongside."],
+  ["/subsidio/dinheiro/","Note 1","How much money and what for","What is refunded and what is not, the co-payment, the discount and the cap that no longer exists."],
+  ["/subsidio/rejeitado/","Note 2","First login: “Rejeitado” is not a refusal","Why the portal marks a refusal right at registration, and what the personal area holds."],
+  ["/subsidio/familia/","Note 3","Family and helping someone else","How to add a spouse and children — and rule number one if you are filing for someone else."],
+  ["/tap/","Issue 1","Documentos TAP","How to request the invoice and the travel proof from the airline. Eight screens, three traps."]],
+ bh:"The smallest thing you can claim",
+ bp:"Getting a flight refunded is the least the State has on offer. The support programmes for businesses in Madeira run into thousands of euros — and most of them go unclaimed, because nobody knows they exist or where to start.",
+ bcta:"See business support"},
+
+ru:{name:"Русский",
+ scaleNote:"≈ 970 км · не в масштабе",
+ hook:"Государство возвращает часть стоимости перелёта между Мадейрой и континентом. Почти никто этим не занимается.",
+ newsLink:"Что изменилось в законе",
+ eyebrow:"Механизм территориальной непрерывности",
+ h1:"Потолок 400 € ушёл из закона. На сайте он остался.",
+ lead:"Закон 23/2026 отменил максимальную сумму возмещения за перелёты между Мадейрой и континентом. Официальная страница, обновлённая 9 сентября, по-прежнему пишет 400 €. По двум нашим поездкам дороже этой суммы потолок не применили.",
+ stamp:"Проверено 13.09.2026",
+ goCheck:"Положено ли мне?", goGuia:"Пошаговая инструкция", goPedido:"Подача: пять шагов", shareBtn:"Переслать другу",
+ shareText:"Как вернуть деньги за перелёт с Мадейры — бесплатная пошаговая инструкция:",
+ copied:"Ссылка скопирована ✓",
+ s1t:"Закон",s1v:"без потолка",s1p:"В силе с 6 июня 2026 года. Максимальная учитываемая сумма из режима убрана.",
+ s2t:"Сайт",s2v:"400 €",s2p:"Страница услуги на gov.pt, обновлена 9 сентября 2026 года. По-прежнему указывает старый лимит.",
+ s3t:"На практике",s3v:"444,15 €",s3p:"Заявка MCT20260194708: стоимость 444,15 €, своя доля 79 €, возврат 365,15 €. Выплачено 8 сентября.",
+ ch:"Что это меняет для вас?",
+ chint:"Введите стоимость поездки туда и обратно, экономклассом.",
+ clabel:"Стоимость поездки",cold:"По старому правилу",cnew:"Без потолка",cdiff:"Разница",
+ cnote:"Возмещается только тариф экономкласса. Своя доля резидента — 79 € (студенты 59 €). Это сравнение, а не гарантия: решение всегда за службой.",
+ th:"Шесть мест, где портал забирает ваши деньги",
+ tp:"Найдены в живых заявках, а не в документации. Каждое показано на своём экране в инструкции «Подача: пять шагов».",
+ traps:[
+  ["Потолок","Лимита 400 € больше нет в законе","Кто подбирает билет подешевле, чтобы уложиться в потолок, теперь теряет сам. Две наши заявки дороже 400 € оплачены целиком, минус своя доля."],
+  ["Участие","Портал открывается на «Não»","На четвёртом шаге вопрос «Летите ли вы сами?» стоит на «Нет». В этом состоянии полей с суммами нет вообще, а возврат показан как 0 €."],
+  ["Сборы","У полей сборов нет звёздочки","YP, YQ, PT, XP и J9 проходят пустыми без ошибки. На обычном билете это около 157 € — больше трети возврата."],
+  ["YQ","Колонка «Tarifa» в счёте уже включает YQ","Перенос этого числа в поле тарифа задваивает топливный сбор и отправляет заявку на исправление."],
+  ["Черновик","Черновик теряет поля","Открываете черновик «туда-обратно» — а билет и тариф обратного плеча пусты. После выхода падает и сумма в списке: у нас с 208 € до 118 €. Заполняйте и отправляйте за один заход."],
+  ["Отмена","«Cancelar Pedido» не работает","Ссылка есть, и она мёртвая. Начатый черновик остаётся в вашем списке навсегда."]],
+ kEyebrow:"Три вопроса",
+ kH1:"Положена ли вам субсидия?",
+ kLead:"Три вопроса. Ничего не сохраняется, ничего у вас не спрашивают.",
+ q:["Живёте на Мадейре или Порту-Санту больше 6 месяцев?",
+    "Летали между островом и континентом (или между автономными регионами)?",
+    "Билет куплен на ваше имя и не раньше 15 января 2026 года?"],
+ yes:"Да", no:"Нет",
+ okT:"Да, положена.",
+ okB:"Все три условия выполнены. Заявка подаётся онлайн на www.ssm.gov.pt, деньги приходят примерно через две недели. Инструкция проведёт по шагам.",
+ noT:"По этой поездке — скорее всего нет.",
+ noB:"Не хватает хотя бы одного условия. Это не значит, что права нет вообще: правила зависят от статуса резидента, статуса студента и даты билета. Прочитайте инструкцию и сверьтесь с официальной страницей.",
+ xFamQ:"Летели не один — с женой, детьми?",
+ xFamT:"На них тоже положено. Членов семьи добавляют один раз в личном кабинете: «Situação Familiar» → «Adicionar Membro», с документом о родстве. После этого их перелёты подаются в той же заявке. На каждого пассажира TAP выставляет отдельный счёт. Со снимками: <a data-ll=\"/subsidio/familia/\">Семья и помощь другому человеку</a>.",
+ xHelpQ:"Вы оформляете для другого человека?",
+ xHelpT:"Тогда одно правило важнее всех остальных: в его заявке должны стоять его собственные телефон и почта — те, что привязаны к его Chave Móvel Digital. Чужие контакты ломают доступ к вашему собственному кабинету. Нет у человека почты — заведите ему новую, это двадцать минут. Живой случай и остальные правила: <a data-ll=\"/subsidio/familia/#ajudar\">Если оформляете за другого</a>.",
+ gEyebrow:"Пошаговая инструкция",
+ gH1:"Как вернуть деньги за перелёт",
+ gLead:"Шесть шагов, каждый одной фразой. Нужны подробности — раскройте «Почему».",
+ r1tag:"Прежде всего",
+ r1h:"Телефон и почта должны быть его собственные",
+ r1p:"Если вы помогаете другому человеку — указывайте его телефон и его почту, те же, что были использованы при оформлении Chave Móvel Digital. Тот, кто вписывает свои контакты в данные другого человека, рискует потерять доступ к собственному кабинету. Живой случай и что делать: <a data-ll=\"/subsidio/familia/#ajudar\">Если оформляете за другого</a>.",
+ clh:"Что нужно иметь на руках",
+ cl:["Chave Móvel Digital или Cartão de Cidadão с картридером",
+     "Действующий ВНЖ, если вы иностранец",
+     "IBAN, заполненный в вашем профиле на платформе",
+     "Счёт авиакомпании с вашим NIF",
+     "Подтверждение перелёта (электронный билет)"],
+ more:"Почему",
+ steps:[
+  ["Ключ доступа","Оформите Chave Móvel Digital, если её ещё нет.",
+   "Платформа принимает только два способа входа: Chave Móvel Digital (CMD) или Cartão de Cidadão с картридером. Входа по логину от Finanças здесь нет. Делается один раз в жизни: autenticacao.gov.pt"],
+  ["Покупка билета","Указывайте паспорт, а не ВНЖ.",
+   "Именно паспорт проверяют на регистрации и посадке, и именно его номер авиакомпания печатает в документах. На регистрации выбирайте электронный посадочный — он сохранится и не потеряется."],
+  ["После перелёта","Закажите счёт у авиакомпании.",
+   "TAP выставляет счёт после выполненного перелёта — заказывается в личном кабинете или по номеру брони и фамилии, приходит обычно на следующий день. Проверьте, что в счёте есть вторая страница, «Declaração para efeitos de Subsídio de Mobilidade»: все цифры берутся из неё."],
+  ["Собрать папку","Соберите счёт и билет до того, как откроете форму.",
+   "Форма не пропустит дальше без обоих документов, и лежат они в двух разных полях: счёт — в «Fatura(s) de Viagem», подтверждение перелёта — в «Título(s) de Viagem», оба со звёздочкой. Форматы: .jpg, .pdf, .png. У TAP оба заказываются в одном месте, без регистрации: <a data-ll=\"/tap/\">Documentos TAP</a>."],
+  ["Подать","Откройте <a data-ll=\"/subsidio/\">Подача: пять шагов</a> и пройдите за один заход.",
+   "Пять экранов: данные получателя, IBAN, данные поездки, данные пассажиров и вложения. Инструкция показывает каждый экран и каждое поле, а рядом — счёт TAP и те семь цифр, которые из него переписываются. Проходите всё за один раз: черновик теряет поля.", "go"],
+  ["Ждать","Следите за статусом в «Histórico de Pedidos».",
+   "Заявка висит в «Em Análise», и оператор одобряет вложения по одному — между документами могут пройти дни, это нормально. Появилось «Correção Solicitada» — исправьте и едьте дальше. По нашим заявкам от подачи до денег прошло около двух недель. Статусы, сроки и живое уведомление об исправлении: <a data-ll=\"/subsidio/#depois\">После подачи</a>."]],
+ refsH:"Прочитать отдельно",
+ refs:[
+  ["/subsidio/","Инструкция","Подача: пять шагов","Каждый экран портала и каждое поле — с живыми снимками и счётом рядом."],
+  ["/subsidio/dinheiro/","Справочная 1","Сколько денег и за что","Что возвращают и что нет, своя доля, скидка и потолок, которого больше нет."],
+  ["/subsidio/rejeitado/","Справочная 2","Первый вход: Rejeitado — не отказ","Почему портал ставит отказ сразу при регистрации и что есть в личном кабинете."],
+  ["/subsidio/familia/","Справочная 3","Семья и помощь другому человеку","Как добавить жену и детей — и правило номер один, если оформляете не за себя."],
+  ["/tap/","Выпуск 1","Documentos TAP","Как заказать у авиакомпании счёт и подтверждение перелёта. Восемь экранов, три ловушки."]],
+ bh:"Это самое малое",
+ bp:"Вернуть деньги за перелёт — наименьшее, что можно получить от государства. Программы поддержки бизнеса на Мадейре исчисляются тысячами евро, и большая часть остаётся невостребованной: люди не знают ни что они есть, ни с чего начинать.",
+ bcta:"Посмотреть субсидии для бизнеса"},
+
+de:{name:"Deutsch",
+ scaleNote:"≈ 970 km · nicht maßstabsgetreu",
+ hook:"Der Staat erstattet Ihnen einen Teil der Kosten Ihres Fluges zwischen Madeira und dem Festland. Fast niemand beantragt das.",
+ newsLink:"Was sich im Gesetz geändert hat",
+ eyebrow:"Mechanismus der territorialen Kontinuität",
+ h1:"Die 400-€-Grenze steht nicht mehr im Gesetz. Auf der Website steht sie noch.",
+ lead:"Das Gesetz 23/2026 hat die Höchstgrenze der Erstattung für Flüge zwischen Madeira und dem Festland abgeschafft. Die amtliche Seite, aktualisiert am 9. September, nennt weiterhin 400 €. Bei zwei eigenen Reisen oberhalb dieses Betrags wurde die Grenze nicht angewendet.",
+ stamp:"Geprüft am 13.09.2026",
+ goCheck:"Habe ich Anspruch?", goGuia:"Schritt-für-Schritt", goPedido:"Der Antrag in fünf Schritten", shareBtn:"An Freunde senden",
+ shareText:"Wie Sie Ihren Madeira-Flug erstattet bekommen — kostenlose Anleitung:",
+ copied:"Link kopiert ✓",
+ s1t:"Das Gesetz",s1v:"keine Grenze",s1p:"In Kraft seit 6. Juni 2026. Der Höchstbetrag wurde aus der Regelung gestrichen.",
+ s2t:"Die Website",s2v:"400 €",s2p:"Serviceseite auf gov.pt, aktualisiert am 9. September 2026. Nennt weiterhin die alte Grenze.",
+ s3t:"In der Praxis",s3v:"444,15 €",s3p:"Antrag MCT20260194708: Kosten 444,15 €, Eigenanteil 79 €, Erstattung 365,15 €. Ausgezahlt am 8. September.",
+ ch:"Was ändert das für Sie?",
+ chint:"Geben Sie die erstattungsfähigen Kosten Ihrer Hin- und Rückreise in der Economy-Klasse ein.",
+ clabel:"Reisekosten",cold:"Nach alter Regel",cnew:"Ohne Grenze",cdiff:"Differenz",
+ cnote:"Erstattet wird nur der Tarif der Economy-Klasse. Eigenanteil für Ansässige: 79 € (Studierende 59 €). Das ist ein Vergleich, keine Zusage — die Entscheidung trifft immer die Behörde.",
+ th:"Sechs Stellen, an denen das Portal Sie Geld kostet",
+ tp:"Gefunden in echten Anträgen, nicht in der Dokumentation. Jede ist im passenden Bildschirm des Antrags in fünf Schritten gezeigt.",
+ traps:[
+  ["Grenze","Die 400 € stehen nicht mehr im Gesetz","Wer ein billigeres Ticket wählt, um unter der Grenze zu bleiben, verliert jetzt selbst. Zwei unserer Anträge über 400 € wurden voll erstattet, abzüglich Eigenanteil."],
+  ["Teilnahme","Das Portal startet auf „Não“","In Schritt vier steht die Frage „Reisen Sie selbst?“ auf Nein. In diesem Zustand gibt es keine Betragsfelder, und die Erstattung bleibt bei 0 €."],
+  ["Gebühren","Die Gebührenfelder haben kein Sternchen","YP, YQ, PT, XP und J9 gehen leer durch, ohne Fehlermeldung. Bei einem normalen Ticket sind das rund 157 € — über ein Drittel der Erstattung."],
+  ["YQ","Die Spalte „Tarifa“ der Rechnung enthält YQ bereits","Wird diese Zahl ins Tariffeld übernommen, verdoppelt sich der Treibstoffzuschlag und der Antrag geht zur Korrektur zurück."],
+  ["Entwurf","Der Entwurf verliert Felder","Beim erneuten Öffnen eines Hin-und-Rück-Entwurfs sind E-Ticket und Tarif des Rückflugs leer. Beim Verlassen sinkt auch die Summe in der Liste — bei uns von 208 € auf 118 €. In einem Durchgang ausfüllen und absenden."],
+  ["Abbruch","„Cancelar Pedido“ funktioniert nicht","Der Link ist da und tot. Ein begonnener Entwurf bleibt für immer in Ihrer Liste."]],
+ kEyebrow:"Drei Fragen",
+ kH1:"Haben Sie Anspruch?",
+ kLead:"Drei Fragen. Nichts wird gespeichert, nichts wird von Ihnen verlangt.",
+ q:["Leben Sie seit mehr als 6 Monaten auf Madeira oder Porto Santo?",
+    "Sind Sie zwischen der Insel und dem Festland geflogen (oder zwischen autonomen Regionen)?",
+    "Wurde das Ticket auf Ihren Namen gekauft, am oder nach dem 15. Januar 2026?"],
+ yes:"Ja", no:"Nein",
+ okT:"Ja, Sie haben Anspruch.",
+ okB:"Alle drei Bedingungen sind erfüllt. Der Antrag wird online auf www.ssm.gov.pt gestellt und etwa zwei Wochen später ausgezahlt. Die Anleitung führt Sie durch.",
+ noT:"Für diese Reise wahrscheinlich nicht.",
+ noB:"Mindestens eine Bedingung fehlt. Das heißt nicht, dass Sie nie Anspruch haben — die Regeln hängen vom Wohnsitz, vom Studentenstatus und vom Ticketdatum ab. Lesen Sie die Anleitung und prüfen Sie die amtliche Seite.",
+ xFamQ:"Sind Sie mit Familie geflogen — Partner, Kinder?",
+ xFamT:"Auch sie haben Anspruch. Familienmitglieder werden einmal im persönlichen Bereich hinzugefügt, unter «Situação Familiar» → «Adicionar Membro», mit Nachweis der Verwandtschaft. Danach gehören ihre Flüge in denselben Antrag. TAP stellt pro Passagier eine Rechnung aus. Mit Bildschirmfotos: <a data-ll=\"/subsidio/familia/\">Familie und für andere beantragen</a>.",
+ xHelpQ:"Erledigen Sie das für eine andere Person?",
+ xHelpT:"Dann gilt eine Regel über allen anderen: im Antrag müssen deren eigene Telefonnummer und E-Mail stehen — dieselben wie bei deren Chave Móvel Digital. Fremde Kontaktdaten zerstören den Zugang zum eigenen Konto. Hat die Person keine E-Mail, richten Sie ihr eine ein: zwanzig Minuten. Der echte Fall und die übrigen Regeln: <a data-ll=\"/subsidio/familia/#ajudar\">Für andere beantragen</a>.",
+ gEyebrow:"Schritt-für-Schritt",
+ gH1:"So bekommen Sie Ihr Fluggeld zurück",
+ gLead:"Sechs Schritte, je ein Satz. Für die Begründung öffnen Sie „Warum“.",
+ r1tag:"Vor allem anderen",
+ r1h:"Telefonnummer und E-Mail müssen die eigenen sein",
+ r1p:"Wenn Sie jemandem helfen, verwenden Sie dessen Telefon und dessen E-Mail — dieselben wie bei der Chave Móvel Digital. Wer die eigenen Kontaktdaten in die Daten einer anderen Person einträgt, riskiert den Zugang zum eigenen Konto. Der echte Fall und was zu tun ist: <a data-ll=\"/subsidio/familia/#ajudar\">Für andere beantragen</a>.",
+ clh:"Was Sie bereithalten müssen",
+ cl:["Chave Móvel Digital oder Cartão de Cidadão mit Lesegerät",
+     "Gültiger Aufenthaltstitel, falls Sie Ausländer sind",
+     "IBAN im Profil der Plattform hinterlegt",
+     "Rechnung der Fluggesellschaft mit Ihrer NIF",
+     "Reisenachweis (elektronisches Ticket)"],
+ more:"Warum",
+ steps:[
+  ["Der Zugangsschlüssel","Aktivieren Sie die Chave Móvel Digital, falls noch nicht vorhanden.",
+   "Die Plattform akzeptiert nur zwei Wege: Chave Móvel Digital (CMD) oder Cartão de Cidadão mit Lesegerät. Eine Anmeldung mit Finanzamt-Zugangsdaten gibt es nicht. Einmal einrichten: autenticacao.gov.pt"],
+  ["Ticketkauf","Geben Sie den Reisepass an, nicht den Aufenthaltstitel.",
+   "Der Reisepass wird bei Check-in und Boarding geprüft, und diese Nummer druckt die Fluggesellschaft auf die Dokumente. Wählen Sie beim Check-in die elektronische Bordkarte: sie bleibt gespeichert."],
+  ["Nach dem Flug","Fordern Sie die Rechnung bei der Fluggesellschaft an.",
+   "TAP stellt die Rechnung nach durchgeführtem Flug aus — Anforderung im Kundenkonto oder mit Buchungsnummer und Nachname, sie kommt meist am Folgetag. Prüfen Sie, dass Seite zwei dabei ist, die «Declaração para efeitos de Subsídio de Mobilidade»: alle Zahlen stammen von dort."],
+  ["Unterlagen sammeln","Legen Sie Rechnung und Ticket bereit, bevor Sie das Formular öffnen.",
+   "Ohne beide Dokumente geht das Formular nicht weiter — in zwei getrennten Feldern: die Rechnung unter «Fatura(s) de Viagem», der Reisenachweis unter «Título(s) de Viagem», beide mit Sternchen. Formate: .jpg, .pdf, .png. Bei TAP werden beide an einer Stelle angefordert, ohne Konto: <a data-ll=\"/tap/\">Documentos TAP</a>."],
+  ["Einreichen","Öffnen Sie <a data-ll=\"/subsidio/\">Der Antrag in fünf Schritten</a> und erledigen Sie ihn in einem Durchgang.",
+   "Fünf Bildschirme: Empfängerdaten, IBAN, Reisedaten, Passagierdaten und Anhänge. Die Anleitung zeigt jeden Bildschirm und jedes Feld, daneben die TAP-Rechnung — und die sieben Zahlen, die daraus übernommen werden. Alles in einer Sitzung: der Entwurf verliert Felder.", "go"],
+  ["Warten","Verfolgen Sie den Status unter „Histórico de Pedidos“.",
+   "Der Antrag steht auf „Em Análise“, und ein Sachbearbeiter genehmigt die Anhänge einzeln — zwischen Dokumenten können Tage vergehen, das ist normal. Erscheint „Correção Solicitada“, korrigieren und weiter. Bei uns dauerte es vom Einreichen bis zur Zahlung etwa zwei Wochen. Status, Fristen und ein echter Korrekturbescheid: <a data-ll=\"/subsidio/#depois\">Nach dem Einreichen</a>."]],
+ refsH:"Zum Nachlesen",
+ refs:[
+  ["/subsidio/","Anleitung","Der Antrag in fünf Schritten","Jeder Portal-Bildschirm und jedes Feld, mit echten Bildschirmfotos und der Rechnung daneben."],
+  ["/subsidio/dinheiro/","Merkblatt 1","Wie viel Geld und wofür","Was erstattet wird und was nicht, Eigenanteil, Rabatt und die Grenze, die es nicht mehr gibt."],
+  ["/subsidio/rejeitado/","Merkblatt 2","Erster Zugang: „Rejeitado“ ist keine Ablehnung","Warum das Portal schon bei der Registrierung ablehnt, und was der persönliche Bereich enthält."],
+  ["/subsidio/familia/","Merkblatt 3","Familie und für andere beantragen","Partner und Kinder hinzufügen — und Regel Nummer eins, wenn Sie für jemand anderen beantragen."],
+  ["/tap/","Ausgabe 1","Documentos TAP","Rechnung und Reisenachweis bei der Fluggesellschaft anfordern. Acht Bildschirme, drei Fallen."]],
+ bh:"Das Kleinste, was zu holen ist",
+ bp:"Einen Flug erstattet zu bekommen ist das Geringste, was der Staat zu bieten hat. Die Förderprogramme für Unternehmen auf Madeira gehen in die Tausende Euro — und die meisten werden nie beantragt, weil niemand von ihnen weiß und niemand weiß, wo man anfängt.",
+ bcta:"Förderung für Unternehmen ansehen"},
+
+es:{name:"Español",
+ scaleNote:"≈ 970 km · sin escala",
+ hook:"El Estado le devuelve parte del coste de su vuelo entre Madeira y el continente. Casi nadie lo tramita.",
+ newsLink:"Qué cambió en la ley",
+ eyebrow:"Mecanismo de Continuidad Territorial",
+ h1:"El techo de 400 € salió de la ley. Sigue en la web.",
+ lead:"La Ley 23/2026 eliminó el importe máximo de reembolso de los vuelos entre Madeira y el continente. La página oficial, actualizada el 9 de septiembre, sigue diciendo 400 €. En dos viajes nuestros por encima de esa cifra, el techo no se aplicó.",
+ stamp:"Verificado el 13.09.2026",
+ goCheck:"¿Tengo derecho?", goGuia:"Guía paso a paso", goPedido:"La solicitud en cinco pasos", shareBtn:"Enviar a un amigo",
+ shareText:"Cómo recuperar el dinero de su vuelo desde Madeira — guía gratuita paso a paso:",
+ copied:"Enlace copiado ✓",
+ s1t:"La ley",s1v:"sin techo",s1p:"En vigor desde el 6 de junio de 2026. El importe máximo elegible se eliminó del régimen.",
+ s2t:"La web",s2v:"400 €",s2p:"Página del servicio en gov.pt, actualizada el 9 de septiembre de 2026. Sigue indicando el límite antiguo.",
+ s3t:"En la práctica",s3v:"444,15 €",s3p:"Solicitud MCT20260194708: coste 444,15 €, aportación propia 79 €, reembolso 365,15 €. Pagado el 8 de septiembre.",
+ ch:"¿Qué le cambia esto?",
+ chint:"Escriba el coste elegible de su viaje de ida y vuelta, en clase turista.",
+ clabel:"Coste del viaje",cold:"Con la regla antigua",cnew:"Sin techo",cdiff:"Diferencia",
+ cnote:"Solo se reembolsa la tarifa en clase turista. Aportación del residente: 79 € (estudiantes 59 €). Esto es una comparación, no una garantía: la decisión siempre es del servicio.",
+ th:"Seis sitios donde el portal le quita dinero",
+ tp:"Encontrados en solicitudes reales, no en la documentación. Cada uno se muestra en su pantalla en la solicitud en cinco pasos.",
+ traps:[
+  ["Techo","El límite de 400 € ya no está en la ley","Quien elige un billete más barato para no pasarse del techo ahora pierde por su cuenta. Dos solicitudes nuestras por encima de 400 € se pagaron íntegras, menos la aportación."],
+  ["Participación","El portal empieza en «Não»","En el cuarto paso, la pregunta «¿Viaja usted?» abre en No. En ese estado no hay campos de importes y el reembolso se queda en 0 €."],
+  ["Tasas","Los campos de tasas no llevan asterisco","YP, YQ, PT, XP y J9 pasan vacíos sin error. En un billete normal son unos 157 € — más de un tercio del reembolso."],
+  ["YQ","La columna «Tarifa» de la factura ya incluye el YQ","Copiar ese número al campo de tarifa duplica el recargo de combustible y devuelve la solicitud para corrección."],
+  ["Borrador","El borrador pierde campos","Al reabrir un borrador de ida y vuelta, el billete y la tarifa de la vuelta aparecen vacíos. Al salir, el total de la lista también baja — en una solicitud nuestra, de 208 € a 118 €. Rellene y envíe de una vez."],
+  ["Cancelar","«Cancelar Pedido» no funciona","El enlace está y no hace nada. Un borrador empezado se queda en su lista para siempre."]],
+ kEyebrow:"Tres preguntas",
+ kH1:"¿Tiene derecho al reembolso?",
+ kLead:"Tres preguntas. No se guarda nada, no se le pide nada.",
+ q:["¿Vive en Madeira o Porto Santo desde hace más de 6 meses?",
+    "¿Voló entre la isla y el continente (o entre regiones autónomas)?",
+    "¿El billete se compró a su nombre, a partir del 15 de enero de 2026?"],
+ yes:"Sí", no:"No",
+ okT:"Sí, tiene derecho.",
+ okB:"Se cumplen las tres condiciones. La solicitud se hace en línea en www.ssm.gov.pt y se paga unas dos semanas después. La guía le lleva paso a paso.",
+ noT:"En este viaje, probablemente no.",
+ noB:"Falta al menos una condición. No significa que nunca tenga derecho: las reglas dependen de la residencia, de la condición de estudiante y de la fecha del billete. Lea la guía y confirme en la página oficial.",
+ xFamQ:"¿Viajó acompañado — cónyuge, hijos?",
+ xFamT:"También tienen derecho. Los familiares se añaden una vez en el área personal, en «Situação Familiar» → «Adicionar Membro», con justificante de parentesco. Después, sus viajes van en la misma solicitud. TAP emite una factura por pasajero. Con capturas: <a data-ll=\"/subsidio/familia/\">Familia y tramitar por otra persona</a>.",
+ xHelpQ:"¿Lo tramita por otra persona?",
+ xHelpT:"Entonces una regla importa más que todas: en su solicitud deben figurar su propio teléfono y su propio correo — los mismos de su Chave Móvel Digital. Los contactos de otra persona rompen el acceso a su propia área. Si no tiene correo, créele uno: veinte minutos. El caso real y el resto de reglas: <a data-ll=\"/subsidio/familia/#ajudar\">Tramitar por otra persona</a>.",
+ gEyebrow:"Guía paso a paso",
+ gH1:"Cómo recuperar el dinero de su vuelo",
+ gLead:"Seis pasos, cada uno en una frase. Si quiere el porqué, abra «Por qué».",
+ r1tag:"Antes que nada",
+ r1h:"El teléfono y el correo deben ser los suyos",
+ r1p:"Si está ayudando a otra persona, use su teléfono y su correo — los mismos que se usaron en la Chave Móvel Digital. Quien pone sus propios contactos en los datos de otra persona arriesga perder el acceso a su propia área. El caso real y qué hacer: <a data-ll=\"/subsidio/familia/#ajudar\">Tramitar por otra persona</a>.",
+ clh:"Lo que debe tener a mano",
+ cl:["Chave Móvel Digital o Cartão de Cidadão con lector",
+     "Permiso de residencia válido, si es extranjero",
+     "IBAN cumplimentado en su perfil de la plataforma",
+     "Factura de la aerolínea, con su NIF",
+     "Comprobante de viaje (billete electrónico)"],
+ more:"Por qué",
+ steps:[
+  ["La llave de acceso","Active la Chave Móvel Digital si aún no la tiene.",
+   "La plataforma acepta solo dos medios: Chave Móvel Digital (CMD) o Cartão de Cidadão con lector. No hay acceso con las credenciales de Hacienda. Se hace una sola vez: autenticacao.gov.pt"],
+  ["Comprar el billete","Indique el pasaporte, no el permiso de residencia.",
+   "El pasaporte es lo que se comprueba en el check-in y el embarque, y ese número es el que la aerolínea imprime en los documentos. En el check-in elija la tarjeta de embarque electrónica."],
+  ["Después del vuelo","Pida la factura a la aerolínea.",
+   "TAP emite la factura después del vuelo realizado — se pide en el área personal o con el localizador y el apellido, y suele llegar al día siguiente. Compruebe que incluye la segunda página, la «Declaração para efeitos de Subsídio de Mobilidade»: de ahí salen todas las cifras."],
+  ["Reunir la carpeta","Tenga factura y billete antes de abrir el formulario.",
+   "El formulario no avanza sin los dos documentos, en dos campos separados: la factura en «Fatura(s) de Viagem» y el comprobante en «Título(s) de Viagem», ambos con asterisco. Formatos: .jpg, .pdf, .png. Con TAP los dos se piden en el mismo sitio, sin cuenta: <a data-ll=\"/tap/\">Documentos TAP</a>."],
+  ["Presentar","Abra <a data-ll=\"/subsidio/\">La solicitud en cinco pasos</a> y hágala de una vez.",
+   "Cinco pantallas: datos del beneficiario, IBAN, datos del viaje, datos de los pasajeros y anexos. La instrucción muestra cada pantalla y cada campo, con la factura de TAP al lado — y las siete cifras que se copian de ella. Hágalo todo en una sesión: el borrador pierde campos.", "go"],
+  ["Esperar","Siga el estado en «Histórico de Pedidos».",
+   "La solicitud queda «Em Análise» y un operador aprueba los anexos uno a uno — pueden pasar días entre documentos, es normal. Si aparece «Correção Solicitada», corrija y siga. En nuestras solicitudes, desde presentar hasta cobrar pasaron unas dos semanas. Estados, plazos y un aviso de corrección real: <a data-ll=\"/subsidio/#depois\">Después de presentar</a>."]],
+ refsH:"Para leer aparte",
+ refs:[
+  ["/subsidio/","Instrucción","La solicitud en cinco pasos","Cada pantalla del portal y cada campo, con capturas reales y la factura al lado."],
+  ["/subsidio/dinheiro/","Ficha 1","Cuánto dinero y por qué","Qué devuelven y qué no, la aportación, el descuento y el techo que ya no existe."],
+  ["/subsidio/rejeitado/","Ficha 2","Primer acceso: «Rejeitado» no es un rechazo","Por qué el portal marca rechazo nada más registrarse, y qué hay en el área personal."],
+  ["/subsidio/familia/","Ficha 3","Familia y tramitar por otra persona","Cómo añadir cónyuge e hijos — y la regla número uno si tramita por otra persona."],
+  ["/tap/","Edición 1","Documentos TAP","Cómo pedir a la aerolínea la factura y el comprobante. Ocho pantallas, tres trampas."]],
+ bh:"Lo más pequeño que puede pedir",
+ bp:"Recuperar el coste de un vuelo es lo mínimo que se le puede pedir al Estado. Los programas de apoyo a empresas en Madeira se cuentan por miles de euros — y la mayoría no se solicita, porque nadie sabe que existen ni por dónde se empieza.",
+ bcta:"Ver ayudas para empresas"}
+};
+
+const COPAY = 79, OLDCAP = 400;
+const LOC = {pt:"pt-PT", en:"en-GB", ru:"ru-RU", de:"de-DE", es:"es-ES"};
+let lang = "pt", view = "home", ans = [null,null,null], xs = {fam:null, help:null};
+
+const fmt = (n) => new Intl.NumberFormat(LOC[lang], {style:"currency", currency:"EUR", minimumFractionDigits:2}).format(n);
+const $ = (id) => document.getElementById(id);
+const ll = (p) => p.includes("#") ? p.replace("#", "?lang=" + lang + "#") : p + "?lang=" + lang;
+
+function calc(){
+  const c = parseFloat(String($("cost").value).replace(/\s/g,"").replace(",", "."));
+  const set = (id,v) => $(id).textContent = v;
+  if (!isFinite(c) || c <= 0){ set("vOld","—"); set("vNew","—"); set("vDiff","—"); return; }
+  const oldR = Math.max(0, Math.min(c, OLDCAP) - COPAY);
+  const newR = Math.max(0, c - COPAY);
+  set("vOld", fmt(oldR)); set("vNew", fmt(newR));
+  set("vDiff", (newR - oldR > 0 ? "+" : "") + fmt(newR - oldR));
+}
+
+function url(p){
+  const u = new URL(location.href);
+  u.searchParams.set("p", p); u.searchParams.set("lang", lang);
+  return u.toString();
+}
+
+function go(p){
+  view = p;
+  ["home","check","guia","news"].forEach(v => $("v-"+v).hidden = (v !== p));
+  const u = new URL(location.href);
+  u.searchParams.set("p", p); u.searchParams.set("lang", lang);
+  history.replaceState({}, "", u);
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
+function toast(msg){
+  const t = $("toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(t._h); t._h = setTimeout(() => t.hidden = true, 2200);
+}
+
+async function share(){
+  const t = L[lang];
+  const link = url(view === "home" ? "home" : view);
+  const text = t.shareText + " " + link;
+  if (navigator.share){
+    try { await navigator.share({title:"nDm", text:t.shareText, url:link}); return; } catch(e){}
   }
-  var lang = pickLang();
+  try { await navigator.clipboard.writeText(text); toast(t.copied); }
+  catch(e){ prompt("", text); }
+}
 
-  function render(){
-    var t = T[lang];
-    document.documentElement.lang = TAGS[lang];
-    document.getElementById('lang').textContent = lang.toUpperCase();
-    document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
-      return '<button type="button" data-l="'+L+'"'+(L===lang?' aria-current="true"':'')+'>'+
-             '<span>'+LNAMES[L]+'</span><span class="code">'+L.toUpperCase()+'</span></button>';
-    }).join('');
-    var hub = document.getElementById('hubLink');
-    if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
-    var q = '?lang=' + lang;
-    document.querySelectorAll('[data-t]').forEach(function(n){
-      var k = n.getAttribute('data-t');
-      if (typeof t[k] === 'string') n.innerHTML = t[k];
+function linkify(){
+  document.querySelectorAll("a[data-ll]").forEach(a => a.href = ll(a.dataset.ll));
+}
+
+function renderChecker(){
+  const t = L[lang], box = $("qbox");
+  box.innerHTML = "";
+  t.q.forEach((qt, i) => {
+    const d = document.createElement("div"); d.className = "q";
+    const p = document.createElement("p"); p.textContent = qt;
+    const o = document.createElement("div"); o.className = "opts";
+    [[true,t.yes],[false,t.no]].forEach(([val,label]) => {
+      const b = document.createElement("button");
+      b.className = "opt"; b.textContent = label;
+      b.setAttribute("aria-pressed", String(ans[i] === val));
+      b.onclick = () => { ans[i] = val; renderChecker(); };
+      o.append(b);
     });
-    document.getElementById('issues').innerHTML = t.issues.map(function(it){
-      var inner = '<div class="top"><h3>'+it.t+'</h3>'+
-                  (it.href ? '' : '<span class="tag">'+t.soon+'</span>')+'</div>'+
-                  '<p>'+it.d+'</p>'+
-                  (it.href ? '<span class="go">'+t.open+' →</span>' : '');
-      return it.href
-        ? '<li><a class="issue" href="'+it.href+q+'">'+inner+'</a></li>'
-        : '<li class="issue soon">'+inner+'</li>';
-    }).join('');
+    d.append(p, o); box.append(d);
+  });
+  const done = ans.every(a => a !== null);
+  $("verdict").hidden = !done;
+  if (done){
+    const ok = ans.every(Boolean);
+    $("vTitle").textContent = ok ? t.okT : t.noT;
+    $("vBody").textContent  = ok ? t.okB : t.noB;
   }
-
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  render();
-
-  var lbtn = document.getElementById('lang'), lmenu = document.getElementById('langmenu');
-  function closeMenu(){ lmenu.hidden = true; lbtn.setAttribute('aria-expanded','false'); }
-  lbtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    var open = lmenu.hidden; lmenu.hidden = !open;
-    lbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const ex = $("extras"); ex.innerHTML = "";
+  [["fam", t.xFamQ, t.xFamT], ["help", t.xHelpQ, t.xHelpT]].forEach(([k, q, txt]) => {
+    const w = document.createElement("div"); w.className = "x";
+    const row = document.createElement("div"); row.className = "xq";
+    const p = document.createElement("p"); p.textContent = q;
+    const o = document.createElement("div"); o.className = "opts";
+    const body = document.createElement("p"); body.className = "xt"; body.innerHTML = txt; body.hidden = !xs[k];
+    [[true, t.yes], [false, t.no]].forEach(([val, label]) => {
+      const b = document.createElement("button"); b.className = "opt"; b.textContent = label;
+      b.setAttribute("aria-pressed", String(xs[k] === val));
+      b.onclick = () => { xs[k] = val; renderChecker(); };
+      o.append(b);
+    });
+    row.append(p, o); w.append(row, body); ex.append(w);
   });
-  lmenu.addEventListener('click', function(e){
-    var b = e.target.closest('button[data-l]'); if (!b) return;
-    lang = b.getAttribute('data-l');
-    try { localStorage.setItem('ndm-lang', lang); } catch(err){}
-    closeMenu(); render();
-    try { var u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null,'',u); } catch(err){}
-  });
-  document.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+  linkify();
+}
 
-  var root = document.documentElement, tb = document.getElementById('theme');
-  var stored = null; try { stored = localStorage.getItem('ndm-theme'); } catch(e){}
-  if (stored) root.setAttribute('data-theme', stored);
-  function isDark(){
-    var a = root.getAttribute('data-theme');
-    if (a) return a === 'dark';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  function paint(){ tb.textContent = isDark() ? '☀' : '☾'; }
-  paint();
-  tb.addEventListener('click', function(){
-    var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('ndm-theme', next); } catch(e){}
-    paint();
+function render(){
+  const t = L[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => {
+    const v = t[el.dataset.t];
+    if (typeof v !== "string") return;
+    if (el.hasAttribute("data-html")) el.innerHTML = v; else el.textContent = v;
   });
+  $("langBtn").textContent = lang.toUpperCase();
+  const hl = $("hubLink"); if (hl) hl.href = "https://seedwave.pt/hub/?lang=" + lang;
+  $("scaleNote").textContent = t.scaleNote;
+
+  const tb = $("traps"); tb.innerHTML = "";
+  t.traps.forEach(([code, head, body]) => {
+    const row = document.createElement("div"); row.className = "trap";
+    const c = document.createElement("div"); c.className = "code"; c.textContent = code;
+    const box = document.createElement("div");
+    const h = document.createElement("h3"); h.textContent = head;
+    const p = document.createElement("p"); p.textContent = body;
+    box.append(h, p); row.append(c, box); tb.append(row);
+  });
+
+  const cl = $("clist"); cl.innerHTML = "";
+  t.cl.forEach(item => { const li = document.createElement("li"); li.textContent = item; cl.append(li); });
+
+  const sb = $("steps"); sb.innerHTML = "";
+  t.steps.forEach(([title, doIt, why, cls]) => {
+    const s = document.createElement("div"); s.className = "step" + (cls ? " " + cls : "");
+    const h = document.createElement("h3"); h.append(document.createTextNode(title));
+    const d = document.createElement("p"); d.className = "do"; d.innerHTML = doIt;
+    const det = document.createElement("details");
+    const sum = document.createElement("summary"); sum.textContent = t.more;
+    const wp = document.createElement("p"); wp.innerHTML = why;
+    det.append(sum, wp);
+    s.append(h, d, det); sb.append(s);
+  });
+
+  const rf = $("refs"); rf.innerHTML = "";
+  t.refs.forEach(([href, k, title, d]) => {
+    const a = document.createElement("a"); a.className = "ref"; a.dataset.ll = href;
+    a.innerHTML = '<span class="k"></span><span class="t"></span><span class="d"></span>';
+    a.children[0].textContent = k; a.children[1].textContent = title; a.children[2].textContent = d;
+    rf.append(a);
+  });
+
+  renderChecker();
+  linkify();
+  calc();
+}
+
+const menu = $("langMenu"), lbtn = $("langBtn");
+Object.keys(L).forEach(k => {
+  const b = document.createElement("button");
+  b.textContent = L[k].name;
+  b.onclick = () => { lang = k; try{localStorage.setItem("ndm-lang", k);}catch(e){} menu.hidden = true; lbtn.setAttribute("aria-expanded","false"); render(); paintMenu(); go(view); };
+  menu.append(b);
+});
+function paintMenu(){ [...menu.children].forEach((b,i) => b.setAttribute("aria-current", String(Object.keys(L)[i] === lang))); }
+lbtn.onclick = () => { menu.hidden = !menu.hidden; lbtn.setAttribute("aria-expanded", String(!menu.hidden)); };
+document.addEventListener("click", e => { if (!e.target.closest(".langwrap")) menu.hidden = true; });
+
+document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go));
+document.querySelectorAll("[data-share]").forEach(b => b.onclick = share);
+$("shareTop").onclick = share;
+$("home").onclick = () => go("home");
+
+const tbtn = $("themeBtn");
+(function(){
+  let st = null; try { st = localStorage.getItem("ndm-theme"); } catch(e){}
+  if (st) document.documentElement.setAttribute("data-theme", st);
+  const dark = document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  tbtn.textContent = dark ? "☀" : "☾";
 })();
+tbtn.onclick = () => {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+  try { localStorage.setItem("ndm-theme", dark ? "light" : "dark"); } catch(e){}
+  tbtn.textContent = dark ? "☾" : "☀";
+};
+
+$("cost").addEventListener("input", calc);
+$("yr").textContent = new Date().getFullYear();
+
+
+/* ---------- flight animation ---------- */
+(function(){
+  const svg = document.getElementById("flight");
+  if (!svg) return;
+  const A = {x:86, y:152}, B = {x:356, y:59};
+  const CA = {x:196, y:18}, CB = {x:200, y:198};
+  const plane = document.getElementById("plane");
+  const trailA = document.getElementById("trailA"), trailB = document.getElementById("trailB");
+  const payout = document.getElementById("payout");
+  const nF = document.getElementById("nFNC"), nL = document.getElementById("nLIS");
+  const bez = (p0,c,p1,t) => ({
+    x:(1-t)*(1-t)*p0.x + 2*(1-t)*t*c.x + t*t*p1.x,
+    y:(1-t)*(1-t)*p0.y + 2*(1-t)*t*c.y + t*t*p1.y });
+  const arc = (p0,c,p1,t) => {
+    let d = `M${p0.x},${p0.y}`;
+    const steps = Math.max(1, Math.round(t*40));
+    for (let i=1;i<=steps;i++){ const q = bez(p0,c,p1,(i/steps)*t); d += ` L${q.x.toFixed(1)},${q.y.toFixed(1)}`; }
+    return d;
+  };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce){
+    trailA.setAttribute("d", arc(A,CA,B,1));
+    trailB.setAttribute("d", arc(B,CB,A,1));
+    payout.setAttribute("opacity","1");
+    nF.classList.add("lit"); nL.classList.add("lit");
+    return;
+  }
+  const OUT = 2600, BACK = 2600, HOLD = 700, SHOW = 2600;
+  let t0 = null;
+  function frame(ts){
+    if (t0 === null) t0 = ts;
+    const e = (ts - t0) % (HOLD + OUT + HOLD + BACK + SHOW);
+    let phase, k = 0;
+    if (e < HOLD){ phase = "wait"; }
+    else if (e < HOLD + OUT){ phase = "out"; k = (e - HOLD)/OUT; }
+    else if (e < HOLD + OUT + HOLD){ phase = "pause"; k = 1; }
+    else if (e < HOLD + OUT + HOLD + BACK){ phase = "back"; k = (e - HOLD - OUT - HOLD)/BACK; }
+    else { phase = "home"; k = 1; }
+    const ease = x => x < .5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2;
+
+    if (phase === "wait"){
+      trailA.setAttribute("d",""); trailB.setAttribute("d","");
+      plane.setAttribute("opacity","0");
+      payout.setAttribute("opacity","0");
+      nF.classList.add("lit"); nL.classList.remove("lit");
+    } else if (phase === "out" || phase === "pause"){
+      const t = ease(k);
+      trailA.setAttribute("d", arc(A,CA,B,t)); trailB.setAttribute("d","");
+      const p = bez(A,CA,B,t), n = bez(A,CA,B,Math.min(1,t+.01));
+      const ang = Math.atan2(n.y-p.y, n.x-p.x) * 180/Math.PI;
+      plane.setAttribute("opacity","1");
+      plane.setAttribute("transform", `translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+      if (t > .96) nL.classList.add("lit");
+      payout.setAttribute("opacity","0");
+    } else if (phase === "back"){
+      const t = ease(k);
+      trailA.setAttribute("d", arc(A,CA,B,1));
+      trailB.setAttribute("d", arc(B,CB,A,t));
+      const p = bez(B,CB,A,t), n = bez(B,CB,A,Math.min(1,t+.01));
+      const ang = Math.atan2(n.y-p.y, n.x-p.x) * 180/Math.PI;
+      plane.setAttribute("transform", `translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+      plane.setAttribute("opacity","1");
+    } else {
+      trailA.setAttribute("d", arc(A,CA,B,1));
+      trailB.setAttribute("d", arc(B,CB,A,1));
+      plane.setAttribute("opacity","0");
+      const q = Math.min(1, (e - (HOLD+OUT+HOLD+BACK)) / 420);
+      payout.setAttribute("opacity", q.toFixed(2));
+      payout.setAttribute("transform", `translate(0,${(1-q)*10})`);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+const params = new URLSearchParams(location.search);
+const nav = (navigator.language || "pt").slice(0,2);
+if (L[nav]) lang = nav;
+let stl = null; try { stl = localStorage.getItem("ndm-lang"); } catch(e){}
+if (stl && L[stl]) lang = stl;
+const ql = params.get("lang"); if (ql && L[ql]) lang = ql;
+const qp = params.get("p");
+render(); paintMenu();
+go(["home","check","guia","news"].includes(qp) ? qp : "home");
 </script>

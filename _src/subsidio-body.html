@@ -1,0 +1,128 @@
+<div class="wrap">
+
+  {{BAR}}
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <p class="by" data-t="by"></p>
+    <ul class="facts" id="facts"></ul>
+  </header>
+
+  <section class="sect">
+    <h2 data-t="needH"></h2>
+    <p data-t="needP"></p>
+    <ul class="need" id="need"></ul>
+    <p class="note" data-t="needNote"></p>
+  </section>
+
+  <section class="sect">
+    <h2 data-t="exH"></h2>
+    <p data-t="exP"></p>
+    <div class="calc">
+      <div class="calc-head" data-t="calcHead"></div>
+      <dl id="calc"></dl>
+      <p class="calc-note" data-t="calcNote"></p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="stepsH"></h2>
+    <p data-t="stepsP"></p>
+  </section>
+  <div id="steps"></div>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="mapH"></h2>
+    <p data-t="mapP"></p>
+    <div class="tw"><table class="map"><thead><tr id="mapHead"></tr></thead><tbody id="map"></tbody></table></div>
+    <a class="out" href="../tap/" target="_blank" rel="noopener">
+      <span class="k" data-t="outK"></span>
+      <span class="t" data-t="outT"></span>
+      <span class="d" data-t="outD"></span>
+    </a>
+  </section>
+
+  <hr class="rule" id="depois">
+
+  <section class="sect">
+    <h2 data-t="timeH"></h2>
+    <p data-t="timeP"></p>
+    <div class="tw"><table class="times"><thead><tr id="timeHead"></tr></thead><tbody id="times"></tbody></table></div>
+    <p class="note" data-t="timeNote"></p>
+    <h3 class="subh" data-t="statH"></h3>
+    <ul class="stat" id="stats"></ul>
+  </section>
+
+  <section class="sect">
+    <h2 data-t="corrH"></h2>
+    <p data-t="corrP"></p>
+    <figure><img src="img/a5.jpg" alt="" loading="lazy"><figcaption data-t="corrCap"></figcaption></figure>
+    <div class="quote" id="corrQuote"></div>
+    <p data-t="corrDo"></p>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="refH"></h2>
+    <p data-t="refP"></p>
+    <div class="refs" id="refs"></div>
+  </section>
+
+  <section class="end">
+    <h2 data-t="endH"></h2>
+    <p data-t="endP"></p>
+    <p data-t="lawP"></p>
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  {{FOOTER}}
+
+</div>
+
+<script>
+NDM.init(function(t){
+  var P = NDM.P, figs = NDM.figs, marks = NDM.marks, warn = NDM.warn;
+  var $ = function(id){ return document.getElementById(id); };
+
+  $('facts').innerHTML = t.facts.map(function(f){ return '<li>' + f + '</li>'; }).join('');
+  $('need').innerHTML = t.need.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('');
+
+  $('calc').innerHTML = t.calc.map(function(r){
+    return '<div class="cr ' + (r[2] || '') + '"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
+  }).join('');
+
+  $('steps').innerHTML = t.steps.map(function(s, i){
+    var h = '<section class="step" id="passo' + (i + 1) + '">';
+    h += '<div class="step-h"><span class="num">' + (i + 1) + '</span><h3>' + s.h + '</h3></div>';
+    h += '<p>' + s.p + '</p>';
+    if (i === 0) h += NDM.act(t);
+    h += figs(s.imgs) + marks(s.fields);
+    h += figs(s.imgs2) + marks(s.fields2);
+    h += figs(s.imgs3) + marks(s.fields3);
+    h += figs(s.imgs4) + marks(s.fields4);
+    if (s.after) h += '<p style="margin-top:18px">' + s.after + '</p>';
+    if (s.warn) h += '<div class="warn">' + warn(s.warn) + '</div>';
+    if (s.warn2) h += '<div class="warn">' + warn(s.warn2) + '</div>';
+    return h + '</section>';
+  }).join('');
+
+  $('mapHead').innerHTML = t.mapHead.map(function(x){ return '<th>' + x + '</th>'; }).join('');
+  $('map').innerHTML = t.map.map(function(r){ return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>'; }).join('');
+
+  $('timeHead').innerHTML = t.timeHead.map(function(x){ return '<th>' + x + '</th>'; }).join('');
+  $('times').innerHTML = t.times.map(function(r){ return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>'; }).join('');
+  $('stats').innerHTML = t.stats.map(function(r){ return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>'; }).join('');
+  $('corrQuote').innerHTML = t.corrQuote.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+
+  $('refs').innerHTML = t.refs.map(function(r){
+    return '<a class="out" href="' + r[0] + '"><span class="k">' + r[1] + '</span><span class="t">' + r[2] + '</span><span class="d">' + r[3] + '</span></a>';
+  }).join('');
+});
+</script>

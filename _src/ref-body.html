@@ -1,0 +1,56 @@
+<div class="wrap">
+
+  {{BAR}}
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <div id="content"></div>
+
+  <section class="sect">
+    <h2 data-t="refH"></h2>
+    <div class="refs" id="refs"></div>
+  </section>
+
+  <section class="end">
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  {{FOOTER}}
+
+</div>
+
+<script>
+NDM.init(function(t){
+  var P = NDM.P, figs = NDM.figs, marks = NDM.marks, warn = NDM.warn;
+  var html = '';
+  t.blocks.forEach(function(b){
+    switch (b.t){
+      case 'h2':    html += '<section class="sect"><h2' + (b.id ? ' id="' + b.id + '"' : '') + '>' + b.v + '</h2>'; if (b.p) html += '<p>' + b.p + '</p>'; html += '</section>'; break;
+      case 'h3':    html += '<h3 class="subh">' + b.v + '</h3>'; break;
+      case 'p':     html += '<p class="note">' + b.v + '</p>'; break;
+      case 'fig':   html += figs([{ src: b.src, cap: b.cap }]); break;
+      case 'fields':html += marks(b.v); break;
+      case 'warn':  html += '<div class="warn">' + warn(b) + '</div>'; break;
+      case 'rule':  html += '<hr class="rule">'; break;
+      case 'who':   html += '<ul class="who">' + b.v.map(function(w){ return '<li><b>' + w[0] + '</b><span>' + w[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'cols':  html += '<div class="cols">' +
+                      '<div class="col yes"><h4>' + b.yesH + '</h4><ul>' + b.yes.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div>' +
+                      '<div class="col no"><h4>' + b.noH + '</h4><ul>' + b.no.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div></div>'; break;
+      case 'calc':  html += '<div class="calc"><div class="calc-head">' + b.head + '</div><dl id="calc">' +
+                      b.rows.map(function(r){ return '<div class="cr ' + (r[2] || '') + '"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') +
+                      '</dl><p class="calc-note">' + b.note + '</p></div>'; break;
+      case 'stat':  html += '<ul class="stat">' + b.v.map(function(r){ return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'quote': html += '<div class="quote">' + b.v.map(function(p){ return '<p>' + p + '</p>'; }).join('') + '</div>'; break;
+      case 'step':  html += '<section class="step"><div class="step-h"><h3>' + b.h + '</h3></div><p>' + b.p + '</p>' + (b.src ? figs([{ src: b.src, cap: b.cap }]) : '') + '</section>'; break;
+    }
+  });
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('refs').innerHTML = t.refs.map(function(r){
+    return '<a class="out" href="' + r[0] + '"><span class="k">' + r[1] + '</span><span class="t">' + r[2] + '</span><span class="d">' + r[3] + '</span></a>';
+  }).join('');
+});
+</script>

@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Primeiro acesso: «Rejeitado» não é recusa — nDm</title>
+<meta name="description" content="Porque é que o portal ssm.gov.pt marca «Rejeitado» logo no registo, o que fazer, e o que existe na área pessoal.">
+<link rel="icon" href="../../icon.svg?v=1" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Subsídio">
+<meta name="theme-color" content="#FAF6F1">
+<meta property="og:title" content="«Rejeitado» não é recusa — Damos o Caminho">
+<meta property="og:description" content="Porque é que o portal ssm.gov.pt marca «Rejeitado» logo no registo, o que fazer, e o que existe na área pessoal.">
+<meta property="og:image" content="https://ajuda.seedwave.pt/subsidio/og-image.png">
+<meta property="og:url" content="https://ajuda.seedwave.pt/subsidio/rejeitado/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ajuda.seedwave.pt/subsidio/rejeitado/">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF6F1; --surface:#FFFFFF; --surface-2:#F3EBE2;
+  --ink:#1A1512; --ink-soft:#6B5C51;
+  --accent:#B23A0E; --accent-soft:#F6E3D8;
+  --line:#E6D9CC; --line-2:#D6C4B3;
+  --alert:#8F2B14; --alert-bg:#FBEAE2; --alert-line:#E9B79F;
+  --ok:#1B6B4A; --ok-bg:#E6F1EA;
+  --shadow:0 1px 2px rgba(60,36,20,.06), 0 8px 24px rgba(60,36,20,.05);
+  --display:"Bitter", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+    --ink:#F2EAE2; --ink-soft:#B7A797;
+    --accent:#FF8A4C; --accent-soft:#3A2418;
+    --line:#382C23; --line-2:#4C3B2E;
+    --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+    --ok:#5FD39A; --ok-bg:#14291F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15110E; --surface:#1F1915; --surface-2:#291F19;
+  --ink:#F2EAE2; --ink-soft:#B7A797;
+  --accent:#FF8A4C; --accent-soft:#3A2418;
+  --line:#382C23; --line-2:#4C3B2E;
+  --alert:#FFA98F; --alert-bg:#2E1913; --alert-line:#6B3223;
+  --ok:#5FD39A; --ok-bg:#14291F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:740px; margin:0 auto; padding-left:20px; padding-right:20px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0}
+strong,b{font-weight:600}
+code{font-family:var(--mono)}
+.lnk{color:var(--ink); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px; font-weight:500}
+.lnk:hover{color:var(--accent)}
+
+/* ---------- topbar ---------- */
+.bar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:18px 10px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand svg{width:30px; height:30px; display:block}
+.brand b{font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:.01em}
+.ctrls{display:flex; gap:8px}
+.rb{
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--line-2); background:var(--surface); color:var(--ink);
+  font-family:var(--mono); font-size:13px; font-weight:600; cursor:pointer;
+  display:grid; place-items:center; padding:0; line-height:1; text-decoration:none;
+}
+.rb:hover{border-color:var(--accent); color:var(--accent)}
+.rb:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.lang-wrap{position:relative}
+.menu{
+  position:absolute; right:0; top:47px; z-index:30;
+  background:var(--surface); border:1px solid var(--line-2); border-radius:6px;
+  box-shadow:var(--shadow); padding:6px; min-width:172px; display:grid; gap:2px;
+}
+.menu button{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  width:100%; background:none; border:0; color:var(--ink);
+  font-family:var(--body); font-size:15.5px; padding:9px 11px; border-radius:4px;
+  cursor:pointer; text-align:left;
+}
+.menu button:hover{background:var(--surface-2); color:var(--accent)}
+.menu button[aria-current="true"]{color:var(--accent); font-weight:600}
+.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+.menu button[aria-current="true"] .code{color:var(--accent)}
+
+/* ---------- crumbs ---------- */
+.crumbs{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); margin:6px 0 0}
+.crumbs a{color:inherit; text-decoration:none}
+.crumbs a:hover{color:var(--accent)}
+.crumbs span{margin:0 6px}
+
+/* ---------- open / copy the portal ---------- */
+.act{margin:24px 0 0; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:18px}
+.act .row{display:flex; flex-wrap:wrap; gap:10px}
+.act .url{font-family:var(--mono); font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; word-break:break-all}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  font-family:var(--body); font-size:16px; font-weight:600;
+  padding:12px 18px; border-radius:3px; border:1px solid transparent;
+  text-decoration:none; line-height:1.2;
+}
+.btn-go{background:var(--accent); color:#fff}
+.btn-go:hover{filter:brightness(1.08)}
+.btn-copy{background:var(--surface); border-color:var(--line-2); color:var(--ink)}
+.btn-copy:hover{border-color:var(--accent); color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.act .hint{font-size:14.5px; color:var(--ink-soft); margin:14px 0 0}
+
+/* ---------- cover ---------- */
+.cover{padding-block:14px 8px}
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 14px;
+}
+h1{font-size:clamp(32px,7.6vw,48px); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+.lead{font-size:19.5px; color:var(--ink-soft); margin-top:16px; max-width:34em}
+.by{font-size:15.5px; color:var(--ink-soft); margin:16px 0 0}
+.by a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px}
+.by a:hover{color:var(--accent)}
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0; padding:0; list-style:none}
+.facts li{font-family:var(--mono); font-size:12.5px; font-weight:500; border:1px solid var(--line-2); border-radius:999px; padding:5px 12px; color:var(--ink-soft)}
+
+/* ---------- generic sections ---------- */
+h2{font-size:clamp(23px,5vw,29px); font-weight:600; line-height:1.2; letter-spacing:-.01em}
+.sect{padding-block:44px 0}
+.rule{height:1px; background:var(--line); border:0; margin:44px 0 0}
+.subh{font-family:var(--display); font-size:20px; font-weight:600; margin:34px 0 0}
+.note{margin-top:22px}
+
+.need{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:12px}
+.need li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; font-size:16.5px}
+.need li::before{content:""; width:9px; height:9px; margin-top:.55em; border-radius:2px; background:var(--accent)}
+
+/* ---------- steps ---------- */
+.step{padding-block:40px 0}
+.step-h{display:flex; align-items:baseline; gap:14px; margin-bottom:14px}
+.num{
+  font-family:var(--mono); font-size:14px; font-weight:600; color:var(--accent);
+  border:1.5px solid var(--accent); border-radius:50%;
+  width:32px; height:32px; flex:0 0 32px; display:grid; place-items:center; transform:translateY(2px);
+}
+.step h3{font-size:clamp(20px,4.4vw,25px); font-weight:600; line-height:1.22}
+figure{margin:22px 0 0}
+figure img{display:block; width:100%; height:auto; max-width:100%; border:1px solid var(--line-2); border-radius:3px; background:var(--surface)}
+figcaption{font-size:14px; color:var(--ink-soft); margin-top:9px; font-family:var(--mono)}
+.fields{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:14px}
+.fields li{display:grid; grid-template-columns:auto 1fr; gap:12px; font-size:16.5px}
+.mk{
+  font-family:var(--mono); font-size:12.5px; font-weight:600; color:#fff;
+  background:var(--alert); border-radius:50%; width:24px; height:24px;
+  display:grid; place-items:center; transform:translateY(3px);
+}
+.pt{font-family:var(--mono); font-size:.9em; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:1px 6px; border-radius:3px; white-space:nowrap}
+.warn{margin:22px 0 0; background:var(--alert-bg); border:1px solid var(--alert-line); border-left:4px solid var(--alert); border-radius:3px; padding:16px 18px}
+.warn h4{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--alert); margin:0 0 8px; font-weight:600}
+.warn p{margin:0; font-size:16px}
+.warn p + p{margin-top:.7em}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto}
+.times,.map{width:100%; border-collapse:collapse; margin-top:20px; font-size:15.5px}
+.times{font-variant-numeric:tabular-nums}
+.times th,.times td,.map th,.map td{text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--line); vertical-align:top}
+.times th,.map th{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
+.times td:first-child,.map td:first-child{white-space:nowrap}
+.map td:last-child{color:var(--ink-soft); font-size:14.5px}
+
+/* ---------- calc card ---------- */
+.calc{margin:30px 0 0; background:var(--surface); border:1px solid var(--line); border-radius:4px; box-shadow:var(--shadow); overflow:hidden; position:relative}
+.calc::before{content:""; position:absolute; inset:0 auto 0 0; width:5px; background:repeating-linear-gradient(var(--accent) 0 10px, transparent 10px 18px)}
+.calc-head{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); padding:14px 18px 4px 26px}
+.calc dl{margin:0; padding:6px 18px 14px 26px; display:grid; gap:1px}
+.calc .cr{display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding:7px 12px; border-radius:3px; border:2px solid transparent}
+.calc .cr dt{font-family:var(--mono); font-size:13px; color:var(--ink-soft)}
+.calc .cr dd{margin:0; font-family:var(--mono); font-size:16px; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.calc .cr.sum{border-top:1px solid var(--line); border-radius:0; margin-top:6px; padding-top:12px}
+.calc .cr.sum dt{color:var(--ink); font-weight:600}
+.calc .cr.big dd{font-size:21px; color:var(--accent)}
+.calc .cr.on{border-color:var(--accent); background:var(--accent-soft)}
+@media (prefers-reduced-motion: no-preference){.calc .cr{transition:background .45s ease, border-color .45s ease}}
+.calc-note{font-size:14.5px; color:var(--ink-soft); margin:0; padding:0 18px 16px 26px; border-top:1px dashed var(--line-2); padding-top:13px}
+
+/* ---------- who / yes-no ---------- */
+.who{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:14px}
+.who li{border-left:3px solid var(--accent); padding:2px 0 2px 14px}
+.who b{display:block; font-family:var(--mono); font-size:14.5px; color:var(--accent); font-weight:600}
+.who span{font-size:16.5px}
+.cols{display:grid; gap:18px; margin-top:22px}
+@media (min-width:640px){.cols{grid-template-columns:1fr 1fr; gap:22px}}
+.col{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:18px 20px; box-shadow:var(--shadow)}
+.col h4{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 12px; font-weight:600}
+.col.yes h4{color:var(--ok)}
+.col.no h4{color:var(--alert)}
+.col ul{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.col li{font-size:15.5px; display:grid; grid-template-columns:auto 1fr; gap:9px; align-items:start}
+.col li::before{content:"+"; font-family:var(--mono); font-weight:600; color:var(--ok)}
+.col.no li::before{content:"−"; color:var(--alert)}
+
+/* ---------- status list / quote ---------- */
+.stat{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:11px}
+.stat li{display:grid; grid-template-columns:auto 1fr; gap:12px; font-size:16px; align-items:start}
+.quote{margin:22px 0 0; padding:16px 20px; background:var(--surface-2); border-left:3px solid var(--line-2); border-radius:0 3px 3px 0; font-size:15.5px; color:var(--ink-soft)}
+.quote p{margin:0}
+.quote p + p{margin-top:.7em}
+
+/* ---------- link-out cards ---------- */
+.out{display:block; margin:24px 0 0; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line-2); border-radius:4px; padding:18px 20px; box-shadow:var(--shadow)}
+.out:hover{border-color:var(--accent)}
+.out .k{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
+.out .t{font-family:var(--display); font-size:20px; font-weight:600; display:block}
+.out .d{font-size:15px; color:var(--ink-soft); display:block; margin-top:5px}
+.refs{display:grid; gap:14px; margin-top:22px}
+.refs .out{margin:0}
+
+/* ---------- share + footer ---------- */
+.end{padding-block:44px 0}
+.share{
+  display:inline-flex; align-items:center; gap:9px; margin-top:18px;
+  background:var(--accent); color:#fff; border:0; border-radius:3px;
+  font-family:var(--body); font-size:16.5px; font-weight:600; padding:13px 22px; cursor:pointer;
+}
+.share:hover{filter:brightness(1.08)}
+.share:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+footer{text-align:center; font-size:15px; color:var(--ink-soft); padding-block:40px 60px; margin-top:44px; border-top:1px solid var(--line)}
+footer a{color:inherit; display:inline-block; padding:8px 4px; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px}
+footer a:hover{color:var(--accent)}
+</style>
+<div class="wrap">
+
+  <div class="bar">
+    <a class="brand" href="/" rel="noopener">
+      <svg viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M33 18 L33 70"/>
+        <path d="M33 18 C68 18 78 30 78 44 C78 58 68 70 33 70"/>
+        <path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/>
+      </svg>
+      <b>nDm</b>
+    </a>
+    <div class="ctrls">
+      <div class="lang-wrap">
+        <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">PT</button>
+        <div class="menu" id="langmenu" hidden></div>
+      </div>
+      <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
+    </div>
+  </div>
+  <p class="crumbs"><a href="/">Damos o Caminho</a><span>›</span><a href="../">Subsídio</a><span>›</span>Rejeitado</p>
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <div id="content"></div>
+
+  <section class="sect">
+    <h2 data-t="refH"></h2>
+    <div class="refs" id="refs"></div>
+  </section>
+
+  <section class="end">
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a href="https://www.linkedin.com/in/igor-kartuzov" target="_blank" rel="noopener">Igor Kartuzov</a>
+  </footer>
+
+</div>
+
+<script>
+/* nDm page engine: language, theme, share, common renderers. Expects a global T = {pt:{…}, …}. */
+window.NDM = (function(){
+  var ORDER = ["pt","en","ru","de","es"];
+  var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
+  var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
+  var SSMURL = "https://www.ssm.gov.pt/";
+  var LANGS = [], lang, pageRender;
+
+  function pickLang(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (LANGS.indexOf(q) >= 0) return q;
+    var st = null;
+    try { st = localStorage.getItem('ndm-lang'); } catch(e){}
+    if (LANGS.indexOf(st) >= 0) return st;
+    var nav = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (LANGS.indexOf(nav) >= 0) return nav;
+    return LANGS.indexOf('pt') >= 0 ? 'pt' : LANGS[0];
+  }
+
+  var P = function(s){ return '<span class="pt">' + s + '</span>'; };
+
+  function warnBlock(w){
+    if (!w) return '';
+    var h = '<h4>' + w.h + '</h4><p>' + w.p + '</p>';
+    if (w.p2) h += '<p>' + w.p2 + '</p>';
+    return h;
+  }
+  function figs(list){
+    if (!list || !list.length) return '';
+    return list.map(function(f){
+      return '<figure><img src="' + f.src + '" alt="" loading="lazy"><figcaption>' + f.cap + '</figcaption></figure>';
+    }).join('');
+  }
+  function marks(list){
+    if (!list || !list.length) return '';
+    return '<ul class="fields">' + list.map(function(f, j){
+      return '<li><span class="mk">' + (j + 1) + '</span><span>' + f + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  function actBlock(t){
+    return '<div class="act">' +
+      '<p class="url">ssm.gov.pt</p>' +
+      '<div class="row">' +
+        '<a class="btn btn-go" id="openSsm" href="' + SSMURL + '" target="_blank" rel="noopener">' + t.openBtn + '</a>' +
+        '<button class="btn btn-copy" id="copySsm" type="button"><span>' + t.copyBtn + '</span></button>' +
+      '</div>' +
+      '<p class="hint">' + t.openHint + '</p>' +
+    '</div>';
+  }
+  function withLang(href){
+    try {
+      var u = new URL(href, location.href);
+      u.searchParams.set('lang', lang);
+      return u.pathname + u.search + u.hash;
+    } catch(e){ return href; }
+  }
+
+  function render(){
+    var t = T[lang];
+    document.documentElement.lang = TAGS[lang];
+
+    var lb = document.getElementById('lang');
+    if (lb){
+      lb.textContent = lang.toUpperCase();
+      lb.parentNode.style.display = LANGS.length > 1 ? '' : 'none';
+      document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
+        return '<button type="button" data-l="' + L + '"' + (L === lang ? ' aria-current="true"' : '') + '>' +
+               '<span>' + LNAMES[L] + '</span><span class="code">' + L.toUpperCase() + '</span></button>';
+      }).join('');
+    }
+
+    var nodes = document.querySelectorAll('[data-t]');
+    for (var i = 0; i < nodes.length; i++){
+      var k = nodes[i].getAttribute('data-t');
+      if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
+    }
+    var hub = document.getElementById('hubLink');
+    if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
+
+    if (pageRender) pageRender(t, lang);
+
+    // every internal link carries the current language
+    var links = document.querySelectorAll('a[data-ll]');
+    for (var j = 0; j < links.length; j++) links[j].href = withLang(links[j].getAttribute('data-ll'));
+    var inl = document.querySelectorAll('a[href^="/"], a[href^="../"], a[href^="./"], a[href^="#"]');
+    for (var m = 0; m < inl.length; m++){
+      var a = inl[m], h = a.getAttribute('href');
+      if (h.charAt(0) === '#' || a.hasAttribute('data-ll') || /[?&]lang=/.test(h)) continue;
+      a.href = withLang(h);
+    }
+
+    var go = document.getElementById('openSsm');
+    if (go) go.addEventListener('click', function(e){
+      if (window.innerWidth < 900) return;
+      var w = Math.max(560, Math.round(screen.availWidth / 2));
+      var f = 'noopener,noreferrer,width=' + w + ',height=' + screen.availHeight +
+              ',left=' + (screen.availLeft + screen.availWidth - w) + ',top=' + screen.availTop;
+      var win = window.open(SSMURL, 'ssmportal', f);
+      if (win) e.preventDefault();
+    });
+    var cp = document.getElementById('copySsm');
+    if (cp) cp.addEventListener('click', function(){
+      var span = cp.querySelector('span'), old = span.textContent;
+      var done = function(){ span.textContent = t.copiedLink; setTimeout(function(){ span.textContent = old; }, 2200); };
+      if (navigator.clipboard) navigator.clipboard.writeText(SSMURL).then(done, done); else done();
+    });
+  }
+
+  function init(fn){
+    pageRender = fn;
+    LANGS = ORDER.filter(function(l){ return window.T && T[l]; });
+    lang = pickLang();
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+    render();
+
+    var lbtn = document.getElementById('lang'), lmenu = document.getElementById('langmenu');
+    if (lbtn){
+      var closeMenu = function(){ lmenu.hidden = true; lbtn.setAttribute('aria-expanded', 'false'); };
+      lbtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var open = lmenu.hidden;
+        lmenu.hidden = !open;
+        lbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      lmenu.addEventListener('click', function(e){
+        var b = e.target.closest('button[data-l]');
+        if (!b) return;
+        lang = b.getAttribute('data-l');
+        try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+        closeMenu(); render();
+        try { var u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null, '', u); } catch(err){}
+      });
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    }
+
+    var root = document.documentElement, tb = document.getElementById('theme');
+    if (tb){
+      var stored = null;
+      try { stored = localStorage.getItem('ndm-theme'); } catch(e){}
+      if (stored) root.setAttribute('data-theme', stored);
+      var isDark = function(){
+        var a = root.getAttribute('data-theme');
+        if (a) return a === 'dark';
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      };
+      var paint = function(){ tb.textContent = isDark() ? '☀' : '☾'; };
+      paint();
+      tb.addEventListener('click', function(){
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('ndm-theme', next); } catch(e){}
+        paint();
+      });
+    }
+
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#calc .cr'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (rows.length && !reduce){
+      var k = 0;
+      rows[0].classList.add('on');
+      setInterval(function(){
+        rows = Array.prototype.slice.call(document.querySelectorAll('#calc .cr'));
+        if (!rows.length) return;
+        rows.forEach(function(r){ r.classList.remove('on'); });
+        k = (k + 1) % rows.length;
+        rows[k].classList.add('on');
+      }, 1500);
+    }
+
+    var sb = document.getElementById('share');
+    if (sb) sb.addEventListener('click', function(){
+      var t = T[lang], url = withLang(location.pathname);
+      url = location.origin + url;
+      if (navigator.share){ navigator.share({ title: t.shareTitle || document.title, text: t.shareText, url: url }).catch(function(){}); return; }
+      var done = function(){
+        var span = sb.querySelector('span'), old = span.textContent;
+        span.textContent = t.copied;
+        setTimeout(function(){ span.textContent = old; }, 2200);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(t.shareText + ' ' + url).then(done, done); else done();
+    });
+  }
+
+  return { init: init, P: P, warn: warnBlock, figs: figs, marks: marks, act: actBlock, lang: function(){ return lang; } };
+})();
+</script>
+<script>
+var T = {}; var P = NDM.P;
+T.pt = {
+  eyebrow: "nDm · Ficha 2",
+  h1: "Primeiro acesso: o «Rejeitado» a vermelho não é uma recusa",
+  lead: "No primeiro registo, o portal atribui automaticamente o estado Rejeitado. Ainda antes de se clicar em fosse o que fosse. A pessoa vê «recusado» e desiste — mas isto significa apenas «o perfil não está preenchido».",
+  blocks: [
+    { t: "h2", v: "A história de um registo, minuto a minuto", p: "Eis o " + P("Histórico do Registo") + " da área pessoal. Lê-se de baixo para cima." },
+    { t: "fig", src: "../img/b6.jpg", cap: "Histórico do Registo na área pessoal. Lê-se de baixo para cima." },
+    { t: "fields", v: [
+      P("Rejeitado") + " — 11:55. O sistema criou o perfil a partir dos dados da Autenticação.gov e atribuiu logo a recusa. O utilizador ainda não tinha feito nada.",
+      "O utilizador carrega o " + P("Comprovativo do IBAN") + " e insere o " + P("IBAN") + " e o telefone — 12:00.",
+      P("Pendente") + " — 12:00. O estado muda sozinho assim que o perfil fica preenchido.",
+      P("Validado") + " — 13:38. Um operador abriu o documento, aprovou-o, e o estado ficou verde. Entre a «recusa» e a aprovação passou uma hora e quarenta e três minutos."
+    ] },
+    { t: "warn", h: "O que fazer ao ver Rejeitado",
+      p: "Página principal → " + P("Aceder à Área Pessoal") + " → " + P("Alterar Dados") + ". Inserir o " + P("IBAN") + " e o telefone, guardar. Depois carregar o comprovativo bancário da conta.",
+      p2: "A seguir é só esperar: o portal muda o estado sozinho, depois de um operador abrir o seu documento. Enquanto o estado não estiver " + P("Validado") + ", ainda é cedo para submeter o pedido — o pagamento não passa." },
+
+    { t: "h2", v: "A área pessoal: o que lá existe", p: "O botão " + P("Aceder à Área Pessoal") + " está escondido em baixo, na página principal, sob o cartão com os seus dados. Atrás dele há quatro secções que o gov.pt não menciona em lado nenhum." },
+    { t: "step", h: "O que se pode alterar",
+      p: "O botão " + P("Alterar Dados") + " abre um formulário em que só três campos ficam ativos: tipo de beneficiário, " + P("IBAN") + " e " + P("Telefone/Telemóvel") + ". Nome, NIF, data de nascimento, email, código postal e localidade — sempre a cinzento.",
+      src: "../img/b1.jpg", cap: "Os três campos assinalados — a única coisa que o portal deixa alterar." },
+    { t: "step", h: "Anexos do perfil",
+      p: "Na secção " + P("Anexos") + " está o " + P("Comprovativo do IBAN") + " — o comprovativo bancário da conta. Sem ele os pagamentos não passam, e é aprovado por um operador humano, não pelo sistema.",
+      src: "../img/b2.jpg", cap: "A etiqueta verde Aprovado é colocada manualmente pelo operador." },
+    { t: "step", h: "Família",
+      p: P("Situação Familiar") + " — é aqui que se adicionam a esposa, os filhos e outros dependentes, para que as suas viagens sigam no mesmo pedido. Como se faz — <a class=\"lnk\" href=\"../familia/\">Família</a>." },
+    { t: "step", h: "Pedidos",
+      p: P("Histórico de Pedidos") + " — a lista dos seus pedidos com os respetivos estados. É também aqui que chegam as notificações de " + P("Correção Solicitada") + ". O que significam os estados e quanto tempo esperar — <a class=\"lnk\" href=\"../#depois\">«Depois de submeter» na instrução</a>." },
+
+    { t: "h2", v: "Telefone e email — só os seus", p: "O telefone e o email no perfil têm de ser seus, os mesmos usados para obter a " + P("Chave Móvel Digital") + ". Se está a ajudar outra pessoa e inserir os seus próprios contactos no perfil dela, o acesso à sua própria área fica danificado. Em detalhe — <a class=\"lnk\" href=\"../familia/#ajudar\">se está a tratar do pedido de outra pessoa</a>." }
+  ],
+  refH: "A seguir",
+  refs: [
+    ["../", "Instrução", "O pedido em cinco passos", "Cada ecrã do portal e cada campo — com imagens reais e as páginas da fatura."],
+    ["../dinheiro/", "Ficha 1", "Quanto dinheiro e porquê", "Categorias de beneficiários, o que devolvem e o que não, o desconto e o tecto que já não existe."],
+    ["../familia/", "Ficha 3", "Família e ajudar outra pessoa", "Como adicionar a esposa e os filhos — e a regra número um se está a tratar do pedido de outra pessoa."]
+  ],
+  shareBtn: "Enviar esta página",
+  shareTitle: "Primeiro acesso: «Rejeitado» não é recusa — nDm",
+  shareText: "O portal do subsídio mostrou «Rejeitado»? Não é uma recusa —",
+  copied: "Ligação copiada"
+};
+T.en = {
+  eyebrow: "nDm · Note 2",
+  h1: "First login: red “Rejeitado” is not a refusal",
+  lead: "On first registration the portal automatically sets the status to Rejeitado. Before you have clicked anything. People see “refused” and give up — but it only means “profile not filled in”.",
+  blocks: [
+    { t: "h2", v: "One registration, minute by minute", p: "This is the " + P("Histórico do Registo") + " from the personal area. It reads bottom to top." },
+    { t: "fig", src: "../img/b6.jpg", cap: "Histórico do Registo in the personal area. Reads bottom to top." },
+    { t: "fields", v: [
+      P("Rejeitado") + " — 11:55. The system created the profile from Autenticação.gov data and immediately set it to refused. The user had done nothing at this point.",
+      "The user uploads the " + P("Comprovativo do IBAN") + " and enters " + P("IBAN") + " and phone number — 12:00.",
+      P("Pendente") + " — 12:00. The status changes itself, as soon as the profile is complete.",
+      P("Validado") + " — 13:38. A human operator opened the document, approved it, and the status turned green. An hour and forty-three minutes passed between “refused” and approval."
+    ] },
+    { t: "warn", h: "What to do if you see Rejeitado",
+      p: "Home page → " + P("Aceder à Área Pessoal") + " → " + P("Alterar Dados") + ". Enter the " + P("IBAN") + " and phone number, save. Then upload the bank confirmation of the account.",
+      p2: "After that, wait: the portal switches the status itself once a human operator opens your document. Until the status is " + P("Validado") + ", it is too early to submit a claim — the payment will not go through." },
+
+    { t: "h2", v: "The personal area: what is actually there", p: "The " + P("Aceder à Área Pessoal") + " button is tucked away at the bottom of the home page, under the card with your details. Behind it are four sections that gov.pt does not describe anywhere." },
+    { t: "step", h: "What can be changed",
+      p: "The " + P("Alterar Dados") + " button opens a form where only three fields are editable: beneficiary type, " + P("IBAN") + " and " + P("Telefone/Telemóvel") + ". Name, NIF, date of birth, email, postcode and town are permanently grey.",
+      src: "../img/b1.jpg", cap: "The three boxed fields are the only things the portal lets you change." },
+    { t: "step", h: "Profile attachments",
+      p: "The " + P("Anexos") + " section holds the " + P("Comprovativo do IBAN") + " — the bank confirmation of the account. Without it, payments do not go through, and it is approved by a human operator, not the system.",
+      src: "../img/b2.jpg", cap: "The green Aprovado tag is set by an operator by hand." },
+    { t: "step", h: "Family",
+      p: P("Situação Familiar") + " — this is where a spouse, children and dependants are added, so that their flights go into the same claim. How this is done — <a class=\"lnk\" href=\"../familia/\">Family</a>." },
+    { t: "step", h: "Claims",
+      p: P("Histórico de Pedidos") + " — a list of your claims with their statuses. This is also where " + P("Correção Solicitada") + " notices appear. What the statuses mean and how long to wait — <a class=\"lnk\" href=\"../#depois\">“After submitting” in the guide</a>." },
+
+    { t: "h2", v: "Phone and email — your own only", p: "The phone number and email in the profile must be your own — the same ones used to obtain " + P("Chave Móvel Digital") + ". If you are helping someone else and enter your own contact details into their profile, access to your own account breaks. In detail — <a class=\"lnk\" href=\"../familia/#ajudar\">if you are filing for someone else</a>." }
+  ],
+  refH: "More",
+  refs: [
+    ["../", "Instruction", "The claim in five steps", "Every portal screen and every field — with real screenshots and the invoice alongside."],
+    ["../dinheiro/", "Note 1", "How much money and what for", "Categories of recipients, what is refunded and what is not, the discount and the cap that no longer exists."],
+    ["../familia/", "Note 3", "Family and helping someone else", "How to add a spouse and children — and rule number one if you are filing for someone else."]
+  ],
+  shareBtn: "Send this page",
+  shareTitle: "First login: “Rejeitado” is not a refusal — nDm",
+  shareText: "The subsidy portal showed “Rejeitado”? That is not a refusal —",
+  copied: "Link copied"
+};
+T.ru = {
+  eyebrow: "nDm · Справочная 2",
+  h1: "Первый вход: красное «Rejeitado» — это не отказ",
+  lead: "При первой регистрации портал автоматически ставит статус Rejeitado. Ещё до того, как вы что-либо нажали. Человек видит «отказано» и уходит — а это всего лишь значит «профиль не заполнен».",
+  blocks: [
+    { t: "h2", v: "История одной регистрации, минута в минуту", p: "Вот " + P("Histórico do Registo") + " из личного кабинета. Читается снизу вверх." },
+    { t: "fig", src: "../img/b6.jpg", cap: "Histórico do Registo в личном кабинете. Читается снизу вверх." },
+    { t: "fields", v: [
+      P("Rejeitado") + " — 11:55. Система создала профиль из данных Autenticação.gov и сразу поставила отказ. Пользователь при этом не сделал ничего.",
+      "Пользователь загружает " + P("Comprovativo do IBAN") + " и вписывает " + P("IBAN") + " и телефон — 12:00.",
+      P("Pendente") + " — 12:00. Статус меняется сам, как только профиль заполнен.",
+      P("Validado") + " — 13:38. Живой оператор открыл документ, одобрил его, и статус стал зелёным. Между «отказом» и одобрением прошёл час сорок три."
+    ] },
+    { t: "warn", h: "Что делать, если видите Rejeitado",
+      p: "Главная → " + P("Aceder à Área Pessoal") + " → " + P("Alterar Dados") + ". Вписать " + P("IBAN") + " и телефон, сохранить. Затем загрузить банковское подтверждение счёта.",
+      p2: "Дальше остаётся ждать: статус перещёлкнет сам портал, после того как живой оператор откроет ваш документ. Пока статус не стал " + P("Validado") + ", заявку подавать рано — выплата не пройдёт." },
+
+    { t: "h2", v: "Личный кабинет: что там вообще есть", p: "Кнопка " + P("Aceder à Área Pessoal") + " спрятана внизу главной, под карточкой с вашими данными. За ней — четыре раздела, о которых на gov.pt не написано ни строчки." },
+    { t: "step", h: "Что можно изменить",
+      p: "Кнопка " + P("Alterar Dados") + " открывает форму, в которой живыми остаются только три поля: тип бенефициара, " + P("IBAN") + " и " + P("Telefone/Telemóvel") + ". Имя, NIF, дата рождения, почта, индекс и город — серые навсегда.",
+      src: "../img/b1.jpg", cap: "Три поля в рамках — единственное, что портал даёт менять." },
+    { t: "step", h: "Вложения профиля",
+      p: "В разделе " + P("Anexos") + " лежит " + P("Comprovativo do IBAN") + " — банковское подтверждение счёта. Без него выплаты не пройдут, и одобряет его живой оператор, а не система.",
+      src: "../img/b2.jpg", cap: "Зелёный ярлык Aprovado ставит оператор вручную." },
+    { t: "step", h: "Семья",
+      p: P("Situação Familiar") + " — здесь добавляются жена, дети и иждивенцы, чтобы их перелёты шли одной заявкой. Как это делается — <a class=\"lnk\" href=\"../familia/\">Семья</a>." },
+    { t: "step", h: "Заявки",
+      p: P("Histórico de Pedidos") + " — список ваших заявок со статусами. Сюда же приходят уведомления " + P("Correção Solicitada") + ". Что означают статусы и сколько ждать — <a class=\"lnk\" href=\"../#depois\">«После подачи» в инструкции</a>." },
+
+    { t: "h2", v: "Телефон и почта — только свои", p: "Телефон и почта в профиле должны быть вашими собственными — теми же, что использованы при получении " + P("Chave Móvel Digital") + ". Если вы помогаете другому человеку и впишете свои контакты в его профиль, доступ в ваш собственный кабинет сломается. Подробно — <a class=\"lnk\" href=\"../familia/#ajudar\">если оформляете за другого</a>." }
+  ],
+  refH: "Дальше",
+  refs: [
+    ["../", "Инструкция", "Подача: пять шагов", "Каждый экран портала и каждое поле — с живыми снимками и разворотами счёта."],
+    ["../dinheiro/", "Справочная 1", "Сколько денег и за что", "Категории получателей, что возвращают и не возвращают, скидка и потолок, которого больше нет."],
+    ["../familia/", "Справочная 3", "Семья и помощь другому человеку", "Как добавить жену и детей — и правило номер один, если оформляете не за себя."]
+  ],
+  shareBtn: "Отправить эту страницу",
+  shareTitle: "Первый вход: Rejeitado — не отказ — nDm",
+  shareText: "Портал субсидии показал «Rejeitado»? Это не отказ —",
+  copied: "Ссылка скопирована"
+};
+T.de = {
+  eyebrow: "nDm · Merkblatt 2",
+  h1: "Erster Zugang: „Rejeitado“ ist keine Ablehnung",
+  lead: "Bei der ersten Registrierung setzt das Portal automatisch den Status Rejeitado. Noch bevor Sie irgendetwas angeklickt haben. Man sieht „abgelehnt“ und geht — dabei bedeutet es nur „Profil nicht ausgefüllt“.",
+  blocks: [
+    { t: "h2", v: "Die Geschichte einer Registrierung, Minute für Minute", p: "Hier ist die " + P("Histórico do Registo") + " aus dem persönlichen Bereich. Wird von unten nach oben gelesen." },
+    { t: "fig", src: "../img/b6.jpg", cap: "Histórico do Registo im persönlichen Bereich. Wird von unten nach oben gelesen." },
+    { t: "fields", v: [
+      P("Rejeitado") + " — 11:55. Das System hat das Profil aus den Daten von Autenticação.gov erstellt und sofort die Ablehnung gesetzt. Der Nutzer hatte dabei noch nichts getan.",
+      "Der Nutzer lädt " + P("Comprovativo do IBAN") + " hoch und trägt " + P("IBAN") + " und Telefonnummer ein — 12:00.",
+      P("Pendente") + " — 12:00. Der Status ändert sich von selbst, sobald das Profil ausgefüllt ist.",
+      P("Validado") + " — 13:38. Ein Sachbearbeiter öffnete das Dokument, genehmigte es, und der Status wurde grün. Zwischen der „Ablehnung“ und der Genehmigung lagen eine Stunde und dreiundvierzig Minuten."
+    ] },
+    { t: "warn", h: "Was zu tun ist, wenn Sie Rejeitado sehen",
+      p: "Startseite → " + P("Aceder à Área Pessoal") + " → " + P("Alterar Dados") + ". " + P("IBAN") + " und Telefonnummer eintragen, speichern. Danach den Kontonachweis hochladen.",
+      p2: "Danach bleibt nur warten: Der Status wechselt von selbst, sobald ein Sachbearbeiter Ihr Dokument öffnet. Solange der Status nicht " + P("Validado") + " lautet, ist es zu früh für den Antrag — die Auszahlung geht nicht durch." },
+
+    { t: "h2", v: "Der persönliche Bereich: was es dort überhaupt gibt", p: "Die Schaltfläche " + P("Aceder à Área Pessoal") + " ist unten auf der Startseite versteckt, unter der Karte mit Ihren Daten. Dahinter liegen vier Bereiche, über die auf gov.pt keine Zeile steht." },
+    { t: "step", h: "Was sich ändern lässt",
+      p: "Die Schaltfläche " + P("Alterar Dados") + " öffnet ein Formular, in dem nur drei Felder aktiv bleiben: Begünstigtentyp, " + P("IBAN") + " und " + P("Telefone/Telemóvel") + ". Name, NIF, Geburtsdatum, E-Mail, Postleitzahl und Ort bleiben für immer grau.",
+      src: "../img/b1.jpg", cap: "Die drei umrahmten Felder — das Einzige, was das Portal zu ändern erlaubt." },
+    { t: "step", h: "Anhänge des Profils",
+      p: "Im Bereich " + P("Anexos") + " liegt " + P("Comprovativo do IBAN") + " — der Kontonachweis der Bank. Ohne ihn geht keine Auszahlung durch, und genehmigt wird er von einem Sachbearbeiter, nicht vom System.",
+      src: "../img/b2.jpg", cap: "Das grüne Label Aprovado setzt der Sachbearbeiter von Hand." },
+    { t: "step", h: "Familie",
+      p: P("Situação Familiar") + " — hier werden Ehepartner, Kinder und Angehörige hinzugefügt, damit ihre Flüge in denselben Antrag gehören. Wie das geht — <a class=\"lnk\" href=\"../familia/\">Familie</a>." },
+    { t: "step", h: "Anträge",
+      p: P("Histórico de Pedidos") + " — die Liste Ihrer Anträge mit Status. Hierher kommen auch die " + P("Correção Solicitada") + "-Benachrichtigungen. Was die Status bedeuten und wie lange es dauert — <a class=\"lnk\" href=\"../#depois\">Nach dem Einreichen in der Anleitung</a>." },
+
+    { t: "h2", v: "Telefon und E-Mail — nur die eigenen", p: "Telefon und E-Mail im Profil müssen Ihre eigenen sein — dieselben, die Sie beim Erhalt der " + P("Chave Móvel Digital") + " verwendet haben. Wenn Sie einer anderen Person helfen und Ihre eigenen Kontaktdaten in deren Profil eintragen, geht der Zugang zu Ihrem eigenen Bereich kaputt. Ausführlich — <a class=\"lnk\" href=\"../familia/#ajudar\">wenn Sie für jemand anderen beantragen</a>." }
+  ],
+  refH: "Weiter",
+  refs: [
+    ["../", "Anleitung", "Der Antrag in fünf Schritten", "Jeder Bildschirm des Portals und jedes Feld — mit echten Bildschirmfotos und der Rechnung daneben."],
+    ["../dinheiro/", "Merkblatt 1", "Wie viel Geld und wofür", "Empfängerkategorien, was erstattet wird und was nicht, der Rabatt und die Grenze, die es nicht mehr gibt."],
+    ["../familia/", "Merkblatt 3", "Familie und für andere beantragen", "Wie Sie Ehepartner und Kinder hinzufügen — und Regel Nummer eins, wenn Sie nicht für sich selbst beantragen."]
+  ],
+  shareBtn: "Diese Seite senden",
+  shareTitle: "Erster Zugang: „Rejeitado“ ist keine Ablehnung — nDm",
+  shareText: "Das Subsidie-Portal zeigt „Rejeitado“? Das ist keine Ablehnung —",
+  copied: "Link kopiert"
+};
+T.es = {
+  eyebrow: "nDm · Ficha 2",
+  h1: "Primer acceso: el «Rejeitado» en rojo no es un rechazo",
+  lead: "Al registrarse por primera vez, el portal marca automáticamente el estado Rejeitado. Antes incluso de que usted haga nada. Uno ve «rechazado» y se va — pero solo significa «el perfil no está completo».",
+  blocks: [
+    { t: "h2", v: "La historia de un registro, minuto a minuto", p: "Este es el " + P("Histórico do Registo") + " del área personal. Se lee de abajo hacia arriba." },
+    { t: "fig", src: "../img/b6.jpg", cap: "Histórico do Registo en el área personal. Se lee de abajo hacia arriba." },
+    { t: "fields", v: [
+      P("Rejeitado") + " — 11:55. El sistema creó el perfil con los datos de Autenticação.gov y de inmediato marcó rechazo. El usuario, mientras tanto, no había hecho nada.",
+      "El usuario sube el " + P("Comprovativo do IBAN") + " y escribe el " + P("IBAN") + " y el teléfono — 12:00.",
+      P("Pendente") + " — 12:00. El estado cambia solo, en cuanto el perfil está completo.",
+      P("Validado") + " — 13:38. Un operador real abrió el documento, lo aprobó, y el estado se puso verde. Entre el «rechazo» y la aprobación pasó una hora y cuarenta y tres minutos."
+    ] },
+    { t: "warn", h: "Qué hacer si ve Rejeitado",
+      p: "Página principal → " + P("Aceder à Área Pessoal") + " → " + P("Alterar Dados") + ". Escriba el " + P("IBAN") + " y el teléfono, guarde. Después suba el comprobante bancario de la cuenta.",
+      p2: "Después solo queda esperar: el estado lo cambia el propio portal, una vez que un operador real abra su documento. Mientras el estado no sea " + P("Validado") + ", es pronto para presentar la solicitud — el pago no se procesará." },
+
+    { t: "h2", v: "El área personal: qué hay realmente", p: "El botón " + P("Aceder à Área Pessoal") + " está escondido al final de la página principal, bajo la tarjeta con sus datos. Detrás hay cuatro apartados de los que en gov.pt no se dice ni una línea." },
+    { t: "step", h: "Qué se puede cambiar",
+      p: "El botón " + P("Alterar Dados") + " abre un formulario en el que solo quedan activos tres campos: tipo de beneficiario, " + P("IBAN") + " y " + P("Telefone/Telemóvel") + ". Nombre, NIF, fecha de nacimiento, correo, código postal y localidad quedan siempre en gris.",
+      src: "../img/b1.jpg", cap: "Los tres campos marcados: lo único que el portal deja cambiar." },
+    { t: "step", h: "Anexos del perfil",
+      p: "En el apartado " + P("Anexos") + " está el " + P("Comprovativo do IBAN") + " — el comprobante bancario de la cuenta. Sin él no se procesan los pagos, y lo aprueba un operador real, no el sistema.",
+      src: "../img/b2.jpg", cap: "La etiqueta verde Aprovado la pone el operador a mano." },
+    { t: "step", h: "Familia",
+      p: P("Situação Familiar") + " — aquí se añaden el cónyuge, los hijos y las personas dependientes, para que sus vuelos vayan en la misma solicitud. Cómo se hace: <a class=\"lnk\" href=\"../familia/\">Familia</a>." },
+    { t: "step", h: "Solicitudes",
+      p: P("Histórico de Pedidos") + " — la lista de sus solicitudes con sus estados. Aquí también llegan los avisos de " + P("Correção Solicitada") + ". Qué significan los estados y cuánto esperar: <a class=\"lnk\" href=\"../#depois\">«Después de presentar» en la guía</a>." },
+
+    { t: "h2", v: "Teléfono y correo — solo los propios", p: "El teléfono y el correo del perfil deben ser suyos, los mismos que se usaron al obtener la " + P("Chave Móvel Digital") + ". Si está ayudando a otra persona y escribe sus propios contactos en el perfil de esa persona, se rompe el acceso a su propia área. En detalle: <a class=\"lnk\" href=\"../familia/#ajudar\">si lo tramita por otra persona</a>." }
+  ],
+  refH: "Siga leyendo",
+  refs: [
+    ["../", "Instrucción", "La solicitud en cinco pasos", "Cada pantalla del portal y cada campo — con capturas reales y la factura desplegada al lado."],
+    ["../dinheiro/", "Ficha 1", "Cuánto dinero y por qué", "Categorías de beneficiarios, qué se devuelve y qué no, el descuento y el techo que ya no existe."],
+    ["../familia/", "Ficha 3", "Familia y tramitar por otra persona", "Cómo añadir cónyuge e hijos — y la regla número uno si tramita por otra persona."]
+  ],
+  shareBtn: "Enviar esta página",
+  shareTitle: "Primer acceso: «Rejeitado» no es un rechazo — nDm",
+  shareText: "¿El portal de la subsidio le mostró «Rejeitado»? No es un rechazo —",
+  copied: "Enlace copiado"
+};
+</script>
+<script>
+NDM.init(function(t){
+  var P = NDM.P, figs = NDM.figs, marks = NDM.marks, warn = NDM.warn;
+  var html = '';
+  t.blocks.forEach(function(b){
+    switch (b.t){
+      case 'h2':    html += '<section class="sect"><h2' + (b.id ? ' id="' + b.id + '"' : '') + '>' + b.v + '</h2>'; if (b.p) html += '<p>' + b.p + '</p>'; html += '</section>'; break;
+      case 'h3':    html += '<h3 class="subh">' + b.v + '</h3>'; break;
+      case 'p':     html += '<p class="note">' + b.v + '</p>'; break;
+      case 'fig':   html += figs([{ src: b.src, cap: b.cap }]); break;
+      case 'fields':html += marks(b.v); break;
+      case 'warn':  html += '<div class="warn">' + warn(b) + '</div>'; break;
+      case 'rule':  html += '<hr class="rule">'; break;
+      case 'who':   html += '<ul class="who">' + b.v.map(function(w){ return '<li><b>' + w[0] + '</b><span>' + w[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'cols':  html += '<div class="cols">' +
+                      '<div class="col yes"><h4>' + b.yesH + '</h4><ul>' + b.yes.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div>' +
+                      '<div class="col no"><h4>' + b.noH + '</h4><ul>' + b.no.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div></div>'; break;
+      case 'calc':  html += '<div class="calc"><div class="calc-head">' + b.head + '</div><dl id="calc">' +
+                      b.rows.map(function(r){ return '<div class="cr ' + (r[2] || '') + '"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('') +
+                      '</dl><p class="calc-note">' + b.note + '</p></div>'; break;
+      case 'stat':  html += '<ul class="stat">' + b.v.map(function(r){ return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>'; }).join('') + '</ul>'; break;
+      case 'quote': html += '<div class="quote">' + b.v.map(function(p){ return '<p>' + p + '</p>'; }).join('') + '</div>'; break;
+      case 'step':  html += '<section class="step"><div class="step-h"><h3>' + b.h + '</h3></div><p>' + b.p + '</p>' + (b.src ? figs([{ src: b.src, cap: b.cap }]) : '') + '</section>'; break;
+    }
+  });
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('refs').innerHTML = t.refs.map(function(r){
+    return '<a class="out" href="' + r[0] + '"><span class="k">' + r[1] + '</span><span class="t">' + r[2] + '</span><span class="d">' + r[3] + '</span></a>';
+  }).join('');
+});
+</script>
+</body>
+</html>
