@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ajuda.seedwave.pt/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/tap/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/familia/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+</urlset>

@@ -6,6 +6,7 @@
 import io, os, re, glob
 
 SITE = "https://ajuda.seedwave.pt"
+PAGES = []   # (url, приоритет) — наполняется по ходу сборки
 LANG_ORDER = ["pt", "en", "ru", "de", "es"]
 
 HEAD = """<!doctype html>
@@ -28,6 +29,7 @@ HEAD = """<!doctype html>
 <meta property="og:locale" content="pt_PT">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{url}">
+{alts}
 <style>html{{color-scheme:light dark}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 </head>
 <body>
@@ -76,7 +78,16 @@ def write(p, s):
     io.open(p, "w", encoding="utf-8").write(s)
 
 
+def alts(url):
+    """hreflang-альтернативы: та же страница с ?lang= для каждого языка."""
+    rows = ['<link rel="alternate" hreflang="%s" href="%s?lang=%s">' % (
+        'pt-PT' if L == 'pt' else L, url, L) for L in LANG_ORDER]
+    rows.append('<link rel="alternate" hreflang="x-default" href="%s">' % url)
+    return "\n".join(rows)
+
+
 def wrap(body, **kw):
+    kw.setdefault("alts", alts(kw["url"]))
     return HEAD.format(**kw) + body.strip() + FOOT
 
 
@@ -100,6 +111,7 @@ def page(body_file, name, out, crumbs, **meta):
     idx = body.rfind("<script>")
     body = body[:idx] + scripts + body[idx:]
     write(out, wrap(head + body, **meta))
+    PAGES.append(meta["url"])
     print("built:", out)
 
 
@@ -110,7 +122,8 @@ DESC_ROOT = ("Subsídio de Mobilidade: tem direito? Três perguntas, o guia pass
              "na lei. Gratuito, em cinco línguas. nDm — Nova Dádiva da Madeira.")
 write("index.html", wrap(root, lang="pt", title="Damos o Caminho — nDm", desc=DESC_ROOT,
       app="nDm", root="", ogtitle="Subsídio de Mobilidade — Damos o Caminho",
-      og=SITE + "/subsidio/og-image.png", url=SITE + "/"))
+      og=SITE + "/og-image.png", url=SITE + "/"))
+PAGES.append(SITE + "/")
 print("built: index.html")
 
 # ---------- /tap/ — выпуск 1 --------------------------------------------
@@ -122,6 +135,7 @@ DESC_TAP = ("Como pedir à TAP a fatura e o comprovativo de viagem para o subsí
 write("tap/index.html", wrap(tap, lang="pt", title="Documentos TAP — nDm", desc=DESC_TAP,
       app="Documentos TAP", root="../", ogtitle="Documentos TAP — Damos o caminho",
       og=SITE + "/tap/og-image.png", url=SITE + "/tap/"))
+PAGES.append(SITE + "/tap/")
 print("built: tap/index.html")
 
 # ---------- /subsidio/ — выпуск 2: подача + три справочных -------------
@@ -154,3 +168,26 @@ page("_src/ref-body.html", "familia", "subsidio/familia/index.html",
      desc="Como acrescentar cônjuge e filhos ao Subsídio de Mobilidade — e a regra número um se está a tratar do pedido por outra pessoa.",
      app="Subsídio", root="../../", ogtitle="Família e ajudar outra pessoa — Damos o Caminho",
      og=OG2, url=SITE + "/subsidio/familia/")
+
+
+# ---------- sitemap.xml + robots.txt -----------------------------------
+import datetime
+today = datetime.date.today().isoformat()
+rows = []
+for u in PAGES:
+    rows.append("  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>" % (u, today))
+    for L in LANG_ORDER:
+        rows.append('    <xhtml:link rel="alternate" hreflang="%s" href="%s?lang=%s"/>' % (
+            "pt-PT" if L == "pt" else L, u, L))
+    rows.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s"/>' % u)
+    rows.append("  </url>")
+
+write("sitemap.xml",
+      '<?xml version="1.0" encoding="UTF-8"?>\n'
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+      '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+      + "\n".join(rows) + "\n</urlset>\n")
+print("built: sitemap.xml (%d страниц)" % len(PAGES))
+
+write("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE)
+print("built: robots.txt")
