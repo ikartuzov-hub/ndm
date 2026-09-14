@@ -170,6 +170,24 @@ page("_src/ref-body.html", "familia", "subsidio/familia/index.html",
      og=OG2, url=SITE + "/subsidio/familia/")
 
 
+# ---------- /cartao/ — выпуск 3: Cartão de Residente na RAM --------------
+# У страницы свой движок и свои стили внутри тела; от общего контура ей нужны
+# только шапка с метатегами и пререндер. Тексты — в _src/i18n/cartao.<язык>.js.
+cartao = read("_src/cartao-body.html")
+cartao = cartao.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/cartao.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/cartao.%s.js" % L)))
+DESC_CARTAO = ("Como pedir o Cart\u00e3o de Residente na RAM no portal SIMplifica \u2014 ecr\u00e3 a ecr\u00e3, "
+               "com imagens de um pedido real. Trilhos a 0 \u20ac e subs\u00eddio do Porto Santo. "
+               "PT \u00b7 EN \u00b7 RU \u00b7 DE \u00b7 ES.")
+write("cartao/index.html", wrap(FONTS + cartao, lang="pt",
+      title="Cart\u00e3o de Residente na RAM: o pedido ecr\u00e3 a ecr\u00e3 \u2014 nDm",
+      desc=DESC_CARTAO, app="Cart\u00e3o", root="../",
+      ogtitle="Cart\u00e3o de Residente \u2014 Damos o Caminho",
+      og=SITE + "/cartao/og-image.png", url=SITE + "/cartao/"))
+PAGES.append(SITE + "/cartao/")
+print("built: cartao/index.html")
+
 # ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
 page("_src/news-body.html", "news", "lei-23-2026/index.html",
      CR + "Lei 23/2026",

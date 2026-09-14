@@ -27,7 +27,7 @@ import datetime
 DATE = datetime.date.today().isoformat()
 
 # страница → (её путь, нужен ли JSON-LD статьи)
-PAGES = ["", "tap/", "subsidio/", "subsidio/dinheiro/", "subsidio/rejeitado/",
+PAGES = ["", "tap/", "cartao/", "subsidio/", "subsidio/dinheiro/", "subsidio/rejeitado/",
          "subsidio/familia/", "lei-23-2026/"]
 
 
