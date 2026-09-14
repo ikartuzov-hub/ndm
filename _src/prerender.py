@@ -73,7 +73,33 @@ def jsonld(html, path, lang, ld):
     url = SITE + "/" + path
     lurl = url if lang == "pt" else url + lang + "/"
     blocks = []
-    if path == "lei-23-2026/":
+    if not path:
+        # корень домена: до 14.09 уходил в поиск вообще без разметки — пять адресов
+        # из сорока, и самые важные. WebSite опознаёт сайт, ItemList отдаёт ИИ-сетям
+        # оглавление с первой же страницы, без обхода ссылок.
+        blocks.append({
+            "@context": "https://schema.org", "@type": "WebSite",
+            "name": "nDm — Nova Dádiva da Madeira",
+            "alternateName": "Damos o Caminho",
+            "url": lurl, "inLanguage": HTML_LANG[lang],
+            "description": ld["desc"],
+            "isAccessibleForFree": True,
+            "publisher": {"@type": "Organization", "name": "SeedWave",
+                          "url": "https://seedwave.pt/"},
+            "author": {"@type": "Person", "name": "Igor Kartuzov",
+                       "url": "https://www.linkedin.com/in/igor-kartuzov/"},
+        })
+        if ld.get("refs"):
+            blocks.append({
+                "@context": "https://schema.org", "@type": "ItemList",
+                "name": ld["title"], "inLanguage": HTML_LANG[lang],
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i + 1,
+                     "name": name.strip(), "description": desc.strip(),
+                     "url": SITE + href if href.startswith("/") else href}
+                    for i, (href, name, desc) in enumerate(ld["refs"]) if name.strip()],
+            })
+    elif path == "lei-23-2026/":
         blocks.append({
             "@context": "https://schema.org", "@type": "NewsArticle",
             "headline": ld["h1"], "description": ld["desc"],
@@ -136,7 +162,13 @@ async def main():
                 ld = await pg.evaluate("""() => {
                     const qa = [...document.querySelectorAll('.qa')].map(e => [
                         e.querySelector('h3').textContent, e.querySelector('p').textContent]);
-                    return { qa: qa,
+                    // карточки разделов с корня — из отрисованного DOM, как и всё остальное
+                    const refs = [...document.querySelectorAll('#refs a.ref')].map(a => [
+                        a.getAttribute('href') || a.dataset.ll || '',
+                        (a.children[1] || {}).textContent || '',
+                        (a.children[2] || {}).textContent || '']);
+                    return { qa: qa, refs: refs,
+                             title: document.title || '',
                              h1: (document.querySelector('h1')||{}).textContent || '',
                              desc: (document.querySelector('meta[name=description]')||{}).content || '' };
                 }""")
