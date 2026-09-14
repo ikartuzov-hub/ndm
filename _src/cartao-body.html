@@ -174,7 +174,12 @@ function apply(){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
-  document.querySelectorAll('img.sc').forEach(function(im){im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';});
+  document.querySelectorAll('img.sc').forEach(function(im){
+    im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';
+    // alt из заголовка шага: экраны SIMplifica несут смысл, пустой alt их прячет
+    var st=im.closest('.step'), h=st&&st.querySelector('h3');
+    if(h&&h.textContent.trim())im.setAttribute('alt',h.textContent.trim());
+  });
   lsSet('ndm-lang',lang);
   setMeta(t);
   crumble();

@@ -26,10 +26,18 @@ window.NDM = (function(){
     if (w.p2) h += '<p>' + w.p2 + '</p>';
     return h;
   }
+  /* текст подписи → безопасное значение атрибута alt */
+  function attr(s){
+    return String(s == null ? '' : s)
+      .replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  }
   function figs(list){
     if (!list || !list.length) return '';
     return list.map(function(f){
-      return '<figure><img src="' + f.src + '" alt="" loading="lazy"><figcaption>' + f.cap + '</figcaption></figure>';
+      // подпись идёт и в alt: это экраны портала, а не украшение —
+      // без описания их не понимают ни краулер, ни ИИ-сети, ни экранный диктор
+      return '<figure><img src="' + f.src + '" alt="' + attr(f.cap) + '" loading="lazy"><figcaption>' + f.cap + '</figcaption></figure>';
     }).join('');
   }
   function marks(list){
@@ -112,6 +120,14 @@ window.NDM = (function(){
       if (typeof t[k] === 'string') nodes[i].innerHTML = t[k];
     }
     setMeta(t);
+
+    // страховка для картинок, размеченных прямо в теле страницы
+    var figs2 = document.querySelectorAll('figure img');
+    for (var q = 0; q < figs2.length; q++){
+      if (figs2[q].getAttribute('alt')) continue;
+      var cap = figs2[q].parentNode.querySelector('figcaption');
+      if (cap && cap.textContent.trim()) figs2[q].setAttribute('alt', cap.textContent.trim());
+    }
 
     var hub = document.getElementById('hubLink');
     if (hub) hub.href = 'https://seedwave.pt/hub/?lang=' + lang;
