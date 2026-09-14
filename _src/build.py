@@ -170,6 +170,14 @@ page("_src/ref-body.html", "familia", "subsidio/familia/index.html",
      og=OG2, url=SITE + "/subsidio/familia/")
 
 
+# ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
+page("_src/news-body.html", "news", "lei-23-2026/index.html",
+     CR + "Lei 23/2026",
+     lang="pt", title="O tecto de 400 € saiu da lei — nDm",
+     desc="A Lei 23/2026 acabou com o limite máximo de reembolso das viagens entre a Madeira e o continente. A página oficial continua a dizer 400 €.",
+     app="Subsídio", root="../", ogtitle="O tecto de 400 € saiu da lei — Damos o Caminho",
+     og=SITE + "/og-image.png", url=SITE + "/lei-23-2026/")
+
 # ---------- sitemap.xml + robots.txt -----------------------------------
 import datetime
 today = datetime.date.today().isoformat()
@@ -191,3 +199,10 @@ print("built: sitemap.xml (%d страниц)" % len(PAGES))
 
 write("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE)
 print("built: robots.txt")
+
+# ---------- пререндер -----------------------------------------------------
+# ОБЯЗАТЕЛЕН: без него на сайте лежат пустые оболочки, которые краулер не читает.
+# Поэтому вызывается прямо здесь, а не отдельной командой — чтобы нельзя было забыть.
+import subprocess, sys
+print()
+subprocess.run([sys.executable, "_src/prerender.py"], check=True)

@@ -7,6 +7,7 @@ window.NDM = (function(){
   var LANGS = [], lang, pageRender;
 
   function pickLang(){
+    if (window.NDM_LANG && LANGS.indexOf(window.NDM_LANG) >= 0) return window.NDM_LANG;
     var q = new URLSearchParams(location.search).get('lang');
     if (LANGS.indexOf(q) >= 0) return q;
     var st = null;
@@ -47,9 +48,23 @@ window.NDM = (function(){
       '<p class="hint">' + t.openHint + '</p>' +
     '</div>';
   }
+  function langPath(L){
+    var parts = location.pathname.split('/').filter(Boolean);
+    if (parts.length && ORDER.indexOf(parts[parts.length - 1]) >= 0) parts.pop();
+    if (L !== 'pt') parts.push(L);
+    return '/' + (parts.length ? parts.join('/') + '/' : '');
+  }
+
   function withLang(href){
     try {
       var u = new URL(href, location.href);
+      if (window.NDM_LANG){
+        // языковые адреса: /subsidio/ru/ вместо /subsidio/?lang=ru
+        var parts = u.pathname.split('/').filter(Boolean);
+        if (parts.length && ORDER.indexOf(parts[parts.length - 1]) >= 0) parts.pop();
+        if (lang !== 'pt') parts.push(lang);
+        return '/' + (parts.length ? parts.join('/') + '/' : '') + u.hash;
+      }
       u.searchParams.set('lang', lang);
       return u.pathname + u.search + u.hash;
     } catch(e){ return href; }
@@ -128,6 +143,7 @@ window.NDM = (function(){
         if (!b) return;
         lang = b.getAttribute('data-l');
         try { localStorage.setItem('ndm-lang', lang); } catch(err){}
+        if (window.NDM_LANG){ location.href = langPath(lang); return; }
         closeMenu(); render();
         try { var u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null, '', u); } catch(err){}
       });
@@ -183,5 +199,5 @@ window.NDM = (function(){
     });
   }
 
-  return { init: init, P: P, warn: warnBlock, figs: figs, marks: marks, act: actBlock, lang: function(){ return lang; } };
+  return { init: init, P: P, lang: function(){ return lang; }, warn: warnBlock, figs: figs, marks: marks, act: actBlock };
 })();

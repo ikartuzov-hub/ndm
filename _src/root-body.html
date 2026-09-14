@@ -105,7 +105,7 @@ h1{font-size:clamp(2rem,5.6vw,3rem); line-height:1.08; letter-spacing:-.015em}
 
 /* ---- hero stage (home) ---- */
 .stage{padding-block:30px 44px; max-width:44rem}
-.wordmark{font-family:var(--display); font-weight:700; line-height:.98;
+.wordmark{font-family:var(--display); font-weight:700; line-height:.98; margin:0;
   font-size:clamp(2.3rem,9vw,4.1rem); letter-spacing:-.02em}
 .wordmark span{color:var(--accent)}
 .flightbox{margin-block:14px 6px}
@@ -216,7 +216,7 @@ footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color
   <!-- ================= HOME ================= -->
   <main id="v-home">
     <section class="stage">
-      <p class="wordmark">Subsídio<br><span>de Mobilidade</span></p>
+      <h1 class="wordmark">Subsídio<br><span>de Mobilidade</span></h1>
       <div class="flightbox">
         <svg id="flight" viewBox="0 0 400 210" role="img" aria-hidden="true">
           <!-- Portugal: costa oeste, do Minho ao Algarve -->
@@ -264,47 +264,10 @@ footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color
         <button class="btn ghost" data-go="guia" data-t="goGuia"></button>
       </div>
       <p class="heroNote">
-        <button class="linkish" data-go="news" data-t="newsLink"></button>
+        <a class="linkish" data-ll="/lei-23-2026/" data-t="newsLink"></a>
         <span aria-hidden="true"> · </span>
         <button class="linkish" data-share data-t="shareBtn"></button>
       </p>
-    </section>
-  </main>
-
-  <!-- ================= NEWS ================= -->
-  <main id="v-news" hidden>
-    <header class="hero">
-      <div class="eyebrow" data-t="eyebrow"></div>
-      <h1 data-t="h1"></h1>
-      <p class="lead" data-t="lead"></p>
-      <p class="stamp" data-t="stamp"></p>
-    </header>
-
-    <section class="sources">
-      <div class="src"><span class="tag" data-t="s1t"></span><span class="big" data-t="s1v"></span><p data-t="s1p"></p></div>
-      <div class="src"><span class="tag" data-t="s2t"></span><span class="big" data-t="s2v"></span><p data-t="s2p"></p></div>
-      <div class="src now"><span class="tag" data-t="s3t"></span><span class="big" data-t="s3v"></span><p data-t="s3p"></p></div>
-    </section>
-
-    <section class="calc">
-      <h2 data-t="ch"></h2>
-      <p class="hint" data-t="chint"></p>
-      <div class="field">
-        <label for="cost" data-t="clabel"></label>
-        <input id="cost" type="text" inputmode="decimal" value="444,15">
-      </div>
-      <div class="out">
-        <div class="o"><div class="k" data-t="cold"></div><div class="v" id="vOld">—</div></div>
-        <div class="o"><div class="k" data-t="cnew"></div><div class="v" id="vNew">—</div></div>
-        <div class="o win"><div class="k" data-t="cdiff"></div><div class="v" id="vDiff">—</div></div>
-      </div>
-      <p class="note" data-t="cnote"></p>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2 data-t="th"></h2><p data-t="tp"></p></div>
-      <div class="traps" id="traps"></div>
-      <div class="actions"><a class="btn" data-ll="/subsidio/" data-t="goPedido"></a></div>
     </section>
   </main>
 
@@ -775,9 +738,26 @@ let lang = "pt", view = "home", ans = [null,null,null], xs = {fam:null, help:nul
 
 const fmt = (n) => new Intl.NumberFormat(LOC[lang], {style:"currency", currency:"EUR", minimumFractionDigits:2}).format(n);
 const $ = (id) => document.getElementById(id);
-const ll = (p) => p.includes("#") ? p.replace("#", "?lang=" + lang + "#") : p + "?lang=" + lang;
+const ORDER5 = ["pt","en","ru","de","es"];
+const langPath = (L) => {
+  const parts = location.pathname.split("/").filter(Boolean);
+  if (parts.length && ORDER5.includes(parts[parts.length-1])) parts.pop();
+  if (L !== "pt") parts.push(L);
+  return "/" + (parts.length ? parts.join("/") + "/" : "");
+};
+const ll = (p) => {
+  if (window.NDM_LANG){
+    const u = new URL(p, location.origin);
+    const parts = u.pathname.split("/").filter(Boolean);
+    if (parts.length && ORDER5.includes(parts[parts.length-1])) parts.pop();
+    if (lang !== "pt") parts.push(lang);
+    return "/" + (parts.length ? parts.join("/") + "/" : "") + u.hash;
+  }
+  return p.includes("#") ? p.replace("#", "?lang=" + lang + "#") : p + "?lang=" + lang;
+};
 
 function calc(){
+  if (!$("cost")) return;
   const c = parseFloat(String($("cost").value).replace(/\s/g,"").replace(",", "."));
   const set = (id,v) => $(id).textContent = v;
   if (!isFinite(c) || c <= 0){ set("vOld","—"); set("vNew","—"); set("vDiff","—"); return; }
@@ -795,7 +775,7 @@ function url(p){
 
 function go(p){
   view = p;
-  ["home","check","guia","news"].forEach(v => $("v-"+v).hidden = (v !== p));
+  ["home","check","guia"].forEach(v => $("v-"+v).hidden = (v !== p));
   const u = new URL(location.href);
   u.searchParams.set("p", p); u.searchParams.set("lang", lang);
   history.replaceState({}, "", u);
@@ -873,9 +853,9 @@ function render(){
   });
   $("langBtn").textContent = lang.toUpperCase();
   const hl = $("hubLink"); if (hl) hl.href = "https://seedwave.pt/hub/?lang=" + lang;
-  $("scaleNote").textContent = t.scaleNote;
+  if ($("scaleNote")) $("scaleNote").textContent = t.scaleNote;
 
-  const tb = $("traps"); tb.innerHTML = "";
+  const tb = $("traps"); if (tb){ tb.innerHTML = "";
   t.traps.forEach(([code, head, body]) => {
     const row = document.createElement("div"); row.className = "trap";
     const c = document.createElement("div"); c.className = "code"; c.textContent = code;
@@ -883,7 +863,7 @@ function render(){
     const h = document.createElement("h3"); h.textContent = head;
     const p = document.createElement("p"); p.textContent = body;
     box.append(h, p); row.append(c, box); tb.append(row);
-  });
+  }); }
 
   const cl = $("clist"); cl.innerHTML = "";
   t.cl.forEach(item => { const li = document.createElement("li"); li.textContent = item; cl.append(li); });
@@ -917,7 +897,7 @@ const menu = $("langMenu"), lbtn = $("langBtn");
 Object.keys(L).forEach(k => {
   const b = document.createElement("button");
   b.textContent = L[k].name;
-  b.onclick = () => { lang = k; try{localStorage.setItem("ndm-lang", k);}catch(e){} menu.hidden = true; lbtn.setAttribute("aria-expanded","false"); render(); paintMenu(); go(view); };
+  b.onclick = () => { lang = k; try{localStorage.setItem("ndm-lang", k);}catch(e){} if (window.NDM_LANG){ location.href = langPath(k); return; } menu.hidden = true; lbtn.setAttribute("aria-expanded","false"); render(); paintMenu(); go(view); };
   menu.append(b);
 });
 function paintMenu(){ [...menu.children].forEach((b,i) => b.setAttribute("aria-current", String(Object.keys(L)[i] === lang))); }
@@ -945,7 +925,7 @@ tbtn.onclick = () => {
   tbtn.textContent = dark ? "☾" : "☀";
 };
 
-$("cost").addEventListener("input", calc);
+if ($("cost")) $("cost").addEventListener("input", calc);
 $("yr").textContent = new Date().getFullYear();
 
 
@@ -1030,7 +1010,8 @@ if (L[nav]) lang = nav;
 let stl = null; try { stl = localStorage.getItem("ndm-lang"); } catch(e){}
 if (stl && L[stl]) lang = stl;
 const ql = params.get("lang"); if (ql && L[ql]) lang = ql;
+if (window.NDM_LANG && L[window.NDM_LANG]) lang = window.NDM_LANG;
 const qp = params.get("p");
 render(); paintMenu();
-go(["home","check","guia","news"].includes(qp) ? qp : "home");
+go(["home","check","guia"].includes(qp) ? qp : "home");
 </script>

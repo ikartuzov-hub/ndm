@@ -4,61 +4,351 @@
   <url>
     <loc>https://ajuda.seedwave.pt/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/"/>
   </url>
   <url>
     <loc>https://ajuda.seedwave.pt/tap/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/tap/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/tap/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/tap/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/tap/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/tap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/tap/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/tap/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/tap/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/tap/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/tap/"/>
   </url>
   <url>
     <loc>https://ajuda.seedwave.pt/subsidio/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/"/>
   </url>
   <url>
     <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/dinheiro/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/dinheiro/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/dinheiro/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/dinheiro/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/dinheiro/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/dinheiro/"/>
   </url>
   <url>
     <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/rejeitado/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/rejeitado/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/rejeitado/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/rejeitado/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/rejeitado/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/rejeitado/"/>
   </url>
   <url>
     <loc>https://ajuda.seedwave.pt/subsidio/familia/</loc>
     <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/familia/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/familia/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/familia/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/subsidio/familia/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/subsidio/familia/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/subsidio/familia/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/subsidio/familia/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/subsidio/familia/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/subsidio/familia/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/lei-23-2026/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/lei-23-2026/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/lei-23-2026/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/lei-23-2026/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/lei-23-2026/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/lei-23-2026/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/lei-23-2026/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/lei-23-2026/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/lei-23-2026/ru/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/lei-23-2026/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/lei-23-2026/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/lei-23-2026/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/lei-23-2026/de/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/lei-23-2026/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/lei-23-2026/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/lei-23-2026/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/lei-23-2026/es/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/lei-23-2026/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/lei-23-2026/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/lei-23-2026/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/lei-23-2026/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/lei-23-2026/"/>
   </url>
 </urlset>

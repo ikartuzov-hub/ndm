@@ -1,0 +1,106 @@
+<div class="wrap">
+
+  {{BAR}}
+
+  <header class="cover">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <p class="by"><time id="stamp" data-t="stamp"></time></p>
+  </header>
+
+  <section class="sect">
+    <div class="cols3" id="sources"></div>
+  </section>
+
+  <section class="sect">
+    <h2 data-t="ch"></h2>
+    <p data-t="chint"></p>
+    <div class="calcbox">
+      <div class="field">
+        <label for="cost" data-t="clabel"></label>
+        <input id="cost" type="text" inputmode="decimal" value="600,00">
+      </div>
+      <div class="outs">
+        <div class="o"><div class="k" data-t="cold"></div><div class="v" id="vOld">—</div></div>
+        <div class="o"><div class="k" data-t="cnew"></div><div class="v" id="vNew">—</div></div>
+        <div class="o win"><div class="k" data-t="cdiff"></div><div class="v" id="vDiff">—</div></div>
+      </div>
+      <p class="calcnote" data-t="cnote"></p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="th"></h2>
+    <p data-t="tp"></p>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sect">
+    <h2 data-t="faqH"></h2>
+    <div id="faq"></div>
+  </section>
+
+  <section class="sect">
+    <h2 data-t="moreH"></h2>
+    <p data-t="moreP"></p>
+    <div class="ctas">
+      <a class="btn btn-go" href="../subsidio/" data-t="moreCta"></a>
+      <a class="btn btn-copy" href="../" data-t="checkCta"></a>
+    </div>
+  </section>
+
+  <section class="sect">
+    <h2 data-t="srcH"></h2>
+    <ul class="srclist" id="srclist"></ul>
+  </section>
+
+  <section class="end">
+    <button class="share" id="share" type="button"><span data-t="shareBtn"></span></button>
+  </section>
+
+  {{FOOTER}}
+
+</div>
+
+<script>
+NDM.init(function(t){
+  var $ = function(id){ return document.getElementById(id); };
+
+  $('sources').innerHTML = [['s1',''],['s2',''],['s3',' now']].map(function(p){
+    return '<div class="src' + p[1] + '"><span class="tag">' + t[p[0]+'t'] + '</span>' +
+           '<span class="big">' + t[p[0]+'v'] + '</span><p>' + t[p[0]+'p'] + '</p></div>';
+  }).join('');
+
+  $('traps').innerHTML = t.traps.map(function(r){
+    return '<div class="trap"><div class="code">' + r[0] + '</div>' +
+           '<div><h3>' + r[1] + '</h3><p>' + r[2] + '</p></div></div>';
+  }).join('');
+
+  $('faq').innerHTML = t.faq.map(function(q){
+    return '<div class="qa"><h3>' + q[0] + '</h3><p>' + q[1] + '</p></div>';
+  }).join('');
+
+  $('srclist').innerHTML = t.src.map(function(r){
+    return '<li><a class="lnk" href="' + r[1] + '" target="_blank" rel="noopener">' + r[0] + '</a> — ' + r[2] + '</li>';
+  }).join('');
+
+  var COPAY = 79, OLDCAP = 400;
+  var LOC = { pt:'pt-PT', en:'en-GB', ru:'ru-RU', de:'de-DE', es:'es-ES' };
+  function calc(){
+    var el = $('cost'); if (!el) return;
+    var c = parseFloat(String(el.value).replace(/\s/g, '').replace(',', '.'));
+    var f = function(n){ return new Intl.NumberFormat(LOC[NDM.lang()], { style:'currency', currency:'EUR', minimumFractionDigits:2 }).format(n); };
+    if (!isFinite(c) || c <= 0){ $('vOld').textContent = $('vNew').textContent = $('vDiff').textContent = '—'; return; }
+    var o = Math.max(0, Math.min(c, OLDCAP) - COPAY), n = Math.max(0, c - COPAY);
+    $('vOld').textContent = f(o); $('vNew').textContent = f(n);
+    $('vDiff').textContent = (n - o > 0 ? '+' : '') + f(n - o);
+  }
+  $('cost').addEventListener('input', calc);
+  calc();
+});
+</script>
