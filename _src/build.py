@@ -188,6 +188,29 @@ write("cartao/index.html", wrap(FONTS + cartao, lang="pt",
 PAGES.append(SITE + "/cartao/")
 print("built: cartao/index.html")
 
+# ---------- /magnolia/ — SIMplifica: бронь корта в Quinta Magnólia --------
+# Устроена как /cartao/: свой движок внутри тела, тексты в _src/i18n/magnolia.*.js.
+# Иконка «на экран Домой» своя — Σ серии SIMplifica в терракоте, подпись «Magnólia».
+subprocess_run = __import__("subprocess").run
+subprocess_run([__import__("sys").executable, "_src/magnolia-assets.py"], check=True)
+mag = read("_src/magnolia-body.html")
+mag = mag.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/magnolia.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/magnolia.%s.js" % L)))
+DESC_MAG = ("Reservar padel, ténis ou squash na Quinta Magnólia, no Funchal, pelo portal SIMplifica: "
+            "o caminho completo, os preços oficiais e a semana gratuita de 23 a 30 de setembro.")
+html = wrap(FONTS + mag, lang="pt",
+            title="Reservar um campo de padel na Quinta Magnólia — nDm",
+            desc=DESC_MAG, app="Magnólia", root="../",
+            ogtitle="Padel na Quinta Magnólia — reservar passo a passo",
+            og=SITE + "/magnolia/og-image.png", url=SITE + "/magnolia/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/magnolia/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/magnolia/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/magnolia/manifest.webmanifest"'))
+write("magnolia/index.html", html)
+PAGES.append(SITE + "/magnolia/")
+print("built: magnolia/index.html")
+
 # ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
 page("_src/news-body.html", "news", "lei-23-2026/index.html",
      CR + "Lei 23/2026",
