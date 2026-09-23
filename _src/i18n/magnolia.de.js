@@ -12,7 +12,7 @@ pad:"Drei Padelplätze, vier Tennisplätze und ein Squashcourt in der Rua Dr. Pi
 priceT:"Was eine Stunde kostet",
 thC:"Platz",thD:"Werktags bis 18 Uhr",thE:"Ab 18 Uhr und am Wochenende",
 rT12:"Tennis 1 und 2",rT34:"Tennis 3 und 4",
-priceNoteT:"Offizielle Tabelle, inklusive 22 % MwSt. Mindestens eine Stunde; jede weitere halbe Stunde kostet die Hälfte.",
+priceNoteT:"Offizielle Gebührentabelle (Portaria 505/2019). Privatpersonen zahlen ohne MwSt.: Padel kostet tagsüber 8 € pro Stunde, ab 18 Uhr und am Wochenende 10 €. Mindestens eine Stunde; jede weitere halbe Stunde kostet die Hälfte.",
 d1:"Gruppe, in der alle 65 oder älter sind — halber Preis.",
 d2:"Mit Cartão Jovem — 20 % weniger. Beide Ermäßigungen wählt man im Feld «Desconto» des Formulars.",
 d3:"Keine portugiesische Steuernummer? Auf die Rechnung kommt die Endverbraucher-NIF 999999990.",

@@ -12,7 +12,7 @@ pad:"Three padel courts, four tennis courts and a squash court on Rua Dr. Pita. 
 priceT:"What an hour costs",
 thC:"Court",thD:"Weekday, before 6 pm",thE:"After 6 pm and weekends",
 rT12:"Tennis 1 and 2",rT34:"Tennis 3 and 4",
-priceNoteT:"Official table, 22 % VAT included. One hour minimum; each extra half hour costs half.",
+priceNoteT:"Official fee table (Portaria 505/2019). A private person pays without VAT: padel is 8 € an hour in the day and 10 € after 6 pm and at weekends. One hour minimum; each extra half hour costs half.",
 d1:"A group where everyone is 65 or older — half price.",
 d2:"With a Cartão Jovem youth card — 20 % off. Both reductions are chosen in the form's «Desconto» field.",
 d3:"No Portuguese tax number? The invoice takes the final-consumer NIF 999999990.",

@@ -12,7 +12,7 @@ pad:"Três campos de padel, quatro de ténis e um de squash, na Rua Dr. Pita. Ab
 priceT:"Quanto custa uma hora",
 thC:"Campo",thD:"Dia útil, até às 18h",thE:"Depois das 18h e fim de semana",
 rT12:"Ténis 1 e 2",rT34:"Ténis 3 e 4",
-priceNoteT:"Tabela oficial, com IVA a 22 %. Mínimo de uma hora; cada meia hora a mais custa metade.",
+priceNoteT:"Tabela oficial de taxas (Portaria 505/2019). Um particular paga sem IVA: padel 8 € por hora de dia e 10 € depois das 18h e ao fim de semana. Mínimo de uma hora; cada meia hora a mais custa metade.",
 d1:"Grupo em que todos têm 65 anos ou mais — metade do preço.",
 d2:"Com Cartão Jovem — menos 20 %. Estas reduções escolhem-se no campo «Desconto» do formulário.",
 d3:"Sem NIF português? Na fatura usa-se o NIF de consumidor final, 999999990.",

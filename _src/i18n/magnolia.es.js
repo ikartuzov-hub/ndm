@@ -12,7 +12,7 @@ pad:"Tres pistas de pádel, cuatro de tenis y una de squash, en la Rua Dr. Pita.
 priceT:"Cuánto cuesta una hora",
 thC:"Pista",thD:"Entre semana, hasta las 18 h",thE:"Desde las 18 h y fines de semana",
 rT12:"Tenis 1 y 2",rT34:"Tenis 3 y 4",
-priceNoteT:"Tabla oficial, IVA del 22 % incluido. Mínimo una hora; cada media hora extra cuesta la mitad.",
+priceNoteT:"Tabla oficial de tasas (Portaria 505/2019). Un particular paga sin IVA: el pádel cuesta 8 € la hora de día y 10 € desde las 18 h y los fines de semana. Mínimo una hora; cada media hora extra cuesta la mitad.",
 d1:"Grupo en que todos tienen 65 años o más: mitad de precio.",
 d2:"Con Cartão Jovem: un 20 % menos. Las dos reducciones se eligen en el campo «Desconto» del formulario.",
 d3:"¿Sin NIF portugués? En la factura se pone el NIF de consumidor final, 999999990.",
