@@ -29,7 +29,10 @@ def mark(d, k, col, ox=0, oy=0):
     d.line(pts, fill=col, width=w, joint="curve")
     for p in (pts[0], pts[-1]):
         d.ellipse([p[0] - w / 2, p[1] - w / 2, p[0] + w / 2, p[1] + w / 2], fill=col)
-    d.line(wave(k, ox, oy), fill=col, width=w, joint="curve")
+    for t in range(0, 601):
+        x = ox + (20 + t / 600 * 60) * k
+        y = oy + (86 - 6 * math.sin(t / 600 * 2 * math.pi)) * k
+        d.ellipse([x - w / 2, y - w / 2, x + w / 2, y + w / 2], fill=col)
 
 
 def tile(size):

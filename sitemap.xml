@@ -451,4 +451,54 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/magnolia/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/magnolia/"/>
   </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/trilhos/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/trilhos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/trilhos/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/trilhos/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/trilhos/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/trilhos/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/trilhos/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/trilhos/en/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/trilhos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/trilhos/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/trilhos/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/trilhos/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/trilhos/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/trilhos/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/trilhos/ru/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/trilhos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/trilhos/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/trilhos/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/trilhos/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/trilhos/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/trilhos/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/trilhos/de/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/trilhos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/trilhos/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/trilhos/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/trilhos/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/trilhos/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/trilhos/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/trilhos/es/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/trilhos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/trilhos/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/trilhos/ru/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/trilhos/de/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/trilhos/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/trilhos/"/>
+  </url>
 </urlset>

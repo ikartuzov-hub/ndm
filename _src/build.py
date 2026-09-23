@@ -180,11 +180,17 @@ cartao = cartao.replace("{{I18N}}", "\n".join(
 DESC_CARTAO = ("Como pedir o Cart\u00e3o de Residente na RAM no portal SIMplifica \u2014 ecr\u00e3 a ecr\u00e3, "
                "com imagens de um pedido real. Trilhos a 0 \u20ac e subs\u00eddio do Porto Santo. "
                "PT \u00b7 EN \u00b7 RU \u00b7 DE \u00b7 ES.")
+# \u0438\u043a\u043e\u043d\u043a\u0430 \u00ab\u043d\u0430 \u044d\u043a\u0440\u0430\u043d \u0414\u043e\u043c\u043e\u0439\u00bb \u2014 \u03a3 \u0441\u0435\u0440\u0438\u0438 SIMplifica \u0432 \u0441\u0438\u043d\u0435\u043c, \u043f\u043e\u0434\u043f\u0438\u0441\u044c \u00abCart\u00e3o\u00bb
+__import__("subprocess").run([__import__("sys").executable, "_src/sigma_assets.py", "cartao",
+                              "#1F5FA8", "#E8F0FA", "Cart\u00e3o", "/cartao/"], check=True)
 write("cartao/index.html", wrap(FONTS + cartao, lang="pt",
       title="Cart\u00e3o de Residente na RAM: o pedido ecr\u00e3 a ecr\u00e3 \u2014 nDm",
       desc=DESC_CARTAO, app="Cart\u00e3o", root="../",
       ogtitle="Cart\u00e3o de Residente \u2014 Damos o Caminho",
-      og=SITE + "/cartao/og-image.png", url=SITE + "/cartao/"))
+      og=SITE + "/cartao/og-image.png", url=SITE + "/cartao/")
+      .replace('href="../icon.svg?v=1"', 'href="/cartao/icon.svg?v=1"')
+      .replace('href="../apple-touch-icon.png"', 'href="/cartao/icon-180.png"')
+      .replace('href="../manifest.webmanifest"', 'href="/cartao/manifest.webmanifest"'))
 PAGES.append(SITE + "/cartao/")
 print("built: cartao/index.html")
 
@@ -210,6 +216,29 @@ html = (html.replace('href="../icon.svg?v=1"', 'href="/magnolia/icon.svg?v=1"')
 write("magnolia/index.html", html)
 PAGES.append(SITE + "/magnolia/")
 print("built: magnolia/index.html")
+
+# ---------- /trilhos/ — SIMplifica: бронь тропы (выпуск 4) ---------------
+# Σ серии SIMplifica в зелёном, подпись «Trilhos». Движок и стили — внутри тела.
+subprocess_run([__import__("sys").executable, "_src/sigma_assets.py", "trilhos",
+                "#2E7D4F", "#EAF5EE", "Trilhos", "/trilhos/"], check=True)
+subprocess_run([__import__("sys").executable, "_src/trilhos-og.py"], check=True)
+tri = read("_src/trilhos-body.html")
+tri = tri.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/trilhos.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/trilhos.%s.js" % L)))
+DESC_TRI = ("Reservar um percurso pedestre na Madeira no SIMplifica: residentes a 0 € e visitantes "
+            "no mesmo pedido, sem conta, passo a passo, com as armadilhas do formulário.")
+html = wrap(FONTS + tri, lang="pt",
+            title="Reservar um trilho na Madeira: residentes e visitantes num só pedido — nDm",
+            desc=DESC_TRI, app="Trilhos", root="../",
+            ogtitle="Reservar um trilho na Madeira — passo a passo",
+            og=SITE + "/trilhos/og-image.png", url=SITE + "/trilhos/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/trilhos/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/trilhos/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/trilhos/manifest.webmanifest"'))
+write("trilhos/index.html", html)
+PAGES.append(SITE + "/trilhos/")
+print("built: trilhos/index.html")
 
 # ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
 page("_src/news-body.html", "news", "lei-23-2026/index.html",

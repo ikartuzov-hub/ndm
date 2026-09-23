@@ -1,0 +1,223 @@
+<style>
+:root{color-scheme:light;--bg:#FAF6F1;--ink:#1A1512;--ink-soft:#6B5C51;--line:#E6D9CC;--accent:#2E7D4F;--accent-soft:#E6F2EA;--card:#fff;--warn:#B23A0E}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12150F;--ink:#EEF2EA;--ink-soft:#A9B5A6;--line:#2C3527;--accent:#6FC08F;--accent-soft:#1C2A20;--card:#181D15;--warn:#FF8A4C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
+h1{font-size:28px;margin:4px 0 10px}h2{font-size:23px;margin:44px 0 12px}h3{font-size:19px;margin:0 0 6px}
+.brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:6}
+.topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
+.rb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
+#langmenu.on{display:block}
+#langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
+#langmenu button.cur{color:var(--accent);font-weight:500}
+header{padding:72px 0 8px}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+.quota{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:6px 0 16px}
+.quota .slot{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+.qrow{display:grid;grid-template-columns:118px 1fr 44px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.qbar{height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+.qbar i{display:block;height:100%;width:0;border-radius:6px;background:var(--accent);animation:fill 1.4s cubic-bezier(.3,.9,.3,1) forwards}
+.qrow.v .qbar i{background:var(--warn)}
+.qrow b{font-family:"IBM Plex Mono",monospace;font-weight:500;text-align:right;font-size:13px}
+.qnote{font-size:13px;color:var(--ink-soft);margin:8px 0 0}
+@keyframes fill{to{width:var(--w)}}
+.price{display:flex;gap:10px;margin:0 0 14px}
+.price div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.price b{display:block;font-family:Bitter,serif;font-size:30px;line-height:1.1}
+.price .r b{color:var(--accent)}
+.price span{font-size:13px;color:var(--ink-soft)}
+@keyframes markIn{0%{transform:translate(40vw,45vh) scale(9);opacity:0}25%{opacity:1}60%{transform:translate(40vw,45vh) scale(9)}100%{transform:translate(0,0) scale(1)}}
+.brandmark svg{animation:markIn 2.2s cubic-bezier(.65,0,.25,1) both;transform-origin:center;display:block}
+.lead{color:var(--ink-soft);font-size:16px;margin:0}
+.cta{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:12px;padding:16px;font-weight:500;text-decoration:none;margin:18px 0 6px;font-size:17px;border:0;width:100%;font-family:inherit;cursor:pointer}
+.cta.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
+.warn{background:var(--accent);color:#fff;border-radius:14px;padding:20px 18px;margin:30px 0 18px}
+.warn h2{margin:0;color:#fff;font-size:22px}
+.warn p{margin:10px 0 0;font-size:16px;color:#EAF5EE}
+table.pr{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table.pr td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+table.pr td.n{text-align:right;white-space:nowrap;font-family:"IBM Plex Mono",monospace;font-size:14px}
+table.pr tr:last-child td{border-bottom:0}
+.note{font-size:14px;color:var(--ink-soft);margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0 6px}
+.grid span{height:36px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:12.5px;color:var(--ink-soft);display:flex;align-items:center;justify-content:center}
+.grid span.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid span.no{background:#FBE9E7;color:#B0786A;border-color:#F3D3CC}
+.step{margin:34px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+.snum{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:Bitter,serif;font-weight:600;font-size:16px;margin-bottom:10px}
+ul{padding-left:20px}li{margin:7px 0}
+a{color:var(--accent)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.trap{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:16px 18px;margin:18px 0 0}
+.trap h3{color:var(--accent)}
+.nx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;display:block;text-decoration:none;color:var(--ink)}
+.nx h3{color:var(--accent)}
+.src{font-size:14.5px;color:var(--ink-soft)}.src li{margin:9px 0}
+#shareOk{display:block;text-align:center;font-size:14px;color:var(--ink-soft);min-height:20px}
+footer{margin-top:56px;padding-bottom:56px;text-align:center;font-size:15px;color:var(--ink-soft)}
+footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px}
+@media(max-width:420px){.qrow{grid-template-columns:96px 1fr 40px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){.brandmark svg{animation:none!important}.qbar i{animation:none;width:var(--w)}}
+</style>
+
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M68 20 L32 20 L52 45 L32 70 L68 70"/><path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></svg></a>
+<div class="topctrl"><button class="rb" id="langBtn" type="button">PT</button><button class="rb" id="themeBtn" type="button">☀</button></div>
+<div id="langmenu"></div>
+
+<div class="wrap">
+<header>
+  <span class="tag" data-t="tag"></span>
+  <div class="price">
+    <div class="r"><b>0 €</b><span data-t="pRes"></span></div>
+    <div><b>4,50 €</b><span data-t="pVis"></span></div>
+  </div>
+  <div class="quota" aria-hidden="true">
+    <div class="slot">PR 11 · Vereda dos Balcões · 09:00–09:30</div>
+    <div class="qrow"><span data-t="qRes"></span><div class="qbar"><i style="--w:100%"></i></div><b>100%</b></div>
+    <div class="qrow"><span data-t="qOp"></span><div class="qbar"><i style="--w:37%;animation-delay:.3s"></i></div><b>37%</b></div>
+    <div class="qrow v"><span data-t="qVis"></span><div class="qbar"><i style="--w:3%;animation-delay:.6s"></i></div><b>3%</b></div>
+    <p class="qnote" data-t="qNote"></p>
+  </div>
+  <h1 data-t="h1"></h1>
+  <p class="lead" data-t="lead"></p>
+  <a class="cta" href="#s1" data-t="cta"></a>
+</header>
+
+<div class="warn">
+  <h2 data-t="w1"></h2>
+  <p data-t="w2"></p>
+</div>
+
+<h2 data-t="priceT"></h2>
+<table class="pr">
+<tr><td data-t="r1"></td><td class="n">4,50 €</td></tr>
+<tr><td data-t="r2"></td><td class="n">4,50 €</td></tr>
+<tr><td data-t="r3"></td><td class="n">10,50 €</td></tr>
+<tr><td data-t="r4"></td><td class="n">9,00 €</td></tr>
+<tr><td data-t="r5"></td><td class="n">22,50 € · 52,50 €</td></tr>
+<tr><td data-t="r6"></td><td class="n">0 €</td></tr>
+</table>
+<p class="note" data-t="priceNote"></p>
+
+<h2 data-t="howT"></h2>
+<div class="step" id="s1"><span class="snum">1</span><h3 data-t="s1t"></h3><p data-t="s1"></p><a class="cta" href="https://simplifica.madeira.gov.pt/services/78-82-259" target="_blank" rel="noopener" data-t="s1cta"></a></div>
+<div class="step"><span class="snum">2</span><h3 data-t="s2t"></h3><p data-t="s2"></p>
+<div class="grid" aria-hidden="true"><span class="no">08:30</span><span class="on">09:00</span><span>09:30</span><span>10:00</span></div>
+<p class="note" data-t="s2n"></p></div>
+<div class="step"><span class="snum">3</span><h3 data-t="s3t"></h3><p data-t="s3"></p></div>
+<div class="step"><span class="snum">4</span><h3 data-t="s4t"></h3><p data-t="s4"></p></div>
+<div class="step"><span class="snum">5</span><h3 data-t="s5t"></h3><p data-t="s5"></p></div>
+<div class="step"><span class="snum">6</span><h3 data-t="s6t"></h3><p data-t="s6"></p>
+<div class="trap"><h3 data-t="t1t"></h3><p data-t="t1" style="margin:0"></p></div></div>
+<div class="step"><span class="snum">7</span><h3 data-t="s7t"></h3><p data-t="s7"></p></div>
+
+<h2 data-t="dayT"></h2>
+<div class="box"><ul>
+<li data-t="d1"></li><li data-t="d2"></li><li data-t="d3"></li><li data-t="d4"></li>
+</ul></div>
+
+<h2 data-t="shareT"></h2>
+<p data-t="share"></p>
+<button class="cta ghost" id="shareBtn" type="button" data-t="shareBtn"></button>
+<span id="shareOk" aria-live="polite"></span>
+
+<h2 data-t="nextT"></h2>
+<a class="nx" href="https://ajuda.seedwave.pt/cartao/"><h3 data-t="n1t"></h3><span data-t="n1"></span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/magnolia/"><h3 data-t="n2t"></h3><span data-t="n2"></span></a>
+<a class="nx" href="https://seedwave.pt/hub/"><h3 data-t="n3t"></h3><span data-t="n3"></span></a>
+
+<h2 data-t="authorT"></h2>
+<p data-t="author"></p>
+
+<h2 data-t="srcT"></h2>
+<ul class="src">
+<li><a href="https://simplifica.madeira.gov.pt/services/78-82-259">SIMplifica — Pagamento de Taxas para acesso aos Percursos Pedestres Classificados</a></li>
+<li><a href="https://ifcn.madeira.gov.pt/pt/atividades-de-natureza/percursos-pedestres-recomendados/faq-s-taxas-percursos-pedestres-classificados.html">IFCN — FAQ taxas dos percursos</a> · IFCN <a href="tel:+351291145590">+351 291 145 590</a> · <a href="mailto:helpdesk.ifcn@madeira.gov.pt">helpdesk.ifcn@madeira.gov.pt</a></li>
+<li><a href="https://ifcn.madeira.gov.pt/images/Doc_Artigos/Legislacao/Portarias/Port48ISerie027_2026.pdf">Portaria n.º 48/2026</a> · Portaria n.º 801/2025 · DLR n.º 24/2022/M, art. 11.º</li>
+<li>Contact Center SIMplifica: <a href="tel:800299090">800 29 90 90</a> · WhatsApp <a href="https://wa.me/351926155465">+351 926 155 465</a></li>
+</ul>
+
+<footer>© <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink">SeedWave</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
+</div>
+
+<script>
+const L = {};
+{{I18N}}
+</script>
+<script>
+(function(){
+var ORDER=['pt','en','ru','de','es'];
+var qs=new URLSearchParams(location.search);
+function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var lang=(window.NDM_LANG&&L[window.NDM_LANG])?window.NDM_LANG
+        :(qs.get('lang')||ls('ndm-lang')||(navigator.language||'pt').slice(0,2).toLowerCase());
+if(!L[lang])lang='pt';
+var theme=qs.get('theme')||ls('ndm-theme')||'light';
+function langPath(Lg){var p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+  if(Lg!=='pt')p.push(Lg);
+  return '/'+(p.length?p.join('/')+'/':'');}
+function langHref(h){var u=new URL(h,location.href);
+  if(window.NDM_LANG&&(u.host===location.host||u.host==='ajuda.seedwave.pt')){
+    var p=u.pathname.split('/').filter(Boolean);
+    if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+    if(lang!=='pt')p.push(lang);
+    return u.origin+'/'+(p.length?p.join('/')+'/':'')+u.hash;}
+  u.searchParams.set('lang',lang);return u.toString();}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+function mstrip(x){return String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();}
+function mclip(x,n){x=mstrip(x);if(x.length<=n)return x;var c=x.slice(0,n),i=c.lastIndexOf(' ');
+  return (i>60?c.slice(0,i):c).replace(/[ ,;:.–—-]+$/,'')+'…';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function setMeta(t){
+  var title=t.h1?mstrip(t.h1).replace(/[.\s]+$/,'')+' — nDm':'';
+  var desc=mclip(t.lead||'',165);
+  if(title){document.title=title;mset('meta[property="og:title"]',title);}
+  if(desc){mset('meta[name="description"]',desc);mset('meta[property="og:description"]',desc);}
+}
+function apply(){
+  var t=L[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k]!==undefined)e.innerHTML=t[k];});
+  document.getElementById('langBtn').textContent=t.code;
+  document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
+  document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
+    if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
+    a.href=langHref(a.getAttribute('data-h'));});
+  lsSet('ndm-lang',lang);
+  setMeta(t);
+}
+var m=document.getElementById('langmenu');
+function paintMenu(){
+  m.innerHTML=Object.keys(L).map(function(k){
+    return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';
+  }).join('');
+}
+m.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-l]');if(!b)return;
+  var k=b.getAttribute('data-l');lsSet('ndm-lang',k);
+  if(window.NDM_LANG){location.href=langPath(k);return;}
+  lang=k;m.classList.remove('on');apply();
+  try{var u=new URL(location.href);u.searchParams.set('lang',k);history.replaceState(null,'',u);}catch(err){}
+});
+document.getElementById('langBtn').onclick=function(e){e.stopPropagation();paintMenu();m.classList.toggle('on');};
+document.addEventListener('click',function(){m.classList.remove('on');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('on');});
+document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
+document.getElementById('yr').textContent=new Date().getFullYear();
+document.getElementById('shareBtn').onclick=function(){
+  var t=L[lang],url='https://ajuda.seedwave.pt'+langPath(lang);
+  var ok=document.getElementById('shareOk');
+  if(navigator.share){navigator.share({title:mstrip(t.h1),text:t.shareText,url:url}).catch(function(){});return;}
+  var all=t.shareText+'\n'+url;
+  function done(){ok.textContent=t.shareCopied;}
+  if(navigator.clipboard){navigator.clipboard.writeText(all).then(done,function(){ok.textContent=all;});}
+  else{ok.textContent=all;}
+};
+applyTheme();apply();paintMenu();
+})();
+</script>

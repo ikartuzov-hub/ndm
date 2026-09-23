@@ -28,7 +28,7 @@ DATE = datetime.date.today().isoformat()
 
 # страница → (её путь, нужен ли JSON-LD статьи)
 PAGES = ["", "tap/", "cartao/", "subsidio/", "subsidio/dinheiro/", "subsidio/rejeitado/",
-         "subsidio/familia/", "lei-23-2026/", "magnolia/"]
+         "subsidio/familia/", "lei-23-2026/", "magnolia/", "trilhos/"]
 
 
 class Quiet(http.server.SimpleHTTPRequestHandler):

@@ -1,0 +1,20 @@
+{
+  "name": "Trilhos",
+  "short_name": "Trilhos",
+  "start_url": "/trilhos/",
+  "display": "standalone",
+  "background_color": "#FAF6F1",
+  "theme_color": "#FAF6F1",
+  "icons": [
+    {
+      "src": "/trilhos/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/trilhos/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
