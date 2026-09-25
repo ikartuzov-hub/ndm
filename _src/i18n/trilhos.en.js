@@ -36,5 +36,5 @@ n1t:"No resident card yet?",n1:"You request it from home in fifteen minutes, and
 n2t:"Padel and tennis at Quinta Magnólia",n2:"Another SIMplifica booking: court, time, payment — and the real prices.",
 n3t:"Running a nature-tourism business?",n3:"Madeira supports people who create jobs and services on the island. See which programmes fit you.",
 authorT:"Who wrote this",
-author:"Igor Kartuzov, SeedWave. I booked PR 11 for myself and friends in September 2026 and walked the form again up to payment for this page. I help people and companies in Madeira with public portals and support programmes — message me on <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. I booked PR 11 for myself and friends in September 2026 and walked the form again up to payment for this page. I map routes through Madeira's public portals and support programmes, side by side with people and companies building something here — message me on <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Sources"};

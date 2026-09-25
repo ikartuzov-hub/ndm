@@ -36,5 +36,5 @@ n1t:"Noch keine Residentenkarte?",n1:"Man beantragt sie in fünfzehn Minuten von
 n2t:"Padel und Tennis in der Quinta Magnólia",n2:"Eine weitere SIMplifica-Buchung: Platz, Uhrzeit, Zahlung — und die echten Preise.",
 n3t:"Sie betreiben Naturtourismus?",n3:"Madeira fördert, wer auf der Insel Arbeitsplätze und Angebote schafft. Sehen Sie, welche Programme zu Ihnen passen.",
 authorT:"Wer das geschrieben hat",
-author:"Igor Kartuzov, SeedWave. Ich habe im September 2026 den PR 11 für mich und Freunde gebucht und das Formular für diese Seite noch einmal bis zur Zahlung durchlaufen. Ich helfe Menschen und Firmen auf Madeira mit Behördenportalen und Förderprogrammen — schreiben Sie mir auf <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. Ich habe im September 2026 den PR 11 für mich und Freunde gebucht und das Formular für diese Seite noch einmal bis zur Zahlung durchlaufen. Ich lege Wege durch Madeiras Behördenportale und Förderprogramme an, Seite an Seite mit Menschen und Firmen, die hier etwas aufbauen — schreiben Sie mir auf <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Quellen"};

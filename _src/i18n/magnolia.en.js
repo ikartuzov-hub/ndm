@@ -35,6 +35,6 @@ n1t:"Madeira resident card",n1:"Trails at 0 € and the Porto Santo travel subsi
 n2t:"Mobility subsidy",n2:"Flights between Madeira and the mainland: what you get back and how to claim it, on real screens.",
 n3t:"Running a club, an academy or a business?",n3:"Madeira supports people who create jobs and services on the island. See which programmes fit you.",
 authorT:"Who wrote this",
-author:"Igor Kartuzov, SeedWave. I play padel at Magnólia with friends and walked this route on the portal in September 2026. I help people and companies in Madeira with public portals and support programmes — message me on <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. I play padel at Magnólia with friends and walked this route on the portal in September 2026. I map routes through Madeira's public portals and support programmes, side by side with people and companies building something here — message me on <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Sources",
 foot:"SeedWave · Igor Kartuzov"};

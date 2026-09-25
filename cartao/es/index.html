@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cartao/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cartao/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Tarjeta de residente de Madeira: la solicitud pantalla a pantalla", "description": "Se hace en casa, en 15 minutos. Abajo, cada pantalla y dónde pulsar.", "inLanguage": "es", "url": "https://ajuda.seedwave.pt/cartao/es/", "dateModified": "2026-09-23", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Tarjeta de residente de Madeira: la solicitud pantalla a pantalla", "description": "Se hace en casa, en 15 minutos. Abajo, cada pantalla y dónde pulsar.", "inLanguage": "es", "url": "https://ajuda.seedwave.pt/cartao/es/", "dateModified": "2026-09-25", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,8 +137,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 
 <h2 data-t="nextT">Qué se puede hacer ahora</h2>
 <a class="nx" href="https://ajuda.seedwave.pt/tap/es/" data-h="https://ajuda.seedwave.pt/tap/"><h3 data-t="n2t">Volar más barato a Lisboa</h3><span data-t="n2">La tarjeta acredita el derecho al subsidio social de movilidad. Cómo pedir los documentos a TAP y presentar la solicitud está en la guía vecina.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=es" data-h="https://seedwave.pt/hub/"><h3 data-t="n1t">Caminar sin pagar</h3><span data-t="n1">Todos los senderos clasificados de la isla, sin tasa, con reserva.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=es" data-h="https://seedwave.pt/hub/"><h3 data-t="n3t">Si tiene empresa</h3><span data-t="n3">Ayudas y programas de Madeira para empresas — en un verificador aparte.</span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/trilhos/es/" data-h="https://ajuda.seedwave.pt/trilhos/"><h3 data-t="n1t">Caminar sin pagar</h3><span data-t="n1">Todos los senderos clasificados de la isla, sin tasa, con reserva.</span></a>
+<a class="nx" id="namLink" href="https://nam.seedwave.pt/?lang=es&amp;theme=light" data-h="https://nam.seedwave.pt/"><h3 data-t="n3t">Si tiene empresa</h3><span data-t="n3">Ayudas y programas de Madeira para empresas — en un verificador aparte.</span></a>
 
 <h2 data-t="authorT">Quién ha escrito esto</h2>
 <p data-t="author">Igor Kartuzov, SeedWave. Pasé por esto yo mismo el 8 de septiembre de 2026: solicitud a las 11:42, tarjeta a las 15:30. Todas las pantallas de abajo son de mi propia solicitud, con los datos personales tapados. Dudas — en LinkedIn.</p>
@@ -385,6 +385,7 @@ function apply(){
   document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
+  var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){
     im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';

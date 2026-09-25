@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cartao/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cartao/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Cartão de Residente na RAM: o pedido ecrã a ecrã", "description": "Faz-se em casa, em 15 minutos. Abaixo, cada ecrã e onde carregar.", "inLanguage": "pt-PT", "url": "https://ajuda.seedwave.pt/cartao/", "dateModified": "2026-09-23", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Cartão de Residente na RAM: o pedido ecrã a ecrã", "description": "Faz-se em casa, em 15 minutos. Abaixo, cada ecrã e onde carregar.", "inLanguage": "pt-PT", "url": "https://ajuda.seedwave.pt/cartao/", "dateModified": "2026-09-25", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,8 +137,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 
 <h2 data-t="nextT">O que pode fazer agora</h2>
 <a class="nx" href="https://ajuda.seedwave.pt/tap/" data-h="https://ajuda.seedwave.pt/tap/"><h3 data-t="n2t">Voar mais barato para Lisboa</h3><span data-t="n2">O cartão comprova o direito ao subsídio social de mobilidade. Como pedir os documentos à TAP e submeter o pedido está no outro guia.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=pt" data-h="https://seedwave.pt/hub/"><h3 data-t="n1t">Caminhar sem pagar</h3><span data-t="n1">Todos os percursos classificados da ilha, sem taxa, mediante reserva.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=pt" data-h="https://seedwave.pt/hub/"><h3 data-t="n3t">Se tem empresa</h3><span data-t="n3">Apoios e programas da Madeira para empresas — num verificador à parte.</span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/trilhos/" data-h="https://ajuda.seedwave.pt/trilhos/"><h3 data-t="n1t">Caminhar sem pagar</h3><span data-t="n1">Todos os percursos classificados da ilha, sem taxa, mediante reserva.</span></a>
+<a class="nx" id="namLink" href="https://nam.seedwave.pt/?lang=pt&amp;theme=light" data-h="https://nam.seedwave.pt/"><h3 data-t="n3t">Se tem empresa</h3><span data-t="n3">Apoios e programas da Madeira para empresas — num verificador à parte.</span></a>
 
 <h2 data-t="authorT">Quem escreveu isto</h2>
 <p data-t="author">Igor Kartuzov, SeedWave. Fiz este percurso a 8 de setembro de 2026: pedido às 11:42, cartão às 15:30. Todos os ecrãs abaixo são do meu pedido, com os dados pessoais tapados. Dúvidas — no LinkedIn.</p>
@@ -385,6 +385,7 @@ function apply(){
   document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
+  var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){
     im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';

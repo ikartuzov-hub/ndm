@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cartao/es/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cartao/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Madeira resident card: the application screen by screen", "description": "Done from home in 15 minutes. Below: every screen and where to click.", "inLanguage": "en", "url": "https://ajuda.seedwave.pt/cartao/en/", "dateModified": "2026-09-23", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Madeira resident card: the application screen by screen", "description": "Done from home in 15 minutes. Below: every screen and where to click.", "inLanguage": "en", "url": "https://ajuda.seedwave.pt/cartao/en/", "dateModified": "2026-09-25", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,8 +137,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 
 <h2 data-t="nextT">What you can do now</h2>
 <a class="nx" href="https://ajuda.seedwave.pt/tap/en/" data-h="https://ajuda.seedwave.pt/tap/"><h3 data-t="n2t">Fly to Lisbon for less</h3><span data-t="n2">The card proves your right to the social mobility subsidy. How to order the documents from TAP and file the claim is covered in the companion guide.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=en" data-h="https://seedwave.pt/hub/"><h3 data-t="n1t">Walk the trails for free</h3><span data-t="n1">Every classified route on the island, no fee, with a booking.</span></a>
-<a class="nx" href="https://seedwave.pt/hub/?lang=en" data-h="https://seedwave.pt/hub/"><h3 data-t="n3t">If you run a business</h3><span data-t="n3">Madeira's grants and support programmes for companies — in a separate checker.</span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/trilhos/en/" data-h="https://ajuda.seedwave.pt/trilhos/"><h3 data-t="n1t">Walk the trails for free</h3><span data-t="n1">Every classified route on the island, no fee, with a booking.</span></a>
+<a class="nx" id="namLink" href="https://nam.seedwave.pt/?lang=en&amp;theme=light" data-h="https://nam.seedwave.pt/"><h3 data-t="n3t">If you run a business</h3><span data-t="n3">Madeira's grants and support programmes for companies — in a separate checker.</span></a>
 
 <h2 data-t="authorT">Who wrote this</h2>
 <p data-t="author">Igor Kartuzov, SeedWave. I went through this myself on 8 September 2026: filed at 11:42, card at 15:30. Every screen below is from my own application, with personal data painted over. Questions — find me on LinkedIn.</p>
@@ -385,6 +385,7 @@ function apply(){
   document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
+  var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){
     im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';

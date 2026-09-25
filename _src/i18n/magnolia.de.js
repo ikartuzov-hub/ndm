@@ -35,6 +35,6 @@ n1t:"Residentenkarte Madeiras",n1:"Wanderwege für 0 € und der Zuschuss für F
 n2t:"Mobilitätszuschuss",n2:"Flüge zwischen Madeira und dem Festland: was erstattet wird und wie man es beantragt, an echten Bildschirmen.",
 n3t:"Sie führen einen Verein, eine Akademie oder ein Geschäft?",n3:"Madeira fördert, wer auf der Insel Arbeitsplätze und Angebote schafft. Sehen Sie, welche Programme zu Ihnen passen.",
 authorT:"Wer das geschrieben hat",
-author:"Igor Kartuzov, SeedWave. Ich spiele mit Freunden Padel in der Magnólia und bin diesen Weg im September 2026 im Portal gegangen. Ich helfe Menschen und Firmen auf Madeira mit Behördenportalen und Förderprogrammen — schreiben Sie mir auf <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. Ich spiele mit Freunden Padel in der Magnólia und bin diesen Weg im September 2026 im Portal gegangen. Ich lege Wege durch Madeiras Behördenportale und Förderprogramme an, Seite an Seite mit Menschen und Firmen, die hier etwas aufbauen — schreiben Sie mir auf <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Quellen",
 foot:"SeedWave · Igor Kartuzov"};

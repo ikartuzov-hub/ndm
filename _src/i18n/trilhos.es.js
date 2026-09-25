@@ -36,5 +36,5 @@ n1t:"¿Aún sin tarjeta de residente?",n1:"Se pide desde casa en quince minutos,
 n2t:"Pádel y tenis en la Quinta Magnólia",n2:"Otra reserva de SIMplifica: pista, hora, pago, y los precios reales.",
 n3t:"¿Tiene un negocio de turismo de naturaleza?",n3:"Madeira apoya a quien crea empleo y servicios en la isla. Vea qué programas encajan con usted.",
 authorT:"Quién lo escribió",
-author:"Igor Kartuzov, SeedWave. Reservé el PR 11 para mí y para amigos en septiembre de 2026 y volví a recorrer el formulario hasta el pago para esta página. Ayudo a personas y empresas de Madeira con los portales públicos y los programas de apoyo: escríbame en <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. Reservé el PR 11 para mí y para amigos en septiembre de 2026 y volví a recorrer el formulario hasta el pago para esta página. Trazo rutas por los portales públicos y los programas de apoyo de Madeira, codo con codo con personas y empresas que construyen algo aquí: escríbame en <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Fuentes"};

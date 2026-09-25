@@ -35,6 +35,6 @@ n1t:"Tarjeta de residente de Madeira",n1:"Senderos a 0 € y subsidio en los via
 n2t:"Subsidio de movilidad",n2:"Vuelos entre Madeira y el continente: cuánto devuelven y cómo pedirlo, con pantallas reales.",
 n3t:"¿Tiene un club, una academia o un negocio?",n3:"Madeira apoya a quien crea empleo y servicios en la isla. Vea qué programas encajan con usted.",
 authorT:"Quién lo escribió",
-author:"Igor Kartuzov, SeedWave. Juego al pádel en la Magnólia con amigos y recorrí este camino en el portal en septiembre de 2026. Ayudo a personas y empresas de Madeira con los portales públicos y los programas de apoyo: escríbame en <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. Juego al pádel en la Magnólia con amigos y recorrí este camino en el portal en septiembre de 2026. Trazo rutas por los portales públicos y los programas de apoyo de Madeira, codo con codo con personas y empresas que construyen algo aquí: escríbame en <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Fuentes",
 foot:"SeedWave · Igor Kartuzov"};

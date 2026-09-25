@@ -104,8 +104,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 
 <h2 data-t="nextT"></h2>
 <a class="nx" href="https://ajuda.seedwave.pt/tap/"><h3 data-t="n2t"></h3><span data-t="n2"></span></a>
-<a class="nx" href="https://seedwave.pt/hub/"><h3 data-t="n1t"></h3><span data-t="n1"></span></a>
-<a class="nx" href="https://seedwave.pt/hub/"><h3 data-t="n3t"></h3><span data-t="n3"></span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/trilhos/"><h3 data-t="n1t"></h3><span data-t="n1"></span></a>
+<a class="nx" id="namLink" href="https://nam.seedwave.pt/"><h3 data-t="n3t"></h3><span data-t="n3"></span></a>
 
 <h2 data-t="authorT"></h2>
 <p data-t="author"></p>
@@ -173,6 +173,7 @@ function apply(){
   document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
+  var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
   var ilang=(lang==='ru'||lang==='pt')?lang:'pt',base=inLangDir()?'../':'';
   document.querySelectorAll('img.sc').forEach(function(im){
     im.src=base+'img/'+ilang+'/'+im.getAttribute('data-n')+'.jpg';

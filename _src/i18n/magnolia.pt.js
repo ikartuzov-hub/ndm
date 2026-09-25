@@ -35,6 +35,6 @@ n1t:"Cartão de Residente na RAM",n1:"Trilhos a 0 € e subsídio nas viagens ao
 n2t:"Subsídio de Mobilidade",n2:"Voos entre a Madeira e o continente: quanto devolvem e como pedir, com imagens reais.",
 n3t:"Tem um clube, uma academia ou um negócio?",n3:"A Madeira apoia quem cria emprego e serviços na ilha. Veja que programas se aplicam ao seu caso.",
 authorT:"Quem escreveu",
-author:"Igor Kartuzov, SeedWave. Jogo padel na Magnólia com amigos e percorri este caminho no portal em setembro de 2026. Ajudo pessoas e empresas da Madeira com os portais públicos e com apoios — escreva-me no <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
+author:"Igor Kartuzov, SeedWave. Jogo padel na Magnólia com amigos e percorri este caminho no portal em setembro de 2026. Traço caminhos pelos portais públicos e pelos apoios da Madeira, lado a lado com pessoas e empresas que constroem algo cá — escreva-me no <a href=\"https://www.linkedin.com/in/igor-kartuzov/\">LinkedIn</a>.",
 srcT:"Fontes",
 foot:"SeedWave · Igor Kartuzov"};
