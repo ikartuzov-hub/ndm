@@ -89,6 +89,8 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;bo
 .topic{font-size:15px;margin:0 0 4px}.topic b{color:var(--accent)}
 .hint{font-size:14px;color:var(--ink-soft);margin:6px 0 0}
 .cta{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:12px;padding:15px;font-weight:500;text-decoration:none;margin:16px 0 6px;font-size:17px;border:0;width:100%;font-family:inherit;cursor:pointer}
+.cta.wa{background:#25D366;color:#0B3D20;display:flex;align-items:center;justify-content:center;gap:10px}
+.cta.wa svg{width:22px;height:22px;flex:none}
 .cta.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
 .cta.sw{background:var(--sw)}
 .cta[disabled]{opacity:.6;cursor:wait}
@@ -171,6 +173,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 <a class="nx" href="https://ajuda.seedwave.pt/subsidio/en/" data-h="https://ajuda.seedwave.pt/subsidio/"><h3 data-t="n3t">Flight subsidy</h3><span data-t="n3">How to get part of your Madeira — mainland ticket back.</span></a>
 
 <button class="cta ghost" type="button" id="share" data-t="share">Send to a friend</button>
+<a class="cta wa" href="https://whatsapp.com/channel/0029VbDHFF8K0IBiiqgMON2K" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"></path></svg><span data-t="wa">Follow on WhatsApp</span></a>
+
 
 <footer>© <span id="yr">2026</span> <a href="https://seedwave.pt/hub/?lang=en&amp;theme=light" id="hubLink">SeedWave</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
 </div>
@@ -223,7 +227,7 @@ nextT:"Guias gratuitos nDm",
 n1t:"Cartão Europeu de Seguro de Doença",n1:"Seguro gratuito para viajar na UE. Como pedir quando o portal recusa.",
 n2t:"Cartão de Residente na RAM",n2:"Trilhos a 0 € e subsídio do Porto Santo. O pedido no SIMplifica.",
 n3t:"Subsídio de Mobilidade",n3:"Como recuperar parte do bilhete Madeira — continente.",
-share:"Enviar a um amigo",shareText:"Guias gratuitos dos serviços públicos da Madeira e de Portugal. Dá-te a conhecer e recebes resposta, ideias e pessoas.",copied:"Ligação copiada ✓"};
+wa:"Seguir no WhatsApp",share:"Enviar a um amigo",shareText:"Guias gratuitos dos serviços públicos da Madeira e de Portugal. Dá-te a conhecer e recebes resposta, ideias e pessoas.",copied:"Ligação copiada ✓"};
 L.en = {code:"EN",name:"English",
 mt:"Speak up: a question, idea, job, service or your sector — and get more out of Madeira and Portugal — nDm · SeedWave",
 md:"Guides to public services in Madeira and Portugal are free. Speak up and get more: a reply from a person, ideas where to dig, people who need you, and new guides first. Name your sector and we'll bury you in ideas.",
@@ -270,7 +274,7 @@ nextT:"Free nDm guides",
 n1t:"European Health Insurance Card",n1:"Free cover for trips around the EU. How to get it when the portal says no.",
 n2t:"Madeira resident card",n2:"Trails for 0 € and the Porto Santo subsidy. The SIMplifica application.",
 n3t:"Flight subsidy",n3:"How to get part of your Madeira — mainland ticket back.",
-share:"Send to a friend",shareText:"Free guides to public services in Madeira and Portugal. Speak up and get a reply, ideas and people.",copied:"Link copied ✓"};
+wa:"Follow on WhatsApp",share:"Send to a friend",shareText:"Free guides to public services in Madeira and Portugal. Speak up and get a reply, ideas and people.",copied:"Link copied ✓"};
 L.ru = {code:"RU",name:"Русский",
 mt:"Заявить о себе: вопрос, идея, работа, услуга или сектор — получите больше на Мадейре и в Португалии — nDm · SeedWave",
 md:"Разборы госуслуг Мадейры и Португалии бесплатны. Заявите о себе — получите ответ человека, идеи, где копать, людей, которым вы нужны, и новые разборы первыми. Напишите сектор — завалим идеями.",
@@ -317,7 +321,7 @@ nextT:"Бесплатные разборы nDm",
 n1t:"Европейская медкарта CESD",n1:"Бесплатная страховка для поездок по ЕС. Как получить, если портал отказал.",
 n2t:"Карта резидента Мадейры",n2:"Тропы за 0 € и субсидия на Порту-Санту. Заявка в SIMplifica.",
 n3t:"Субсидия на перелёты",n3:"Как вернуть часть билета Мадейра — континент.",
-share:"Переслать другу",shareText:"Бесплатные разборы госуслуг Мадейры и Португалии. Заяви о себе — получишь ответ, идеи и людей.",copied:"Ссылка скопирована ✓"};
+wa:"Следить в WhatsApp",share:"Переслать другу",shareText:"Бесплатные разборы госуслуг Мадейры и Португалии. Заяви о себе — получишь ответ, идеи и людей.",copied:"Ссылка скопирована ✓"};
 L.es = {code:"ES",name:"Español",
 mt:"Date a conocer: pregunta, idea, trabajo, servicio o sector — y saca más de Madeira y Portugal — nDm · SeedWave",
 md:"Las guías de los servicios públicos de Madeira y Portugal son gratis. Date a conocer y recibe más: respuesta de una persona, ideas dónde apostar, gente que te necesita y las nuevas guías antes que nadie. Di tu sector y te llenamos de ideas.",
@@ -364,7 +368,7 @@ nextT:"Guías gratuitas de nDm",
 n1t:"Tarjeta Sanitaria Europea",n1:"Cobertura gratuita para viajar por la UE. Cómo pedirla cuando el portal la rechaza.",
 n2t:"Tarjeta de residente de Madeira",n2:"Senderos a 0 € y la ayuda de Porto Santo. La solicitud en SIMplifica.",
 n3t:"Ayuda al billete de avión",n3:"Cómo recuperar parte del billete Madeira — continente.",
-share:"Enviar a un amigo",shareText:"Guías gratuitas de los servicios públicos de Madeira y Portugal. Date a conocer y recibe respuesta, ideas y gente.",copied:"Enlace copiado ✓"};
+wa:"Seguir en WhatsApp",share:"Enviar a un amigo",shareText:"Guías gratuitas de los servicios públicos de Madeira y Portugal. Date a conocer y recibe respuesta, ideas y gente.",copied:"Enlace copiado ✓"};
 L.de = {code:"DE",name:"Deutsch",
 mt:"Melde dich: Frage, Idee, Job, Angebot oder Branche — und hol mehr aus Madeira und Portugal heraus — nDm · SeedWave",
 md:"Die Anleitungen zu Behörden auf Madeira und in Portugal sind kostenlos. Melde dich und bekomm mehr: Antwort von einem Menschen, Ideen, wo sich Graben lohnt, Leute, die dich brauchen, und neue Anleitungen zuerst. Nenn deine Branche, und wir überschütten dich mit Ideen.",
@@ -411,7 +415,7 @@ nextT:"Kostenlose nDm-Anleitungen",
 n1t:"Europäische Krankenversicherungskarte",n1:"Kostenloser Schutz auf Reisen in der EU. So klappt es, wenn das Portal ablehnt.",
 n2t:"Einwohnerkarte Madeira",n2:"Wanderwege für 0 € und der Porto-Santo-Zuschuss. Der Antrag in SIMplifica.",
 n3t:"Flugzuschuss",n3:"So bekommst du einen Teil des Tickets Madeira — Festland zurück.",
-share:"An Freunde senden",shareText:"Kostenlose Anleitungen zu Behörden auf Madeira und in Portugal. Melde dich und bekomm Antwort, Ideen und Leute.",copied:"Link kopiert ✓"};
+wa:"Auf WhatsApp folgen",share:"An Freunde senden",shareText:"Kostenlose Anleitungen zu Behörden auf Madeira und in Portugal. Melde dich und bekomm Antwort, Ideen und Leute.",copied:"Link kopiert ✓"};
 </script>
 <script>
 (function(){

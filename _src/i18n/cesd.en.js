@@ -81,7 +81,7 @@ q4:"Does the card replace travel insurance?",a4:"No. It does not pay for private
 q5:"How long is the card valid?",a5:"Three years. It can be renewed online or in person.",
 fbT:"A question, your experience or an idea?",fb:"If something went wrong, Segurança Social answered differently or you found a shorter route — write to me. I answer myself, and your case (without personal data) goes on this page to make it easier for the next person.",fbMail:"Speak up 😉",fbLi:"Message on LinkedIn",fbSubj:"CESD — question / experience / idea",
 copy:"Copy",copied:"Copied ✓",
-share:"Send to a friend",shareText:"European Health Insurance Card in Portugal: how to get it when the portal refuses",
+wa:"Follow on WhatsApp",share:"Send to a friend",shareText:"European Health Insurance Card in Portugal: how to get it when the portal refuses",
 nextT:"More on nDm",
 n1t:"Madeira resident card",n1:"Trails for 0 € and the Porto Santo subsidy. The SIMplifica application screen by screen.",
 n2t:"Flight subsidy",n2:"How to get part of your Madeira — mainland ticket back. Five portal screens.",

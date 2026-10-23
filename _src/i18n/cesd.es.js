@@ -81,7 +81,7 @@ q4:"¿La tarjeta sustituye al seguro de viaje?",a4:"No. No paga clínicas privad
 q5:"¿Cuánto dura la tarjeta?",a5:"Tres años. Se renueva online o en persona.",
 fbT:"¿Una duda, su experiencia o una idea?",fb:"Si algo salió mal, la Segurança Social respondió distinto o encontró un camino más corto, escríbame. Respondo yo mismo, y su caso (sin datos personales) se suma a esta página para facilitárselo a los siguientes.",fbMail:"Darme a conocer 😉",fbLi:"Escribir en LinkedIn",fbSubj:"CESD — duda / experiencia / idea",
 copy:"Copiar",copied:"Copiado ✓",
-share:"Enviar a un amigo",shareText:"Tarjeta Sanitaria Europea en Portugal: cómo pedirla cuando el portal la rechaza",
+wa:"Seguir en WhatsApp",share:"Enviar a un amigo",shareText:"Tarjeta Sanitaria Europea en Portugal: cómo pedirla cuando el portal la rechaza",
 nextT:"Más en nDm",
 n1t:"Tarjeta de residente de Madeira",n1:"Senderos a 0 € y la ayuda de Porto Santo. La solicitud en SIMplifica pantalla a pantalla.",
 n2t:"Ayuda al billete de avión",n2:"Cómo recuperar parte del billete Madeira — continente. Cinco pantallas del portal.",

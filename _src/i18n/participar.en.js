@@ -44,4 +44,4 @@ nextT:"Free nDm guides",
 n1t:"European Health Insurance Card",n1:"Free cover for trips around the EU. How to get it when the portal says no.",
 n2t:"Madeira resident card",n2:"Trails for 0 € and the Porto Santo subsidy. The SIMplifica application.",
 n3t:"Flight subsidy",n3:"How to get part of your Madeira — mainland ticket back.",
-share:"Send to a friend",shareText:"Free guides to public services in Madeira and Portugal. Speak up and get a reply, ideas and people.",copied:"Link copied ✓"};
+wa:"Follow on WhatsApp",share:"Send to a friend",shareText:"Free guides to public services in Madeira and Portugal. Speak up and get a reply, ideas and people.",copied:"Link copied ✓"};

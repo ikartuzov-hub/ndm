@@ -44,4 +44,4 @@ nextT:"Guias gratuitos nDm",
 n1t:"Cartão Europeu de Seguro de Doença",n1:"Seguro gratuito para viajar na UE. Como pedir quando o portal recusa.",
 n2t:"Cartão de Residente na RAM",n2:"Trilhos a 0 € e subsídio do Porto Santo. O pedido no SIMplifica.",
 n3t:"Subsídio de Mobilidade",n3:"Como recuperar parte do bilhete Madeira — continente.",
-share:"Enviar a um amigo",shareText:"Guias gratuitos dos serviços públicos da Madeira e de Portugal. Dá-te a conhecer e recebes resposta, ideias e pessoas.",copied:"Ligação copiada ✓"};
+wa:"Seguir no WhatsApp",share:"Enviar a um amigo",shareText:"Guias gratuitos dos serviços públicos da Madeira e de Portugal. Dá-te a conhecer e recebes resposta, ideias e pessoas.",copied:"Ligação copiada ✓"};

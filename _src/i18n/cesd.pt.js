@@ -81,7 +81,7 @@ q4:"O cartão substitui o seguro de viagem?",a4:"Não. Não paga clínicas priva
 q5:"Qual é a validade do cartão?",a5:"Três anos. Renova-se online ou presencialmente.",
 fbT:"Uma dúvida, a sua experiência ou uma ideia?",fb:"Se algo correu mal, a resposta da Segurança Social foi diferente ou encontrou um caminho mais curto — escreva-me. Respondo eu mesmo, e o seu caso (sem dados pessoais) entra nesta página para facilitar a vida aos próximos.",fbMail:"Dar-me a conhecer 😉",fbLi:"Escrever no LinkedIn",fbSubj:"CESD — dúvida / experiência / ideia",
 copy:"Copiar",copied:"Copiado ✓",
-share:"Enviar a um amigo",shareText:"Cartão Europeu de Seguro de Doença: como pedir quando o portal recusa",
+wa:"Seguir no WhatsApp",share:"Enviar a um amigo",shareText:"Cartão Europeu de Seguro de Doença: como pedir quando o portal recusa",
 nextT:"Mais no nDm",
 n1t:"Cartão de Residente na RAM",n1:"Trilhos a 0 € e subsídio do Porto Santo. O pedido no SIMplifica, ecrã a ecrã.",
 n2t:"Subsídio de Mobilidade",n2:"Como recuperar parte do bilhete Madeira — continente. Cinco ecrãs do portal.",

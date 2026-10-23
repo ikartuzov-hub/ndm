@@ -44,4 +44,4 @@ nextT:"Kostenlose nDm-Anleitungen",
 n1t:"Europäische Krankenversicherungskarte",n1:"Kostenloser Schutz auf Reisen in der EU. So klappt es, wenn das Portal ablehnt.",
 n2t:"Einwohnerkarte Madeira",n2:"Wanderwege für 0 € und der Porto-Santo-Zuschuss. Der Antrag in SIMplifica.",
 n3t:"Flugzuschuss",n3:"So bekommst du einen Teil des Tickets Madeira — Festland zurück.",
-share:"An Freunde senden",shareText:"Kostenlose Anleitungen zu Behörden auf Madeira und in Portugal. Melde dich und bekomm Antwort, Ideen und Leute.",copied:"Link kopiert ✓"};
+wa:"Auf WhatsApp folgen",share:"An Freunde senden",shareText:"Kostenlose Anleitungen zu Behörden auf Madeira und in Portugal. Melde dich und bekomm Antwort, Ideen und Leute.",copied:"Link kopiert ✓"};

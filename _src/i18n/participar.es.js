@@ -44,4 +44,4 @@ nextT:"Guías gratuitas de nDm",
 n1t:"Tarjeta Sanitaria Europea",n1:"Cobertura gratuita para viajar por la UE. Cómo pedirla cuando el portal la rechaza.",
 n2t:"Tarjeta de residente de Madeira",n2:"Senderos a 0 € y la ayuda de Porto Santo. La solicitud en SIMplifica.",
 n3t:"Ayuda al billete de avión",n3:"Cómo recuperar parte del billete Madeira — continente.",
-share:"Enviar a un amigo",shareText:"Guías gratuitas de los servicios públicos de Madeira y Portugal. Date a conocer y recibe respuesta, ideas y gente.",copied:"Enlace copiado ✓"};
+wa:"Seguir en WhatsApp",share:"Enviar a un amigo",shareText:"Guías gratuitas de los servicios públicos de Madeira y Portugal. Date a conocer y recibe respuesta, ideas y gente.",copied:"Enlace copiado ✓"};

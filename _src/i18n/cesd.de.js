@@ -81,7 +81,7 @@ q4:"Ersetzt die Karte eine Reiseversicherung?",a4:"Nein. Sie zahlt keine Privatk
 q5:"Wie lange gilt die Karte?",a5:"Drei Jahre. Verlängerung online oder vor Ort.",
 fbT:"Eine Frage, Ihre Erfahrung oder eine Idee?",fb:"Wenn etwas schiefging, die Segurança Social anders geantwortet hat oder Sie einen kürzeren Weg gefunden haben — schreiben Sie mir. Ich antworte selbst, und Ihr Fall (ohne persönliche Daten) kommt auf diese Seite, damit es die Nächsten leichter haben.",fbMail:"Mich melden 😉",fbLi:"Auf LinkedIn schreiben",fbSubj:"CESD — Frage / Erfahrung / Idee",
 copy:"Kopieren",copied:"Kopiert ✓",
-share:"An Freunde senden",shareText:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt",
+wa:"Auf WhatsApp folgen",share:"An Freunde senden",shareText:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt",
 nextT:"Mehr bei nDm",
 n1t:"Residentenkarte Madeira",n1:"Wanderwege für 0 € und der Porto-Santo-Zuschuss. Der Antrag bei SIMplifica Bildschirm für Bildschirm.",
 n2t:"Flugzuschuss",n2:"Wie Sie einen Teil des Tickets Madeira — Festland zurückbekommen. Fünf Portal-Bildschirme.",
