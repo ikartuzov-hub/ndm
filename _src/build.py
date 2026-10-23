@@ -37,7 +37,8 @@ HEAD = """<!doctype html>
 </head>
 <body>
 """
-FOOT = "\n</body>\n</html>\n"
+CF_ANALYTICS = "<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"8a509477310442638b80e4b22319b89b\"}'></script><!-- End Cloudflare Web Analytics -->"
+FOOT = "\n" + CF_ANALYTICS + "\n</body>\n</html>\n"
 
 FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
