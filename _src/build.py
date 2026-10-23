@@ -266,6 +266,30 @@ write("cesd/index.html", html)
 PAGES.append(SITE + "/cesd/")
 print("built: cesd/index.html")
 
+
+# ---------- /aima/ — AIMA: трекер процесса (серия A, первая страница) ----------
+# Устроена как /cesd/: движок и стили внутри тела, тексты в _src/i18n/aima.*.js.
+# Скрины трекера — статика в aima/img (сняты с живого дела, данные замазаны);
+# значок A в фиолетовом AIMA и обложка — _src/aima-assets.py.
+subprocess_run([__import__("sys").executable, "_src/aima-assets.py"], check=True)
+aim = read("_src/aima-body.html")
+aim = aim.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/aima.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/aima.%s.js" % L)))
+DESC_AIMA = ("A AIMA tem um rastreador de processos com oito etapas, da submissão ao cartão entregue. "
+             "Chega-se lá pelo formulário de contacto, sem conta nem senha: o link, as etapas e o que fazer quando falha.")
+html = wrap(FONTS + aim, lang="pt",
+            title="Onde está o meu processo na AIMA? O rastreador oficial, passo a passo — nDm",
+            desc=DESC_AIMA, app="AIMA", root="../",
+            ogtitle="Onde está o meu processo na AIMA? — o rastreador oficial",
+            og=SITE + "/aima/og-image.png", url=SITE + "/aima/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/aima/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/aima/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/aima/manifest.webmanifest"'))
+write("aima/index.html", html)
+PAGES.append(SITE + "/aima/")
+print("built: aima/index.html")
+
 # ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
 # Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
 subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)

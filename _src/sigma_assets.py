@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Иконки серий nDm: буква + волна, у каждой услуги свой цвет.
-Σ — серия SIMplifica; S — серия Segurança Social (первая — CESD).
+Σ — серия SIMplifica; Cd — Segurança Social (CESD); A — серия AIMA.
 
-  python3 _src/sigma_assets.py <папка> <цвет знака #hex> <цвет тайла #hex> <короткое имя> <start_url> [sigma|s|cd]
+  python3 _src/sigma_assets.py <папка> <цвет знака #hex> <цвет тайла #hex> <короткое имя> <start_url> [sigma|s|cd|a]
 
 Кладёт в папку icon.svg, icon-180/192/512.png и manifest.webmanifest."""
 import io, json, math, os, sys
@@ -15,6 +15,8 @@ S_SEGS = [((68, 26), (63, 19), (55, 17), (48, 17)), ((48, 17), (37, 17), (31, 23
           ((68, 58), (68, 66), (60, 71), (50, 71)), ((50, 71), (42, 71), (35, 68), (31, 63))]
 # Cd — Cartão (europeu de seguro) de Doença: две буквы, принято 23.10.2026 (S занята знаком SeedWave)
 CD_PATHS = ['M44 29 A21 21 0 1 0 44 61', 'M76 20 L76 70', 'M76 57 A12 12 0 1 1 52 57 A12 12 0 1 1 76 57']
+# A — серия AIMA (первая — трекер процесса), принято 23.10.2026; фиолетовый AIMA #5B2A86
+A_PATHS = ['M30 70 L50 20 L70 70', 'M38 50 L62 50']
 S_PATH = ("M68 26 C63 19 55 17 48 17 C37 17 31 23 32 31 C33 40 43 42 50 44 "
           "C60 46 68 50 68 58 C68 66 60 71 50 71 C42 71 35 68 31 63")
 
@@ -53,17 +55,18 @@ def mark(d, k, col, ox=0, oy=0, glyph="sigma"):
 def build(out, acc, tile, short, start, glyph="sigma"):
     os.makedirs(out, exist_ok=True)
     A, T = rgb(acc), rgb(tile)
-    paths = CD_PATHS if glyph == "cd" else [S_PATH if glyph == "s" else "M68 20 L32 20 L52 45 L32 70 L68 70"]
+    paths = (CD_PATHS if glyph == "cd" else A_PATHS if glyph == "a"
+             else [S_PATH if glyph == "s" else "M68 20 L32 20 L52 45 L32 70 L68 70"])
     svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="%s">'
            '<rect width="100" height="100" rx="23" fill="%s"/>'
            '<g fill="none" stroke="%s" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">%s'
            '<path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></g></svg>\n') % (
         short, tile, acc, "".join('<path d="%s"/>' % x for x in paths))
-    for size in ((180, 192, 512) if glyph == "cd" else ()):
+    for size in ((180, 192, 512) if glyph in ("cd", "a") else ()):
         import cairosvg
         cairosvg.svg2png(bytestring=svg.encode(), write_to="%s/icon-%d.png" % (out, size),
                          output_width=size, output_height=size)
-    for size in (() if glyph == "cd" else (180, 192, 512)):
+    for size in (() if glyph in ("cd", "a") else (180, 192, 512)):
         S = size * 4
         im = Image.new("RGB", (S, S), T)
         mark(ImageDraw.Draw(im), S / 100.0, A, glyph=glyph)
