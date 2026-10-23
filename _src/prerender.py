@@ -28,7 +28,7 @@ DATE = datetime.date.today().isoformat()
 
 # страница → (её путь, нужен ли JSON-LD статьи)
 PAGES = ["", "tap/", "cartao/", "subsidio/", "subsidio/dinheiro/", "subsidio/rejeitado/",
-         "subsidio/familia/", "lei-23-2026/", "magnolia/", "trilhos/", "cesd/"]
+         "subsidio/familia/", "lei-23-2026/", "magnolia/", "trilhos/", "cesd/", "participar/"]
 
 
 class Quiet(http.server.SimpleHTTPRequestHandler):
@@ -113,14 +113,32 @@ def jsonld(html, path, lang, ld):
                           "url": "https://seedwave.pt/"},
             "isAccessibleForFree": True,
         })
-    elif path:
+    elif path == "participar/":
         blocks.append({
+            "@context": "https://schema.org", "@type": "ContactPage",
+            "name": ld["title"], "description": ld["desc"], "url": lurl,
+            "inLanguage": HTML_LANG[lang], "isAccessibleForFree": True,
+            "isPartOf": {"@type": "WebSite", "name": "nDm", "url": SITE + "/"},
+            "publisher": {"@type": "Organization", "name": "SeedWave", "url": "https://seedwave.pt/"},
+            "author": {"@type": "Person", "name": "Igor Kartuzov",
+                       "url": "https://www.linkedin.com/in/igor-kartuzov/"},
+        })
+    elif path:
+        how = {
             "@context": "https://schema.org", "@type": "HowTo",
             "name": ld["h1"], "description": ld["desc"],
             "inLanguage": HTML_LANG[lang], "url": lurl,
             "dateModified": DATE, "totalTime": "PT20M",
-            "author": {"@type": "Person", "name": "Igor Kartuzov"},
-        })
+            "author": {"@type": "Person", "name": "Igor Kartuzov",
+                       "url": "https://www.linkedin.com/in/igor-kartuzov/"},
+        }
+        st = [x for x in ld.get("steps") or [] if x[0].strip()]
+        if st:
+            how["step"] = [{"@type": "HowToStep", "position": i + 1, "name": n.strip(),
+                            "text": (t.strip() or n.strip())[:600],
+                            **({"url": lurl + "#" + sid} if sid else {})}
+                           for i, (n, t, sid) in enumerate(st)]
+        blocks.append(how)
     if ld["qa"]:
         blocks.append({
             "@context": "https://schema.org", "@type": "FAQPage",
@@ -186,7 +204,10 @@ async def main():
                         a.getAttribute('href') || a.dataset.ll || '',
                         (a.children[1] || {}).textContent || '',
                         (a.children[2] || {}).textContent || '']);
-                    return { qa: qa, refs: refs,
+                    // шаги инструкции (.step) — в HowTo: ИИ-ответы любят пронумерованные шаги
+                    const steps = [...document.querySelectorAll('.step')].map(e => [
+                        (e.querySelector('h3')||{}).textContent || '', (e.querySelector('p')||{}).textContent || '', e.id || '']);
+                    return { qa: qa, refs: refs, steps: steps,
                              title: document.title || '',
                              h1: (document.querySelector('h1')||{}).textContent || '',
                              desc: (document.querySelector('meta[name=description]')||{}).content || '' };

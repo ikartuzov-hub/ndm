@@ -189,8 +189,8 @@ def main():
     # 04 — схема сетки CMD: где ляжет штамп
     save(grid_figure(clean_g3, clean_m1), "04.jpg")
 
-    # иконки «на экран Домой» — Σ в синем ЕС, подпись CESD
-    sigma("cesd", "#1D4FA0", "#EAF0FA", "CESD", "/cesd/", "s")
+    # иконки «на экран Домой» — знак Cd в синем ЕС (S занята SeedWave), подпись CESD
+    sigma("cesd", "#1D4FA0", "#EAF0FA", "CESD", "/cesd/", "cd")
     og()
 
 
@@ -240,7 +240,13 @@ def og():
         return f
     W, Hh = 1200, 630
     im = Image.new("RGB", (W, Hh), BG); d = ImageDraw.Draw(im); X = 82
-    mark(d, 0.5, (29, 79, 160), X - 6, 44, glyph="s")
+    import cairosvg, io as _io
+    from sigma_assets import CD_PATHS
+    _svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="none" stroke="#1D4FA0" '
+            'stroke-width="7" stroke-linecap="round" stroke-linejoin="round">%s'
+            '<path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></g></svg>') % "".join('<path d="%s"/>' % x for x in CD_PATHS)
+    _m = Image.open(_io.BytesIO(cairosvg.svg2png(bytestring=_svg.encode(), output_width=50, output_height=50))).convert("RGBA")
+    im.paste(_m, (X - 6, 44), _m)
     d.text((X + 48, 52), "Segurança Social · nDm", font=lora(26), fill=INK)
     d.text((X, 140), "C A R T Ã O   E U R O P E U", font=ImageFont.truetype(D + "DejaVuSansMono-Bold.ttf", 19), fill=ACC)
     d.text((X, 176), "Cartão Europeu de", font=lora(60), fill=INK)

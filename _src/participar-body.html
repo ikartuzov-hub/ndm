@@ -1,0 +1,220 @@
+<style>
+:root{color-scheme:light;--bg:#FAF6F1;--ink:#1A1512;--ink-soft:#6B5C51;--line:#E6D9CC;--accent:#B23A0E;--accent-soft:#F6E3D8;--card:#fff;--sw:#0E8FA8}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#15110E;--ink:#F2EAE2;--ink-soft:#B7A797;--line:#382C23;--accent:#FF8A4C;--accent-soft:#3A2418;--card:#1D1814;--sw:#4FC3DA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
+h2{font-size:23px;margin:46px 0 12px}h3{font-size:18px;margin:0 0 6px}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif;letter-spacing:.01em}
+.brandmark svg{display:block}
+.topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
+#langmenu.on{display:block}
+#langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer;white-space:pre}
+#langmenu button.cur{color:var(--accent);font-weight:500}
+header{padding:72px 0 4px}
+header h1{font-size:34px;margin:6px 0 12px}
+.wink{display:inline-block;transform-origin:50% 60%;animation:wink 2.8s 1s ease-in-out infinite}
+@keyframes wink{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-14deg) scale(1.15)}84%{transform:rotate(10deg) scale(1.15)}90%{transform:rotate(0)}}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink-soft)}
+.lead{color:var(--ink-soft);font-size:17px;margin:0}
+/* вау: шесть тем вылетают по очереди и складываются в облако */
+.cloud{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 14px;font:500 15px/1.2 "IBM Plex Sans",sans-serif;cursor:pointer;opacity:0;animation:pop .45s cubic-bezier(.2,1.4,.4,1) both}
+.chip:nth-child(1){animation-delay:.25s}.chip:nth-child(2){animation-delay:.4s}.chip:nth-child(3){animation-delay:.55s}.chip:nth-child(4){animation-delay:.7s}.chip:nth-child(5){animation-delay:.85s}.chip:nth-child(6){animation-delay:1s}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.6)}to{opacity:1;transform:none}}
+.grid3{display:grid;gap:12px}
+@media(min-width:640px){.grid3{grid-template-columns:1fr 1fr 1fr}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tile .ic{font-size:22px;line-height:1;display:block;margin-bottom:8px}
+.tile p{margin:4px 0 0;font-size:15.5px;color:var(--ink-soft)}
+form{scroll-margin-top:72px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+label{display:block;font-size:14px;color:var(--ink-soft);margin:14px 0 6px}
+label:first-child{margin-top:0}
+input,textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:400 16px/1.5 "IBM Plex Sans",sans-serif;padding:11px 12px}
+textarea{min-height:130px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.hp{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.topic{font-size:15px;margin:0 0 4px}.topic b{color:var(--accent)}
+.hint{font-size:14px;color:var(--ink-soft);margin:6px 0 0}
+.cta{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:12px;padding:15px;font-weight:500;text-decoration:none;margin:16px 0 6px;font-size:17px;border:0;width:100%;font-family:inherit;cursor:pointer}
+.cta.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
+.cta.sw{background:var(--sw)}
+.cta[disabled]{opacity:.6;cursor:wait}
+.ok{display:none;text-align:center;padding:10px 4px}
+.ok.on{display:block}.ok .big{font-size:44px;line-height:1}
+.err{display:none;color:var(--accent);font-size:15px;margin:8px 0 0}.err.on{display:block}
+.priv{font-size:13.5px;color:var(--ink-soft);margin:10px 0 0}
+.plat{border:1px solid var(--line);border-left:4px solid var(--sw);background:var(--card);border-radius:0 14px 14px 0;padding:16px 18px;margin-top:14px}
+.plat p{margin:6px 0 0;color:var(--ink-soft)}
+.nx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:10px 0;display:block;text-decoration:none;color:var(--ink)}
+.nx h3{color:var(--accent);font-size:17px}
+.qa{margin:16px 0}.qa h3{font-size:17px}.qa p{margin:4px 0 0;color:var(--ink-soft)}
+a{color:var(--accent)}
+footer{margin-top:56px;padding-bottom:56px;text-align:center;font-size:15px;color:var(--ink-soft)}
+footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px}
+@media(prefers-reduced-motion:reduce){.chip,.wink{animation:none!important;opacity:1;transform:none}}
+</style>
+
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"/><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"/><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"/></svg><b>nDm</b></a>
+<div class="topctrl"><button class="rb" id="langBtn">PT</button><button class="rb" id="themeBtn">☀</button></div>
+<div id="langmenu"></div>
+
+<div class="wrap">
+<header>
+  <span class="tag" data-t="tag"></span>
+  <h1><span data-t="h1"></span> <span class="wink" aria-hidden="true">😉</span></h1>
+  <p class="lead" data-t="lead"></p>
+  <div class="cloud" id="cloud" role="group">
+    <button type="button" class="chip" data-k="q" data-t="t_q"></button>
+    <button type="button" class="chip" data-k="exp" data-t="t_exp"></button>
+    <button type="button" class="chip" data-k="perk" data-t="t_perk"></button>
+    <button type="button" class="chip" data-k="idea" data-t="t_idea"></button>
+    <button type="button" class="chip" data-k="job" data-t="t_job"></button>
+    <button type="button" class="chip" data-k="offer" data-t="t_offer"></button>
+  </div>
+</header>
+
+<form id="f" novalidate>
+  <div id="fields">
+    <p class="topic"><span data-t="topicL"></span> <b id="topicV"></b></p>
+    <label for="fName" data-t="nameL"></label>
+    <input id="fName" name="name" autocomplete="name" maxlength="80">
+    <label for="fContact" data-t="contactL"></label>
+    <input id="fContact" name="contact" autocomplete="email" maxlength="120">
+    <label for="fText" data-t="textL"></label>
+    <textarea id="fText" name="text" maxlength="3000"></textarea>
+    <p class="hint" id="hint"></p>
+    <div class="hp" aria-hidden="true"><label>Website<input id="fHp" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <p class="err" id="err"></p>
+    <button class="cta" type="submit" id="send" data-t="send"></button>
+    <p class="priv" data-t="priv"></p>
+  </div>
+  <div class="ok" id="ok"><div class="big">🙌</div><h3 data-t="okT"></h3><p data-t="ok"></p>
+    <a class="cta sw" id="hubCta" href="https://seedwave.pt/hub/" data-t="hubCta"></a></div>
+</form>
+
+<h2 data-t="whyT"></h2>
+<div class="grid3">
+  <div class="tile"><span class="ic">💬</span><h3 data-t="w1t"></h3><p data-t="w1"></p></div>
+  <div class="tile"><span class="ic">🤝</span><h3 data-t="w2t"></h3><p data-t="w2"></p></div>
+  <div class="tile"><span class="ic">🌱</span><h3 data-t="w3t"></h3><p data-t="w3"></p></div>
+</div>
+
+<h2 data-t="platT"></h2>
+<div class="plat"><h3 data-t="platH"></h3><p data-t="plat"></p>
+  <a class="cta sw" id="hubCta2" href="https://seedwave.pt/hub/" data-t="hubCta2"></a></div>
+
+<h2 data-t="faqT"></h2>
+<div class="qa"><h3 data-t="q1"></h3><p data-t="a1"></p></div>
+<div class="qa"><h3 data-t="q2"></h3><p data-t="a2"></p></div>
+<div class="qa"><h3 data-t="q3"></h3><p data-t="a3"></p></div>
+
+<h2 data-t="nextT"></h2>
+<a class="nx" href="https://ajuda.seedwave.pt/cesd/"><h3 data-t="n1t"></h3><span data-t="n1"></span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/cartao/"><h3 data-t="n2t"></h3><span data-t="n2"></span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/subsidio/"><h3 data-t="n3t"></h3><span data-t="n3"></span></a>
+
+<button class="cta ghost" type="button" id="share" data-t="share"></button>
+
+<footer>© <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink">SeedWave</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
+</div>
+
+<script>
+const L = {};
+{{I18N}}
+</script>
+<script>
+(function(){
+var HOOK='https://hook.eu1.make.com/9nluiairmij8iyntbhi7ygshe2eprmlg';
+var TOPIC_DB={q:'Вопрос',exp:'Опыт',perk:'Льгота',idea:'Идея',job:'Ищу работу',offer:'Предлагаю'};
+var ORDER=['pt','en','ru','es','de'];
+var qs=new URLSearchParams(location.search);
+function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var lang=(window.NDM_LANG&&L[window.NDM_LANG])?window.NDM_LANG
+        :(qs.get('lang')||ls('ndm-lang')||(navigator.language||'pt').slice(0,2).toLowerCase());
+if(!L[lang])lang='pt';
+var theme=qs.get('theme')||ls('ndm-theme')||'light';
+var topic=(qs.get('t')&&TOPIC_DB[qs.get('t')])?qs.get('t'):'q';
+var from=qs.get('from')||'';
+if(!from&&document.referrer){try{var r=new URL(document.referrer);if(r.host!==location.host||r.pathname!==location.pathname)from=r.host+r.pathname;}catch(e){}}
+function langPath(Lg){var p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+  if(Lg!=='pt')p.push(Lg);
+  return '/'+(p.length?p.join('/')+'/':'');}
+function langHref(h){var u=new URL(h,location.href);
+  if(window.NDM_LANG&&(u.host===location.host||u.host==='ajuda.seedwave.pt')){
+    var p=u.pathname.split('/').filter(Boolean);
+    if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+    if(lang!=='pt')p.push(lang);
+    return u.origin+'/'+(p.length?p.join('/')+'/':'')+u.hash;}
+  u.searchParams.set('lang',lang);return u.toString();}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+function mstrip(x){return String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function setMeta(t){if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
+  if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}}
+function paintTopic(){var t=L[lang];
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-k')===topic);c.setAttribute('aria-pressed',c.getAttribute('data-k')===topic);});
+  document.getElementById('topicV').textContent=mstrip(t['t_'+topic]);
+  document.getElementById('fText').placeholder=t['ph_'+topic]||'';
+  document.getElementById('hint').textContent=t['h_'+topic]||'';}
+function apply(){
+  var t=L[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k]!==undefined)e.innerHTML=t[k];});
+  document.getElementById('langBtn').textContent=t.code;
+  document.getElementById('fName').placeholder=t.namePh;
+  document.getElementById('fContact').placeholder=t.contactPh;
+  var hub='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
+  ['hubLink','hubCta','hubCta2'].forEach(function(id){document.getElementById(id).href=hub;});
+  document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
+    if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
+    a.href=langHref(a.getAttribute('data-h'));});
+  lsSet('ndm-lang',lang);paintTopic();setMeta(t);
+}
+document.getElementById('cloud').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;
+  topic=b.getAttribute('data-k');paintTopic();
+  var f=document.getElementById('f');if(f.scrollIntoView)f.scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(function(){document.getElementById('fText').focus({preventScroll:true});},350);});
+function rt(s){return [{text:{content:String(s||'').slice(0,1900)}}];}
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();
+  var t=L[lang],err=document.getElementById('err');
+  var name=document.getElementById('fName').value.trim(),contact=document.getElementById('fContact').value.trim(),
+      text=document.getElementById('fText').value.trim(),hp=document.getElementById('fHp').value;
+  if(text.length<3){err.textContent=t.errText;err.classList.add('on');document.getElementById('fText').focus();return;}
+  err.classList.remove('on');
+  if(hp){document.getElementById('fields').style.display='none';document.getElementById('ok').classList.add('on');return;}
+  var src=location.pathname+(from?' ← '+from:'');
+  var props={'Имя':{title:rt(name||'—')},'Тема':{select:{name:TOPIC_DB[topic]}},'Текст':{rich_text:rt(text)},
+    'Контакт':{rich_text:rt(contact)},'Язык':{select:{name:lang}},'Откуда':{rich_text:rt(src)},
+    'Статус':{select:{name:'Новый'}},'Дата':{date:{start:new Date().toISOString().slice(0,10)}}};
+  var body=new URLSearchParams({topic:TOPIC_DB[topic],name:name||'—',contact:contact||'—',text:text,lang:lang,src:src,props:JSON.stringify(props)});
+  var b=document.getElementById('send');b.disabled=true;
+  fetch(HOOK,{method:'POST',body:body}).then(function(r){if(!r.ok)throw 0;
+    document.getElementById('fields').style.display='none';document.getElementById('ok').classList.add('on');
+  }).catch(function(){b.disabled=false;err.innerHTML=t.errNet;err.classList.add('on');});
+});
+var m=document.getElementById('langmenu');
+function paintMenu(){m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
+  return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';}).join('');}
+m.addEventListener('click',function(e){var b=e.target.closest('button[data-l]');if(!b)return;
+  var k=b.getAttribute('data-l');lsSet('ndm-lang',k);
+  if(window.NDM_LANG){location.href=langPath(k)+location.search;return;}
+  lang=k;m.classList.remove('on');apply();});
+document.getElementById('langBtn').onclick=function(e){e.stopPropagation();paintMenu();m.classList.toggle('on');};
+document.addEventListener('click',function(){m.classList.remove('on');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('on');});
+document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
+document.getElementById('yr').textContent=new Date().getFullYear();
+document.getElementById('share').onclick=function(){var t=L[lang],url=location.origin+location.pathname;
+  if(navigator.share){navigator.share({title:mstrip(t.h1),text:mstrip(t.shareText),url:url}).catch(function(){});}
+  else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){var b=document.getElementById('share'),o=b.innerHTML;b.innerHTML=t.copied;setTimeout(function(){b.innerHTML=o;},1600);});}};
+applyTheme();apply();paintMenu();
+})();
+</script>

@@ -1,0 +1,23 @@
+# nDm — Nova Dádiva da Madeira (ajuda.seedwave.pt)
+
+> Free step-by-step guides to public services in Madeira and Portugal, written by people who went through each process themselves (Igor Kartuzov, SeedWave). Every guide is available in Portuguese, English, Russian, Spanish and German. Sample forms use made-up data; deadlines, screens and wording come from real applications.
+
+Language versions: the Portuguese page is at the path itself (e.g. /cesd/); other languages add /en/, /ru/, /es/, /de/ (e.g. /cesd/en/).
+
+## Guides
+
+- [European Health Insurance Card (CESD / EHIC) — when Segurança Social Direta refuses](https://ajuda.seedwave.pt/cesd/en/): the card is free and valid 3 years. If the online form says "Atualmente não reúne condições para solicitar o CESD por esta via", apply through e-Clic ("Esclarecer dúvidas sobre a minha situação"), send forms GIT-53 and MG2 plus a copy of the residence permit, sign with Chave Móvel Digital (GIT-53 page 3 position 12; MG2 page 1 position 15). Not valid for non-EU nationals in Denmark, Iceland, Liechtenstein, Norway and Switzerland.
+- [Madeira resident card in SIMplifica (Cartão de Residente)](https://ajuda.seedwave.pt/cartao/en/): free hiking trails for residents and the Porto Santo subsidy, screen by screen.
+- [Booking a hiking trail in Madeira (SIMplifica)](https://ajuda.seedwave.pt/trilhos/en/): residents at 0 € and visitors in one request.
+- [Social mobility subsidy for flights Madeira — mainland (Subsídio Social de Mobilidade)](https://ajuda.seedwave.pt/subsidio/en/): how to get part of the ticket back, five portal screens; also [money and amounts](https://ajuda.seedwave.pt/subsidio/dinheiro/en/), [rejected claims](https://ajuda.seedwave.pt/subsidio/rejeitado/en/), [family trips](https://ajuda.seedwave.pt/subsidio/familia/en/).
+- [Lei 23/2026 — the 400 € ceiling removed](https://ajuda.seedwave.pt/lei-23-2026/en/)
+
+## Ask, share, offer
+
+- [Speak up / Dê-se a conhecer](https://ajuda.seedwave.pt/participar/en/): ask a question, share what worked, report a free programme or benefit you found, propose an idea, say you are looking for work or offer a service (dog walking, car repair, renovation help, translation…). Answered personally by Igor Kartuzov.
+
+## About
+
+- Author: Igor Kartuzov — https://www.linkedin.com/in/igor-kartuzov/
+- Platform: SeedWave, where ideas become projects — https://seedwave.pt/hub/
+- Related tools: grants checker for Madeira companies https://nam.seedwave.pt/ · tax deadline watcher https://prazos.seedwave.pt/

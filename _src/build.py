@@ -263,6 +263,24 @@ write("cesd/index.html", html)
 PAGES.append(SITE + "/cesd/")
 print("built: cesd/index.html")
 
+# ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
+# Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
+subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)
+par = read("_src/participar-body.html")
+par = par.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/participar.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/participar.%s.js" % L)))
+html = wrap(FONTS + par, lang="pt",
+            title="Dê-se a conhecer: pergunta, experiência, ideia, trabalho ou serviço na Madeira — nDm · SeedWave",
+            desc=("Tudo no nDm é gratuito. Diga-nos o que precisa ou o que sabe fazer: uma pergunta, a sua experiência, "
+                  "um apoio que encontrou, uma ideia, procura de trabalho ou um serviço. Respondo eu mesmo."),
+            app="nDm", root="../",
+            ogtitle="Dê-se a conhecer 😉 — nDm · SeedWave",
+            og=SITE + "/participar/og-image.png", url=SITE + "/participar/")
+write("participar/index.html", html)
+PAGES.append(SITE + "/participar/")
+print("built: participar/index.html")
+
 # ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
 page("_src/news-body.html", "news", "lei-23-2026/index.html",
      CR + "Lei 23/2026",
@@ -292,6 +310,8 @@ print("built: sitemap.xml (%d страниц)" % len(PAGES))
 
 write("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE)
 print("built: robots.txt")
+write("llms.txt", read("_src/llms.txt"))
+print("built: llms.txt")
 
 # ---------- пререндер -----------------------------------------------------
 # ОБЯЗАТЕЛЕН: без него на сайте лежат пустые оболочки, которые краулер не читает.
