@@ -28,7 +28,7 @@ header h1{font-size:26px;margin:4px 0 10px}
 .track li.on:before{background:var(--ok);border-color:var(--ok)}
 .track li.now:before{background:var(--now);border-color:var(--now)}
 .track li.now{font-weight:600}
-.track li:nth-child(1){animation-delay:1.0s}.track li:nth-child(2){animation-delay:1.3s}.track li:nth-child(3){animation-delay:1.6s}.track li:nth-child(4){animation-delay:1.9s}.track li:nth-child(5){animation-delay:2.2s}.track li:nth-child(6){animation-delay:2.5s}.track li:nth-child(7){animation-delay:2.8s}.track li:nth-child(8){animation-delay:3.1s}
+.track li:nth-child(8){animation-delay:1.0s}.track li:nth-child(7){animation-delay:1.3s}.track li:nth-child(6){animation-delay:1.6s}.track li:nth-child(5){animation-delay:1.9s}.track li:nth-child(4){animation-delay:2.2s}.track li:nth-child(3){animation-delay:2.5s}.track li:nth-child(2){animation-delay:2.8s}.track li:nth-child(1){animation-delay:3.1s}
 .nums{display:grid;gap:8px;flex:1}
 .num{opacity:0;animation:up .5s both}
 .num b{font:600 27px/1 Bitter,serif;color:var(--accent);margin-right:7px}
@@ -102,8 +102,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <span class="tag" data-t="tag"></span>
   <div class="stage">
     <div class="track" aria-hidden="true"><ol>
-      <li class="on">Submetido</li><li class="on">Em análise</li><li class="on">Em decisão</li><li class="on">Decisão final – Deferido</li>
-      <li class="on">Cartão em produção</li><li class="on">Cartão emitido</li><li class="on">Cartão enviado</li><li class="on now">Cartão entregue</li>
+      <li class="on now">Cartão entregue</li><li class="on">Cartão enviado</li><li class="on">Cartão emitido</li><li class="on">Cartão em produção</li>
+      <li class="on">Decisão final – Deferido</li><li class="on">Em decisão</li><li class="on">Em análise</li><li class="on">Submetido</li>
     </ol></div>
     <div class="nums">
       <div class="num"><b data-t="k1v"></b><span data-t="k1"></span></div>

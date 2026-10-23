@@ -47,9 +47,10 @@ def og():
     d.rounded_rectangle([cx, cy, cx + cw, cy + ch], radius=22, fill=(255, 255, 255), outline=(230, 217, 204), width=2)
     f = ImageFont.truetype(G + "Poppins-Regular.ttf", 17); fb = ImageFont.truetype(G + "Poppins-Bold.ttf", 17)
     d.line([cx + 34, cy + 34, cx + 34, cy + ch - 34], fill=(230, 217, 204), width=3)
-    for i, s in enumerate(STAGES):
+    # как в настоящем трекере: новое сверху, «Submetido» внизу
+    for i, s in enumerate(reversed(STAGES)):
         y = cy + 30 + i * 38
-        last = i == len(STAGES) - 1
+        last = i == 0
         col = (31, 95, 168) if last else (46, 125, 79)
         d.ellipse([cx + 25, y, cx + 43, y + 18], fill=col)
         d.text((cx + 58, y - 2), s, font=fb if last else f, fill=INK if last else SOFT)
