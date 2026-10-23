@@ -20,7 +20,7 @@ Bing хуже, а ИИ-краулеры (GPTBot, ClaudeBot, PerplexityBot) JS н
 import asyncio, io, os, re, http.server, socketserver, threading, functools, json
 
 SITE = "https://ajuda.seedwave.pt"
-LANGS = ["pt", "en", "ru", "de", "es"]
+LANGS = ["pt", "en", "ru", "es", "de"]
 HTML_LANG = {"pt": "pt-PT", "en": "en", "ru": "ru", "de": "de", "es": "es"}
 PORT = 0          # свободный порт выбирает система — сборку можно гонять подряд
 import datetime
@@ -135,6 +135,25 @@ def jsonld(html, path, lang, ld):
     return html.replace("</head>", tag + "\n</head>", 1)
 
 
+def manifest_fix(html, path, lang, store):
+    """Свой статичный манифест на каждую пару «страница × язык» (стандарт запуска §3.1).
+    Телефон берёт start_url из манифеста, а не адрес страницы: с одним манифестом на всё
+    «На экран Домой» с /cesd/ru/ открывал португальскую версию. Берём манифест, на который
+    ссылается страница, и пишем копию m/<страница>-<язык>.webmanifest со своими id и start_url."""
+    import posixpath
+    m = re.search(r'<link rel="manifest" href="([^"]*)">', html)
+    if not m:
+        return html
+    href = m.group(1)
+    base = href if href.startswith("/") else posixpath.normpath(posixpath.join("/" + path, href))
+    data = json.loads(io.open(base.lstrip("/"), encoding="utf-8").read())
+    start = "/" + path + ("" if lang == "pt" else lang + "/")
+    data.update({"id": start, "start_url": start, "scope": "/" + path if path else "/", "lang": HTML_LANG[lang]})
+    slug = (path.strip("/").replace("/", "-") or "home") + "-" + lang
+    store["m/%s.webmanifest" % slug] = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    return html.replace(m.group(0), '<link rel="manifest" href="/m/%s.webmanifest">' % slug, 1)
+
+
 def depth_fix(html, path, lang):
     """Языковая подпапка на уровень глубже — чинит относительные ссылки на ресурсы."""
     if lang == "pt":
@@ -175,6 +194,7 @@ async def main():
                 html = html.replace("<head>", '<head>\n<script>window.NDM_LANG="%s";</script>' % lang, 1)
                 html = jsonld(html, path, lang, ld)
                 html = head_fix(html, path, lang)
+                html = manifest_fix(html, path, lang, out_files)
                 html = depth_fix(html, path, lang)
                 out = (path or "") + ("" if lang == "pt" else lang + "/") + "index.html"
                 out_files[out] = html

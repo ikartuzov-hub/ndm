@@ -79,6 +79,7 @@ q2:"Brauchen Partner und Kinder eine eigene Karte?",a2:"Ja, jeder seine eigene. 
 q3:"Geht es ohne Chave Móvel Digital?",a3:"Ja: Formulare ausdrucken, von Hand unterschreiben und einscannen — oder bei einer Dienststelle der Segurança Social abgeben. Auf Madeira ist das das ISSM.",
 q4:"Ersetzt die Karte eine Reiseversicherung?",a4:"Nein. Sie zahlt keine Privatkliniken, keine Rettung und keinen Rücktransport.",
 q5:"Wie lange gilt die Karte?",a5:"Drei Jahre. Verlängerung online oder vor Ort.",
+fbT:"Eine Frage, Ihre Erfahrung oder eine Idee?",fb:"Wenn etwas schiefging, die Segurança Social anders geantwortet hat oder Sie einen kürzeren Weg gefunden haben — schreiben Sie mir. Ich antworte selbst, und Ihr Fall (ohne persönliche Daten) kommt auf diese Seite, damit es die Nächsten leichter haben.",fbMail:"Per E-Mail schreiben",fbLi:"Auf LinkedIn schreiben",fbSubj:"CESD — Frage / Erfahrung / Idee",
 copy:"Kopieren",copied:"Kopiert ✓",
 share:"An Freunde senden",shareText:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt",
 nextT:"Mehr bei nDm",

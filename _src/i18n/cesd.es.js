@@ -79,6 +79,7 @@ q2:"¿La pareja y los hijos necesitan su propia tarjeta?",a2:"Sí, cada uno la s
 q3:"¿Se puede sin Chave Móvel Digital?",a3:"Sí: imprimir los formularios, firmar a mano y escanear, o entregarlos en una oficina de la Segurança Social. En Madeira, el ISSM.",
 q4:"¿La tarjeta sustituye al seguro de viaje?",a4:"No. No paga clínicas privadas, rescates ni repatriación.",
 q5:"¿Cuánto dura la tarjeta?",a5:"Tres años. Se renueva online o en persona.",
+fbT:"¿Una duda, su experiencia o una idea?",fb:"Si algo salió mal, la Segurança Social respondió distinto o encontró un camino más corto, escríbame. Respondo yo mismo, y su caso (sin datos personales) se suma a esta página para facilitárselo a los siguientes.",fbMail:"Escribir por correo",fbLi:"Escribir en LinkedIn",fbSubj:"CESD — duda / experiencia / idea",
 copy:"Copiar",copied:"Copiado ✓",
 share:"Enviar a un amigo",shareText:"Tarjeta Sanitaria Europea en Portugal: cómo pedirla cuando el portal la rechaza",
 nextT:"Más en nDm",

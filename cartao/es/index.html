@@ -7,7 +7,7 @@
 <meta name="description" content="Se hace en casa, en 15 minutos. Abajo, cada pantalla y dónde pulsar.">
 <link rel="icon" href="/cartao/icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/cartao/icon-180.png">
-<link rel="manifest" href="/cartao/manifest.webmanifest">
+<link rel="manifest" href="/m/cartao-es.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Cartão">
 <meta name="theme-color" content="#FAF6F1">
 <meta property="og:title" content="Tarjeta de residente de Madeira: la solicitud pantalla a pantalla — nDm">
@@ -21,8 +21,8 @@
 <link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/cartao/">
 <link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/cartao/en/">
 <link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/cartao/ru/">
-<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/cartao/de/">
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cartao/es/">
+<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/cartao/de/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cartao/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Tarjeta de residente de Madeira: la solicitud pantalla a pantalla", "description": "Se hace en casa, en 15 minutos. Abajo, cada pantalla y dónde pulsar.", "inLanguage": "es", "url": "https://ajuda.seedwave.pt/cartao/es/", "dateModified": "2026-10-23", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
@@ -39,9 +39,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex 
 .wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
 h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
 h1{font-size:30px;margin:0 0 10px}h2{font-size:23px;margin:44px 0 12px}h3{font-size:19px;margin:0 0 6px}
-.brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:6}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif;letter-spacing:.01em}
 .topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
-.rb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
 #langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
 #langmenu.on{display:block}
 #langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
@@ -91,9 +92,9 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 @media(prefers-reduced-motion:reduce){.brandmark svg,.fee,.fine,.rcard,.zero,.ch{animation:none!important;opacity:1;transform:none}}
 </style>
 
-<a class="brandmark" href="https://ajuda.seedwave.pt/es/" aria-label="nDm" data-h="https://ajuda.seedwave.pt/"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"></path><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"></path><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"></path></svg></a>
+<a class="brandmark" href="https://ajuda.seedwave.pt/es/" aria-label="nDm" data-h="https://ajuda.seedwave.pt/"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"></path><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"></path><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"></path></svg><b>nDm</b></a>
 <div class="topctrl"><button class="rb" id="langBtn">ES</button><button class="rb" id="themeBtn">☀</button></div>
-<div id="langmenu"><button type="button" data-l="pt">PT  Português</button><button type="button" data-l="en">EN  English</button><button type="button" data-l="ru">RU  Русский</button><button type="button" data-l="de">DE  Deutsch</button><button type="button" data-l="es" class="cur">ES  Español</button></div>
+<div id="langmenu"><button type="button" data-l="pt">PT  Português</button><button type="button" data-l="en">EN  English</button><button type="button" data-l="ru">RU  Русский</button><button type="button" data-l="es" class="cur">ES  Español</button><button type="button" data-l="de">DE  Deutsch</button></div>
 
 <div class="wrap">
 <header>
@@ -266,42 +267,6 @@ srcT:"Источники",
 authorT:"Кто это писал",
 author:"Игорь Картузов, SeedWave. Я прошёл это сам 8 сентября 2026 года: заявка в 11:42, карта в 15:30. Все экраны ниже — из моей заявки, личные данные закрашены. Вопросы — пишите в LinkedIn.",
 foot:"SeedWave · Igor Kartuzov"};
-L.de = {code:"DE",name:"Deutsch",
-tag:"Wanderwege Madeiras · Kontrollen seit April 2026",
-fee:"Gebühr pro Wanderweg",fine:"Bußgeld ohne Ticket, sofort fällig",zero:"mit Residentenkarte —<br>immer",
-h1:"Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm",
-lead:"Von zu Hause aus, in 15 Minuten. Unten: jeder Bildschirm und wohin man klickt.",
-cta:"Karte beantragen — Schritt 1 von 8",
-cardT:"Residentenkarte Madeiras",
-w1:"Die Karte bringt Sie nicht auf den Wanderweg. Das Ticket tut es.",
-w2:"Mit der Residentenkarte ist das Ticket kostenlos — buchen müssen Sie es trotzdem, vor jeder Wanderung. Ohne Buchung ist das Bußgeld dasselbe wie für Touristen.",
-w3:"So wird der Andrang auf den Levadas gesteuert: der Tag ist in 30-Minuten-Fenster geteilt, von Sonnenaufgang bis Sonnenuntergang. Residenten haben ein eigenes Kontingent, getrennt von dem der Touristen.",
-w4:"Am Eingang zeigen Sie drei Dinge: das Ticket, die Residentenkarte und ein Ausweisdokument mit Foto.",
-needT:"Was Sie vorher bereitlegen",
-need1:"Chave Móvel Digital. Wenn Sie keine haben, wird sie mit dem Aufenthaltstitel in einer Loja do Cidadão oder online freigeschaltet.",
-need2:"Prüfen, dass die Steueradresse auf Madeira liegt. Daran prüft das Portal den Wohnsitz.",
-need3:"Scan des Ausweises: Aufenthaltstitel beidseitig oder Reisepass.",
-need4:"NIF-Nachweis — Bescheinigung vom Portal das Finanças, kostenlos und sofort.",
-need5:"Nachweis über mehr als 6 Monate Wohnsitz — siehe Schritt 5, dort gibt es zwei Wege.",
-s1t:"Am Portal anmelden",s1:"Öffnen Sie simplifica.madeira.gov.pt und melden Sie sich mit der Chave Móvel Digital an. Das Konto entsteht bei der ersten Anmeldung von selbst.",
-s1cta:"SIMplifica öffnen — die Seite des Dienstes",
-s2t:"Den Dienst finden",s2:"Bereich Mobilidade, Dienst «Emissão do Cartão de Residente na RAM». Das Portal prüft sofort, ob Sie bereits eine gültige Karte haben.",
-s3t:"E-Mail, Telefon und zwei Häkchen",s3:"Tragen Sie E-Mail und Telefonnummer ein — an diese E-Mail kommt die Karte. Darunter stehen zwei Kästchen mit Sternchen, beide Pflicht: die Ehrenerklärung zu den Regeln des Porto-Santo-Zuschusses und die Einwilligung zur Datenverarbeitung. Die Formulierung zu Porto Santo verpflichtet Sie zu nichts — die Karte entstand ursprünglich für diesen Zuschuss.",
-s4t:"Die eigenen Daten prüfen",s4:"Name, Geburtsdatum, NIF und Adresse kommen aus dem Profil, in grauen Feldern, die sich nicht bearbeiten lassen. Lesen Sie sie einfach durch. Der Block «Preencher apenas no caso de Cartão do Cidadão» gilt nur für Inhaber eines portugiesischen Cartão de Cidadão. Haben Sie keinen — leer lassen und weiter.",
-s5t:"Den eigenen Status wählen",s5:"Das Portal wählt von sich aus «Residente». Das gilt für portugiesische Staatsbürger. Als Ausländer mit Aufenthaltstitel wechseln Sie auf «Estrangeiro residente». Das ist die Hauptfalle des Formulars: wer sie übersieht, landet im falschen Zweig. «Residente equiparado» ist ein seltener Fall, für Gleichgestellte ohne Registrierung vor Ort.",
-s6t:"Die Dokumente hochladen",s6:"Vier Felder: Ausweisnummer, Scan des Ausweises, NIF-Nachweis und Nachweis über mehr als sechs Monate Wohnsitz. Dazu das Herkunftsland aus einer Liste.",
-s7t:"Der Nachweis der sechs Monate — hier gibt es eine Wahl",s7:"Das naheliegende Dokument ist das atestado de residência der Junta de Freguesia, das angibt, wie viele Jahre Sie in der Gemeinde wohnen. Es gilt drei Monate, kostet einige Euro und verlangt einen Weg dorthin.<br><br>Es gibt einen Weg ohne diesen Gang, und er hat funktioniert: Bescheinigung über den Steuerwohnsitz vom Portal das Finanças plus ein zweites Dokument mit früherem Datum — eine alte AIMA-Quittung, ein Mietvertrag, ein früherer Aufenthaltstitel. Zusammen zeigen sie Adresse und Zeitraum. Der Antrag wurde ohne Rückfragen bewilligt.<br><br>Ehrlich gesagt: das ist ein bestätigter Fall, keine Garantie. Ohne Dokument mit früherem Datum holen Sie sich das atestado.",
-s8t:"Absenden und die Karte bekommen",s8:"Sie klicken auf Seguinte, der Status wechselt auf «Aguarda validação AMA» — ein Mensch prüft den Antrag. In unserem Fall: eingereicht um 11:42, bewilligt um 15:30 desselben Tages. Es kommt eine E-Mail «Processo de validação de residência — Deferido» mit dem Zertifikat als PDF und einer .pkpass-Datei. Öffnen Sie die .pkpass auf dem Telefon, und die Karte liegt in der Wallet.",
-bookT:"Jetzt die Buchung — ohne sie nützt die Karte nichts",
-book:"Der Dienst «Pagamento de Taxas para acesso aos Percursos Pedestres Classificados» im selben Portal. Sie wählen Wanderweg, Datum und ein Halbstundenfenster und laden das Ticket herunter. Residenten zahlen nichts. Prüfen Sie vor dem Losgehen auf der IFCN-Seite, ob der Weg offen ist — nach Regen werden sie häufig gesperrt. Das Betreten eines gesperrten Weges ist ein eigener Verstoß: 250 Euro, sofort fällig.",
-nextT:"Was jetzt möglich ist",
-n1t:"Kostenlos wandern",n1:"Alle klassifizierten Wege der Insel, ohne Gebühr, mit Buchung.",
-n2t:"Günstiger nach Lissabon fliegen",n2:"Die Karte belegt den Anspruch auf den sozialen Mobilitätszuschuss. Wie man die Unterlagen bei TAP anfordert und den Antrag stellt, steht im Nachbarheft.",
-n3t:"Wenn Sie ein Unternehmen haben",n3:"Madeiras Förderungen und Programme für Unternehmen — in einem eigenen Prüfer.",
-srcT:"Quellen",
-authorT:"Wer das geschrieben hat",
-author:"Igor Kartuzov, SeedWave. Ich bin das am 8. September 2026 selbst durchgegangen: Antrag um 11:42, Karte um 15:30. Alle Bildschirme unten stammen aus meinem eigenen Antrag, persönliche Daten sind übermalt. Fragen — gern auf LinkedIn.",
-foot:"SeedWave · Igor Kartuzov"};
 L.es = {code:"ES",name:"Español",
 tag:"Senderos de Madeira · controles desde abril de 2026",
 fee:"tasa por sendero",fine:"multa sin billete, se paga allí mismo",zero:"con tarjeta de residente —<br>siempre",
@@ -338,10 +303,46 @@ srcT:"Fuentes",
 authorT:"Quién ha escrito esto",
 author:"Igor Kartuzov, SeedWave. Pasé por esto yo mismo el 8 de septiembre de 2026: solicitud a las 11:42, tarjeta a las 15:30. Todas las pantallas de abajo son de mi propia solicitud, con los datos personales tapados. Dudas — en LinkedIn.",
 foot:"SeedWave · Igor Kartuzov"};
+L.de = {code:"DE",name:"Deutsch",
+tag:"Wanderwege Madeiras · Kontrollen seit April 2026",
+fee:"Gebühr pro Wanderweg",fine:"Bußgeld ohne Ticket, sofort fällig",zero:"mit Residentenkarte —<br>immer",
+h1:"Residentenkarte Madeiras: der Antrag Bildschirm für Bildschirm",
+lead:"Von zu Hause aus, in 15 Minuten. Unten: jeder Bildschirm und wohin man klickt.",
+cta:"Karte beantragen — Schritt 1 von 8",
+cardT:"Residentenkarte Madeiras",
+w1:"Die Karte bringt Sie nicht auf den Wanderweg. Das Ticket tut es.",
+w2:"Mit der Residentenkarte ist das Ticket kostenlos — buchen müssen Sie es trotzdem, vor jeder Wanderung. Ohne Buchung ist das Bußgeld dasselbe wie für Touristen.",
+w3:"So wird der Andrang auf den Levadas gesteuert: der Tag ist in 30-Minuten-Fenster geteilt, von Sonnenaufgang bis Sonnenuntergang. Residenten haben ein eigenes Kontingent, getrennt von dem der Touristen.",
+w4:"Am Eingang zeigen Sie drei Dinge: das Ticket, die Residentenkarte und ein Ausweisdokument mit Foto.",
+needT:"Was Sie vorher bereitlegen",
+need1:"Chave Móvel Digital. Wenn Sie keine haben, wird sie mit dem Aufenthaltstitel in einer Loja do Cidadão oder online freigeschaltet.",
+need2:"Prüfen, dass die Steueradresse auf Madeira liegt. Daran prüft das Portal den Wohnsitz.",
+need3:"Scan des Ausweises: Aufenthaltstitel beidseitig oder Reisepass.",
+need4:"NIF-Nachweis — Bescheinigung vom Portal das Finanças, kostenlos und sofort.",
+need5:"Nachweis über mehr als 6 Monate Wohnsitz — siehe Schritt 5, dort gibt es zwei Wege.",
+s1t:"Am Portal anmelden",s1:"Öffnen Sie simplifica.madeira.gov.pt und melden Sie sich mit der Chave Móvel Digital an. Das Konto entsteht bei der ersten Anmeldung von selbst.",
+s1cta:"SIMplifica öffnen — die Seite des Dienstes",
+s2t:"Den Dienst finden",s2:"Bereich Mobilidade, Dienst «Emissão do Cartão de Residente na RAM». Das Portal prüft sofort, ob Sie bereits eine gültige Karte haben.",
+s3t:"E-Mail, Telefon und zwei Häkchen",s3:"Tragen Sie E-Mail und Telefonnummer ein — an diese E-Mail kommt die Karte. Darunter stehen zwei Kästchen mit Sternchen, beide Pflicht: die Ehrenerklärung zu den Regeln des Porto-Santo-Zuschusses und die Einwilligung zur Datenverarbeitung. Die Formulierung zu Porto Santo verpflichtet Sie zu nichts — die Karte entstand ursprünglich für diesen Zuschuss.",
+s4t:"Die eigenen Daten prüfen",s4:"Name, Geburtsdatum, NIF und Adresse kommen aus dem Profil, in grauen Feldern, die sich nicht bearbeiten lassen. Lesen Sie sie einfach durch. Der Block «Preencher apenas no caso de Cartão do Cidadão» gilt nur für Inhaber eines portugiesischen Cartão de Cidadão. Haben Sie keinen — leer lassen und weiter.",
+s5t:"Den eigenen Status wählen",s5:"Das Portal wählt von sich aus «Residente». Das gilt für portugiesische Staatsbürger. Als Ausländer mit Aufenthaltstitel wechseln Sie auf «Estrangeiro residente». Das ist die Hauptfalle des Formulars: wer sie übersieht, landet im falschen Zweig. «Residente equiparado» ist ein seltener Fall, für Gleichgestellte ohne Registrierung vor Ort.",
+s6t:"Die Dokumente hochladen",s6:"Vier Felder: Ausweisnummer, Scan des Ausweises, NIF-Nachweis und Nachweis über mehr als sechs Monate Wohnsitz. Dazu das Herkunftsland aus einer Liste.",
+s7t:"Der Nachweis der sechs Monate — hier gibt es eine Wahl",s7:"Das naheliegende Dokument ist das atestado de residência der Junta de Freguesia, das angibt, wie viele Jahre Sie in der Gemeinde wohnen. Es gilt drei Monate, kostet einige Euro und verlangt einen Weg dorthin.<br><br>Es gibt einen Weg ohne diesen Gang, und er hat funktioniert: Bescheinigung über den Steuerwohnsitz vom Portal das Finanças plus ein zweites Dokument mit früherem Datum — eine alte AIMA-Quittung, ein Mietvertrag, ein früherer Aufenthaltstitel. Zusammen zeigen sie Adresse und Zeitraum. Der Antrag wurde ohne Rückfragen bewilligt.<br><br>Ehrlich gesagt: das ist ein bestätigter Fall, keine Garantie. Ohne Dokument mit früherem Datum holen Sie sich das atestado.",
+s8t:"Absenden und die Karte bekommen",s8:"Sie klicken auf Seguinte, der Status wechselt auf «Aguarda validação AMA» — ein Mensch prüft den Antrag. In unserem Fall: eingereicht um 11:42, bewilligt um 15:30 desselben Tages. Es kommt eine E-Mail «Processo de validação de residência — Deferido» mit dem Zertifikat als PDF und einer .pkpass-Datei. Öffnen Sie die .pkpass auf dem Telefon, und die Karte liegt in der Wallet.",
+bookT:"Jetzt die Buchung — ohne sie nützt die Karte nichts",
+book:"Der Dienst «Pagamento de Taxas para acesso aos Percursos Pedestres Classificados» im selben Portal. Sie wählen Wanderweg, Datum und ein Halbstundenfenster und laden das Ticket herunter. Residenten zahlen nichts. Prüfen Sie vor dem Losgehen auf der IFCN-Seite, ob der Weg offen ist — nach Regen werden sie häufig gesperrt. Das Betreten eines gesperrten Weges ist ein eigener Verstoß: 250 Euro, sofort fällig.",
+nextT:"Was jetzt möglich ist",
+n1t:"Kostenlos wandern",n1:"Alle klassifizierten Wege der Insel, ohne Gebühr, mit Buchung.",
+n2t:"Günstiger nach Lissabon fliegen",n2:"Die Karte belegt den Anspruch auf den sozialen Mobilitätszuschuss. Wie man die Unterlagen bei TAP anfordert und den Antrag stellt, steht im Nachbarheft.",
+n3t:"Wenn Sie ein Unternehmen haben",n3:"Madeiras Förderungen und Programme für Unternehmen — in einem eigenen Prüfer.",
+srcT:"Quellen",
+authorT:"Wer das geschrieben hat",
+author:"Igor Kartuzov, SeedWave. Ich bin das am 8. September 2026 selbst durchgegangen: Antrag um 11:42, Karte um 15:30. Alle Bildschirme unten stammen aus meinem eigenen Antrag, persönliche Daten sind übermalt. Fragen — gern auf LinkedIn.",
+foot:"SeedWave · Igor Kartuzov"};
 </script>
 <script>
 (function(){
-var ORDER=['pt','en','ru','de','es'];
+var ORDER=['pt','en','ru','es','de'];
 var qs=new URLSearchParams(location.search);
 function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
@@ -401,7 +402,7 @@ var m=document.getElementById('langmenu');
 // меню перерисовывается целиком: пререндер сохраняет его в HTML, и дописывание
 // вторым заходом дало бы десять кнопок, половину без обработчика
 function paintMenu(){
-  m.innerHTML=Object.keys(L).map(function(k){
+  m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
     return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';
   }).join('');
 }

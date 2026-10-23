@@ -79,6 +79,7 @@ q2:"Do my spouse and children need their own card?",a2:"Yes, one each. Dependent
 q3:"Can I do it without Chave Móvel Digital?",a3:"Yes: print the forms, sign by hand and scan — or hand them in at a Segurança Social office. In Madeira that is ISSM.",
 q4:"Does the card replace travel insurance?",a4:"No. It does not pay for private clinics, rescue or repatriation.",
 q5:"How long is the card valid?",a5:"Three years. It can be renewed online or in person.",
+fbT:"A question, your experience or an idea?",fb:"If something went wrong, Segurança Social answered differently or you found a shorter route — write to me. I answer myself, and your case (without personal data) goes on this page to make it easier for the next person.",fbMail:"Write by e-mail",fbLi:"Message on LinkedIn",fbSubj:"CESD — question / experience / idea",
 copy:"Copy",copied:"Copied ✓",
 share:"Send to a friend",shareText:"European Health Insurance Card in Portugal: how to get it when the portal refuses",
 nextT:"More on nDm",

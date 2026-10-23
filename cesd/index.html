@@ -7,7 +7,7 @@
 <meta name="description" content="O CESD é gratuito e dá acesso aos serviços públicos de saúde na UE como um residente local. O caminho pelo e-Clic, os modelos GIT-53 e MG2 e a assinatura com a…">
 <link rel="icon" href="/cesd/icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/cesd/icon-180.png">
-<link rel="manifest" href="/cesd/manifest.webmanifest">
+<link rel="manifest" href="/m/cesd-pt.webmanifest">
 <meta name="apple-mobile-web-app-title" content="CESD">
 <meta name="theme-color" content="#FAF6F1">
 <meta property="og:title" content="Cartão Europeu de Seguro de Doença: quando o portal recusa — nDm">
@@ -21,8 +21,8 @@
 <link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/cesd/">
 <link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/cesd/en/">
 <link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/cesd/ru/">
-<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/cesd/de/">
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/cesd/es/">
+<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/cesd/de/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cesd/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Cartão Europeu de Seguro de Doença: como pedir quando a Segurança Social Direta recusa", "description": "O CESD é gratuito e dá acesso aos serviços públicos de saúde na UE como um residente local. O caminho pelo e-Clic, os modelos GIT-53 e MG2 e a assinatura com a…", "inLanguage": "pt-PT", "url": "https://ajuda.seedwave.pt/cesd/", "dateModified": "2026-10-23", "totalTime": "PT20M", "author": {"@type": "Person", "name": "Igor Kartuzov"}}</script>
@@ -40,9 +40,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex 
 .wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
 h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
 h2{font-size:23px;margin:48px 0 12px}h3{font-size:19px;margin:0 0 6px}
-.brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:6}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif;letter-spacing:.01em}
 .topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
-.rb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
 #langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
 #langmenu.on{display:block}
 #langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
@@ -112,6 +113,10 @@ ol.sign{padding-left:22px}ol.sign li{margin:10px 0}
 .tl li.wait:before{background:var(--card);border:2px solid var(--accent)}
 .tl b{display:block;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent)}
 .qa{margin:18px 0}.qa h3{font-size:17.5px}.qa p{margin:4px 0 0;color:var(--ink-soft)}
+.fb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px 16px;margin:40px 0 10px}
+.fb h2{margin-top:16px}
+.fbb{display:grid;gap:0}
+@media(min-width:560px){.fbb{grid-template-columns:1fr 1fr;gap:10px}}
 a{color:var(--accent)}
 .nx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;display:block;text-decoration:none;color:var(--ink)}
 .nx h3{color:var(--accent)}
@@ -121,9 +126,9 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 @media(prefers-reduced-motion:reduce){.brandmark svg,.eucard,.eucard .ring i,.num{animation:none!important;opacity:1;transform:none}}
 </style>
 
-<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm" data-h="https://ajuda.seedwave.pt/"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"></path><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"></path><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"></path></svg></a>
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm" data-h="https://ajuda.seedwave.pt/"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"></path><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"></path><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"></path></svg><b>nDm</b></a>
 <div class="topctrl"><button class="rb" id="langBtn">PT</button><button class="rb" id="themeBtn">☀</button></div>
-<div id="langmenu"><button type="button" data-l="pt" class="cur">PT  Português</button><button type="button" data-l="en">EN  English</button><button type="button" data-l="ru">RU  Русский</button><button type="button" data-l="de">DE  Deutsch</button><button type="button" data-l="es">ES  Español</button></div>
+<div id="langmenu"><button type="button" data-l="pt" class="cur">PT  Português</button><button type="button" data-l="en">EN  English</button><button type="button" data-l="ru">RU  Русский</button><button type="button" data-l="es">ES  Español</button><button type="button" data-l="de">DE  Deutsch</button></div>
 
 <div class="wrap">
 <header>
@@ -231,6 +236,12 @@ NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="cop
 <div class="qa"><h3 data-t="q4">O cartão substitui o seguro de viagem?</h3><p data-t="a4">Não. Não paga clínicas privadas, resgate nem repatriamento.</p></div>
 <div class="qa"><h3 data-t="q5">Qual é a validade do cartão?</h3><p data-t="a5">Três anos. Renova-se online ou presencialmente.</p></div>
 
+<div class="fb" id="contact">
+  <h2 data-t="fbT">Uma dúvida, a sua experiência ou uma ideia?</h2>
+  <p data-t="fb">Se algo correu mal, a resposta da Segurança Social foi diferente ou encontrou um caminho mais curto — escreva-me. Respondo eu mesmo, e o seu caso (sem dados pessoais) entra nesta página para facilitar a vida aos próximos.</p>
+  <div class="fbb"><a class="cta" id="fbMail" href="mailto:igor@seedwave.pt?subject=CESD%20%E2%80%94%20d%C3%BAvida%20%2F%20experi%C3%AAncia%20%2F%20ideia" data-t="fbMail">Escrever por e-mail</a><a class="cta ghost" href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener" data-t="fbLi">Escrever no LinkedIn</a></div>
+</div>
+
 <button class="cta" type="button" id="share" data-t="share">Enviar a um amigo</button>
 
 <h2 data-t="nextT">Mais no nDm</h2>
@@ -337,6 +348,7 @@ q2:"O cônjuge e os filhos precisam de cartão próprio?",a2:"Sim, cada um tem o
 q3:"Dá para fazer sem Chave Móvel Digital?",a3:"Sim: imprimir os formulários, assinar à mão e digitalizar — ou entregar num serviço de atendimento da Segurança Social. Na Madeira, o ISSM.",
 q4:"O cartão substitui o seguro de viagem?",a4:"Não. Não paga clínicas privadas, resgate nem repatriamento.",
 q5:"Qual é a validade do cartão?",a5:"Três anos. Renova-se online ou presencialmente.",
+fbT:"Uma dúvida, a sua experiência ou uma ideia?",fb:"Se algo correu mal, a resposta da Segurança Social foi diferente ou encontrou um caminho mais curto — escreva-me. Respondo eu mesmo, e o seu caso (sem dados pessoais) entra nesta página para facilitar a vida aos próximos.",fbMail:"Escrever por e-mail",fbLi:"Escrever no LinkedIn",fbSubj:"CESD — dúvida / experiência / ideia",
 copy:"Copiar",copied:"Copiado ✓",
 share:"Enviar a um amigo",shareText:"Cartão Europeu de Seguro de Doença: como pedir quando o portal recusa",
 nextT:"Mais no nDm",
@@ -428,6 +440,7 @@ q2:"Do my spouse and children need their own card?",a2:"Yes, one each. Dependent
 q3:"Can I do it without Chave Móvel Digital?",a3:"Yes: print the forms, sign by hand and scan — or hand them in at a Segurança Social office. In Madeira that is ISSM.",
 q4:"Does the card replace travel insurance?",a4:"No. It does not pay for private clinics, rescue or repatriation.",
 q5:"How long is the card valid?",a5:"Three years. It can be renewed online or in person.",
+fbT:"A question, your experience or an idea?",fb:"If something went wrong, Segurança Social answered differently or you found a shorter route — write to me. I answer myself, and your case (without personal data) goes on this page to make it easier for the next person.",fbMail:"Write by e-mail",fbLi:"Message on LinkedIn",fbSubj:"CESD — question / experience / idea",
 copy:"Copy",copied:"Copied ✓",
 share:"Send to a friend",shareText:"European Health Insurance Card in Portugal: how to get it when the portal refuses",
 nextT:"More on nDm",
@@ -519,6 +532,7 @@ q2:"Нужна ли отдельная карта жене и детям?",a2:"�
 q3:"Можно ли без Chave Móvel Digital?",a3:"Да: распечатать бланки, подписать ручкой и отсканировать — или подать лично в службе Segurança Social. На Мадейре это региональный институт ISSM.",
 q4:"Карта заменяет туристическую страховку?",a4:"Нет. Она не платит за частные клиники, спасательные работы и перевозку домой.",
 q5:"Сколько действует карта?",a5:"Три года. Продлить можно онлайн или лично.",
+fbT:"Вопрос, свой опыт или идея?",fb:"Если что-то пошло не так, ответ Segurança Social был другим или вы нашли путь короче — напишите. Отвечаю сам, а ваш случай (без личных данных) добавлю на страницу, чтобы следующим было проще.",fbMail:"Написать на почту",fbLi:"Написать в LinkedIn",fbSubj:"CESD — вопрос / опыт / идея",
 copy:"Копировать",copied:"Скопировано ✓",
 share:"Переслать другу",shareText:"Европейская медкарта: как оформить, если портал Segurança Social отказал",
 nextT:"Что ещё есть на nDm",
@@ -528,97 +542,6 @@ n3t:"Если у вас бизнес",n3:"Субсидии и программы
 authorT:"Кто это писал",
 author:"Игорь Картузов, SeedWave. Прохожу этот путь сам с сентября 2026 года. Образцы бланков заполнены вымышленными данными; позиции подписи, сроки и формулировки — из моей заявки. Если у вас вышло иначе — напишите в LinkedIn, я обновлю страницу.",
 srcT:"Источники",
-foot:"SeedWave · Igor Kartuzov"};
-L.de = {code:"DE",name:"Deutsch",
-mt:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt — nDm",
-md:"Die EHIC (CESD) ist kostenlos und sichert Behandlung im öffentlichen Gesundheitswesen der EU wie für Einheimische. Der Weg über e-Clic, Muster für GIT-53 und MG2, Unterschrift mit der Chave Móvel Digital.",
-tag:"Segurança Social · für alle, die in Portugal leben",
-k1:"die Karte ist kostenlos",k2v:"3 Jahre",k2:"gültig",k3v:"5–7 Tage",k3:"per Post nach Ausstellung",
-h1:"Europäische Krankenversicherungskarte (CESD): so klappt es, wenn Segurança Social Direta ablehnt",
-lead:"Mit dieser Karte werden Sie in jedem EU-Land im öffentlichen Gesundheitswesen zu denselben Bedingungen behandelt wie Einheimische. Sie ist kostenlos. Unten der Weg, den wir selbst gegangen sind: von der Online-Ablehnung bis zu den eingereichten Formularen, mit ausgefüllten Mustern und Unterschrift ohne Drucker.",
-cta:"Direkt zum Antrag",
-whyT:"Wann sie hilft",
-why1t:"Krank auf Reisen",why1:"Fieber in Prag, eine Lebensmittelvergiftung in Spanien, ein gebrochener Arm beim Skifahren in Italien: Behandlung im öffentlichen Krankenhaus zu örtlichen Bedingungen. Oft kostenlos oder mit kleiner Zuzahlung.",
-why2t:"Medikamente und Laborwerte",why2:"Rezepte eines örtlichen Arztes und im öffentlichen System angeordnete Untersuchungen — mit den örtlichen Zuzahlungen.",
-why3t:"Laufende Behandlung unterwegs",why3:"Dialyse, Sauerstoff oder Chemotherapie während der Reise sind ebenfalls abgedeckt. Sie müssen es nur vorher mit der Einrichtung absprechen.",
-why4t:"Schwangerschaft",why4:"Vorsorge und Geburt während eines vorübergehenden Aufenthalts sind abgedeckt — außer die Reise dient der Entbindung.",
-notT:"Was die Karte nicht leistet",
-not1:"Sie bezahlt keine Privatkliniken und keine Privatärzte.",
-not2:"Sie bezahlt keine Bergrettung und keinen Rücktransport — dafür brauchen Sie eine Reiseversicherung.",
-not3:"Sie deckt keine Reisen, die zur Behandlung unternommen werden.",
-not4:"Sie ersetzt keine Reiseversicherung — sie ergänzt sie.",
-fwT:"Wenn Ihr Pass nicht aus einem EU-Land stammt",
-fw:"Die Karte <b>gilt in fünf Ländern nicht</b>: Dänemark, Island, Liechtenstein, Norwegen und Schweiz. Ausnahmen sind Geflüchtete und Familienangehörige von EU-Bürgern.",
-fw2:"In allen anderen EU-Ländern gilt sie. Zum Vereinigten Königreich für Drittstaatsangehörige haben wir keine klare Antwort gefunden — fragen Sie vor der Reise bei der Segurança Social nach.",
-routeT:"Zwei Wege",
-rAt:"Weg A — online, zwei Minuten",
-rA:"Segurança Social Direta → Doença → «Obter Cartão Europeu de Seguro de Doença» → «Iniciar pedido». Wenn es klappt, kommt die Karte per Post, und Sie können hier aufhören zu lesen.",
-rBt:"Weg B — wenn das Portal ablehnt",
-rB:"Sehen Sie diesen Satz? Das ist die Ablehnung des Formulars, nicht der Karte. So war es bei uns: Nicht-EU-Bürger mit Aufenthaltstitel auf Madeira. Einen Grund hat die Segurança Social nie genannt, aber eine Liste der Unterlagen geschickt. Es folgen acht Schritte.",
-needT:"Was Sie brauchen",
-need1:"Zugang zur Segurança Social Direta und eine Chave Móvel Digital mit aktivierter digitaler Signatur und deren PIN.",
-need2:"Ihre NISS — die Sozialversicherungsnummer auf der Rückseite des Aufenthaltstitels.",
-need3:"Aufenthaltstitel: beide Seiten, eine Datei bis 3 MB.",
-need4:"Etwa vierzig Minuten und einen Computer: Unterschreiben und Hochladen geht am großen Bildschirm leichter.",
-s1t:"Anfrage über e-Clic stellen",
-s1:"Segurança Social Direta → Contactos → «Canal e-Clic» → «Registar pedido». Thema: Cartão Europeu de Seguro de Doença. Als Grund wählen Sie <b>«Esclarecer dúvidas sobre a minha situação»</b>. Nicht «Apresentar um pedido» nehmen: Das führt zurück zu genau dem Online-Formular, das abgelehnt hat. Der Text steht unten — Namen und Gemeinde ergänzen.",
-tpl1n:"Nicht selbstständig? Ändern Sie «trabalhador independente». Den letzten Satz nur behalten, wenn Sie die Formulare gleich mitschicken.",
-s1tip:"<b>Sie können drei Wochen sparen.</b> Füllen Sie GIT-53 und MG2 aus (Schritte 3–5), unterschreiben Sie und hängen Sie sie samt Aufenthaltstitel gleich an die erste Anfrage. Dann müssen Sie wahrscheinlich nicht auf die Rückfrage warten. Wir haben das nicht getan — es ist unsere Vermutung, kein erprobter Weg.",
-s2t:"Auf die Antwort warten",
-s2:"Nach 18 Tagen kam die Antwort: Formular GIT-53, Formular MG2 und eine Kopie des Aufenthaltstitels schicken. Die Anfrage stand auf «Pendente de Informação», mit 30 Tagen Frist — sonst wird sie geschlossen. Die leeren Formulare hängen an der Anfrage selbst, Reiter «Documentos», und stehen auf der Website der Segurança Social.",
-s2cta:"Formulare auf der Website der Segurança Social",
-s3t:"GIT-53 ausfüllen — der Antrag auf die Karte",
-s3:"Vier Seiten; ausgefüllt werden die erste und die dritte. Unten ein Muster mit erfundenen Daten; die Zahlen im Bild sind darunter erklärt.",
-g1:"Name — wie im Aufenthaltstitel.",
-g2:"NISS — elf Ziffern.",
-g3:"Adresse — wie im Aufenthaltstitel. Wir haben sie Wort für Wort von der Karte übernommen.",
-g4:"«Período de autorização de residência»: Ausstellungs- und Ablaufdatum des Titels. Ausstellung steht auf der Rückseite, Ablauf auf der Vorderseite.",
-g5:"Feld 2: «Beneficiário» — die Karte ist für Sie. Unterhaltsberechtigte Angehörige gehören in Feld 4 auf Seite 2; jeder bekommt eine eigene Karte.",
-g6:"3.1: angestellt oder selbstständig — «Sim» bei der ersten Frage, «Não» bei der zweiten. Für Rentner umgekehrt.",
-g7:"3.2: «Sistema de Segurança Social português». Abschnitt 3.3 bleibt leer.",
-g8:"Seite 3: das heutige Datum.",
-g9:"Hier kommt die Unterschrift hin: von Hand oder digital wie in Schritt 5. Der CMD-Stempel landet knapp unter dem Feld — das ist in Ordnung, er verdeckt den Erklärungstext nicht.",
-s4t:"MG2 ausfüllen — Datenänderung",
-s4:"Das Formular «Alteração de dados», eine Seite. Die Segurança Social verlangt es zusammen mit der Titelkopie — nach unserem Verständnis, um Ihre Daten und die Versandadresse der Karte abzugleichen.",
-m1:"Name, NISS, Geburtsdatum.",
-m2:"Handy und E-Mail. Sie werden im System der Segurança Social gespeichert.",
-m3:"Die Adresse füllt aus, wer keinen Cartão de Cidadão hat — also Ausländer. Wie im Aufenthaltstitel.",
-m4:"Das heutige Datum; die Unterschrift ins Feld rechts.",
-s5t:"Ohne Drucker unterschreiben — Chave Móvel Digital",
-s5:"Ein kostenloser staatlicher Dienst: <b>cmd.autenticacao.gov.pt</b> → «Assinatura de Documentos». Sie brauchen die aktivierte CMD-Signatur und ihre PIN. Dateien bis 3 MB. Jedes Formular einzeln unterschreiben.",
-s5a:"Laden Sie das <b>ursprüngliche, unsignierte</b> PDF hoch. Ein bereits signiertes bekommt sonst eine zweite Unterschrift.",
-s5b:"Haken bei «Deseja que a assinatura esteja visível no documento?» — die Unterschrift muss auf dem Blatt sichtbar sein.",
-s5c:"Ausrichtung: Vertical. Im «Motivo» keine Gedankenstriche und Anführungszeichen: Sonderzeichen werden zu «???». «Local»: Ihre Stadt.",
-s5d:"Seite und Position 1–18 — das Unauffälligste. Der Stempel landet im <b>oberen Teil</b> des gewählten Feldes; wir lagen zweimal daneben. Richtig: <b>GIT-53 — Seite 3, Position 12; MG2 — Seite 1, Position 15</b>.",
-s5e:"Telefonnummer, Signatur-PIN, SMS-Code — dann die signierte Datei herunterladen.",
-s5f:"Schema: das Raster des Signaturdienstes über den Seiten und wo der Stempel landet. Erfundene Daten.",
-s5cta:"CMD-Signatur öffnen",
-s6t:"Kopie des Aufenthaltstitels machen",
-s6:"Beide Seiten auf einem Blatt, Datei bis 3 MB. Mit dem Handy: Karte auf einem dunklen, einfarbigen Tisch, Tageslicht, <b>ohne Blitz</b>, Handy parallel zur Karte, zum Scharfstellen auf die Zeile mit den Nummern tippen. Der Blitz spiegelt im Hologramm, und NIF und NISS sind nicht mehr lesbar.",
-s7t:"Antwort senden",
-s7:"Anfrage öffnen → «Responder ao pedido». Text unten einfügen, dann «Adicionar documento» — eine Datei nach der anderen: GIT-53, MG2, Titel. Dann «Enviar resposta»; der Status wechselt auf «Em Análise». <b>Die Sitzung der Segurança Social ist kurz</b>: Dateien vorher bereitlegen — unsere lief mittendrin ab.",
-s8t:"Auf die Karte warten",
-s8:"Laut Segurança Social kommt die Karte 5–7 Werktage nach der Ausstellung per Post an die hinterlegte Adresse. Reisen Sie früher? Beantragen Sie die provisorische Ersatzbescheinigung (CPS): rechtlich gleichwertig, drei Monate gültig.",
-caseT:"Unser Fall nach Datum",
-c1:"Das Online-Formular lehnte ab. Anfrage über e-Clic gestellt.",
-c2:"Antwort: GIT-53, MG2 und Titelkopie, bis 13.11.",
-c3:"Formulare mit CMD unterschrieben und gesendet. Status: «Em Análise».",
-c4:"Wir warten auf die Karte. Wenn sie da ist, ergänzen wir hier, wie lange es gedauert hat.",
-faqT:"Kurz gefasst",
-q1:"Was kostet die Karte?",a1:"Nichts. Websites, die Geld für die «Bearbeitung» nehmen, sind Vermittler: Die Karte stellt nur die Segurança Social aus.",
-q2:"Brauchen Partner und Kinder eine eigene Karte?",a2:"Ja, jeder seine eigene. Unterhaltsberechtigte Angehörige können in Feld 4 desselben GIT-53 eingetragen werden.",
-q3:"Geht es ohne Chave Móvel Digital?",a3:"Ja: Formulare ausdrucken, von Hand unterschreiben und einscannen — oder bei einer Dienststelle der Segurança Social abgeben. Auf Madeira ist das das ISSM.",
-q4:"Ersetzt die Karte eine Reiseversicherung?",a4:"Nein. Sie zahlt keine Privatkliniken, keine Rettung und keinen Rücktransport.",
-q5:"Wie lange gilt die Karte?",a5:"Drei Jahre. Verlängerung online oder vor Ort.",
-copy:"Kopieren",copied:"Kopiert ✓",
-share:"An Freunde senden",shareText:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt",
-nextT:"Mehr bei nDm",
-n1t:"Residentenkarte Madeira",n1:"Wanderwege für 0 € und der Porto-Santo-Zuschuss. Der Antrag bei SIMplifica Bildschirm für Bildschirm.",
-n2t:"Flugzuschuss",n2:"Wie Sie einen Teil des Tickets Madeira — Festland zurückbekommen. Fünf Portal-Bildschirme.",
-n3t:"Wenn Sie ein Unternehmen haben",n3:"Förderungen und Programme Madeiras für Unternehmen — ein eigener Check.",
-authorT:"Wer das geschrieben hat",
-author:"Igor Kartuzov, SeedWave. Ich gehe diesen Weg selbst seit September 2026. Die Muster enthalten erfundene Daten; Signaturpositionen, Fristen und Formulierungen stammen aus meinem eigenen Antrag. Lief es bei Ihnen anders, schreiben Sie mir auf LinkedIn — ich aktualisiere die Seite.",
-srcT:"Quellen",
 foot:"SeedWave · Igor Kartuzov"};
 L.es = {code:"ES",name:"Español",
 mt:"Tarjeta Sanitaria Europea en Portugal: cuando el portal la rechaza — nDm",
@@ -701,6 +624,7 @@ q2:"¿La pareja y los hijos necesitan su propia tarjeta?",a2:"Sí, cada uno la s
 q3:"¿Se puede sin Chave Móvel Digital?",a3:"Sí: imprimir los formularios, firmar a mano y escanear, o entregarlos en una oficina de la Segurança Social. En Madeira, el ISSM.",
 q4:"¿La tarjeta sustituye al seguro de viaje?",a4:"No. No paga clínicas privadas, rescates ni repatriación.",
 q5:"¿Cuánto dura la tarjeta?",a5:"Tres años. Se renueva online o en persona.",
+fbT:"¿Una duda, su experiencia o una idea?",fb:"Si algo salió mal, la Segurança Social respondió distinto o encontró un camino más corto, escríbame. Respondo yo mismo, y su caso (sin datos personales) se suma a esta página para facilitárselo a los siguientes.",fbMail:"Escribir por correo",fbLi:"Escribir en LinkedIn",fbSubj:"CESD — duda / experiencia / idea",
 copy:"Copiar",copied:"Copiado ✓",
 share:"Enviar a un amigo",shareText:"Tarjeta Sanitaria Europea en Portugal: cómo pedirla cuando el portal la rechaza",
 nextT:"Más en nDm",
@@ -711,10 +635,102 @@ authorT:"Quién lo escribió",
 author:"Igor Kartuzov, SeedWave. Hago este camino yo mismo desde septiembre de 2026. Los modelos llevan datos ficticios; las posiciones de la firma, los plazos y los mensajes salen de mi propia solicitud. Si a usted le fue distinto, escríbame en LinkedIn y actualizo la página.",
 srcT:"Fuentes",
 foot:"SeedWave · Igor Kartuzov"};
+L.de = {code:"DE",name:"Deutsch",
+mt:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt — nDm",
+md:"Die EHIC (CESD) ist kostenlos und sichert Behandlung im öffentlichen Gesundheitswesen der EU wie für Einheimische. Der Weg über e-Clic, Muster für GIT-53 und MG2, Unterschrift mit der Chave Móvel Digital.",
+tag:"Segurança Social · für alle, die in Portugal leben",
+k1:"die Karte ist kostenlos",k2v:"3 Jahre",k2:"gültig",k3v:"5–7 Tage",k3:"per Post nach Ausstellung",
+h1:"Europäische Krankenversicherungskarte (CESD): so klappt es, wenn Segurança Social Direta ablehnt",
+lead:"Mit dieser Karte werden Sie in jedem EU-Land im öffentlichen Gesundheitswesen zu denselben Bedingungen behandelt wie Einheimische. Sie ist kostenlos. Unten der Weg, den wir selbst gegangen sind: von der Online-Ablehnung bis zu den eingereichten Formularen, mit ausgefüllten Mustern und Unterschrift ohne Drucker.",
+cta:"Direkt zum Antrag",
+whyT:"Wann sie hilft",
+why1t:"Krank auf Reisen",why1:"Fieber in Prag, eine Lebensmittelvergiftung in Spanien, ein gebrochener Arm beim Skifahren in Italien: Behandlung im öffentlichen Krankenhaus zu örtlichen Bedingungen. Oft kostenlos oder mit kleiner Zuzahlung.",
+why2t:"Medikamente und Laborwerte",why2:"Rezepte eines örtlichen Arztes und im öffentlichen System angeordnete Untersuchungen — mit den örtlichen Zuzahlungen.",
+why3t:"Laufende Behandlung unterwegs",why3:"Dialyse, Sauerstoff oder Chemotherapie während der Reise sind ebenfalls abgedeckt. Sie müssen es nur vorher mit der Einrichtung absprechen.",
+why4t:"Schwangerschaft",why4:"Vorsorge und Geburt während eines vorübergehenden Aufenthalts sind abgedeckt — außer die Reise dient der Entbindung.",
+notT:"Was die Karte nicht leistet",
+not1:"Sie bezahlt keine Privatkliniken und keine Privatärzte.",
+not2:"Sie bezahlt keine Bergrettung und keinen Rücktransport — dafür brauchen Sie eine Reiseversicherung.",
+not3:"Sie deckt keine Reisen, die zur Behandlung unternommen werden.",
+not4:"Sie ersetzt keine Reiseversicherung — sie ergänzt sie.",
+fwT:"Wenn Ihr Pass nicht aus einem EU-Land stammt",
+fw:"Die Karte <b>gilt in fünf Ländern nicht</b>: Dänemark, Island, Liechtenstein, Norwegen und Schweiz. Ausnahmen sind Geflüchtete und Familienangehörige von EU-Bürgern.",
+fw2:"In allen anderen EU-Ländern gilt sie. Zum Vereinigten Königreich für Drittstaatsangehörige haben wir keine klare Antwort gefunden — fragen Sie vor der Reise bei der Segurança Social nach.",
+routeT:"Zwei Wege",
+rAt:"Weg A — online, zwei Minuten",
+rA:"Segurança Social Direta → Doença → «Obter Cartão Europeu de Seguro de Doença» → «Iniciar pedido». Wenn es klappt, kommt die Karte per Post, und Sie können hier aufhören zu lesen.",
+rBt:"Weg B — wenn das Portal ablehnt",
+rB:"Sehen Sie diesen Satz? Das ist die Ablehnung des Formulars, nicht der Karte. So war es bei uns: Nicht-EU-Bürger mit Aufenthaltstitel auf Madeira. Einen Grund hat die Segurança Social nie genannt, aber eine Liste der Unterlagen geschickt. Es folgen acht Schritte.",
+needT:"Was Sie brauchen",
+need1:"Zugang zur Segurança Social Direta und eine Chave Móvel Digital mit aktivierter digitaler Signatur und deren PIN.",
+need2:"Ihre NISS — die Sozialversicherungsnummer auf der Rückseite des Aufenthaltstitels.",
+need3:"Aufenthaltstitel: beide Seiten, eine Datei bis 3 MB.",
+need4:"Etwa vierzig Minuten und einen Computer: Unterschreiben und Hochladen geht am großen Bildschirm leichter.",
+s1t:"Anfrage über e-Clic stellen",
+s1:"Segurança Social Direta → Contactos → «Canal e-Clic» → «Registar pedido». Thema: Cartão Europeu de Seguro de Doença. Als Grund wählen Sie <b>«Esclarecer dúvidas sobre a minha situação»</b>. Nicht «Apresentar um pedido» nehmen: Das führt zurück zu genau dem Online-Formular, das abgelehnt hat. Der Text steht unten — Namen und Gemeinde ergänzen.",
+tpl1n:"Nicht selbstständig? Ändern Sie «trabalhador independente». Den letzten Satz nur behalten, wenn Sie die Formulare gleich mitschicken.",
+s1tip:"<b>Sie können drei Wochen sparen.</b> Füllen Sie GIT-53 und MG2 aus (Schritte 3–5), unterschreiben Sie und hängen Sie sie samt Aufenthaltstitel gleich an die erste Anfrage. Dann müssen Sie wahrscheinlich nicht auf die Rückfrage warten. Wir haben das nicht getan — es ist unsere Vermutung, kein erprobter Weg.",
+s2t:"Auf die Antwort warten",
+s2:"Nach 18 Tagen kam die Antwort: Formular GIT-53, Formular MG2 und eine Kopie des Aufenthaltstitels schicken. Die Anfrage stand auf «Pendente de Informação», mit 30 Tagen Frist — sonst wird sie geschlossen. Die leeren Formulare hängen an der Anfrage selbst, Reiter «Documentos», und stehen auf der Website der Segurança Social.",
+s2cta:"Formulare auf der Website der Segurança Social",
+s3t:"GIT-53 ausfüllen — der Antrag auf die Karte",
+s3:"Vier Seiten; ausgefüllt werden die erste und die dritte. Unten ein Muster mit erfundenen Daten; die Zahlen im Bild sind darunter erklärt.",
+g1:"Name — wie im Aufenthaltstitel.",
+g2:"NISS — elf Ziffern.",
+g3:"Adresse — wie im Aufenthaltstitel. Wir haben sie Wort für Wort von der Karte übernommen.",
+g4:"«Período de autorização de residência»: Ausstellungs- und Ablaufdatum des Titels. Ausstellung steht auf der Rückseite, Ablauf auf der Vorderseite.",
+g5:"Feld 2: «Beneficiário» — die Karte ist für Sie. Unterhaltsberechtigte Angehörige gehören in Feld 4 auf Seite 2; jeder bekommt eine eigene Karte.",
+g6:"3.1: angestellt oder selbstständig — «Sim» bei der ersten Frage, «Não» bei der zweiten. Für Rentner umgekehrt.",
+g7:"3.2: «Sistema de Segurança Social português». Abschnitt 3.3 bleibt leer.",
+g8:"Seite 3: das heutige Datum.",
+g9:"Hier kommt die Unterschrift hin: von Hand oder digital wie in Schritt 5. Der CMD-Stempel landet knapp unter dem Feld — das ist in Ordnung, er verdeckt den Erklärungstext nicht.",
+s4t:"MG2 ausfüllen — Datenänderung",
+s4:"Das Formular «Alteração de dados», eine Seite. Die Segurança Social verlangt es zusammen mit der Titelkopie — nach unserem Verständnis, um Ihre Daten und die Versandadresse der Karte abzugleichen.",
+m1:"Name, NISS, Geburtsdatum.",
+m2:"Handy und E-Mail. Sie werden im System der Segurança Social gespeichert.",
+m3:"Die Adresse füllt aus, wer keinen Cartão de Cidadão hat — also Ausländer. Wie im Aufenthaltstitel.",
+m4:"Das heutige Datum; die Unterschrift ins Feld rechts.",
+s5t:"Ohne Drucker unterschreiben — Chave Móvel Digital",
+s5:"Ein kostenloser staatlicher Dienst: <b>cmd.autenticacao.gov.pt</b> → «Assinatura de Documentos». Sie brauchen die aktivierte CMD-Signatur und ihre PIN. Dateien bis 3 MB. Jedes Formular einzeln unterschreiben.",
+s5a:"Laden Sie das <b>ursprüngliche, unsignierte</b> PDF hoch. Ein bereits signiertes bekommt sonst eine zweite Unterschrift.",
+s5b:"Haken bei «Deseja que a assinatura esteja visível no documento?» — die Unterschrift muss auf dem Blatt sichtbar sein.",
+s5c:"Ausrichtung: Vertical. Im «Motivo» keine Gedankenstriche und Anführungszeichen: Sonderzeichen werden zu «???». «Local»: Ihre Stadt.",
+s5d:"Seite und Position 1–18 — das Unauffälligste. Der Stempel landet im <b>oberen Teil</b> des gewählten Feldes; wir lagen zweimal daneben. Richtig: <b>GIT-53 — Seite 3, Position 12; MG2 — Seite 1, Position 15</b>.",
+s5e:"Telefonnummer, Signatur-PIN, SMS-Code — dann die signierte Datei herunterladen.",
+s5f:"Schema: das Raster des Signaturdienstes über den Seiten und wo der Stempel landet. Erfundene Daten.",
+s5cta:"CMD-Signatur öffnen",
+s6t:"Kopie des Aufenthaltstitels machen",
+s6:"Beide Seiten auf einem Blatt, Datei bis 3 MB. Mit dem Handy: Karte auf einem dunklen, einfarbigen Tisch, Tageslicht, <b>ohne Blitz</b>, Handy parallel zur Karte, zum Scharfstellen auf die Zeile mit den Nummern tippen. Der Blitz spiegelt im Hologramm, und NIF und NISS sind nicht mehr lesbar.",
+s7t:"Antwort senden",
+s7:"Anfrage öffnen → «Responder ao pedido». Text unten einfügen, dann «Adicionar documento» — eine Datei nach der anderen: GIT-53, MG2, Titel. Dann «Enviar resposta»; der Status wechselt auf «Em Análise». <b>Die Sitzung der Segurança Social ist kurz</b>: Dateien vorher bereitlegen — unsere lief mittendrin ab.",
+s8t:"Auf die Karte warten",
+s8:"Laut Segurança Social kommt die Karte 5–7 Werktage nach der Ausstellung per Post an die hinterlegte Adresse. Reisen Sie früher? Beantragen Sie die provisorische Ersatzbescheinigung (CPS): rechtlich gleichwertig, drei Monate gültig.",
+caseT:"Unser Fall nach Datum",
+c1:"Das Online-Formular lehnte ab. Anfrage über e-Clic gestellt.",
+c2:"Antwort: GIT-53, MG2 und Titelkopie, bis 13.11.",
+c3:"Formulare mit CMD unterschrieben und gesendet. Status: «Em Análise».",
+c4:"Wir warten auf die Karte. Wenn sie da ist, ergänzen wir hier, wie lange es gedauert hat.",
+faqT:"Kurz gefasst",
+q1:"Was kostet die Karte?",a1:"Nichts. Websites, die Geld für die «Bearbeitung» nehmen, sind Vermittler: Die Karte stellt nur die Segurança Social aus.",
+q2:"Brauchen Partner und Kinder eine eigene Karte?",a2:"Ja, jeder seine eigene. Unterhaltsberechtigte Angehörige können in Feld 4 desselben GIT-53 eingetragen werden.",
+q3:"Geht es ohne Chave Móvel Digital?",a3:"Ja: Formulare ausdrucken, von Hand unterschreiben und einscannen — oder bei einer Dienststelle der Segurança Social abgeben. Auf Madeira ist das das ISSM.",
+q4:"Ersetzt die Karte eine Reiseversicherung?",a4:"Nein. Sie zahlt keine Privatkliniken, keine Rettung und keinen Rücktransport.",
+q5:"Wie lange gilt die Karte?",a5:"Drei Jahre. Verlängerung online oder vor Ort.",
+fbT:"Eine Frage, Ihre Erfahrung oder eine Idee?",fb:"Wenn etwas schiefging, die Segurança Social anders geantwortet hat oder Sie einen kürzeren Weg gefunden haben — schreiben Sie mir. Ich antworte selbst, und Ihr Fall (ohne persönliche Daten) kommt auf diese Seite, damit es die Nächsten leichter haben.",fbMail:"Per E-Mail schreiben",fbLi:"Auf LinkedIn schreiben",fbSubj:"CESD — Frage / Erfahrung / Idee",
+copy:"Kopieren",copied:"Kopiert ✓",
+share:"An Freunde senden",shareText:"Europäische Krankenversicherungskarte in Portugal: wenn das Portal ablehnt",
+nextT:"Mehr bei nDm",
+n1t:"Residentenkarte Madeira",n1:"Wanderwege für 0 € und der Porto-Santo-Zuschuss. Der Antrag bei SIMplifica Bildschirm für Bildschirm.",
+n2t:"Flugzuschuss",n2:"Wie Sie einen Teil des Tickets Madeira — Festland zurückbekommen. Fünf Portal-Bildschirme.",
+n3t:"Wenn Sie ein Unternehmen haben",n3:"Förderungen und Programme Madeiras für Unternehmen — ein eigener Check.",
+authorT:"Wer das geschrieben hat",
+author:"Igor Kartuzov, SeedWave. Ich gehe diesen Weg selbst seit September 2026. Die Muster enthalten erfundene Daten; Signaturpositionen, Fristen und Formulierungen stammen aus meinem eigenen Antrag. Lief es bei Ihnen anders, schreiben Sie mir auf LinkedIn — ich aktualisiere die Seite.",
+srcT:"Quellen",
+foot:"SeedWave · Igor Kartuzov"};
 </script>
 <script>
 (function(){
-var ORDER=['pt','en','ru','de','es'];
+var ORDER=['pt','en','ru','es','de'];
 var qs=new URLSearchParams(location.search);
 function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
@@ -754,6 +770,7 @@ function apply(){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
   var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
+  var fm=document.getElementById('fbMail');if(fm)fm.href='mailto:igor@seedwave.pt?subject='+encodeURIComponent(t.fbSubj||'CESD');
   lsSet('ndm-lang',lang);
   setMeta(t);
 }
@@ -767,7 +784,7 @@ document.querySelectorAll('figure img').forEach(function(im){im.style.cursor='zo
   im.onclick=function(){window.open(im.currentSrc||im.src,'_blank','noopener');};});
 var m=document.getElementById('langmenu');
 function paintMenu(){
-  m.innerHTML=Object.keys(L).map(function(k){
+  m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
     return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';
   }).join('');
 }

@@ -7,7 +7,7 @@
 <meta name="description" content="Tres preguntas para saber si le corresponde, la guía paso a paso de la solicitud y qué cambió en la ley. Gratis, en cinco idiomas.">
 <link rel="icon" href="icon.svg?v=1" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="/m/home-es.webmanifest">
 <meta name="apple-mobile-web-app-title" content="nDm">
 <meta name="theme-color" content="#FAF6F1">
 <meta property="og:title" content="Subsidio de vuelo de Madeira: ¿le corresponde? — nDm">
@@ -21,8 +21,8 @@
 <link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/">
 <link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/en/">
 <link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/ru/">
-<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/">
 <link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/es/">
+<link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/de/">
 <link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "nDm — Nova Dádiva da Madeira", "alternateName": "Damos o Caminho", "url": "https://ajuda.seedwave.pt/es/", "inLanguage": "es", "description": "Tres preguntas para saber si le corresponde, la guía paso a paso de la solicitud y qué cambió en la ley. Gratis, en cinco idiomas.", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "SeedWave", "url": "https://seedwave.pt/"}, "author": {"@type": "Person", "name": "Igor Kartuzov", "url": "https://www.linkedin.com/in/igor-kartuzov/"}}</script>
@@ -237,7 +237,7 @@ footer a{color:var(--ink-soft); text-decoration:underline; text-decoration-color
     <button class="rnd" id="shareTop" title="share">↗</button>
     <div class="langwrap">
       <button class="rnd" id="langBtn" aria-haspopup="true" aria-expanded="false">ES</button>
-      <div class="menu" id="langMenu" hidden=""><button aria-current="false">Português</button><button aria-current="false">English</button><button aria-current="false">Русский</button><button aria-current="false">Deutsch</button><button aria-current="true">Español</button></div>
+      <div class="menu" id="langMenu" hidden=""><button aria-current="false">Português</button><button aria-current="false">English</button><button aria-current="false">Русский</button><button aria-current="true">Español</button><button aria-current="false">Deutsch</button></div>
     </div>
     <button class="rnd" id="themeBtn" aria-label="tema">☾</button>
   </div>
@@ -787,7 +787,7 @@ let lang = "pt", view = "home", ans = [null,null,null], xs = {fam:null, help:nul
 
 const fmt = (n) => new Intl.NumberFormat(LOC[lang], {style:"currency", currency:"EUR", minimumFractionDigits:2}).format(n);
 const $ = (id) => document.getElementById(id);
-const ORDER5 = ["pt","en","ru","de","es"];
+const ORDER5 = ["pt","en","ru","es","de"];
 const langPath = (L) => {
   const parts = location.pathname.split("/").filter(Boolean);
   if (parts.length && ORDER5.includes(parts[parts.length-1])) parts.pop();
@@ -956,13 +956,13 @@ const menu = $("langMenu"), lbtn = $("langBtn");
 // меню перерисовывается с нуля: пререндер сохраняет кнопки в HTML, и дописывание
 // вторым заходом давало десять пунктов, первые пять — без обработчика
 menu.innerHTML = "";
-Object.keys(L).forEach(k => {
+ORDER5.filter(k => L[k]).forEach(k => {
   const b = document.createElement("button");
   b.textContent = L[k].name;
   b.onclick = () => { lang = k; try{localStorage.setItem("ndm-lang", k);}catch(e){} if (window.NDM_LANG){ location.href = langPath(k); return; } menu.hidden = true; lbtn.setAttribute("aria-expanded","false"); render(); paintMenu(); go(view); };
   menu.append(b);
 });
-function paintMenu(){ [...menu.children].forEach((b,i) => b.setAttribute("aria-current", String(Object.keys(L)[i] === lang))); }
+function paintMenu(){ [...menu.children].forEach((b,i) => b.setAttribute("aria-current", String(ORDER5.filter(k => L[k])[i] === lang))); }
 lbtn.onclick = () => { menu.hidden = !menu.hidden; lbtn.setAttribute("aria-expanded", String(!menu.hidden)); };
 document.addEventListener("click", e => { if (!e.target.closest(".langwrap")) menu.hidden = true; });
 

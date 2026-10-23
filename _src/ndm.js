@@ -1,6 +1,6 @@
 /* nDm page engine: language, theme, share, common renderers. Expects a global T = {pt:{…}, …}. */
 window.NDM = (function(){
-  var ORDER = ["pt","en","ru","de","es"];
+  var ORDER = ["pt","en","ru","es","de"];
   var LNAMES = { pt:"Português", en:"English", ru:"Русский", de:"Deutsch", es:"Español" };
   var TAGS = { pt:"pt-PT", en:"en", ru:"ru", de:"de", es:"es" };
   var SSMURL = "https://www.ssm.gov.pt/";

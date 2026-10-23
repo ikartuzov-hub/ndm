@@ -1,0 +1,23 @@
+{
+  "name": "CESD",
+  "short_name": "CESD",
+  "start_url": "/cesd/de/",
+  "display": "standalone",
+  "background_color": "#FAF6F1",
+  "theme_color": "#FAF6F1",
+  "icons": [
+    {
+      "src": "/cesd/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/cesd/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "/cesd/de/",
+  "scope": "/cesd/",
+  "lang": "de"
+}

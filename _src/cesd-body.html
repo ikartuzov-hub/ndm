@@ -6,9 +6,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex 
 .wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
 h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
 h2{font-size:23px;margin:48px 0 12px}h3{font-size:19px;margin:0 0 6px}
-.brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:6}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif;letter-spacing:.01em}
 .topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
-.rb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
 #langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
 #langmenu.on{display:block}
 #langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
@@ -78,6 +79,10 @@ ol.sign{padding-left:22px}ol.sign li{margin:10px 0}
 .tl li.wait:before{background:var(--card);border:2px solid var(--accent)}
 .tl b{display:block;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent)}
 .qa{margin:18px 0}.qa h3{font-size:17.5px}.qa p{margin:4px 0 0;color:var(--ink-soft)}
+.fb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px 16px;margin:40px 0 10px}
+.fb h2{margin-top:16px}
+.fbb{display:grid;gap:0}
+@media(min-width:560px){.fbb{grid-template-columns:1fr 1fr;gap:10px}}
 a{color:var(--accent)}
 .nx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;display:block;text-decoration:none;color:var(--ink)}
 .nx h3{color:var(--accent)}
@@ -87,7 +92,7 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 @media(prefers-reduced-motion:reduce){.brandmark svg,.eucard,.eucard .ring i,.num{animation:none!important;opacity:1;transform:none}}
 </style>
 
-<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"/><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"/><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"/></svg></a>
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"/><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"/><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"/></svg><b>nDm</b></a>
 <div class="topctrl"><button class="rb" id="langBtn">PT</button><button class="rb" id="themeBtn">☀</button></div>
 <div id="langmenu"></div>
 
@@ -197,6 +202,12 @@ NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="cop
 <div class="qa"><h3 data-t="q4"></h3><p data-t="a4"></p></div>
 <div class="qa"><h3 data-t="q5"></h3><p data-t="a5"></p></div>
 
+<div class="fb" id="contact">
+  <h2 data-t="fbT"></h2>
+  <p data-t="fb"></p>
+  <div class="fbb"><a class="cta" id="fbMail" href="mailto:igor@seedwave.pt?subject=CESD" data-t="fbMail"></a><a class="cta ghost" href="https://www.linkedin.com/in/igor-kartuzov/" target="_blank" rel="noopener" data-t="fbLi"></a></div>
+</div>
+
 <button class="cta" type="button" id="share" data-t="share"></button>
 
 <h2 data-t="nextT"></h2>
@@ -226,7 +237,7 @@ const L = {};
 </script>
 <script>
 (function(){
-var ORDER=['pt','en','ru','de','es'];
+var ORDER=['pt','en','ru','es','de'];
 var qs=new URLSearchParams(location.search);
 function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
@@ -266,6 +277,7 @@ function apply(){
     if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
     a.href=langHref(a.getAttribute('data-h'));});
   var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
+  var fm=document.getElementById('fbMail');if(fm)fm.href='mailto:igor@seedwave.pt?subject='+encodeURIComponent(t.fbSubj||'CESD');
   lsSet('ndm-lang',lang);
   setMeta(t);
 }
@@ -279,7 +291,7 @@ document.querySelectorAll('figure img').forEach(function(im){im.style.cursor='zo
   im.onclick=function(){window.open(im.currentSrc||im.src,'_blank','noopener');};});
 var m=document.getElementById('langmenu');
 function paintMenu(){
-  m.innerHTML=Object.keys(L).map(function(k){
+  m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
     return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';
   }).join('');
 }

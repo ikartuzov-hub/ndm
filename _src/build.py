@@ -7,7 +7,7 @@ import io, os, re, glob
 
 SITE = "https://ajuda.seedwave.pt"
 PAGES = []   # (url, приоритет) — наполняется по ходу сборки
-LANG_ORDER = ["pt", "en", "ru", "de", "es"]
+LANG_ORDER = ["pt", "en", "ru", "es", "de"]
 
 HEAD = """<!doctype html>
 <html lang="{lang}">

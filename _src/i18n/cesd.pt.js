@@ -79,6 +79,7 @@ q2:"O cônjuge e os filhos precisam de cartão próprio?",a2:"Sim, cada um tem o
 q3:"Dá para fazer sem Chave Móvel Digital?",a3:"Sim: imprimir os formulários, assinar à mão e digitalizar — ou entregar num serviço de atendimento da Segurança Social. Na Madeira, o ISSM.",
 q4:"O cartão substitui o seguro de viagem?",a4:"Não. Não paga clínicas privadas, resgate nem repatriamento.",
 q5:"Qual é a validade do cartão?",a5:"Três anos. Renova-se online ou presencialmente.",
+fbT:"Uma dúvida, a sua experiência ou uma ideia?",fb:"Se algo correu mal, a resposta da Segurança Social foi diferente ou encontrou um caminho mais curto — escreva-me. Respondo eu mesmo, e o seu caso (sem dados pessoais) entra nesta página para facilitar a vida aos próximos.",fbMail:"Escrever por e-mail",fbLi:"Escrever no LinkedIn",fbSubj:"CESD — dúvida / experiência / ideia",
 copy:"Copiar",copied:"Copiado ✓",
 share:"Enviar a um amigo",shareText:"Cartão Europeu de Seguro de Doença: como pedir quando o portal recusa",
 nextT:"Mais no nDm",
