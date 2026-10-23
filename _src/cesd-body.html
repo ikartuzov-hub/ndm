@@ -48,6 +48,16 @@ header h1{font-size:26px;margin:4px 0 10px}
 .no{list-style:none;padding:0;margin:0}
 .no li{position:relative;padding-left:28px;margin:9px 0}
 .no li:before{content:"✕";position:absolute;left:4px;top:0;color:var(--accent);font-weight:600}
+.rule{background:var(--eu);color:#fff;border-radius:14px;padding:16px 18px;margin:6px 0 14px;font:500 18px/1.5 Bitter,Georgia,serif}
+.rule b{color:var(--gold)}
+.cmp{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:14px 0 0}
+.cmp .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--line);font-size:15.5px}
+.cmp .row:first-child{border-top:0}
+.v{flex:none;border-radius:999px;padding:3px 11px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.v.c{background:var(--eu);color:#fff}
+.v.i{background:var(--accent-soft);color:var(--accent)}
+.v.y{border:1px solid var(--line);color:var(--ink-soft)}
+.tip.ex ul{margin:6px 0 0;padding-left:20px}.tip.ex li{margin:5px 0}
 .warn{background:var(--accent);color:#fff;border-radius:14px;padding:20px 18px;margin:34px 0 12px}
 .warn h2{margin:0;color:#fff;font-size:21px}
 .warn p{margin:10px 0 0;font-size:16px;color:#FCEDE6}
@@ -122,8 +132,20 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <div class="tile"><span class="ic">🤰</span><h3 data-t="why4t"></h3><p data-t="why4"></p></div>
 </div>
 
-<h2 data-t="notT"></h2>
-<ul class="no"><li data-t="not1"></li><li data-t="not2"></li><li data-t="not3"></li><li data-t="not4"></li></ul>
+<h2 id="seguro" data-t="notT"></h2>
+<p class="rule" data-t="rule"></p>
+<p data-t="nameNote"></p>
+<div class="cmp">
+  <div class="row"><span data-t="r1"></span><b class="v c" data-t="vC"></b></div>
+  <div class="row"><span data-t="r2"></span><b class="v c" data-t="vC"></b></div>
+  <div class="row"><span data-t="r3"></span><b class="v y" data-t="vY"></b></div>
+  <div class="row"><span data-t="r4"></span><b class="v i" data-t="vI"></b></div>
+  <div class="row"><span data-t="r5"></span><b class="v i" data-t="vI"></b></div>
+  <div class="row"><span data-t="r6"></span><b class="v i" data-t="vI"></b></div>
+  <div class="row"><span data-t="r7"></span><b class="v i" data-t="vI"></b></div>
+  <div class="row"><span data-t="r8"></span><b class="v y" data-t="vN"></b></div>
+</div>
+<div class="tip ex"><b data-t="exT"></b><ul><li data-t="ex1"></li><li data-t="ex2"></li><li data-t="ex3"></li><li data-t="ex4"></li></ul></div>
 
 <div class="warn">
   <h2 data-t="fwT"></h2>
@@ -199,9 +221,12 @@ NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="cop
 
 <h2 data-t="faqT"></h2>
 <div class="qa"><h3 data-t="q1"></h3><p data-t="a1"></p></div>
+<div class="qa"><h3 data-t="q4"></h3><p data-t="a4"></p></div>
+<div class="qa"><h3 data-t="q6"></h3><p data-t="a6"></p></div>
+<div class="qa"><h3 data-t="q7"></h3><p data-t="a7"></p></div>
+<div class="qa"><h3 data-t="q8"></h3><p data-t="a8"></p></div>
 <div class="qa"><h3 data-t="q2"></h3><p data-t="a2"></p></div>
 <div class="qa"><h3 data-t="q3"></h3><p data-t="a3"></p></div>
-<div class="qa"><h3 data-t="q4"></h3><p data-t="a4"></p></div>
 <div class="qa"><h3 data-t="q5"></h3><p data-t="a5"></p></div>
 
 <div class="fb" id="contact">
