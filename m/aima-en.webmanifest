@@ -1,0 +1,23 @@
+{
+  "name": "AIMA",
+  "short_name": "AIMA",
+  "start_url": "/aima/en/",
+  "display": "standalone",
+  "background_color": "#FAF6F1",
+  "theme_color": "#FAF6F1",
+  "icons": [
+    {
+      "src": "/aima/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/aima/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "/aima/en/",
+  "scope": "/aima/",
+  "lang": "en"
+}

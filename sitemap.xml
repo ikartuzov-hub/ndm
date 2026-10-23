@@ -552,6 +552,56 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/cesd/"/>
   </url>
   <url>
+    <loc>https://ajuda.seedwave.pt/aima/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/aima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/aima/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/aima/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/aima/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/aima/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/aima/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/aima/en/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/aima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/aima/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/aima/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/aima/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/aima/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/aima/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/aima/ru/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/aima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/aima/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/aima/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/aima/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/aima/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/aima/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/aima/es/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/aima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/aima/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/aima/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/aima/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/aima/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/aima/"/>
+  </url>
+  <url>
+    <loc>https://ajuda.seedwave.pt/aima/de/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/aima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ajuda.seedwave.pt/aima/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ajuda.seedwave.pt/aima/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ajuda.seedwave.pt/aima/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ajuda.seedwave.pt/aima/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ajuda.seedwave.pt/aima/"/>
+  </url>
+  <url>
     <loc>https://ajuda.seedwave.pt/participar/</loc>
     <lastmod>2026-10-23</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-PT" href="https://ajuda.seedwave.pt/participar/"/>
