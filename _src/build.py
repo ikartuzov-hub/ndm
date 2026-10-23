@@ -271,9 +271,9 @@ par = par.replace("{{I18N}}", "\n".join(
     read("_src/i18n/participar.%s.js" % L).strip()
     for L in LANG_ORDER if os.path.exists("_src/i18n/participar.%s.js" % L)))
 html = wrap(FONTS + par, lang="pt",
-            title="Dê-se a conhecer: pergunta, experiência, ideia, trabalho ou serviço na Madeira — nDm · SeedWave",
-            desc=("Tudo no nDm é gratuito. Diga-nos o que precisa ou o que sabe fazer: uma pergunta, a sua experiência, "
-                  "um apoio que encontrou, uma ideia, procura de trabalho ou um serviço. Respondo eu mesmo."),
+            title="Dê-se a conhecer: pergunta, ideia, trabalho, serviço ou setor — e receba mais na Madeira e em Portugal — nDm · SeedWave",
+            desc=("Os guias dos serviços públicos da Madeira e de Portugal são gratuitos. Dê-se a conhecer e receba mais: "
+                  "resposta de uma pessoa, ideias onde apostar, pessoas que precisam de si e os novos guias em primeira mão."),
             app="nDm", root="../",
             ogtitle="Dê-se a conhecer 😉 — nDm · SeedWave",
             og=SITE + "/participar/og-image.png", url=SITE + "/participar/")

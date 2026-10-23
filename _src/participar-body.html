@@ -19,12 +19,22 @@ header{padding:72px 0 4px}
 header h1{font-size:34px;margin:6px 0 12px}
 .wink{display:inline-block;transform-origin:50% 60%;animation:wink 2.8s 1s ease-in-out infinite}
 @keyframes wink{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-14deg) scale(1.15)}84%{transform:rotate(10deg) scale(1.15)}90%{transform:rotate(0)}}
+.done{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:14px 0 6px;font-size:15px;color:var(--ink-soft)}
+.done i{font-style:normal;opacity:0;animation:tick .5s cubic-bezier(.2,1.4,.4,1) both}
+.done i b{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--sw);color:#fff;font:700 13px/22px "IBM Plex Sans",sans-serif;text-align:center;margin-right:6px;vertical-align:-3px}
+.done i:nth-child(1){animation-delay:.3s}.done i:nth-child(2){animation-delay:.9s}.done i:nth-child(3){animation-delay:1.5s}
+.done .arrow{opacity:0;animation:tick .5s 2.2s cubic-bezier(.2,1.4,.4,1) both;color:var(--accent);font-weight:500}
+.done .arrow:before{content:"→ ";}
+@keyframes tick{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.pay{background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin:0 0 4px;font-size:15.5px;transition:opacity .25s}
+.pay.flash{opacity:.3}
+.pay b{display:block;color:var(--accent);font-size:13px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
 .tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink-soft)}
 .lead{color:var(--ink-soft);font-size:17px;margin:0}
 /* вау: шесть тем вылетают по очереди и складываются в облако */
 .cloud{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
 .chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 14px;font:500 15px/1.2 "IBM Plex Sans",sans-serif;cursor:pointer;opacity:0;animation:pop .45s cubic-bezier(.2,1.4,.4,1) both}
-.chip:nth-child(1){animation-delay:.25s}.chip:nth-child(2){animation-delay:.4s}.chip:nth-child(3){animation-delay:.55s}.chip:nth-child(4){animation-delay:.7s}.chip:nth-child(5){animation-delay:.85s}.chip:nth-child(6){animation-delay:1s}
+.chip:nth-child(1){animation-delay:2.6s}.chip:nth-child(2){animation-delay:2.75s}.chip:nth-child(3){animation-delay:2.9s}.chip:nth-child(4){animation-delay:3.05s}.chip:nth-child(5){animation-delay:3.2s}.chip:nth-child(6){animation-delay:3.35s}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.6)}to{opacity:1;transform:none}}
 .grid3{display:grid;gap:12px}
@@ -57,7 +67,7 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;bo
 a{color:var(--accent)}
 footer{margin-top:56px;padding-bottom:56px;text-align:center;font-size:15px;color:var(--ink-soft)}
 footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px}
-@media(prefers-reduced-motion:reduce){.chip,.wink{animation:none!important;opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.chip,.wink,.done i,.done .arrow{animation:none!important;opacity:1;transform:none}}
 </style>
 
 <a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"/><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"/><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"/></svg><b>nDm</b></a>
@@ -68,6 +78,7 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 <header>
   <span class="tag" data-t="tag"></span>
   <h1><span data-t="h1"></span> <span class="wink" aria-hidden="true">😉</span></h1>
+  <p class="done"><i><b>✓</b><span data-t="done1"></span></i><i><b>✓</b><span data-t="done2"></span></i><i><b>✓</b><span data-t="done3"></span></i><span class="arrow" data-t="doneArrow"></span></p>
   <p class="lead" data-t="lead"></p>
   <div class="cloud" id="cloud" role="group">
     <button type="button" class="chip" data-k="q" data-t="t_q"></button>
@@ -82,13 +93,16 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 <form id="f" novalidate>
   <div id="fields">
     <p class="topic"><span data-t="topicL"></span> <b id="topicV"></b></p>
+    <div class="pay" id="pay"><b data-t="payL"></b><span id="payV"></span></div>
+    <label for="fText" data-t="textL"></label>
+    <textarea id="fText" name="text" maxlength="3000"></textarea>
+    <label for="fInt" data-t="intL"></label>
+    <input id="fInt" name="interests" maxlength="160">
+    <p class="hint" data-t="intHint"></p>
     <label for="fName" data-t="nameL"></label>
     <input id="fName" name="name" autocomplete="name" maxlength="80">
     <label for="fContact" data-t="contactL"></label>
     <input id="fContact" name="contact" autocomplete="email" maxlength="120">
-    <label for="fText" data-t="textL"></label>
-    <textarea id="fText" name="text" maxlength="3000"></textarea>
-    <p class="hint" id="hint"></p>
     <div class="hp" aria-hidden="true"><label>Website<input id="fHp" name="website" tabindex="-1" autocomplete="off"></label></div>
     <p class="err" id="err"></p>
     <button class="cta" type="submit" id="send" data-t="send"></button>
@@ -163,7 +177,8 @@ function paintTopic(){var t=L[lang];
   document.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-k')===topic);c.setAttribute('aria-pressed',c.getAttribute('data-k')===topic);});
   document.getElementById('topicV').textContent=mstrip(t['t_'+topic]);
   document.getElementById('fText').placeholder=t['ph_'+topic]||'';
-  document.getElementById('hint').textContent=t['h_'+topic]||'';}
+  var pv=document.getElementById('payV'),pp=document.getElementById('pay');
+  pp.classList.add('flash');setTimeout(function(){pv.textContent=mstrip(t['pay_'+topic]);pp.classList.remove('flash');},120);}
 function apply(){
   var t=L[lang];
   document.documentElement.lang=lang;
@@ -171,6 +186,7 @@ function apply(){
   document.getElementById('langBtn').textContent=t.code;
   document.getElementById('fName').placeholder=t.namePh;
   document.getElementById('fContact').placeholder=t.contactPh;
+  document.getElementById('fInt').placeholder=t.intPh;
   var hub='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
   ['hubLink','hubCta','hubCta2'].forEach(function(id){document.getElementById(id).href=hub;});
   document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
@@ -186,15 +202,16 @@ function rt(s){return [{text:{content:String(s||'').slice(0,1900)}}];}
 document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();
   var t=L[lang],err=document.getElementById('err');
   var name=document.getElementById('fName').value.trim(),contact=document.getElementById('fContact').value.trim(),
-      text=document.getElementById('fText').value.trim(),hp=document.getElementById('fHp').value;
+      text=document.getElementById('fText').value.trim(),hp=document.getElementById('fHp').value,
+      ints=document.getElementById('fInt').value.trim();
   if(text.length<3){err.textContent=t.errText;err.classList.add('on');document.getElementById('fText').focus();return;}
   err.classList.remove('on');
   if(hp){document.getElementById('fields').style.display='none';document.getElementById('ok').classList.add('on');return;}
   var src=location.pathname+(from?' ← '+from:'');
   var props={'Имя':{title:rt(name||'—')},'Тема':{select:{name:TOPIC_DB[topic]}},'Текст':{rich_text:rt(text)},
-    'Контакт':{rich_text:rt(contact)},'Язык':{select:{name:lang}},'Откуда':{rich_text:rt(src)},
+    'Контакт':{rich_text:rt(contact)},'Интересы':{rich_text:rt(ints)},'Язык':{select:{name:lang}},'Откуда':{rich_text:rt(src)},
     'Статус':{select:{name:'Новый'}},'Дата':{date:{start:new Date().toISOString().slice(0,10)}}};
-  var body=new URLSearchParams({topic:TOPIC_DB[topic],name:name||'—',contact:contact||'—',text:text,lang:lang,src:src,props:JSON.stringify(props)});
+  var body=new URLSearchParams({topic:TOPIC_DB[topic],name:name||'—',contact:contact||'—',interests:ints||'—',text:text,lang:lang,src:src,props:JSON.stringify(props)});
   var b=document.getElementById('send');b.disabled=true;
   fetch(HOOK,{method:'POST',body:body}).then(function(r){if(!r.ok)throw 0;
     document.getElementById('fields').style.display='none';document.getElementById('ok').classList.add('on');

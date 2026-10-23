@@ -27,8 +27,8 @@ d.ellipse([cx - 18, cy - 14, cx - 6, cy + 0], fill=INK)
 d.arc([cx + 4, cy - 12, cx + 22, cy + 2], 200, 340, fill=INK, width=5)
 d.arc([cx - 22, cy - 6, cx + 22, cy + 26], 20, 160, fill=INK, width=5)
 pop = ImageFont.truetype(G + "Poppins-Regular.ttf", 28)
-d.text((X, 262), "Uma pergunta, a sua experiência, uma ideia,", font=pop, fill=SOFT)
-d.text((X, 302), "procuro trabalho, posso oferecer…", font=pop, fill=SOFT)
+d.text((X, 262), "Já está na Madeira ou em Portugal? O mais difícil passou.", font=pop, fill=SOFT)
+d.text((X, 302), "Quem se dá a conhecer recebe mais: ideias, pessoas, respostas.", font=pop, fill=SOFT)
 chips = ["❓ Pergunta", "🧭 Experiência", "🎁 Apoio", "💡 Ideia", "🔎 Trabalho", "🛠 Ofereço"]
 chips = [c.split(" ", 1)[1] for c in chips]
 f = ImageFont.truetype(G + "Poppins-Regular.ttf", 26); x, y = X, 380
