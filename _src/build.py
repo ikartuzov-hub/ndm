@@ -240,6 +240,29 @@ write("trilhos/index.html", html)
 PAGES.append(SITE + "/trilhos/")
 print("built: trilhos/index.html")
 
+# ---------- /cesd/ — Cartão Europeu de Seguro de Doença (Segurança Social) -----
+# Устроена как /trilhos/: движок и стили внутри тела, тексты в _src/i18n/cesd.*.js.
+# Картинки (образцы GIT-53 и MG2 с вымышленными данными, сетка подписи CMD),
+# обложка и Σ в синем ЕС — _src/cesd-assets.py.
+subprocess_run([__import__("sys").executable, "_src/cesd-assets.py"], check=True)
+ces = read("_src/cesd-body.html")
+ces = ces.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/cesd.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/cesd.%s.js" % L)))
+DESC_CES = ("O Cartão Europeu de Seguro de Doença é gratuito. Quando a Segurança Social Direta recusa: "
+            "o pedido no e-Clic, os modelos GIT-53 e MG2 e a assinatura com a Chave Móvel Digital.")
+html = wrap(FONTS + ces, lang="pt",
+            title="Cartão Europeu de Seguro de Doença: quando o portal recusa — nDm",
+            desc=DESC_CES, app="CESD", root="../",
+            ogtitle="Cartão Europeu de Seguro de Doença — passo a passo",
+            og=SITE + "/cesd/og-image.png", url=SITE + "/cesd/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/cesd/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/cesd/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/cesd/manifest.webmanifest"'))
+write("cesd/index.html", html)
+PAGES.append(SITE + "/cesd/")
+print("built: cesd/index.html")
+
 # ---------- /lei-23-2026/ — новость про отменённый потолок ---------------
 page("_src/news-body.html", "news", "lei-23-2026/index.html",
      CR + "Lei 23/2026",

@@ -1,0 +1,313 @@
+<style>
+:root{color-scheme:light;--bg:#FAF6F1;--ink:#1A1512;--ink-soft:#6B5C51;--line:#E6D9CC;--accent:#B23A0E;--accent-soft:#F6E3D8;--card:#fff;--eu:#003399;--gold:#FFCC00}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#15110E;--ink:#F2EAE2;--ink-soft:#B7A797;--line:#382C23;--accent:#FF8A4C;--accent-soft:#3A2418;--card:#1D1814;--eu:#1D4FA0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.25}
+h2{font-size:23px;margin:48px 0 12px}h3{font-size:19px;margin:0 0 6px}
+.brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:6}
+.topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
+.rb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
+#langmenu.on{display:block}
+#langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
+#langmenu button.cur{color:var(--accent);font-weight:500}
+header{padding:72px 0 8px}
+header h1{font-size:26px;margin:4px 0 10px}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+/* сцена: карта ЕС въезжает, звёзды загораются по кругу, затем три цифры */
+.stage{display:flex;gap:16px;align-items:center;margin:8px 0 18px;min-height:150px}
+.eucard{flex:0 0 220px;height:138px;border-radius:14px;background:var(--eu);position:relative;color:#fff;box-shadow:0 10px 30px rgba(0,30,90,.18);animation:cardIn .9s .2s cubic-bezier(.2,.9,.3,1) both}
+.eucard .ring{position:absolute;left:16px;top:22px;width:94px;height:94px}
+.eucard .ring i{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6.5px;background:var(--gold);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);opacity:0;animation:star .3s both}
+.eucard b{position:absolute;left:124px;top:38px;font:600 25px/1 Bitter,serif;letter-spacing:.5px}
+.eucard u{position:absolute;left:124px;height:7px;border-radius:4px;background:rgba(255,255,255,.35);text-decoration:none}
+.nums{display:grid;gap:8px;flex:1}
+.num{opacity:0;animation:up .5s both}
+.num b{font:600 27px/1 Bitter,serif;color:var(--accent);margin-right:7px}
+.num span{font-size:14.5px;color:var(--ink-soft)}
+.num:nth-child(1){animation-delay:2.1s}.num:nth-child(2){animation-delay:2.5s}.num:nth-child(3){animation-delay:2.9s}
+@keyframes cardIn{from{opacity:0;transform:translateX(-40px) rotate(-6deg)}to{opacity:1;transform:rotate(-2deg)}}
+@keyframes star{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes markIn{0%{transform:translate(40vw,45vh) scale(9);opacity:0}25%{opacity:1}60%{transform:translate(40vw,45vh) scale(9)}100%{transform:translate(0,0) scale(1)}}
+.brandmark svg{animation:markIn 2s cubic-bezier(.65,0,.25,1) both;transform-origin:center;display:block}
+@media(max-width:520px){.stage{flex-direction:column;align-items:flex-start}.eucard{flex-basis:auto;width:220px}}
+.cta{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:12px;padding:15px;font-weight:500;text-decoration:none;margin:16px 0 6px;font-size:17px;border:0;width:100%;font-family:inherit;cursor:pointer}
+.cta.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
+.grid2{display:grid;gap:12px}
+@media(min-width:620px){.grid2{grid-template-columns:1fr 1fr}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tile h3{font-size:17.5px}
+.tile p{margin:4px 0 0;font-size:15.5px;color:var(--ink-soft)}
+.tile .ic{font-size:22px;line-height:1;display:block;margin-bottom:8px}
+.no{list-style:none;padding:0;margin:0}
+.no li{position:relative;padding-left:28px;margin:9px 0}
+.no li:before{content:"✕";position:absolute;left:4px;top:0;color:var(--accent);font-weight:600}
+.warn{background:var(--accent);color:#fff;border-radius:14px;padding:20px 18px;margin:34px 0 12px}
+.warn h2{margin:0;color:#fff;font-size:21px}
+.warn p{margin:10px 0 0;font-size:16px;color:#FCEDE6}
+.warn b{color:#fff}
+.flags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.flags span{background:rgba(255,255,255,.16);border-radius:999px;padding:3px 11px;font-size:14px}
+.route{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--card);margin:12px 0}
+.route h3{color:var(--accent)}
+.route p{margin:6px 0 0}
+.quote{font-family:"IBM Plex Mono",monospace;font-size:14px;background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:10px 0 0;color:var(--ink)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px}
+ul{padding-left:20px}li{margin:7px 0}
+.step{margin:34px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+.snum{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:Bitter,serif;font-weight:600;font-size:16px;margin-bottom:10px}
+.tip{border-left:4px solid var(--accent);background:var(--card);border-radius:0 12px 12px 0;padding:12px 14px;margin:14px 0 0;font-size:15.5px}
+.tip b{color:var(--accent)}
+figure{margin:16px 0 0}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;display:block;background:#fff}
+figcaption{font-size:14px;color:var(--ink-soft);margin-top:6px}
+ol.legend{list-style:none;padding:0;margin:12px 0 0;counter-reset:lg}
+ol.legend li{position:relative;padding-left:38px;margin:10px 0;font-size:16px}
+ol.legend li:before{content:attr(data-n);position:absolute;left:0;top:-1px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font:600 14px/26px Bitter,serif;text-align:center}
+ol.sign{padding-left:22px}ol.sign li{margin:10px 0}
+.tpl{position:relative;margin:14px 0 0}
+.tpl pre{white-space:pre-wrap;font:400 14.5px/1.55 "IBM Plex Mono",monospace;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 14px 52px;margin:0;color:var(--ink)}
+.tpl button{position:absolute;right:10px;bottom:10px;border:0;border-radius:9px;background:var(--accent);color:#fff;font:500 14px "IBM Plex Sans",sans-serif;padding:8px 14px;cursor:pointer}
+.note{font-size:14px;color:var(--ink-soft);margin:6px 0 0}
+.tl{list-style:none;padding:0;margin:0;border-left:2px solid var(--line)}
+.tl li{position:relative;padding:0 0 14px 20px;margin:0}
+.tl li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.tl li.wait:before{background:var(--card);border:2px solid var(--accent)}
+.tl b{display:block;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent)}
+.qa{margin:18px 0}.qa h3{font-size:17.5px}.qa p{margin:4px 0 0;color:var(--ink-soft)}
+a{color:var(--accent)}
+.nx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;display:block;text-decoration:none;color:var(--ink)}
+.nx h3{color:var(--accent)}
+.src{font-size:14.5px;color:var(--ink-soft)}.src li{margin:9px 0}
+footer{margin-top:56px;padding-bottom:56px;text-align:center;font-size:15px;color:var(--ink-soft)}
+footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px}
+@media(prefers-reduced-motion:reduce){.brandmark svg,.eucard,.eucard .ring i,.num{animation:none!important;opacity:1;transform:none}}
+</style>
+
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><path d="M30 18 L30 70"/><path d="M30 18 C62 18 74 34 72 48 C70 62 58 70 30 70"/><path d="M18 88 Q30 82 40 88 Q50 94 60 88 Q70 82 82 88"/></svg></a>
+<div class="topctrl"><button class="rb" id="langBtn">PT</button><button class="rb" id="themeBtn">☀</button></div>
+<div id="langmenu"></div>
+
+<div class="wrap">
+<header>
+  <span class="tag" data-t="tag"></span>
+  <div class="stage">
+    <div class="eucard" aria-hidden="true"><div class="ring" id="ring"></div><b>CESD</b><u style="top:84px;width:76px"></u><u style="top:100px;width:52px"></u></div>
+    <div class="nums">
+      <div class="num"><b>0 €</b><span data-t="k1"></span></div>
+      <div class="num"><b data-t="k2v"></b><span data-t="k2"></span></div>
+      <div class="num"><b data-t="k3v"></b><span data-t="k3"></span></div>
+    </div>
+  </div>
+  <h1 data-t="h1"></h1>
+  <p data-t="lead" style="color:var(--ink-soft);font-size:16px;margin:0"></p>
+  <a class="cta" href="#route" data-t="cta"></a>
+</header>
+
+<h2 data-t="whyT"></h2>
+<div class="grid2">
+  <div class="tile"><span class="ic">🤒</span><h3 data-t="why1t"></h3><p data-t="why1"></p></div>
+  <div class="tile"><span class="ic">💊</span><h3 data-t="why2t"></h3><p data-t="why2"></p></div>
+  <div class="tile"><span class="ic">🩺</span><h3 data-t="why3t"></h3><p data-t="why3"></p></div>
+  <div class="tile"><span class="ic">🤰</span><h3 data-t="why4t"></h3><p data-t="why4"></p></div>
+</div>
+
+<h2 data-t="notT"></h2>
+<ul class="no"><li data-t="not1"></li><li data-t="not2"></li><li data-t="not3"></li><li data-t="not4"></li></ul>
+
+<div class="warn">
+  <h2 data-t="fwT"></h2>
+  <p data-t="fw"></p>
+  <p data-t="fw2"></p>
+</div>
+
+<h2 id="route" data-t="routeT"></h2>
+<div class="route"><h3 data-t="rAt"></h3><p data-t="rA"></p></div>
+<div class="route"><h3 data-t="rBt"></h3><p data-t="rB"></p><p class="quote">Atualmente não reúne condições para solicitar o CESD por esta via</p></div>
+
+<h2 data-t="needT"></h2>
+<div class="box"><ul><li data-t="need1"></li><li data-t="need2"></li><li data-t="need3"></li><li data-t="need4"></li></ul></div>
+
+<div class="step" id="s1"><span class="snum">1</span><h3 data-t="s1t"></h3><p data-t="s1"></p>
+  <div class="tpl"><pre id="tpl1">Envolvido: o próprio (titular), [NOME COMPLETO], trabalhador independente, residente em [CONCELHO], com NISS ativo.
+Assunto: Cartão Europeu de Seguro de Doença (CESD).
+Pedido: ao tentar pedir o CESD na Segurança Social Direta, surge a mensagem «Atualmente não reúne condições para solicitar o CESD por esta via». Não tenho nenhum cartão emitido anteriormente. Solicito que me informem o motivo e procedam à emissão do CESD em meu nome, ou me indiquem como devo fazer o pedido e que documentos são necessários.
+Junto, desde já, o Modelo GIT-53 e o Modelo MG2 preenchidos e assinados, e a cópia do título de residência.
+Obrigado.</pre><button type="button" class="cp" data-for="tpl1" data-t="copy"></button></div>
+  <p class="note" data-t="tpl1n"></p>
+  <p class="tip" data-t="s1tip"></p>
+</div>
+
+<div class="step"><span class="snum">2</span><h3 data-t="s2t"></h3><p data-t="s2"></p>
+  <a class="cta ghost" href="https://www.seg-social.pt/formularios" target="_blank" rel="noopener" data-t="s2cta"></a></div>
+
+<div class="step"><span class="snum">3</span><h3 data-t="s3t"></h3><p data-t="s3"></p>
+  <figure><img src="img/01.jpg" alt="GIT-53 — página 1" loading="lazy" width="1240" height="958"></figure>
+  <ol class="legend"><li data-n="1" data-t="g1"></li><li data-n="2" data-t="g2"></li><li data-n="3" data-t="g3"></li><li data-n="4" data-t="g4"></li><li data-n="5" data-t="g5"></li><li data-n="6" data-t="g6"></li><li data-n="7" data-t="g7"></li></ol>
+  <figure><img src="img/02.jpg" alt="GIT-53 — página 3" loading="lazy" width="1240" height="478"></figure>
+  <ol class="legend"><li data-n="8" data-t="g8"></li><li data-n="9" data-t="g9"></li></ol>
+</div>
+
+<div class="step"><span class="snum">4</span><h3 data-t="s4t"></h3><p data-t="s4"></p>
+  <figure><img src="img/03.jpg" alt="MG2 — página 1" loading="lazy" width="1240" height="1124"></figure>
+  <ol class="legend"><li data-n="1" data-t="m1"></li><li data-n="2" data-t="m2"></li><li data-n="3" data-t="m3"></li><li data-n="4" data-t="m4"></li></ol>
+</div>
+
+<div class="step" id="sign"><span class="snum">5</span><h3 data-t="s5t"></h3><p data-t="s5"></p>
+  <ol class="sign"><li data-t="s5a"></li><li data-t="s5b"></li><li data-t="s5c"></li><li data-t="s5d"></li><li data-t="s5e"></li></ol>
+  <figure><img src="img/04.jpg" alt="CMD — grelha 1–18" loading="lazy" width="1240" height="911"><figcaption data-t="s5f"></figcaption></figure>
+  <a class="cta ghost" href="https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/Processes/DigitalSignature/DigitalSignatureIntro.aspx" target="_blank" rel="noopener" data-t="s5cta"></a>
+</div>
+
+<div class="step"><span class="snum">6</span><h3 data-t="s6t"></h3><p data-t="s6"></p></div>
+
+<div class="step"><span class="snum">7</span><h3 data-t="s7t"></h3><p data-t="s7"></p>
+  <div class="tpl"><pre id="tpl2">Exmos. Senhores,
+
+Na sequência do pedido de informação, junto os documentos solicitados para a emissão do Cartão Europeu de Seguro de Doença (CESD):
+
+1. Modelo GIT-53, devidamente preenchido e assinado;
+2. Modelo MG2, devidamente preenchido e assinado;
+3. Cópia do título de residência (frente e verso).
+
+Fico ao dispor para qualquer esclarecimento adicional.
+
+Com os melhores cumprimentos,
+[NOME COMPLETO]
+NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="copy"></button></div>
+</div>
+
+<div class="step"><span class="snum">8</span><h3 data-t="s8t"></h3><p data-t="s8"></p></div>
+
+<h2 data-t="caseT"></h2>
+<ul class="tl">
+  <li><b>26.09.2026</b><span data-t="c1"></span></li>
+  <li><b>14.10.2026</b><span data-t="c2"></span></li>
+  <li><b>23.10.2026</b><span data-t="c3"></span></li>
+  <li class="wait"><b>…</b><span data-t="c4"></span></li>
+</ul>
+
+<h2 data-t="faqT"></h2>
+<div class="qa"><h3 data-t="q1"></h3><p data-t="a1"></p></div>
+<div class="qa"><h3 data-t="q2"></h3><p data-t="a2"></p></div>
+<div class="qa"><h3 data-t="q3"></h3><p data-t="a3"></p></div>
+<div class="qa"><h3 data-t="q4"></h3><p data-t="a4"></p></div>
+<div class="qa"><h3 data-t="q5"></h3><p data-t="a5"></p></div>
+
+<button class="cta" type="button" id="share" data-t="share"></button>
+
+<h2 data-t="nextT"></h2>
+<a class="nx" href="https://ajuda.seedwave.pt/cartao/"><h3 data-t="n1t"></h3><span data-t="n1"></span></a>
+<a class="nx" href="https://ajuda.seedwave.pt/subsidio/"><h3 data-t="n2t"></h3><span data-t="n2"></span></a>
+<a class="nx" id="namLink" href="https://nam.seedwave.pt/"><h3 data-t="n3t"></h3><span data-t="n3"></span></a>
+
+<h2 data-t="authorT"></h2>
+<p data-t="author"></p>
+
+<h2 data-t="srcT"></h2>
+<ul class="src">
+<li><a href="https://seg-social.pt/documents/10152/14911/N39_cartao_europeu_seguro_doenca/3cd10933-cab7-420d-a234-6fa1792cf3aa" target="_blank" rel="noopener">Guia Prático — Cartão Europeu de Seguro de Doença</a> · Instituto da Segurança Social, N39 v4.23, 24.01.2025</li>
+<li><a href="https://europa.eu/youreurope/citizens/health/unplanned-healthcare/temporary-stays/index_en.htm" target="_blank" rel="noopener">Your Europe — Unplanned healthcare, temporary stays</a> · Comissão Europeia</li>
+<li><a href="https://www.seg-social.pt/formularios" target="_blank" rel="noopener">Segurança Social — Formulários</a> · Modelo GIT 53, Modelo MG 2</li>
+<li><a href="https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/Processes/DigitalSignature/DigitalSignatureIntro.aspx" target="_blank" rel="noopener">autenticacao.gov.pt — Assinatura de documentos com a Chave Móvel Digital</a></li>
+<li>Regulamento (UE) n.º 1231/2010 — nacionais de países terceiros</li>
+<li>Linha Segurança Social: <a href="tel:210545400">210 545 400</a> · <a href="tel:300502502">300 502 502</a> (dias úteis, 9h–18h)</li>
+</ul>
+
+<footer>© <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink">SeedWave</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
+</div>
+
+<script>
+const L = {};
+{{I18N}}
+</script>
+<script>
+(function(){
+var ORDER=['pt','en','ru','de','es'];
+var qs=new URLSearchParams(location.search);
+function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var lang=(window.NDM_LANG&&L[window.NDM_LANG])?window.NDM_LANG
+        :(qs.get('lang')||ls('ndm-lang')||(navigator.language||'pt').slice(0,2).toLowerCase());
+if(!L[lang])lang='pt';
+var theme=qs.get('theme')||ls('ndm-theme')||'light';
+function langPath(Lg){var p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+  if(Lg!=='pt')p.push(Lg);
+  return '/'+(p.length?p.join('/')+'/':'');}
+function langHref(h){var u=new URL(h,location.href);
+  if(window.NDM_LANG&&(u.host===location.host||u.host==='ajuda.seedwave.pt')){
+    var p=u.pathname.split('/').filter(Boolean);
+    if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+    if(lang!=='pt')p.push(lang);
+    return u.origin+'/'+(p.length?p.join('/')+'/':'')+u.hash;}
+  u.searchParams.set('lang',lang);return u.toString();}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+function mstrip(x){return String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();}
+function mclip(x,n){x=mstrip(x);if(x.length<=n)return x;var c=x.slice(0,n),i=c.lastIndexOf(' ');
+  return (i>60?c.slice(0,i):c).replace(/[ ,;:.–—-]+$/,'')+'…';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function setMeta(t){
+  var title=t.mt||(t.h1?mstrip(t.h1).replace(/[.\s]+$/,'')+' — nDm':'');
+  var desc=mclip(t.md||t.lead||'',165);
+  if(title){document.title=title;mset('meta[property="og:title"]',title);}
+  if(desc){mset('meta[name="description"]',desc);mset('meta[property="og:description"]',desc);}
+}
+function apply(){
+  var t=L[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k]!==undefined)e.innerHTML=t[k];});
+  document.getElementById('langBtn').textContent=t.code;
+  document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
+  document.querySelectorAll('a.nx,a.brandmark').forEach(function(a){
+    if(!a.getAttribute('data-h'))a.setAttribute('data-h',a.getAttribute('href'));
+    a.href=langHref(a.getAttribute('data-h'));});
+  var nl=document.getElementById('namLink');if(nl)nl.href='https://nam.seedwave.pt/?lang='+lang+'&theme='+(theme==='dark'?'night':'light');
+  lsSet('ndm-lang',lang);
+  setMeta(t);
+}
+// звёзды по кругу — рисуются один раз; пререндер их сохраняет, поэтому сначала чистим
+var ring=document.getElementById('ring');ring.innerHTML='';
+for(var i=0;i<12;i++){var a=i*Math.PI/6,s=document.createElement('i');
+  s.style.left='calc(50% + '+(Math.cos(a)*38).toFixed(1)+'px)';s.style.top='calc(50% + '+(Math.sin(a)*38).toFixed(1)+'px)';
+  s.style.animationDelay=(0.9+i*0.08)+'s';ring.appendChild(s);}
+// образцы мелкие на телефоне — по нажатию открываем картинку целиком
+document.querySelectorAll('figure img').forEach(function(im){im.style.cursor='zoom-in';
+  im.onclick=function(){window.open(im.currentSrc||im.src,'_blank','noopener');};});
+var m=document.getElementById('langmenu');
+function paintMenu(){
+  m.innerHTML=Object.keys(L).map(function(k){
+    return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';
+  }).join('');
+}
+m.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-l]');if(!b)return;
+  var k=b.getAttribute('data-l');lsSet('ndm-lang',k);
+  if(window.NDM_LANG){location.href=langPath(k);return;}
+  lang=k;m.classList.remove('on');apply();
+  try{var u=new URL(location.href);u.searchParams.set('lang',k);history.replaceState(null,'',u);}catch(err){}
+});
+document.getElementById('langBtn').onclick=function(e){e.stopPropagation();paintMenu();m.classList.toggle('on');};
+document.addEventListener('click',function(){m.classList.remove('on');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('on');});
+document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
+document.getElementById('yr').textContent=new Date().getFullYear();
+// «Копировать» у шаблонов писем
+document.querySelectorAll('button.cp').forEach(function(b){b.onclick=function(){
+  var txt=document.getElementById(b.getAttribute('data-for')).textContent;
+  function ok(){var o=b.innerHTML;b.innerHTML=L[lang].copied;setTimeout(function(){b.innerHTML=o;},1600);}
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(ok,function(){});
+  else{var r=document.createRange();r.selectNodeContents(document.getElementById(b.getAttribute('data-for')));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}}
+};});
+// «Переслать другу»: системное меню телефона, иначе — ссылка в буфер
+document.getElementById('share').onclick=function(){
+  var t=L[lang],url=location.origin+location.pathname;
+  if(navigator.share){navigator.share({title:mstrip(t.h1),text:mstrip(t.shareText||t.lead),url:url}).catch(function(){});}
+  else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){var b=document.getElementById('share'),o=b.innerHTML;b.innerHTML=t.copied;setTimeout(function(){b.innerHTML=o;},1600);});}
+};
+applyTheme();apply();paintMenu();
+})();
+</script>
