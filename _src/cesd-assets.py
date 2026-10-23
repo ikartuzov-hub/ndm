@@ -190,7 +190,7 @@ def main():
     save(grid_figure(clean_g3, clean_m1), "04.jpg")
 
     # иконки «на экран Домой» — Σ в синем ЕС, подпись CESD
-    sigma("cesd", "#1D4FA0", "#EAF0FA", "CESD", "/cesd/")
+    sigma("cesd", "#1D4FA0", "#EAF0FA", "CESD", "/cesd/", "s")
     og()
 
 
@@ -240,7 +240,7 @@ def og():
         return f
     W, Hh = 1200, 630
     im = Image.new("RGB", (W, Hh), BG); d = ImageDraw.Draw(im); X = 82
-    mark(d, 0.5, ACC, X - 6, 44)
+    mark(d, 0.5, (29, 79, 160), X - 6, 44, glyph="s")
     d.text((X + 48, 52), "Segurança Social · nDm", font=lora(26), fill=INK)
     d.text((X, 140), "C A R T Ã O   E U R O P E U", font=ImageFont.truetype(D + "DejaVuSansMono-Bold.ttf", 19), fill=ACC)
     d.text((X, 176), "Cartão Europeu de", font=lora(60), fill=INK)

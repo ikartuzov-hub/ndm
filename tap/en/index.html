@@ -98,17 +98,17 @@ code{font-family:var(--mono)}
 .menu{
   position:absolute; right:0; top:47px; z-index:30;
   background:var(--surface); border:1px solid var(--line-2); border-radius:6px;
-  box-shadow:var(--shadow); padding:6px; min-width:172px; display:grid; gap:2px;
+  box-shadow:var(--shadow); padding:6px; min-width:170px; display:grid; gap:2px; border-radius:12px;
 }
 .menu button{
-  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  display:flex; align-items:center; justify-content:flex-start; gap:8px;
   width:100%; background:none; border:0; color:var(--ink);
-  font-family:var(--body); font-size:15.5px; padding:9px 11px; border-radius:4px;
+  font-family:var(--body); font-size:15px; padding:9px 12px; border-radius:8px;
   cursor:pointer; text-align:left;
 }
 .menu button:hover{background:var(--surface-2); color:var(--accent)}
-.menu button[aria-current="true"]{color:var(--accent); font-weight:600}
-.menu .code{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+.menu button[aria-current="true"]{color:var(--accent); font-weight:500}
+.menu .code{font:inherit; color:inherit}
 .menu button[aria-current="true"] .code{color:var(--accent)}
 
 /* ---------- open / copy the TAP form ---------- */
@@ -306,7 +306,7 @@ footer a:hover{color:var(--accent)}
     <div class="ctrls">
       <div class="lang-wrap">
         <button class="rb" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">EN</button>
-        <div class="menu" id="langmenu" hidden=""><button type="button" data-l="pt"><span>Português</span><span class="code">PT</span></button><button type="button" data-l="en" aria-current="true"><span>English</span><span class="code">EN</span></button><button type="button" data-l="ru"><span>Русский</span><span class="code">RU</span></button><button type="button" data-l="es"><span>Español</span><span class="code">ES</span></button><button type="button" data-l="de"><span>Deutsch</span><span class="code">DE</span></button></div>
+        <div class="menu" id="langmenu" hidden=""><button type="button" data-l="pt"><span class="code">PT</span><span>Português</span></button><button type="button" data-l="en" aria-current="true"><span class="code">EN</span><span>English</span></button><button type="button" data-l="ru"><span class="code">RU</span><span>Русский</span></button><button type="button" data-l="es"><span class="code">ES</span><span>Español</span></button><button type="button" data-l="de"><span class="code">DE</span><span>Deutsch</span></button></div>
       </div>
       <button class="rb" id="theme" type="button" aria-label="Tema">☾</button>
     </div>
@@ -953,7 +953,7 @@ footer a:hover{color:var(--accent)}
     document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
       return '<button type="button" data-l="' + L + '"' +
              (L === lang ? ' aria-current="true"' : '') + '>' +
-             '<span>' + LNAMES[L] + '</span><span class="code">' + L.toUpperCase() + '</span></button>';
+             '<span class="code">' + L.toUpperCase() + '</span><span>' + LNAMES[L] + '</span></button>';
     }).join('');
 
     var nodes = document.querySelectorAll('[data-t]');

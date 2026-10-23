@@ -110,7 +110,7 @@ window.NDM = (function(){
       lb.parentNode.style.display = LANGS.length > 1 ? '' : 'none';
       document.getElementById('langmenu').innerHTML = LANGS.map(function(L){
         return '<button type="button" data-l="' + L + '"' + (L === lang ? ' aria-current="true"' : '') + '>' +
-               '<span>' + LNAMES[L] + '</span><span class="code">' + L.toUpperCase() + '</span></button>';
+               '<span class="code">' + L.toUpperCase() + '</span><span>' + LNAMES[L] + '</span></button>';
       }).join('');
     }
 
