@@ -256,8 +256,8 @@ html = wrap(FONTS + ces, lang="pt",
             desc=DESC_CES, app="CESD", root="../",
             ogtitle="Cartão Europeu de Seguro de Doença — passo a passo",
             og=SITE + "/cesd/og-image.png", url=SITE + "/cesd/")
-html = (html.replace('href="../icon.svg?v=1"', 'href="/cesd/icon.svg?v=1"')
-            .replace('href="../apple-touch-icon.png"', 'href="/cesd/icon-180.png"')
+html = (html.replace('href="../icon.svg?v=1"', 'href="/cesd/icon.svg?v=2"')
+            .replace('href="../apple-touch-icon.png"', 'href="/cesd/icon-180.png?v=2"')
             .replace('href="../manifest.webmanifest"', 'href="/cesd/manifest.webmanifest"'))
 write("cesd/index.html", html)
 PAGES.append(SITE + "/cesd/")

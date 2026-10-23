@@ -72,8 +72,8 @@ def build(out, acc, tile, short, start, glyph="sigma"):
     io.open(out + "/manifest.webmanifest", "w", encoding="utf-8").write(json.dumps({
         "name": short, "short_name": short, "start_url": start, "display": "standalone",
         "background_color": "#FAF6F1", "theme_color": "#FAF6F1",
-        "icons": [{"src": start + "icon-192.png", "sizes": "192x192", "type": "image/png"},
-                  {"src": start + "icon-512.png", "sizes": "512x512", "type": "image/png"}],
+        "icons": [{"src": start + "icon-192.png?v=2", "sizes": "192x192", "type": "image/png"},
+                  {"src": start + "icon-512.png?v=2", "sizes": "512x512", "type": "image/png"}],
     }, ensure_ascii=False, indent=2) + "\n")
     print("sigma assets:", out, acc)
 
