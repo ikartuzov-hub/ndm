@@ -73,7 +73,7 @@ T.de.faq = [
   ["Wo wird der Antrag gestellt?",
    "Online, auf www.ssm.gov.pt, mit Anmeldung über Chave Móvel Digital oder Cartão de Cidadão. Erforderlich sind zwei Dokumente der Fluggesellschaft: die Rechnung und der Reisenachweis."],
   ["Wie lange dauert die Auszahlung?",
-   "Bei unseren drei Anträgen vergingen 15, 12 und 2 Tage zwischen Einreichung und Auszahlung. Der Antrag wird von einem Sachbearbeiter geprüft, der jeden Anhang einzeln freigibt — daher der Unterschied."]
+   "Bei unseren vier Anträgen vergingen 15, 12, 6 und 2 Tage zwischen Einreichung und Auszahlung. Der Antrag wird von einem Sachbearbeiter geprüft, der jeden Anhang einzeln freigibt — daher der Unterschied."]
 ];
 T.de.moreH = "Als Nächstes";
 T.de.moreP = "Wenn Sie Anspruch haben, so wird der Antrag gestellt — Bildschirm für Bildschirm.";

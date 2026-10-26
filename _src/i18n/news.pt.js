@@ -73,7 +73,7 @@ T.pt.faq = [
   ["Onde se faz o pedido?",
    "Online, em www.ssm.gov.pt, com entrada por Chave Móvel Digital ou Cartão de Cidadão. São precisos dois documentos da companhia aérea: a fatura e o comprovativo de viagem."],
   ["Quanto tempo demora a pagar?",
-   "Nos nossos três pedidos passaram 15, 12 e 2 dias entre submeter e receber. O pedido é visto por um operador, que aprova cada anexo separadamente — daí a diferença."]
+   "Nos nossos quatro pedidos passaram 15, 12, 6 e 2 dias entre submeter e receber. O pedido é visto por um operador, que aprova cada anexo separadamente — daí a diferença."]
 ];
 T.pt.moreH = "A seguir";
 T.pt.moreP = "Se tem direito, é assim que se submete — ecrã a ecrã.";

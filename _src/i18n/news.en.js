@@ -73,7 +73,7 @@ T.en.faq = [
   ["Where do you submit the claim?",
    "Online, at www.ssm.gov.pt, logging in with Chave Móvel Digital or Cartão de Cidadão. Two documents from the airline are required: the invoice and proof of travel."],
   ["How long does payment take?",
-   "In our three claims, 15, 12 and 2 days passed between submission and payment. The claim is reviewed by an operator, who approves each attachment separately — hence the difference."]
+   "In our four claims, 15, 12, 6 and 2 days passed between submission and payment. The claim is reviewed by an operator, who approves each attachment separately — hence the difference."]
 ];
 T.en.moreH = "Next";
 T.en.moreP = "If you are entitled, here is how to submit the claim — screen by screen.";

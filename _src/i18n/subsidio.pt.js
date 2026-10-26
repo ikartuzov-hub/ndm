@@ -3,7 +3,9 @@ T.pt = {
   h1: "O pedido em cinco passos",
   lead: "O Estado devolve aos residentes das ilhas a maior parte do preço do bilhete. O dinheiro chega à conta bancária — desde que se passe pelos cinco ecrãs do portal e se copiem corretamente sete números da fatura da companhia aérea. Aqui mostra-se cada ecrã e cada campo — e onde as pessoas costumam perder esse dinheiro.",
   by: "Gratuito, sem registo. Não tratamos do pedido por si — mostramos como o fazer sozinho.",
-  facts: ["5 ecrãs", "7 números da fatura", "≈ 15 dias até ao dinheiro"],
+  facts: ["5 ecrãs", "7 números da fatura", "≈ 6–15 dias até ao dinheiro"],
+  caseH: "O nosso caso mais recente · outubro 2026",
+  caseP: "Pedido a 8 de outubro, aprovado a 13, dinheiro na conta a 14 — <b>6 dias</b>. Reembolso de <b>490,15 €</b> por uma ida e volta Funchal–Lisboa; com o antigo teto de 400 € seriam 321 €. O teto já não existe — <a class=\"lnk\" href=\"/?p=news\">Lei n.º 23/2026</a>.",
 
   needH: "O que preparar antes de entrar",
   needP: "O formulário não avança sem estas coisas, e não é possível voltar atrás a meio do pedido para acrescentar algo — o rascunho perde campos. Por isso, reúna tudo primeiro e só depois entre.",
@@ -181,7 +183,7 @@ T.pt = {
     [P("Aprovado"), "2–11 dias", "É verificado o critério dos seis meses de residência"],
     [P("Pagamento Efetuado"), "+2–4 dias", "O dinheiro é enviado para o IBAN"]
   ],
-  timeNote: "Em três pedidos reais, do envio até ao dinheiro passaram 15, 12 e 2 dias. A diferença é grande e depende da rapidez com que o operador chega ao último ficheiro anexado. Para acompanhar o pedido — " + P("Histórico de Pedidos") + " na página principal do portal.",
+  timeNote: "Em quatro pedidos reais, do envio até ao dinheiro passaram 15, 12, 6 e 2 dias. A diferença é grande e depende da rapidez com que o operador chega ao último ficheiro anexado. Para acompanhar o pedido — " + P("Histórico de Pedidos") + " na página principal do portal.",
   statH: "Estados",
   stats: [
     [P("Rascunho"), "Rascunho. Não foi enviado e ninguém o vê."],

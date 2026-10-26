@@ -73,7 +73,7 @@ T.es.faq = [
   ["¿Dónde se presenta la solicitud?",
    "En línea, en www.ssm.gov.pt, con acceso mediante Chave Móvel Digital o Cartão de Cidadão. Se necesitan dos documentos de la aerolínea: la factura y el justificante de viaje."],
   ["¿Cuánto tarda el pago?",
-   "En nuestras tres solicitudes pasaron 15, 12 y 2 días entre la presentación y el pago. La solicitud la revisa un operador, que aprueba cada archivo adjunto por separado — de ahí la diferencia."]
+   "En nuestras cuatro solicitudes pasaron 15, 12, 6 y 2 días entre la presentación y el pago. La solicitud la revisa un operador, que aprueba cada archivo adjunto por separado — de ahí la diferencia."]
 ];
 T.es.moreH = "A continuación";
 T.es.moreP = "Si tiene derecho, así se presenta la solicitud, pantalla a pantalla.";

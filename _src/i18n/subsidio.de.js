@@ -3,7 +3,9 @@ T.de = {
   h1: "Der Antrag in fünf Schritten",
   lead: "Der Staat erstattet den Inselbewohnern den größten Teil des Ticketpreises. Das Geld kommt auf das Bankkonto — wenn Sie die fünf Bildschirme des Portals durchlaufen und sieben Zahlen korrekt aus der Rechnung der Fluggesellschaft übertragen. Hier wird jeder Bildschirm und jedes Feld gezeigt — und dort, wo Menschen dieses Geld verlieren.",
   by: "Kostenlos, ohne Registrierung. Wir erledigen nichts für Sie — wir zeigen, wie Sie es selbst erledigen.",
-  facts: ["5 Bildschirme", "7 Zahlen aus der Rechnung", "≈ 15 Tage bis zum Geld"],
+  facts: ["5 Bildschirme", "7 Zahlen aus der Rechnung", "≈ 6–15 Tage bis zum Geld"],
+  caseH: "Unser jüngster Fall · Oktober 2026",
+  caseP: "Eingereicht am 8. Oktober, genehmigt am 13., Geld auf dem Konto am 14. — <b>6 Tage</b>. Erstattung von <b>490,15 €</b> für Hin- und Rückflug Funchal–Lissabon; mit der alten 400-€-Grenze wären es 321 € gewesen. Die Grenze gibt es nicht mehr — <a class=\"lnk\" href=\"/?p=news\">Lei n.º 23/2026</a>.",
 
   needH: "Was Sie vor dem Einstieg bereithalten müssen",
   needP: "Ohne diese Dinge lässt das Formular Sie nicht weiter, und mitten im Antrag zurückzugehen und etwas nachzutragen geht nicht — der Entwurf verliert Felder. Deshalb erst alles zusammenstellen, dann einsteigen.",
@@ -181,7 +183,7 @@ T.de = {
     [P("Aprovado"), "2–11 Tage", "Das Sechs-Monats-Wohnsitzkriterium ist geprüft"],
     [P("Pagamento Efetuado"), "+2–4 Tage", "Das Geld geht auf die IBAN"]
   ],
-  timeNote: "Bei drei echten Anträgen vergingen von der Einreichung bis zum Geld 15, 12 und 2 Tage. Die Spanne ist groß und hängt davon ab, wie schnell der Sachbearbeiter zur letzten angehängten Datei kommt. Den Antrag verfolgen — unter " + P("Histórico de Pedidos") + " auf der Startseite des Portals.",
+  timeNote: "Bei vier echten Anträgen vergingen von der Einreichung bis zum Geld 15, 12, 6 und 2 Tage. Die Spanne ist groß und hängt davon ab, wie schnell der Sachbearbeiter zur letzten angehängten Datei kommt. Den Antrag verfolgen — unter " + P("Histórico de Pedidos") + " auf der Startseite des Portals.",
   statH: "Status",
   stats: [
     [P("Rascunho"), "Entwurf. Nicht abgeschickt und von niemandem eingesehen."],

@@ -3,7 +3,9 @@ T.en = {
   h1: "The claim in five steps",
   lead: "The State refunds island residents most of the ticket price. The money lands in your bank account — if you get through five portal screens and correctly copy seven figures from the airline invoice. Here is every screen and every field — and where people lose the money.",
   by: "Free, no registration. We do not file anything for you — we show you how to file it yourself.",
-  facts: ["5 screens", "7 figures from the invoice", "≈ 15 days to the money"],
+  facts: ["5 screens", "7 figures from the invoice", "≈ 6–15 days to the money"],
+  caseH: "Our latest case · October 2026",
+  caseP: "Filed on 8 October, approved on the 13th, money in the account on the 14th — <b>6 days</b>. Refund of <b>€490.15</b> for a Funchal–Lisbon return trip; under the old €400 cap it would have been €321. The cap is gone — <a class=\"lnk\" href=\"/?p=news\">Lei n.º 23/2026</a>.",
 
   needH: "What to prepare before you start",
   needP: "The form will not let you go further without these, and you cannot go back and add something mid-claim — the draft loses fields. So gather everything first, then start.",
@@ -181,7 +183,7 @@ T.en = {
     [P("Aprovado"), "2–11 days", "The six-month residence criterion is checked"],
     [P("Pagamento Efetuado"), "+2–4 days", "The money is sent to the IBAN"]
   ],
-  timeNote: "Across three real claims, filing to payment took 15, 12 and 2 days. The spread is wide, and depends on how quickly the operator gets to the last attached file. Track a claim under " + P("Histórico de Pedidos") + " on the portal home page.",
+  timeNote: "Across four real claims, filing to payment took 15, 12, 6 and 2 days. The spread is wide, and depends on how quickly the operator gets to the last attached file. Track a claim under " + P("Histórico de Pedidos") + " on the portal home page.",
   statH: "Statuses",
   stats: [
     [P("Rascunho"), "Draft. Not submitted and not looked at by anyone."],

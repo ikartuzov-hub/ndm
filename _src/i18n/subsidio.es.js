@@ -3,7 +3,9 @@ T.es = {
   h1: "La solicitud en cinco pasos",
   lead: "El Estado le devuelve a los residentes de las islas la mayor parte del precio del billete. El dinero llega a la cuenta bancaria si supera las cinco pantallas del portal y copia correctamente siete cifras de la factura de la aerolínea. Aquí se muestra cada pantalla y cada campo — y dónde se pierde el dinero.",
   by: "Gratis, sin registro. No tramitamos nada por usted: le mostramos cómo hacerlo usted mismo.",
-  facts: ["5 pantallas", "7 cifras de la factura", "≈ 15 días hasta el pago"],
+  facts: ["5 pantallas", "7 cifras de la factura", "≈ 6–15 días hasta el pago"],
+  caseH: "Nuestro caso más reciente · octubre 2026",
+  caseP: "Solicitud el 8 de octubre, aprobada el 13, dinero en la cuenta el 14 — <b>6 días</b>. Reembolso de <b>490,15 €</b> por un ida y vuelta Funchal–Lisboa; con el antiguo tope de 400 € habrían sido 321 €. El tope ya no existe — <a class=\"lnk\" href=\"/?p=news\">Lei n.º 23/2026</a>.",
 
   needH: "Qué tener listo antes de entrar",
   needP: "El formulario no le deja avanzar sin estas cosas, y no se puede volver atrás a mitad de la solicitud para añadir algo: el borrador pierde campos. Así que primero se reúne todo, después se entra.",
@@ -181,7 +183,7 @@ T.es = {
     [P("Aprovado"), "2–11 días", "Se comprueba el criterio de seis meses de residencia"],
     [P("Pagamento Efetuado"), "+2–4 días", "El dinero se ingresa en el IBAN"]
   ],
-  timeNote: "En tres solicitudes reales, desde presentar hasta cobrar pasaron 15, 12 y 2 días. La diferencia es grande y depende de lo rápido que el operador llegue al último archivo adjunto. Seguir la solicitud, en " + P("Histórico de Pedidos") + " de la página principal del portal.",
+  timeNote: "En cuatro solicitudes reales, desde presentar hasta cobrar pasaron 15, 12, 6 y 2 días. La diferencia es grande y depende de lo rápido que el operador llegue al último archivo adjunto. Seguir la solicitud, en " + P("Histórico de Pedidos") + " de la página principal del portal.",
   statH: "Estados",
   stats: [
     [P("Rascunho"), "Borrador. No enviado, nadie lo revisa."],
