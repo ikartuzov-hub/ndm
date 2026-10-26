@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#B23A0E;--accs:#F6E3D8;--gold:#E3B341;--gold2:#B8862A;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  .mono{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--acc)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:36px;text-align:center;font-size:46px;font-weight:600;color:var(--ink)}
+  #cap small{display:block;font-size:30px;font-weight:400;color:var(--soft);margin-top:8px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:26px;color:var(--ink)}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  .hide{opacity:0}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"SUBSÍDIO DE MOBILIDADE · MADEIRA", c1:"Bilhete ida e volta", c1s:"paga tudo do seu bolso", c2:"Funchal ⇄ Lisboa", c3:"Pedido online", c3s:"os números vêm da fatura", c4:"6 dias", c4s:"do pedido ao dinheiro", c5:"+ 490 € de volta", c5s:"só o copagamento de 79 € fica", c6:"O teto de 400 € acabou", c6s:"Lei n.º 23/2026", days:"6 dias", ai:"animação criada com IA", foot:"ajuda.seedwave.pt/subsidio", bot:"guia gratuito · 5 línguas", tarifa:"Tarifa", total:"Custo", cop:"Copagamento", reemb:"Reembolso", pedido:"pedido", aprov:"aprovado", pago:"na conta"},
+ ru:{top:"СУБСИДИЯ ЗА ПЕРЕЛЁТ · МАДЕЙРА", c1:"Билет туда-обратно", c1s:"платишь всё из своего кармана", c2:"Фуншал ⇄ Лиссабон", c3:"Заявка онлайн", c3s:"цифры берутся из счёта", c4:"6 дней", c4s:"от заявки до денег", c5:"+ 490 € обратно", c5s:"остаётся только доля 79 €", c6:"Потолка 400 € больше нет", c6s:"Lei n.º 23/2026", days:"6 дней", ai:"анимация создана с ИИ", foot:"ajuda.seedwave.pt/subsidio/ru", bot:"бесплатный гид · 5 языков", tarifa:"Тариф", total:"Custo", cop:"Copagamento", reemb:"Reembolso", pedido:"подал", aprov:"одобрили", pago:"деньги"},
+ en:{top:"MOBILITY SUBSIDY · MADEIRA", c1:"Return ticket", c1s:"you pay it all upfront", c2:"Funchal ⇄ Lisbon", c3:"Online claim", c3s:"the numbers come from the invoice", c4:"6 days", c4s:"from claim to money", c5:"+ €490 back", c5s:"only the €79 co-payment stays", c6:"The €400 cap is gone", c6s:"Law 23/2026", days:"6 days", ai:"animation created with AI", foot:"ajuda.seedwave.pt/subsidio/en", bot:"free guide · 5 languages", tarifa:"Fare", total:"Cost", cop:"Co-payment", reemb:"Refund", pedido:"filed", aprov:"approved", pago:"paid"},
+ es:{top:"SUBSIDIO DE MOVILIDAD · MADEIRA", c1:"Billete ida y vuelta", c1s:"lo pagas todo de tu bolsillo", c2:"Funchal ⇄ Lisboa", c3:"Solicitud online", c3s:"las cifras salen de la factura", c4:"6 días", c4s:"de la solicitud al dinero", c5:"+ 490 € de vuelta", c5s:"solo queda el copago de 79 €", c6:"El tope de 400 € ya no existe", c6s:"Lei n.º 23/2026", days:"6 días", ai:"animación creada con IA", foot:"ajuda.seedwave.pt/subsidio/es", bot:"guía gratuita · 5 idiomas", tarifa:"Tarifa", total:"Coste", cop:"Copago", reemb:"Reembolso", pedido:"solicitud", aprov:"aprobado", pago:"en la cuenta"},
+};
+let T = L.pt;
+const $ = id => document.getElementById(id);
+const clamp = (x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg = (t,a,b)=>clamp((t-a)/(b-a));
+const eio = x=> x<.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2;
+const eo  = x=> 1-Math.pow(1-x,3);
+const ei  = x=> x*x*x;
+const bk  = x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)}; // overshoot
+const fmt = n => n.toFixed(2).replace('.',',');
+const bez = (p0,p1,p2,u)=>[(1-u)*(1-u)*p0[0]+2*(1-u)*u*p1[0]+u*u*p2[0],(1-u)*(1-u)*p0[1]+2*(1-u)*u*p1[1]+u*u*p2[1]];
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+
+const S=$('s');
+// ---------- static scene build ----------
+// character group (left)
+const G=el('g',{id:'man'},S);
+const manRoot=el('g',{},G);               // body transform (dance)
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot); // shirt
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);                   // head
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot); // ears
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot); // bald shine
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot); // stubble
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+// arms: pivot at shoulders
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); const handL=el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); const armRpath=el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// thumb-up hand (drawn, hidden by default)
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+// sigh puff
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'…',{'font-size':30,fill:'var(--soft)','font-weight':700});
+const sweat=el('path',{d:'M292 300 q12 22 0 32 q-12 -10 0 -32z',fill:'#8EC9E8',opacity:0},manRoot);
+
+// wallet (near left hand)
+const W=el('g',{id:'wallet'},S);
+el('rect',{x:40,y:800,width:300,height:190,rx:26,fill:'#7A4A2B'},W);
+el('rect',{x:40,y:800,width:300,height:70,rx:26,fill:'#95603B'},W);
+el('rect',{x:250,y:870,width:110,height:60,rx:14,fill:'#5A3620'},W);
+el('circle',{cx:330,cy:900,r:12,fill:'var(--gold)'},W);
+const wsum=txt(W,70,955,'570 €',{'font-size':54,'font-weight':700,fill:'#fff'});
+
+// scene panel (right)
+const P=el('g',{id:'panel'},S);
+// S1 ticket
+const TK=el('g',{opacity:0},P);
+el('rect',{x:470,y:300,width:540,height:280,rx:30,fill:'var(--paper)',stroke:'var(--line)','stroke-width':3},TK);
+el('path',{d:'M470 440 h540','stroke':'var(--line)','stroke-width':3,'stroke-dasharray':'14 12'},TK);
+txt(TK,500,350,'BILHETE · TICKET',{'font-size':24,fill:'var(--soft)',class:'m'});
+txt(TK,500,415,'FNC',{'font-size':64,'font-weight':700,fill:'var(--ink)'});
+txt(TK,640,415,'⇄',{'font-size':54,fill:'var(--acc)'});
+txt(TK,720,415,'LIS',{'font-size':64,'font-weight':700,fill:'var(--ink)'});
+const tprice=txt(TK,500,540,'',{'font-size':74,'font-weight':700,fill:'var(--acc)',class:'serif'});
+// S2 map
+const MP=el('g',{opacity:0},P);
+el('path',{d:'M470 760 q40 -60 110 -40 q50 10 60 60 q-20 50 -90 40 q-70 -10 -80 -60z',fill:'#CFE3D2',stroke:'#8FBF9A','stroke-width':3},MP); // island
+el('path',{d:'M880 300 q90 -20 140 40 q30 120 -40 260 q-70 40 -110 -40 q-30 -150 10 -260z',fill:'#CFE3D2',stroke:'#8FBF9A','stroke-width':3},MP); // mainland
+txt(MP,500,830,'FNC',{'font-size':34,'font-weight':700,fill:'var(--ink)'});
+txt(MP,905,330,'LIS',{'font-size':34,'font-weight':700,fill:'var(--ink)'});
+el('path',{d:'M560 740 Q 760 300 930 470',stroke:'var(--acc)','stroke-width':5,fill:'none','stroke-dasharray':'16 14',opacity:.7},MP);
+const plane=el('g',{},MP);
+el('path',{d:'M0 -30 L8 -8 L34 6 L34 12 L8 6 L5 20 L13 27 L13 31 L0 27 L-13 31 L-13 27 L-5 20 L-8 6 L-34 12 L-34 6 L-8 -8 Z',fill:'var(--acc)'},plane);
+// S3 phone
+const PH=el('g',{opacity:0},P);
+el('rect',{x:600,y:260,width:380,height:720,rx:48,fill:'#1F1A17'},PH);
+el('rect',{x:616,y:290,width:348,height:660,rx:34,fill:'var(--bg)'},PH);
+txt(PH,640,350,'nDm',{'font-size':40,'font-weight':700,fill:'var(--acc)',class:'serif'});
+txt(PH,760,350,'· ajuda.seedwave.pt',{'font-size':18,fill:'var(--soft)',class:'m'});
+const rowsDef=[['Tarifa','197,00'],['Tarifa','90,00'],['YP','35,03'],['YQ','115,00'],['PT','7,12'],['J9','0,00'],['XP','0,00']];
+const rows=rowsDef.map((r,i)=>{const g=el('g',{opacity:0},PH);
+  el('rect',{x:636,y:380+i*56,width:308,height:46,rx:10,fill:'#fff',stroke:'var(--line)','stroke-width':2},g);
+  txt(g,652,412+i*56,r[0],{'font-size':24,fill:'var(--acc)',class:'m','font-weight':700});
+  txt(g,930,412+i*56,r[1]+' €',{'font-size':24,fill:'var(--ink)',class:'m','text-anchor':'end'});return g});
+const sumG=el('g',{opacity:0},PH);
+el('path',{d:'M636 780 h308',stroke:'var(--ink)','stroke-width':3},sumG);
+const sumL=txt(sumG,640,820,'',{'font-size':24,fill:'var(--soft)'}); const sumV=txt(sumG,940,820,'569,15 €',{'font-size':28,fill:'var(--ink)',class:'m','text-anchor':'end','font-weight':700});
+const copG=el('g',{opacity:0},PH);
+const copL=txt(copG,640,866,'',{'font-size':24,fill:'var(--soft)'}); txt(copG,940,866,'− 79,00 €',{'font-size':28,fill:'var(--acc)',class:'m','text-anchor':'end','font-weight':700});
+const resG=el('g',{opacity:0},PH);
+el('rect',{x:636,y:884,width:308,height:54,rx:12,fill:'var(--accs)'},resG);
+const resL=txt(resG,648,921,'',{'font-size':22,fill:'var(--acc)','font-weight':600}); txt(resG,934,922,'490,15 €',{'font-size':30,fill:'var(--acc)',class:'m','text-anchor':'end','font-weight':700});
+// papers in left hand
+const DOC=el('g',{opacity:0},P);
+for(let i=0;i<2;i++){const g=el('g',{transform:`translate(${i*26} ${-i*18}) rotate(${-8+i*10} 120 560)`},DOC);
+ el('rect',{x:60,y:520,width:130,height:170,rx:10,fill:'#fff',stroke:'var(--line)','stroke-width':3},g);
+ for(let k=0;k<5;k++)el('rect',{x:78,y:548+k*24,width:94-(k%3)*18,height:8,rx:4,fill:'#D8CFC6'},g);
+ el('rect',{x:78,y:660,width:60,height:12,rx:4,fill:'var(--acc)'},g);}
+// S4 calendar
+const CAL=el('g',{opacity:0},P);
+const calDef=[['08.10','pedido'],['13.10','aprov'],['14.10','pago']];
+const cals=calDef.map((c,i)=>{const g=el('g',{opacity:0},CAL);const x=470+i*190;
+ el('rect',{x,y:380,width:170,height:190,rx:22,fill:'#fff',stroke:'var(--line)','stroke-width':3},g);
+ el('rect',{x,y:380,width:170,height:44,rx:22,fill:'var(--acc)'},g); el('rect',{x,y:404,width:170,height:20,fill:'var(--acc)'},g);
+ txt(g,x+85,502,c[0],{'font-size':46,'font-weight':700,fill:'var(--ink)','text-anchor':'middle',class:'m'});
+ const lab=txt(g,x+85,548,'',{'font-size':24,fill:'var(--soft)','text-anchor':'middle'}); g._lab=lab; g._key=c[1];
+ if(i<2){el('path',{d:`M${x+176} 470 l8 0`,stroke:'var(--acc)','stroke-width':6,'stroke-linecap':'round'},g);} return g});
+const pill=el('g',{opacity:0},CAL);
+el('rect',{x:600,y:640,width:300,height:92,rx:46,fill:'var(--acc)'},pill);
+const pillT=txt(pill,750,702,'',{'font-size':48,'font-weight':700,fill:'#fff','text-anchor':'middle'});
+// coins
+const coins=[];for(let i=0;i<9;i++){const g=el('g',{opacity:0},S);el('circle',{cx:0,cy:0,r:26,fill:'var(--gold)',stroke:'var(--gold2)','stroke-width':4},g);txt(g,0,10,'€',{'font-size':30,'font-weight':700,fill:'var(--gold2)','text-anchor':'middle'});coins.push(g)}
+// S6 end card
+const END=el('g',{opacity:0},P);
+const endBig=txt(END,750,520,'490 €',{'font-size':190,fill:'var(--ink)','text-anchor':'middle',class:'serif'});
+const endPill=el('g',{},END); el('rect',{x:640,y:570,width:220,height:76,rx:38,fill:'var(--acc)'},endPill); const endPillT=txt(endPill,750,622,'',{'font-size':40,'font-weight':700,fill:'#fff','text-anchor':'middle'});
+el('rect',{x:470,y:690,width:560,height:70,rx:12,fill:'var(--accs)'},END);
+const endCap=txt(END,750,736,'',{'font-size':30,'font-weight':600,fill:'var(--acc)','text-anchor':'middle'});
+const endSub=txt(END,750,800,'',{'font-size':26,fill:'var(--soft)','text-anchor':'middle',class:'m'});
+
+function setLang(l){T=L[l]||L.pt;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;
+ sumL.textContent=T.total; copL.textContent=T.cop; resL.textContent=T.reemb; pillT.textContent=T.days; endPillT.textContent=T.days; endCap.textContent=T.c6; endSub.textContent=T.c6s;
+ cals.forEach(g=>g._lab.textContent=T[g._key]); rows[0].querySelector('text').textContent=T.tarifa; rows[1].querySelector('text').textContent=T.tarifa;}
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+function op(e,v){e.setAttribute('opacity',clamp(v))}
+function tr(e,s){e.setAttribute('transform',s)}
+
+// ---------- timeline ----------
+const DUR=27;
+function render(t){
+  // captions
+  let c=['',''],fo=1;
+  if(t<4.6)c=[T.c1,T.c1s]; else if(t<9.4)c=[T.c2,'']; else if(t<15.2)c=[T.c3,T.c3s]; else if(t<17.6)c=[T.c4,T.c4s]; else if(t<22.2)c=[T.c5,T.c5s]; else c=[T.c6,T.c6s];
+  cap(c[0],c[1]); $('cap').style.opacity = t<.6? seg(t,0,.6):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>22.4?seg(t,22.4,23.2):0;
+  // ---- character mood ----
+  let mood='neutral';
+  if(t>2.6&&t<4.6)mood='sad'; if(t>18.3)mood='happy';
+  mouth.setAttribute('d',mood==='sad'?'M190 392 q25 -18 48 0':mood==='happy'?'M186 378 q29 30 58 0':'M192 384 h44');
+  const sad=mood==='sad';
+  browL.setAttribute('d',sad?'M180 306 l30 8':'M180 312 l30 -4'); browR.setAttribute('d',sad?'M222 314 l30 -8':'M222 308 l30 4');
+  op(cheekL,mood==='happy'?1:0);op(cheekR,mood==='happy'?1:0);
+  // wink 21.2–21.7
+  const wk=(t>21.2&&t<21.7)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  // scratch head 2.6–4.4 (right arm up to head), thumbs up 20.4–23.5, otherwise down
+  let ang=0,wob=0,th=0;
+  if(t>2.4&&t<4.6){const u=seg(t,2.4,2.9)*(1-seg(t,4.2,4.6));ang=-165*eio(u);wob=Math.sin(t*22)*6*u;}
+  if(t>20.2){const u=bk(seg(t,20.2,20.8));ang=-125*u;th=u;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(thumb,th); op(handR,1-th); tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  op(puff,sad?seg(t,2.9,3.2)*(1-seg(t,4.2,4.5)):0); op(sweat,sad?seg(t,3,3.4):0);
+  // left arm: holds papers 9.6–15.2 (raise), else down
+  let la=0; if(t>9.4&&t<15.4){la=-70*eio(seg(t,9.4,9.9))*(1-eio(seg(t,15,15.4)));} tr(armL,`rotate(${la} 150 470)`);
+  op(DOC,t>9.6&&t<15.3?seg(t,9.6,10)*(1-seg(t,15,15.3)):0); tr(DOC,`rotate(${la} 150 470)`);
+  // dance 18.6–23.5
+  let dy=0,rot=0,sc=1; if(t>18.6&&t<23.6){const u=seg(t,18.6,19)*(1-seg(t,23.2,23.6));dy=-22*Math.abs(Math.sin((t-18.6)*7))*u;rot=4*Math.sin((t-18.6)*7)*u;}
+  if(t<.8){sc=.6+.4*bk(seg(t,0,.8));}
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${sc}) translate(-215 -600)`);
+  op(G,seg(t,0,.5)); op(W,seg(t,.2,.7));
+  // ---- wallet counter ----
+  let w=570; if(t>1&&t<3.2)w=570*(1-eio(seg(t,1,3.2))); else if(t>=3.2&&t<18.4)w=0; else if(t>=18.4)w=490.15*eo(seg(t,18.4,20.6));
+  wsum.textContent=(t>18.4?'+ ':'')+(t>=3.2&&t<18.4?'0 €':fmt(w).replace(',00','')+' €');
+  // ---- S1 ticket + coins out 1–3.2 ----
+  op(TK,seg(t,.5,1)*(1-seg(t,4.6,5))); tr(TK,`translate(${(1-eo(seg(t,.5,1.1)))*80} 0)`);
+  tprice.textContent=t>3.3?'570 €':'';
+  // ---- S2 map 4.8–9.4 ----
+  op(MP,seg(t,4.8,5.3)*(1-seg(t,9.4,9.8)));
+  {let u=0,ang=0;const a=seg(t,5.4,7.0),b=seg(t,7.4,9.0); const p0=[560,740],p1=[760,300],p2=[930,470];
+   let pos; if(t<7.2){u=eio(a);pos=bez(p0,p1,p2,u);const q=bez(p0,p1,p2,Math.min(1,u+.01));ang=Math.atan2(q[1]-pos[1],q[0]-pos[0])*180/Math.PI+90;}
+   else{u=eio(b);pos=bez(p2,p1,p0,u);const q=bez(p2,p1,p0,Math.min(1,u+.01));ang=Math.atan2(q[1]-pos[1],q[0]-pos[0])*180/Math.PI+90;}
+   tr(plane,`translate(${pos[0]} ${pos[1]}) rotate(${ang}) scale(1.4)`);}
+  // ---- S3 phone 10–15.2 ----
+  op(PH,seg(t,10,10.5)*(1-seg(t,15.2,15.6))+seg(t,17.6,18)*(1-seg(t,21.8,22.2))); tr(PH,`translate(0 ${(1-eo(seg(t,10,10.7)))*60})`);
+  rows.forEach((g,i)=>{const t0=11+i*.32;const fl=t>t0&&t<t0+.18?(Math.floor((t-t0)*40)%2?0.2:1):1;op(g,seg(t,t0,t0+.12)*fl)});
+  op(sumG,seg(t,13.4,13.7)); op(copG,seg(t,13.9,14.2)); op(resG,bk(seg(t,14.4,14.9))); tr(resG,`translate(0 0) scale(${.9+.1*bk(seg(t,14.4,14.9))})`);
+  // ---- S4 calendar 15.4–17.6 ----
+  op(CAL,seg(t,15.4,15.8)*(1-seg(t,17.6,18)));
+  cals.forEach((g,i)=>{const u=bk(seg(t,15.6+i*.5,16.0+i*.5));op(g,u);tr(g,`translate(0 ${(1-u)*30})`)});
+  {const u=bk(seg(t,17.0,17.4));op(pill,u);tr(pill,`translate(750 686) scale(${u}) translate(-750 -686)`)}
+  // ---- coins: out (1.2–3.2) and back (17.9–20.4) ----
+  coins.forEach((g,i)=>{let o=0,pos=[0,0];
+    const d=i*.17; const a=seg(t,1.2+d,2.2+d); if(t>1.2+d&&t<2.3+d){o=1;pos=bez([190,880],[400,520],[600,400],eio(a));}
+    const b=seg(t,17.9+d,18.9+d); if(t>17.9+d&&t<19.0+d){o=1;pos=bez([790,910],[420,700],[190,880],ei(b));}
+    op(g,o); tr(g,`translate(${pos[0]} ${pos[1]}) rotate(${t*300+i*40})`);});
+  // ---- S5: result card lingers near wallet? keep panel with big "+490" burst 18–22 ----
+  // ---- S6 end 22.2+ ----
+  {const u=bk(seg(t,22.2,22.9));op(END,u);tr(END,`translate(40 0) translate(750 650) scale(${.85+.15*u}) translate(-750 -650)`)}
+}
+window.render=render; window.setLang=setLang; window.DUR=DUR;
+setLang('pt'); render(0);
+</script>
+</body></html>
