@@ -144,7 +144,7 @@ PAGES.append(SITE + "/tap/")
 print("built: tap/index.html")
 
 # ---------- /subsidio/ — выпуск 2: подача + три справочных -------------
-OG2 = SITE + "/subsidio/og-image.png"
+OG2 = SITE + "/subsidio/og-image.png?v=490"
 CR = '<a href="/">Damos o Caminho</a><span>›</span>'
 page("_src/subsidio-body.html", "subsidio", "subsidio/index.html",
      CR + "Subsídio de Mobilidade",

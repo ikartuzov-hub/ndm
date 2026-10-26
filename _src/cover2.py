@@ -77,12 +77,13 @@ def row(y, label, value, big=False, col=INK):
     f = mono(26) if big else mono(19)
     vw = d.textlength(value, font=f)
     d.text((BR - 34 - vw, y - (6 if big else 2)), value, font=f, fill=col)
-row(BY + 30, "CUSTO", "444,15 €")
+row(BY + 30, "CUSTO", "569,15 €")
 row(BY + 68, "COPAGAMENTO", "− 79,00 €")
 d.line([(TX, BY + 106), (BR - 34, BY + 106)], fill=LINE, width=2)
-row(BY + 124, "REEMBOLSO", "365,15 €", big=True, col=ACC)
+row(BY + 124, "REEMBOLSO", "490,15 €", big=True, col=ACC)
 
-d.text((BX + 40, BB - 44), "Pedido real · aprovado e pago · 15 dias", font=mono(13, False), fill=SOFT)
+d.text((BX + 40, BB - 62), "Pedido real · 08.10 → 13.10 → na conta 14.10 · 6 dias", font=mono(13, False), fill=SOFT)
+d.text((BX + 40, BB - 38), "Teto de 400 € acabou · Lei n.º 23/2026", font=mono(13), fill=ACC)
 
 im.save("subsidio/og-image.png")
 print("ok", im.size)
