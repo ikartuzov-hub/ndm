@@ -268,6 +268,26 @@ write("cesd/index.html", html)
 PAGES.append(SITE + "/cesd/")
 print("built: cesd/index.html")
 
+# ---------- /cesd/lite/ — «Лайт»: один экран, пояснения по тапу (06.11.2026) ----------
+# Тот же знак и манифест, что у /cesd/; тексты в _src/i18n/cesdlite.*.js.
+lit = read("_src/cesd-lite-body.html")
+lit = lit.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/cesdlite.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/cesdlite.%s.js" % L)))
+DESC_LIT = ("O Cartão Europeu de Seguro de Doença é gratuito para quem vive em Portugal: "
+            "carrega na Segurança Social Direta — deixa ou não deixa. O que fazer em cada caso.")
+html = wrap(FONTS + lit, lang="pt",
+            title="Cartão Europeu de Seguro de Doença em duas perguntas — nDm",
+            desc=DESC_LIT, app="CESD", root="../../",
+            ogtitle="Cartão Europeu de Saúde — duas perguntas",
+            og=SITE + "/cesd/og-image.png", url=SITE + "/cesd/lite/")
+html = (html.replace('href="../../icon.svg?v=1"', 'href="/cesd/icon.svg?v=2"')
+            .replace('href="../../apple-touch-icon.png"', 'href="/cesd/icon-180.png?v=2"')
+            .replace('href="../../manifest.webmanifest"', 'href="/cesd/manifest.webmanifest"'))
+write("cesd/lite/index.html", html)
+PAGES.append(SITE + "/cesd/lite/")
+print("built: cesd/lite/index.html")
+
 
 # ---------- /aima/ — AIMA: трекер процесса (серия A, первая страница) ----------
 # Устроена как /cesd/: движок и стили внутри тела, тексты в _src/i18n/aima.*.js.
