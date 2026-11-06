@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#B23A0E;--accs:#F6E3D8;--eu:#003399;--gold:#FFCC00;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6;--ok:#1E7A46;--oks:#DDF3E5}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--eu)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:30px;text-align:center;font-size:46px;font-weight:600;color:var(--ink);padding:0 40px}
+  #cap small{display:block;font-size:30px;font-weight:400;color:var(--soft);margin-top:8px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:26px;color:var(--ink)}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"CARTÃO EUROPEU DE SAÚDE · MADEIRA", c1:"Cartão europeu de saúde", c1s:"gratuito · hospital público em toda a UE",
+     c2:"1.º clique", c2s:"Segurança Social Direta → Obter CESD", c3:"Recusou?", c3s:"é o título antigo na base deles",
+     c4:"Três ficheiros pelo e-Clic", c4s:"assinados sem impressora", c5:"14 dias", c5s:"«título atualizado»",
+     c6:"2.º clique", c6s:"cartão em dois minutos", c7:"Duas perguntas", c7s:"ajuda.seedwave.pt/cesd/lite",
+     ai:"animação criada com IA", foot:"ajuda.seedwave.pt/cesd/lite", bot:"guia gratuito · 5 línguas",
+     btn:"Iniciar pedido", refuse:"não reúne condições", ok:"Pedido enviado", doc:["GIT-53","MG2","Título"], mail:"título atualizado ✓", days:"14 dias", lock:"título 2024", key:"título 2026"},
+ ru:{top:"ЕВРОПЕЙСКАЯ МЕДКАРТА · МАДЕЙРА", c1:"Европейская медкарта", c1s:"бесплатно · госклиники по всему ЕС",
+     c2:"Клик первый", c2s:"Segurança Social Direta → Obter CESD", c3:"Отказало?", c3s:"это старый ВНЖ в их базе",
+     c4:"Три файла через e-Clic", c4s:"подписаны без принтера", c5:"14 дней", c5s:"«ВНЖ обновлён»",
+     c6:"Клик второй", c6s:"карта за две минуты", c7:"Два вопроса", c7s:"ajuda.seedwave.pt/cesd/lite/ru",
+     ai:"анимация создана с ИИ", foot:"ajuda.seedwave.pt/cesd/lite/ru", bot:"бесплатный гид · 5 языков",
+     btn:"Iniciar pedido", refuse:"não reúne condições", ok:"Pedido enviado", doc:["GIT-53","MG2","ВНЖ"], mail:"ВНЖ обновлён ✓", days:"14 дней", lock:"ВНЖ 2024", key:"ВНЖ 2026"},
+ en:{top:"EUROPEAN HEALTH CARD · MADEIRA", c1:"EU health card", c1s:"free · public hospitals across the EU",
+     c2:"Click one", c2s:"Segurança Social Direta → Obter CESD", c3:"Refused?", c3s:"that's your old permit in their database",
+     c4:"Three files via e-Clic", c4s:"signed without a printer", c5:"14 days", c5s:"«permit updated»",
+     c6:"Click two", c6s:"card in two minutes", c7:"Two questions", c7s:"ajuda.seedwave.pt/cesd/lite/en",
+     ai:"animation created with AI", foot:"ajuda.seedwave.pt/cesd/lite/en", bot:"free guide · 5 languages",
+     btn:"Iniciar pedido", refuse:"não reúne condições", ok:"Pedido enviado", doc:["GIT-53","MG2","Permit"], mail:"permit updated ✓", days:"14 days", lock:"permit 2024", key:"permit 2026"},
+};
+let T=L.pt;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eo=x=>1-Math.pow(1-x,3);
+const bk=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+function op(e,v){e.setAttribute('opacity',clamp(v))} function tr(e,s){e.setAttribute('transform',s)}
+const S=$('s');
+
+// ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{id:'man'},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+
+// ---------- EU card (S1 + S6) ----------
+const CARD=el('g',{opacity:0},S);
+el('rect',{x:470,y:360,width:540,height:340,rx:34,fill:'var(--eu)'},CARD);
+const ring=el('g',{},CARD); const stars=[];
+for(let i=0;i<12;i++){const a=i*Math.PI/6;const s=el('path',{d:'M0 -14 L4 -5 L14 -5 L6 2 L9 12 L0 6 L-9 12 L-6 2 L-14 -5 L-4 -5 Z',fill:'var(--gold)',opacity:0,transform:`translate(${600+Math.cos(a)*86} ${530+Math.sin(a)*86})`},ring);stars.push(s)}
+txt(CARD,730,500,'CESD',{'font-size':66,fill:'#fff',class:'serif'});
+el('rect',{x:730,y:540,width:190,height:14,rx:7,fill:'rgba(255,255,255,.35)'},CARD);
+el('rect',{x:730,y:575,width:130,height:14,rx:7,fill:'rgba(255,255,255,.35)'},CARD);
+// card face (character)
+const FACE=el('g',{id:'face'},CARD);
+const fEyeL=el('ellipse',{cx:800,cy:620,rx:9,ry:11,fill:'#fff'},FACE); const fEyeR=el('ellipse',{cx:860,cy:620,rx:9,ry:11,fill:'#fff'},FACE);
+const fPupL=el('circle',{cx:802,cy:623,r:4,fill:'#1F1A17'},FACE); const fPupR=el('circle',{cx:862,cy:623,r:4,fill:'#1F1A17'},FACE);
+const fMouth=el('path',{d:'M815 655 q15 14 30 0',stroke:'#fff','stroke-width':5,'stroke-linecap':'round',fill:'none'},FACE);
+const fLegs=el('g',{opacity:0},CARD);
+el('rect',{x:640,y:698,width:22,height:50,rx:11,fill:'var(--eu)'},fLegs); el('rect',{x:820,y:698,width:22,height:50,rx:11,fill:'var(--eu)'},fLegs);
+el('ellipse',{cx:651,cy:752,rx:26,ry:10,fill:'#1F1A17'},fLegs); el('ellipse',{cx:831,cy:752,rx:26,ry:10,fill:'#1F1A17'},fLegs);
+const fArm=el('path',{d:'M470 540 q-60 20 -110 -40',stroke:'var(--eu)','stroke-width':22,'stroke-linecap':'round',fill:'none',opacity:0},CARD);
+const cardTag=el('g',{opacity:0},CARD);
+el('rect',{x:470,y:730,width:540,height:70,rx:14,fill:'var(--oks)'},cardTag);
+const cardTagT=txt(cardTag,740,777,'0 €',{'font-size':34,'font-weight':700,fill:'var(--ok)','text-anchor':'middle'});
+
+// ---------- phone (S2, S3, S6) ----------
+const PH=el('g',{opacity:0},S);
+el('rect',{x:600,y:260,width:380,height:720,rx:48,fill:'#1F1A17'},PH);
+el('rect',{x:616,y:290,width:348,height:660,rx:34,fill:'var(--bg)'},PH);
+txt(PH,640,350,'Segurança Social',{'font-size':26,'font-weight':700,fill:'var(--ok)'});
+txt(PH,640,384,'Direta',{'font-size':26,'font-weight':700,fill:'var(--ok)'});
+for(let k=0;k<3;k++)el('rect',{x:640,y:430+k*40,width:220-k*40,height:14,rx:7,fill:'#D8CFC6'},PH);
+const BTN=el('g',{},PH); el('rect',{x:640,y:600,width:300,height:76,rx:16,fill:'var(--acc)'},BTN);
+const btnT=txt(BTN,790,648,'',{'font-size':30,'font-weight':700,fill:'#fff','text-anchor':'middle'});
+const REF=el('g',{opacity:0},PH); el('rect',{x:636,y:710,width:308,height:110,rx:14,fill:'var(--accs)',stroke:'var(--acc)','stroke-width':3},REF);
+txt(REF,790,752,'✕',{'font-size':40,fill:'var(--acc)','text-anchor':'middle','font-weight':700});
+const refT=txt(REF,790,800,'',{'font-size':22,fill:'var(--acc)','text-anchor':'middle',class:'m'});
+const OKB=el('g',{opacity:0},PH); el('rect',{x:636,y:710,width:308,height:110,rx:14,fill:'var(--oks)',stroke:'var(--ok)','stroke-width':3},OKB);
+txt(OKB,790,758,'✓',{'font-size':44,fill:'var(--ok)','text-anchor':'middle','font-weight':700});
+const okT=txt(OKB,790,802,'',{'font-size':24,fill:'var(--ok)','text-anchor':'middle','font-weight':600});
+// ripple at click
+const rip=el('circle',{cx:790,cy:638,r:10,fill:'none',stroke:'#fff','stroke-width':6,opacity:0},PH);
+
+// ---------- door + lock (why it refuses) ----------
+const DOOR=el('g',{opacity:0},S);
+el('rect',{x:640,y:340,width:300,height:420,rx:18,fill:'#8C6A4E',stroke:'#5A3E2A','stroke-width':6},DOOR);
+el('rect',{x:670,y:370,width:240,height:150,rx:10,fill:'#A07D5E'},DOOR); el('rect',{x:670,y:550,width:240,height:170,rx:10,fill:'#A07D5E'},DOOR);
+const LOCK=el('g',{},DOOR); el('rect',{x:880,y:520,width:70,height:60,rx:12,fill:'#D8CFC6',stroke:'#1F1A17','stroke-width':4},LOCK);
+el('path',{d:'M895 520 v-22 a20 20 0 0 1 40 0 v22',stroke:'#1F1A17','stroke-width':8,fill:'none','stroke-linecap':'round'},LOCK);
+const lockT=txt(LOCK,915,560,'',{'font-size':18,'font-weight':700,fill:'var(--acc)','text-anchor':'middle',class:'m'});
+const peek=el('g',{opacity:0},DOOR); // Cartinha peeking from behind the door
+el('rect',{x:560,y:430,width:110,height:150,rx:16,fill:'var(--eu)'},peek);
+el('ellipse',{cx:600,cy:490,rx:7,ry:9,fill:'#fff'},peek); el('ellipse',{cx:640,cy:490,rx:7,ry:9,fill:'#fff'},peek);
+el('circle',{cx:602,cy:492,r:3,fill:'#1F1A17'},peek); el('circle',{cx:642,cy:492,r:3,fill:'#1F1A17'},peek);
+el('path',{d:'M608 520 q12 -8 24 0',stroke:'#fff','stroke-width':4,'stroke-linecap':'round',fill:'none'},peek);
+txt(peek,615,420,'…',{'font-size':30,fill:'var(--eu)','text-anchor':'middle','font-weight':700});
+// key = new residence permit
+const KEY=el('g',{opacity:0},S);
+el('rect',{x:-70,y:-45,width:140,height:90,rx:12,fill:'#E9E2F7',stroke:'#5B2A86','stroke-width':4},KEY);
+el('rect',{x:-56,y:-30,width:40,height:50,rx:6,fill:'#C9B8E8'},KEY); for(let k=0;k<3;k++)el('rect',{x:-6,y:-28+k*18,width:60-k*14,height:8,rx:4,fill:'#5B2A86',opacity:.5},KEY);
+const keyT=txt(KEY,0,-58,'',{'font-size':20,'font-weight':700,fill:'#5B2A86','text-anchor':'middle',class:'m'});
+// ---------- S4 docs flying ----------
+const DOCS=[];for(let i=0;i<3;i++){const g=el('g',{opacity:0},S);
+ el('rect',{x:-70,y:-90,width:140,height:180,rx:12,fill:'#fff',stroke:'var(--line)','stroke-width':3},g);
+ for(let k=0;k<4;k++)el('rect',{x:-50,y:-60+k*26,width:100-(k%2)*30,height:9,rx:4,fill:'#D8CFC6'},g);
+ el('rect',{x:-50,y:50,width:60,height:14,rx:4,fill:'var(--eu)'},g);
+ const t=txt(g,0,-110,'',{'font-size':24,'font-weight':700,fill:'var(--ink)','text-anchor':'middle',class:'m'}); g._t=t; DOCS.push(g)}
+const STAMP=el('g',{opacity:0},S); el('circle',{cx:0,cy:0,r:44,fill:'none',stroke:'var(--eu)','stroke-width':6},STAMP); txt(STAMP,0,10,'CMD',{'font-size':26,'font-weight':700,fill:'var(--eu)','text-anchor':'middle'});
+
+// ---------- S5 envelope + calendar pill ----------
+const ENV=el('g',{opacity:0},S);
+el('rect',{x:470,y:430,width:540,height:300,rx:26,fill:'#fff',stroke:'var(--line)','stroke-width':3},ENV);
+el('path',{d:'M470 430 L740 620 L1010 430',fill:'none',stroke:'var(--line)','stroke-width':4},ENV);
+const envT=txt(ENV,740,690,'',{'font-size':30,'font-weight':600,fill:'var(--ok)','text-anchor':'middle'});
+const pill=el('g',{opacity:0},S); el('rect',{x:590,y:300,width:300,height:92,rx:46,fill:'var(--eu)'},pill);
+const pillT=txt(pill,740,362,'',{'font-size':46,'font-weight':700,fill:'#fff','text-anchor':'middle'});
+const dots=[];for(let i=0;i<14;i++){const d=el('circle',{cx:490+i*40,cy:790,r:12,fill:'var(--line)'},ENV);dots.push(d)}
+
+// ---------- S7 end ----------
+const END=el('g',{opacity:0},S);
+const endBig=txt(END,560,700,'2',{'font-size':150,fill:'var(--eu)','text-anchor':'end',class:'serif'});
+const endSub=txt(END,600,700,'',{'font-size':44,'font-weight':700,fill:'var(--ink)','text-anchor':'start'});
+el('rect',{x:470,y:740,width:540,height:70,rx:12,fill:'var(--accs)'},END);
+const endUrl=txt(END,740,786,'',{'font-size':28,'font-weight':600,fill:'var(--acc)','text-anchor':'middle',class:'m'});
+
+function setLang(l){T=L[l]||L.pt;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;
+ btnT.textContent=T.btn; refT.textContent=T.refuse; okT.textContent=T.ok; DOCS.forEach((g,i)=>g._t.textContent=T.doc[i]); envT.textContent=T.mail; pillT.textContent=T.days; endSub.textContent=T.c7; endUrl.textContent=T.c7s; lockT.textContent=T.lock; keyT.textContent=T.key; cardTagT.textContent='0 € · 3 '+(l==='ru'?'года':l==='en'?'years':'anos');}
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+
+// ---------- timeline (20 s) ----------
+// 0–3 card intro · 3–6 click 1 · 6–8.5 refuse · 8.5–12.5 docs · 12.5–15 envelope/14 days · 15–17.5 click 2 ok · 17.5–20 end
+const DUR=20;
+function render(t){
+  let c=['',''];
+  if(t<3)c=[T.c1,T.c1s]; else if(t<6)c=[T.c2,T.c2s]; else if(t<8.5)c=[T.c3,T.c3s]; else if(t<12.5)c=[T.c4,T.c4s]; else if(t<15)c=[T.c5,T.c5s]; else if(t<17.5)c=[T.c6,T.c6s]; else c=[T.c7,''];
+  cap(c[0],c[1]); $('cap').style.opacity=t<.6?seg(t,0,.6):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>17.6?seg(t,17.6,18.4):0;
+  // mood
+  let mood='neutral'; if(t>6.3&&t<8.5)mood='sad'; if(t>15.8)mood='happy';
+  mouth.setAttribute('d',mood==='sad'?'M190 392 q25 -18 48 0':mood==='happy'?'M186 378 q29 30 58 0':'M192 384 h44');
+  const sad=mood==='sad'; browL.setAttribute('d',sad?'M180 306 l30 8':'M180 312 l30 -4'); browR.setAttribute('d',sad?'M222 314 l30 -8':'M222 308 l30 4');
+  op(cheekL,mood==='happy'?1:0); op(cheekR,mood==='happy'?1:0);
+  const wk=(t>18.6&&t<19.1)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  // right arm: point & click at 4.6 and 16.0; scratch head 6.5–8.3; thumbs up 18.2+
+  let ang=0,fi=0,th=0,wob=0;
+  const click=(t0)=>{const u=seg(t,t0-.9,t0-.3)*(1-seg(t,t0+.7,t0+1.1));return u};
+  const u1=click(4.6),u2=click(16.0); if(u1>0||u2>0){const u=Math.max(u1,u2);ang=-95*eio(u);fi=u;}
+  if(t>6.4&&t<8.4){const u=seg(t,6.4,6.9)*(1-seg(t,8.0,8.4));ang=-165*eio(u);wob=Math.sin(t*22)*6*u;}
+  if(t>18.0){const u=bk(seg(t,18.0,18.6));ang=-125*u;th=u;fi=0;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(finger,fi); op(thumb,th); op(handR,1-Math.max(fi,th));
+  tr(finger,`rotate(${-(ang+wob)} 340 580)`); tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  op(puff,sad?seg(t,6.8,7.1)*(1-seg(t,8.0,8.3)):0);
+  // dance at end
+  let dy=0,rot=0,sc=1; if(t>17.6){const u=seg(t,17.6,18);dy=-22*Math.abs(Math.sin((t-17.6)*7))*u;rot=4*Math.sin((t-17.6)*7)*u;}
+  if(t<.8)sc=.6+.4*bk(seg(t,0,.8));
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${sc}) translate(-215 -600)`);
+  op(G,seg(t,0,.5));
+  // S1 card 0.4–3 and again 17.5+
+  const cardIn=seg(t,.4,1)*(1-seg(t,2.8,3.2)); op(CARD,Math.max(cardIn,0)); tr(CARD,`translate(${(1-eo(seg(t,.4,1.1)))*80} 0) rotate(-2 740 530)`);
+  stars.forEach((s,i)=>op(s,seg(t,1.0+i*.09,1.25+i*.09)));
+  op(cardTag,bk(seg(t,2.1,2.5)));
+  // phone S2 (3–8.5) and S6 (15–17.5)
+  const ph=seg(t,3,3.5)*(1-seg(t,8.5,8.9))+seg(t,15,15.4)*(1-seg(t,17.5,17.9)); op(PH,ph); {const k=eo(seg(t,6.0,6.6))*(1-seg(t,8.5,8.9)); tr(PH,`translate(${(1-eo(seg(t,3,3.7)))*60*0} ${(1-eo(seg(t,3,3.7)))*60}) translate(${110*k} ${160*k}) translate(790 620) scale(${1-.45*k}) translate(-790 -620)`);}
+  const r1=seg(t,4.6,5.2),r2=seg(t,16.0,16.6); const rr=r1>0&&r1<1?r1:(r2>0&&r2<1?r2:0);
+  rip.setAttribute('r',10+rr*70); op(rip,rr>0?1-rr:0);
+  op(REF,seg(t,5.4,5.8)*(1-seg(t,8.5,8.9))); tr(REF,`translate(0 ${(1-bk(seg(t,5.4,5.9)))*20})`);
+  op(OKB,bk(seg(t,16.6,17.1))*(1-seg(t,17.5,17.9)));
+  // S4 docs 8.5–12.5: fly from left to phone slot
+  DOCS.forEach((g,i)=>{const t0=9.0+i*.9;const u=eio(seg(t,t0,t0+.9));const o=seg(t,t0-.2,t0)*(1-seg(t,12.3,12.6));
+    const tx=560+i*34, ty=430+i*18; const x=250+(tx-250)*u, y=560+(ty-560)*u - Math.sin(u*Math.PI)*140; op(g,o); tr(g,`translate(${x} ${y}) rotate(${(1-u)*-20+(i-1)*7}) scale(.8)`)});
+  {const t0=11.8;const u=bk(seg(t,t0,t0+.4));op(STAMP,u*(1-seg(t,12.3,12.6)));tr(STAMP,`translate(650 560) scale(${u}) rotate(-15)`)}
+  // S5 envelope 12.5–15
+  op(ENV,seg(t,12.6,13)*(1-seg(t,15,15.3))); tr(ENV,`translate(0 ${(1-eo(seg(t,12.6,13.2)))*40})`);
+  dots.forEach((d,i)=>{const on=seg(t,13.1+i*.09,13.2+i*.09);d.setAttribute('fill',on>.5?'var(--eu)':'var(--line)')});
+  {const u=bk(seg(t,14.3,14.7));op(pill,u*(1-seg(t,15,15.3)));tr(pill,`translate(740 346) scale(${u}) translate(-740 -346)`)}
+  // --- door & lock in S3 (6.0–8.5): phone slides right, door appears, Cartinha peeks ---
+  {const d=seg(t,6.0,6.5)*(1-seg(t,8.5,8.9)); op(DOOR,d); tr(DOOR,`translate(${-150+(1-eo(seg(t,6.0,6.6)))*40} 0)`);
+   op(peek,seg(t,7.0,7.4)*(1-seg(t,8.4,8.7))); tr(peek,`translate(${-30*(1-eo(seg(t,7.0,7.5)))} 0)`);
+   // lock shakes when Zé knocks (7.6)
+   const sh=(t>7.6&&t<8.1)?Math.sin((t-7.6)*60)*6:0; tr(LOCK,`translate(${sh} 0)`);}
+  // --- key (new permit) flies with docs 10.8 → lock opens 12.0 ---
+  {const t0=10.8;const u=eio(seg(t,t0,t0+1.0));const o=seg(t,t0-.2,t0)*(1-seg(t,12.4,12.7));
+   const x=250+(765-250)*u, y=560+(600-560)*u-Math.sin(u*Math.PI)*220; op(KEY,o); tr(KEY,`translate(${x} ${y}) rotate(${(1-u)*-30}) scale(${.7+.1*u})`);
+   const dd=seg(t,9.0,9.4)*(1-seg(t,12.5,12.8)); op(DOOR,Math.max(+DOOR.getAttribute('opacity')||0,dd)); if(t>9&&t<12.8)tr(DOOR,'translate(-150 0)');
+   if(t>12.0&&t<12.8){LOCK.setAttribute('transform',`translate(0 ${-40*eo(seg(t,12.0,12.4))}) rotate(${-25*eo(seg(t,12.0,12.4))} 915 550)`);} }
+  // --- S6/S7: Cartinha jumps out with legs & arm, hugs Zé at the end ---
+  {const jump=seg(t,16.9,17.5); if(t>16.9){op(CARD,1);const hop=-Math.abs(Math.sin(jump*Math.PI))*90; const slide=(1-eo(seg(t,17.6,18.6)))*0;
+     tr(CARD,`translate(${-40*eo(seg(t,17.6,18.6))} ${hop-200}) translate(740 530) scale(.62) translate(-740 -530) rotate(-3 740 530)`);
+     op(fLegs,0); op(fArm,seg(t,18.2,18.6)); fMouth.setAttribute('d','M810 650 q20 28 40 0');
+     fPupL.setAttribute('cx',802-6*seg(t,18.2,18.6)); fPupR.setAttribute('cx',862-6*seg(t,18.2,18.6));}
+   else{op(fLegs,0);op(fArm,0);fMouth.setAttribute('d','M815 655 q15 14 30 0');}
+   // eyes follow Zé in intro
+   if(t<3){fPupL.setAttribute('cx',802-5);fPupR.setAttribute('cx',862-5);} }
+  // S7 end 17.5+
+  {const u=bk(seg(t,17.5,18.2));op(END,u);tr(END,`translate(740 720) scale(${.85+.15*u}) translate(-740 -720)`)}
+}
+window.render=render; window.setLang=setLang; window.DUR=DUR;
+setLang('pt'); render(0);
+</script>
+</body></html>
