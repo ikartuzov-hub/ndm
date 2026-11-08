@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#0E6E63;--accs:#E0F2EE;--gold:#E3A21A;--golds:#FDF1D6;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6;--red:#C0392B;--lil:#8E5BA8}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--acc)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:30px;text-align:center;font-size:50px;font-weight:700;color:var(--ink);padding:0 40px;line-height:1.15}
+  #cap small{display:block;font-size:32px;font-weight:400;color:var(--soft);margin-top:10px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;color:var(--acc);font-weight:700}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px;font-weight:400}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"CHAVE MÓVEL DIGITAL", bot:"guia gratuito · 5 línguas",
+   c1:"Onde está a minha chave?", c1s:"a D. Rosa procura há uma hora",
+   c2:"Não está na gaveta!", c2s:"diz o Zé",
+   c3:"Número + PIN = a sua chave", c3s:"está sempre no seu telemóvel",
+   c4:"Esqueceu o PIN?", c4s:"primeiro: a folha que lhe deram no balcão",
+   c5:"Não há folha?", c5s:"chave nova na app gov.pt ou na Loja do Cidadão",
+   c6:"Três passos e já entrou", c6s:"Finanças · Segurança Social · SNS 24",
+   foot:"ajuda.seedwave.pt/cmd", ai:"animação criada com IA",
+   sheet:"Confirmação de ativação", newk:"Nova chave", rosa:"D. Rosa"},
+ ru:{top:"CHAVE MÓVEL DIGITAL", bot:"бесплатный гид · 5 языков",
+   c1:"Где мой ключ?", c1s:"соседка Роза ищет уже час",
+   c2:"Он не в ящике!", c2s:"говорит Зе",
+   c3:"Номер + PIN = ваш ключ", c3s:"он всегда в вашем телефоне",
+   c4:"Забыли PIN?", c4s:"сначала — лист, который дали в окошке",
+   c5:"Листа нет?", c5s:"новый ключ в приложении gov.pt или в Loja do Cidadão",
+   c6:"Три шага — и вы внутри", c6s:"Finanças · Segurança Social · SNS 24",
+   foot:"ajuda.seedwave.pt/cmd/ru", ai:"анимация создана с ИИ",
+   sheet:"Confirmação de ativação", newk:"Nova chave", rosa:"Роза"},
+ en:{top:"CHAVE MÓVEL DIGITAL", bot:"free guide · 5 languages",
+   c1:"Where is my key?", c1s:"Dona Rosa has been searching for an hour",
+   c2:"It's not in the drawer!", c2s:"says Zé",
+   c3:"Number + PIN = your key", c3s:"it's always on your phone",
+   c4:"Forgot the PIN?", c4s:"first: the sheet they gave you at the counter",
+   c5:"No sheet?", c5s:"new key in the gov.pt app or at a Loja do Cidadão",
+   c6:"Three steps and you're in", c6s:"Finanças · Segurança Social · SNS 24",
+   foot:"ajuda.seedwave.pt/cmd/en", ai:"animation created with AI",
+   sheet:"Confirmação de ativação", newk:"Nova chave", rosa:"Dona Rosa"},
+};
+let T=L.pt;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eo=x=>1-Math.pow(1-x,3);
+const bk=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+function op(e,v){e.setAttribute('opacity',clamp(v))} function tr(e,s){e.setAttribute('transform',s)}
+const S=$('s');
+
+// ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{id:'man'},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+
+
+// ---------- D. Rosa (right): grey bun, glasses, lilac cardigan ----------
+const R=el('g',{id:'rosa'},S); const rRoot=el('g',{},R);
+el('rect',{x:800,y:600,width:40,height:150,rx:18,fill:'#5A4E5E'},rRoot); el('rect',{x:856,y:600,width:40,height:150,rx:18,fill:'#5A4E5E'},rRoot);
+el('ellipse',{cx:820,cy:752,rx:34,ry:13,fill:'#1F1A17'},rRoot); el('ellipse',{cx:876,cy:752,rx:34,ry:13,fill:'#1F1A17'},rRoot);
+el('path',{d:'M770 450 q78 -30 156 0 l20 190 h-196z',fill:'var(--lil)'},rRoot);
+el('path',{d:'M848 450 v190',stroke:'#7A4A92','stroke-width':4},rRoot);
+el('circle',{cx:848,cy:345,r:74,fill:'var(--skin)'},rRoot);
+el('circle',{cx:848,cy:262,r:34,fill:'#C9C3BE'},rRoot);
+el('path',{d:'M776 340 q4 -70 72 -76 q68 6 72 76 q-20 -40 -72 -42 q-52 2 -72 42z',fill:'#C9C3BE'},rRoot);
+const rEyeL=el('ellipse',{cx:826,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot); const rEyeR=el('ellipse',{cx:872,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot);
+el('circle',{cx:826,cy:345,r:18,fill:'none',stroke:'#6B4E3D','stroke-width':4},rRoot); el('circle',{cx:872,cy:345,r:18,fill:'none',stroke:'#6B4E3D','stroke-width':4},rRoot);
+el('path',{d:'M844 345 h10',stroke:'#6B4E3D','stroke-width':4},rRoot);
+const rBrowL=el('path',{d:'M810 318 l28 -2',stroke:'#8C8278','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rBrowR=el('path',{d:'M858 316 l28 2',stroke:'#8C8278','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rMouth=el('path',{d:'M832 388 h32',stroke:'#8C3B2A','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rCheeks=el('g',{opacity:0},rRoot); el('circle',{cx:810,cy:372,r:9,fill:'#F2A08A'},rCheeks); el('circle',{cx:886,cy:372,r:9,fill:'#F2A08A'},rCheeks);
+const rArmL=el('g',{},rRoot); el('path',{d:'M786 470 l-50 100',stroke:'var(--lil)','stroke-width':28,'stroke-linecap':'round'},rArmL); el('circle',{cx:736,cy:572,r:20,fill:'var(--skin)'},rArmL);
+const rArmR=el('g',{},rRoot); el('path',{d:'M910 470 l50 100',stroke:'var(--lil)','stroke-width':28,'stroke-linecap':'round'},rArmR); el('circle',{cx:960,cy:572,r:20,fill:'var(--skin)'},rArmR);
+const qms=[]; for(let i=0;i<3;i++){const q=txt(R,770+i*60,230-(i%2)*30,'?',{'font-size':54,'font-weight':800,fill:'var(--red)',opacity:0});qms.push(q)}
+const nameTag=txt(R,848,800,'',{'font-size':28,fill:'var(--soft)','text-anchor':'middle'});
+
+// ---------- drawer + flying things ----------
+const DR=el('g',{opacity:0},S);
+el('rect',{x:520,y:600,width:240,height:150,rx:14,fill:'#B88A5A'},DR);
+el('rect',{x:500,y:560,width:280,height:60,rx:10,fill:'#9C7146'},DR);
+el('rect',{x:610,y:580,width:60,height:14,rx:7,fill:'#E8D3B0'},DR);
+const items=[];
+function item(draw){const g=el('g',{opacity:0},S);draw(g);items.push(g);return g}
+item(g=>{el('path',{d:'M-20 -30 h26 v40 h18 q10 0 10 12 v6 h-54z',fill:'#D9534F'},g)});           // sock
+item(g=>{el('circle',{cx:-14,cy:0,r:14,fill:'none',stroke:'#444','stroke-width':5},g);el('circle',{cx:16,cy:0,r:14,fill:'none',stroke:'#444','stroke-width':5},g);el('path',{d:'M0 0 h2',stroke:'#444','stroke-width':5},g)}); // glasses
+item(g=>{el('rect',{x:-26,y:-18,width:52,height:36,rx:6,fill:'#fff',stroke:'#999','stroke-width':3},g);el('path',{d:'M-16 -6 h32 M-16 4 h22',stroke:'#bbb','stroke-width':3},g)}); // paper
+item(g=>{el('circle',{cx:-12,cy:0,r:10,fill:'none',stroke:'#8a8a8a','stroke-width':5},g);el('path',{d:'M-2 0 h28 M18 0 v8',stroke:'#8a8a8a','stroke-width':5,'stroke-linecap':'round'},g)}); // old metal key
+item(g=>{el('ellipse',{cx:0,cy:0,rx:10,ry:22,fill:'#C9A227'},g)});                                 // spoon-ish
+const BIGX=el('g',{opacity:0},S);
+el('path',{d:'M560 560 l160 180 M720 560 l-160 180',stroke:'var(--red)','stroke-width':22,'stroke-linecap':'round'},BIGX);
+
+// ---------- formula chips → key ----------
+const CA=el('g',{opacity:0},S); el('rect',{x:-120,y:-45,width:240,height:90,rx:24,fill:'var(--accs)',stroke:'var(--acc)','stroke-width':4},CA);
+el('rect',{x:-100,y:-30,width:34,height:60,rx:8,fill:'none',stroke:'var(--acc)','stroke-width':5},CA);
+txt(CA,-52,12,'9•• •••',{'font-size':32,'font-weight':700,class:'m',fill:'var(--ink)'});
+const CB=el('g',{opacity:0},S); el('rect',{x:-100,y:-45,width:200,height:90,rx:24,fill:'var(--accs)',stroke:'var(--acc)','stroke-width':4},CB);
+txt(CB,-80,-6,'PIN',{'font-size':24,'font-weight':700,fill:'var(--acc)'}); txt(CB,-80,30,'• • • •',{'font-size':32,'font-weight':700,class:'m',fill:'var(--ink)'});
+const GLOW=el('circle',{cx:540,cy:600,r:60,fill:'var(--gold)',opacity:0},S);
+const KEY=el('g',{opacity:0},S);
+el('circle',{cx:-70,cy:0,r:38,fill:'var(--golds)',stroke:'var(--gold)','stroke-width':18},KEY);
+el('path',{d:'M-32 0 H110 M76 0 V34 M106 0 V26',stroke:'var(--gold)','stroke-width':18,'stroke-linecap':'round',fill:'none'},KEY);
+const sparks=[];for(let i=0;i<10;i++){const a=i*Math.PI/5;const sp=el('circle',{cx:540+Math.cos(a)*150,cy:600+Math.sin(a)*150,r:8,fill:'var(--gold)',opacity:0},S);sparks.push([sp,a])}
+
+// ---------- sheet (folha da ativação) ----------
+const SH=el('g',{opacity:0},S);
+el('rect',{x:-110,y:-150,width:220,height:300,rx:12,fill:'#fff',stroke:'#CFC6BD','stroke-width':4},SH);
+const shTitle=txt(SH,0,-110,'',{'font-size':17,'font-weight':700,'text-anchor':'middle',fill:'var(--acc)'});
+for(let i=0;i<5;i++)el('rect',{x:-86,y:-84+i*28,width:i%2?130:172,height:9,rx:4,fill:'#E6DED6'},SH);
+txt(SH,-86,90,'PIN',{'font-size':26,'font-weight':800,fill:'var(--ink)'});
+txt(SH,-20,92,'4 7 1 9',{'font-size':32,'font-weight':700,fill:'#2B4C9B',class:'m'});
+const CIRC=el('ellipse',{cx:10,cy:82,rx:110,ry:34,fill:'none',stroke:'var(--red)','stroke-width':6,opacity:0},SH);
+const FOLDER=el('g',{opacity:0},S); el('path',{d:'M430 640 h70 l20 20 h150 v120 h-240z',fill:'#E0B355'},FOLDER); el('rect',{x:430,y:670,width:240,height:110,rx:6,fill:'#EFC66B'},FOLDER);
+
+// ---------- phone with gov.pt app ----------
+const PH=el('g',{opacity:0},S);
+el('rect',{x:-95,y:-170,width:190,height:340,rx:30,fill:'#1F1A17'},PH); el('rect',{x:-82,y:-152,width:164,height:304,rx:20,fill:'#fff'},PH);
+txt(PH,0,-110,'gov.pt',{'font-size':30,'font-weight':800,'text-anchor':'middle',fill:'#0A3D91'});
+const phNew=txt(PH,0,-60,'',{'font-size':20,'font-weight':700,'text-anchor':'middle',fill:'var(--ink)'});
+const phKey=el('g',{opacity:0,transform:'translate(0 10) scale(.6)'},PH);
+el('circle',{cx:-70,cy:0,r:38,fill:'var(--golds)',stroke:'var(--gold)','stroke-width':18},phKey); el('path',{d:'M-32 0 H110 M76 0 V34 M106 0 V26',stroke:'var(--gold)','stroke-width':18,'stroke-linecap':'round',fill:'none'},phKey);
+const phOk=el('g',{opacity:0},PH); el('circle',{cx:0,cy:95,r:32,fill:'var(--acc)'},phOk); el('path',{d:'M-14 95 l10 10 l20 -22',stroke:'#fff','stroke-width':7,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},phOk);
+const LOJA=el('g',{opacity:0},S); el('rect',{x:-80,y:-50,width:160,height:100,rx:10,fill:'var(--accs)',stroke:'var(--acc)','stroke-width':4},LOJA);
+el('path',{d:'M-90 -50 h180 l-20 -30 h-140z',fill:'var(--acc)'},LOJA); el('rect',{x:-20,y:0,width:40,height:50,fill:'var(--acc)'},LOJA);
+txt(LOJA,0,-58,'Loja do Cidadão',{'font-size':17,'font-weight':700,'text-anchor':'middle',fill:'#fff'});
+
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+function setLang(l){T=L[l]||L.pt;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;shTitle.textContent=T.sheet;phNew.textContent=T.newk;nameTag.textContent=T.rosa}
+setLang('pt');
+// 0–4 search · 4–7 not in drawer · 7–11 formula · 11–14.5 forgot PIN → sheet · 14.5–17.5 no sheet → app/loja · 17.5–21 end
+const DUR=21;
+function render(t){
+  let c;
+  if(t<4)c=[T.c1,T.c1s]; else if(t<7)c=[T.c2,T.c2s]; else if(t<11)c=[T.c3,T.c3s]; else if(t<14.5)c=[T.c4,T.c4s]; else if(t<17.5)c=[T.c5,T.c5s]; else c=[T.c6,T.c6s];
+  cap(c[0],c[1]); $('cap').style.opacity=t<.5?seg(t,0,.5):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>17.6?seg(t,17.6,18.2):0;
+  // ---- Zé: enters at 4, idle otherwise ----
+  op(G,seg(t,4,4.5)); let zs=t<4.6?.6+.4*bk(seg(t,4,4.6)):1;
+  let zMood=t>7&&t<11.2||t>16?'happy':'neutral';
+  mouth.setAttribute('d',zMood==='happy'?'M186 378 q29 30 58 0':'M192 384 h44'); op(cheekL,zMood==='happy'?1:0); op(cheekR,zMood==='happy'?1:0);
+  let ang=0,fi=0,th=0,wob=0;
+  if(t>4.4&&t<6.8){const u=seg(t,4.4,4.9)*(1-seg(t,6.4,6.8));ang=-110*eio(u);fi=u;wob=Math.sin(t*10)*8*u}   // points at drawer
+  if(t>7&&t<8.4){const u=seg(t,7,7.4)*(1-seg(t,8,8.4));ang=-140*eio(u);}                                   // throws chips
+  if(t>18){const u=bk(seg(t,18,18.6));ang=-125*u;th=u;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(finger,fi); op(thumb,th); op(handR,1-Math.max(fi,th));
+  tr(finger,`rotate(${-(ang+wob)} 340 580)`); tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  const wk=(t>19.4&&t<19.8)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  let dy=0,rot=0; if(t>17.6){const u=seg(t,17.6,18);dy=-22*Math.abs(Math.sin((t-17.6)*7))*u;rot=4*Math.sin((t-17.6)*7)*u;}
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${zs}) translate(-215 -600)`);
+  // ---- Rosa ----
+  op(R,seg(t,0,.4));
+  let rm='worry'; if(t>8.6&&t<11)rm='happy'; if(t>11&&t<12.6)rm='sad'; if(t>13.2&&t<14.5)rm='happy'; if(t>16.2)rm='happy';
+  rMouth.setAttribute('d',rm==='happy'?'M826 382 q22 24 44 0':rm==='sad'?'M828 394 q20 -14 40 0':'M834 390 q14 -6 28 0');
+  rBrowL.setAttribute('d',rm==='happy'?'M810 314 l28 -4':'M810 312 l28 6'); rBrowR.setAttribute('d',rm==='happy'?'M858 310 l28 4':'M858 318 l28 -6');
+  op(rCheeks,rm==='happy'?1:0);
+  qms.forEach((q,i)=>{const on=(t>.8+i*.35&&t<4.2)||(t>11.2+i*.25&&t<12.7);op(q,on?.5+.5*Math.abs(Math.sin(t*4+i)):0)});
+  let ra=0,la=0,rdy=0,rrot=0;
+  if(t<4.2){ra=-40+30*Math.sin(t*9);la=30+30*Math.sin(t*9+1);}                            // rummaging
+  if(t>17.6){const u=seg(t,17.6,18);rdy=-20*Math.abs(Math.sin((t-17.6)*7+1))*u;rrot=-4*Math.sin((t-17.6)*7)*u;ra=-120*u;la=120*u;}
+  tr(rArmR,`rotate(${ra} 910 470)`); tr(rArmL,`rotate(${la} 786 470)`);
+  tr(rRoot,`translate(0 ${rdy}) rotate(${rrot} 848 600)`);
+  // ---- drawer 0.3–6.8, items fly 0.8–3.8, X at 5 ----
+  op(DR,seg(t,.3,.7)*(1-seg(t,6.4,6.8)));
+  items.forEach((g,i)=>{const t0=.8+i*.6;const u=seg(t,t0,t0+1.1);const o=u>0&&u<1?Math.min(1,u*5)*(1-seg(u,.85,1)):0;
+    const x=640+(i%2?1:-1)*(120+i*40)*u, y=580-Math.sin(u*Math.PI)*(260+i*30)+u*60; op(g,o); tr(g,`translate(${x} ${y}) rotate(${u*360*(i%2?1:-1)})`)});
+  {const u=bk(seg(t,5,5.4));op(BIGX,u*(1-seg(t,6.4,6.8)));tr(BIGX,`translate(640 650) scale(${u}) translate(-640 -650)`)}
+  // ---- formula 7–11 ----
+  {const ua=eio(seg(t,7.3,8.1)),ub=eio(seg(t,7.6,8.4)),m=eio(seg(t,8.8,9.3)),out=seg(t,10.8,11.1);
+   op(CA,seg(t,7.3,7.5)*(1-m)); op(CB,seg(t,7.6,7.8)*(1-m));
+   tr(CA,`translate(${300+(380-300)*ua+(540-380)*m} ${560-Math.sin(ua*Math.PI)*120+(600-560)*m}) scale(${1-.5*m})`);
+   tr(CB,`translate(${300+(720-300)*ub+(540-720)*m} ${560-Math.sin(ub*Math.PI)*160+(600-560)*m}) scale(${1-.5*m})`);
+   const k=bk(seg(t,9.1,9.7)); op(KEY,k*(1-out)); tr(KEY,`translate(540 600) scale(${k}) rotate(${(1-k)*-50+3*Math.sin(t*3)})`);
+   const g=seg(t,9.2,10.4); op(GLOW,g>0&&g<1?.8*(1-g):0); GLOW.setAttribute('r',60+g*200);
+   sparks.forEach(([sp,a],i)=>{const v=seg(t,9.3+i*.04,10.3);op(sp,v>0&&v<1?1-v:0);sp.setAttribute('cx',540+Math.cos(a)*(90+v*170));sp.setAttribute('cy',600+Math.sin(a)*(90+v*170))});}
+  // ---- forgot PIN 11–14.5: folder, sheet pops, PIN circled ----
+  op(FOLDER,seg(t,11.4,11.7)*(1-seg(t,14.2,14.5)));
+  {const u=bk(seg(t,12.2,12.9));op(SH,seg(t,12.2,12.4)*(1-seg(t,14.2,14.5)));tr(SH,`translate(${550} ${700-260*u}) rotate(${-6+6*u}) scale(${.5+.5*u})`);
+   const cc=seg(t,13.1,13.6); op(CIRC,cc); CIRC.setAttribute('stroke-dasharray','720'); CIRC.setAttribute('stroke-dashoffset',720*(1-cc));}
+  // ---- no sheet 14.5–17.5: phone + loja ----
+  {const p=seg(t,14.6,15)*(1-seg(t,17.3,17.6));op(PH,p);tr(PH,`translate(500 ${560+(1-eo(seg(t,14.6,15.2)))*60})`);
+   op(phKey,bk(seg(t,15.4,15.9))); op(phOk,bk(seg(t,16,16.4)));
+   op(LOJA,seg(t,15.6,16)*(1-seg(t,17.3,17.6))); tr(LOJA,`translate(690 ${720+(1-eo(seg(t,15.6,16.2)))*40}) scale(.9)`);}
+  // ---- end: key returns big above heads ----
+  {const k=bk(seg(t,17.7,18.3)); if(t>17.6){op(KEY,k);tr(KEY,`translate(540 520) scale(${1.4*k}) rotate(${4*Math.sin(t*4)})`);
+   const g=seg(t,17.8,19);op(GLOW,g>0&&g<1?.6*(1-g):0);GLOW.setAttribute('cy',560);GLOW.setAttribute('r',60+g*220);}}
+}
+render(0);
+</script></body></html>
