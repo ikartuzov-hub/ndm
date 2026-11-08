@@ -57,5 +57,7 @@ share:"Enviar a um amigo",copied:"Link copiado ✓",
 shareText:"Onde está a minha Chave Móvel Digital? Número + PIN = a sua chave. Três passos simples:",
 wa:"Seguir no WhatsApp",more:"Ler na fonte oficial →",
 hint:"Esqueceu o PIN? Procure primeiro a <b>folha que recebeu quando ativou a chave</b> — muitas vezes está lá escrito.",
+zeT:"O desenho animado em 20 segundos",
+zeP:"A D. Rosa procura a chave na gaveta — e o Zé mostra onde ela está. Carregue em 🔊 para o som. Animação criada com IA.",
 foot2:"Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias."
 };

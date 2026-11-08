@@ -41,6 +41,10 @@ h1{font-size:31px;margin:0 0 10px}
 .hint i{font-style:normal;font-size:22px}
 .where b{display:block;font-family:Bitter,Georgia,serif;font-size:18px;margin-bottom:2px}
 h2.sec{font-size:23px;margin:30px 0 10px}
+.ze{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:18px 0 8px;padding:12px 12px 10px}
+.ze h2{font-size:21px;margin:2px 4px 10px}
+.ze video{display:block;width:100%;aspect-ratio:1/1;border-radius:14px;background:#FAF6F1}
+.ze p{margin:8px 4px 0;font-size:14px;color:var(--ink-soft)}
 /* шаги с картинками */
 .step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 16px 16px;margin:12px 0;display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center}
 .step .pic{width:118px}
@@ -133,6 +137,12 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <div class="where"><b data-t="whereT"></b><span data-t="where"></span></div>
   <a href="#" class="t hint" data-d="dPin"><i>🗂</i><span data-t="hint"></span></a>
 </header>
+
+<div class="ze" id="ze">
+  <h2 data-t="zeT"></h2>
+  <video id="zeV" controls playsinline muted loop preload="metadata"></video>
+  <p data-t="zeP"></p>
+</div>
 
 <h2 class="sec" data-t="howT"></h2>
 
@@ -263,6 +273,7 @@ function apply(){
   document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
   lsSet('ndm-lang',lang);
   if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
+  zeSrc();
   if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
 }
 var m=document.getElementById('langmenu');
@@ -277,6 +288,11 @@ document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'lig
 /* вау: тап по формуле — собрать ключ ещё раз */
 var f=document.getElementById('formula');
 f.onclick=function(){f.classList.add('replay');void f.offsetWidth;f.classList.remove('replay');};
+/* мультик с Зé: PT/RU — свои, остальным EN; играет без звука, когда виден */
+function zeSrc(){var v=document.getElementById('zeV');var k=lang==='pt'||lang==='ru'?lang:'en';
+  if(v.getAttribute('data-k')===k)return;v.setAttribute('data-k',k);
+  v.poster='/cmd/video/ze_'+k+'.jpg';v.src='/cmd/video/ze_'+k+'.mp4';}
+if('IntersectionObserver' in window){var zv=document.getElementById('zeV');new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){zv.play().catch(function(){});}else zv.pause();});},{threshold:.5}).observe(zv);}
 /* шторка */
 var veil=document.getElementById('veil'),sh=document.getElementById('sheet');
 function openSheet(k){var t=L[lang];document.getElementById('shT').innerHTML=t[k+'T']||'';document.getElementById('shP').innerHTML=t[k]||'';

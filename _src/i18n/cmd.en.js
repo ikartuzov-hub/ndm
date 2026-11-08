@@ -57,5 +57,7 @@ share:"Send to a friend",copied:"Link copied ✓",
 shareText:"Where is my Chave Móvel Digital? Number + PIN = your key. Three simple steps:",
 wa:"Follow on WhatsApp",more:"Read the official source →",
 hint:"Forgot the PIN? First look for the <b>sheet you got when the key was activated</b> — it is often written there.",
+zeT:"The 20-second cartoon",
+zeP:"Dona Rosa searches the drawer for her key — and Zé shows where it really is. Tap 🔊 for sound. Animation created with AI.",
 foot2:"Built from the official gov.pt and autenticacao.gov.pt pages, November 2026. The drawn screens are diagrams, not copies."
 };
