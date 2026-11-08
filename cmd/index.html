@@ -105,6 +105,14 @@ h2.sec{font-size:23px;margin:30px 0 10px}
 .probs a{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 12px;color:var(--ink);text-decoration:none;font-size:16px;line-height:1.25;min-height:64px}
 .probs a i{font-style:normal;font-size:24px;flex:none}
 .probs a:active{border-color:var(--accent)}
+.rules{margin:8px 0 0;padding:0;list-style:none;counter-reset:r}
+.rules li{counter-increment:r;position:relative;padding:12px 14px 12px 52px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 8px;font-size:16.5px}
+.rules li:before{content:counter(r);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font:600 15px/28px Bitter,serif;text-align:center}
+:root[data-theme="dark"] .rules li:before{color:#0B1F1C}
+.rules li b{color:var(--ink)}
+.case{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:16px;padding:14px 16px;margin:18px 0 0}
+.case b{display:block;font-family:Bitter,Georgia,serif;font-size:18px;margin-bottom:4px}
+.case p{margin:0;font-size:16.5px;color:var(--ink-soft)}
 .srcs{margin:8px 0 0;padding:0;list-style:none}
 .srcs li{margin:0 0 8px;font-size:16px}
 .srcs a{color:var(--accent);text-underline-offset:3px}
@@ -237,6 +245,11 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <a class="go" href="https://www.gov.pt/plataformas-digitais/aplicacao-movel-gov-pt" target="_blank" rel="noopener" data-t="appGo">App gov.pt — página oficial</a>
 </div>
 
+<h2 class="sec" data-t="rulesT">4 regras para não perder a chave</h2>
+<ol class="rules">
+  <li data-t="r1"><b>A chave é o número + o PIN.</b> Não há cartão nem papel para procurar.</li><li data-t="r2"><b>Não adivinhe o PIN.</b> Depois de algumas tentativas erradas a chave bloqueia.</li><li data-t="r3"><b>A folha do balcão é o seu tesouro.</b> Guarde-a em casa, longe do telemóvel.</li><li data-t="r4"><b>O PIN de assinatura é outro.</b> Serve só para assinar documentos.</li>
+</ol>
+
 <h2 class="sec" data-t="probT">Algo correu mal? Toque:</h2>
 <div class="probs">
   <a href="#" class="t" data-d="dPin"><i>🤔</i><span data-t="pPin">Esqueci o PIN</span></a>
@@ -246,6 +259,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <a href="#" class="t" data-d="dSig"><i>✍️</i><span data-t="pSig">Assinar documentos</span></a>
   <a href="#" class="t" data-d="dVal"><i>📅</i><span data-t="pVal">Até quando vale?</span></a>
 </div>
+
+<div class="case"><b data-t="caseT">O nosso caso</b><p data-t="case">Um conhecido ativou a chave no balcão. Uma semana depois escreveu-nos: «Onde está agora? E o PIN já não me lembro.» A resposta estava na folha de confirmação que lhe deram nesse dia — o PIN estava lá apontado.</p></div>
 
 <div class="box" style="background:var(--gold-soft)">
   <h3 data-t="memoT" style="color:var(--ink)">Cartão-lembrete para o frigorífico</h3>
@@ -262,10 +277,11 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <li><a href="https://www.gov.pt/locais-de-atendimento" target="_blank" rel="noopener" data-t="src5">Espaços e Lojas do Cidadão — onde fica o mais perto</a></li>
 </ul>
 
-<button class="go" type="button" id="share" data-t="share">Enviar a um amigo</button>
+<button class="go" type="button" id="shareP" data-t="shareP">Enviar aos pais</button>
+<button class="go soft" type="button" id="share" data-t="share">Enviar a um amigo</button>
 <a class="go wa" href="https://whatsapp.com/channel/0029VbDHFF8K0IBiiqgMON2K" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"></path></svg><span data-t="wa">Seguir no WhatsApp</span></a>
 
-<p class="foot2" data-t="foot2">Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias.</p>
+<p class="foot2" data-t="foot2">Guia independente, não é um serviço oficial do Estado. Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias.</p>
 <footer>© <span id="yr">2026</span> <a href="https://seedwave.pt/hub/?lang=pt&amp;theme=light" id="hubLink">SeedWave</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
 
 <div id="memo">
@@ -343,7 +359,16 @@ wa:"Seguir no WhatsApp",more:"Ler na fonte oficial →",
 hint:"Esqueceu o PIN? Procure primeiro a <b>folha que recebeu quando ativou a chave</b> — muitas vezes está lá escrito.",
 zeT:"O desenho animado em 20 segundos",
 zeP:"A D. Rosa procura a chave na gaveta — e o Zé mostra onde ela está. Carregue em 🔊 para o som. Animação criada com IA.",
-foot2:"Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias."
+rulesT:"4 regras para não perder a chave",
+r1:"<b>A chave é o número + o PIN.</b> Não há cartão nem papel para procurar.",
+r2:"<b>Não adivinhe o PIN.</b> Depois de algumas tentativas erradas a chave bloqueia.",
+r3:"<b>A folha do balcão é o seu tesouro.</b> Guarde-a em casa, longe do telemóvel.",
+r4:"<b>O PIN de assinatura é outro.</b> Serve só para assinar documentos.",
+caseT:"O nosso caso",
+case:"Um conhecido ativou a chave no balcão. Uma semana depois escreveu-nos: «Onde está agora? E o PIN já não me lembro.» A resposta estava na folha de confirmação que lhe deram nesse dia — o PIN estava lá apontado.",
+shareP:"Enviar aos pais",
+shareParText:"Guardei para si: a Chave Móvel Digital é o número de telemóvel + o PIN. Três passos, letra grande:",
+foot2:"Guia independente, não é um serviço oficial do Estado. Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias."
 };
 L.en = {code:"EN",name:"English",
 mt:"Where is my Chave Móvel Digital? Log in in three steps — nDm",
@@ -406,7 +431,16 @@ wa:"Follow on WhatsApp",more:"Read the official source →",
 hint:"Forgot the PIN? First look for the <b>sheet you got when the key was activated</b> — it is often written there.",
 zeT:"The 20-second cartoon",
 zeP:"Dona Rosa searches the drawer for her key — and Zé shows where it really is. Tap 🔊 for sound. Animation created with AI.",
-foot2:"Built from the official gov.pt and autenticacao.gov.pt pages, November 2026. The drawn screens are diagrams, not copies."
+rulesT:"4 rules so you never lose the key",
+r1:"<b>The key is the number + the PIN.</b> There is no card or paper to look for.",
+r2:"<b>Don't guess the PIN.</b> After a few wrong tries the key locks.",
+r3:"<b>The counter sheet is your treasure.</b> Keep it at home, away from the phone.",
+r4:"<b>The signature PIN is a different one.</b> It is only for signing documents.",
+caseT:"Our case",
+case:"A friend activated the key at the counter. A week later he wrote: “Where is it now? And I don't remember the PIN.” The answer was on the confirmation sheet he got that day — the PIN was written there.",
+shareP:"Send to your parents",
+shareParText:"Saved this for you: the Chave Móvel Digital is your phone number + PIN. Three steps, large print:",
+foot2:"Independent guide, not an official government service. Built from the official gov.pt and autenticacao.gov.pt pages, November 2026. The drawn screens are diagrams, not copies."
 };
 L.ru = {code:"RU",name:"Русский",
 mt:"Где моя Chave Móvel Digital? Вход в три шага — nDm",
@@ -469,7 +503,16 @@ wa:"Следить в WhatsApp",more:"Читать в официальном и�
 hint:"Забыли PIN? Сначала найдите <b>лист, который выдали при оформлении ключа</b> — часто он записан там.",
 zeT:"Мультик за 20 секунд",
 zeP:"Дона Роза ищет ключ в ящике, а Зé показывает, где он на самом деле. Нажмите 🔊, чтобы включить звук. Анимация создана с ИИ.",
-foot2:"Собрано по официальным страницам gov.pt и autenticacao.gov.pt, ноябрь 2026. Нарисованные экраны — схемы, не копии."
+rulesT:"4 правила, чтобы не потерять ключ",
+r1:"<b>Ключ — это номер + PIN.</b> Нет карточки или бумажки, которую надо искать.",
+r2:"<b>Не подбирайте PIN.</b> После нескольких ошибок ключ блокируется.",
+r3:"<b>Лист из окошка — ваше сокровище.</b> Храните его дома, отдельно от телефона.",
+r4:"<b>PIN подписи — другой.</b> Он нужен только чтобы подписывать документы.",
+caseT:"Наш случай",
+case:"Знакомый оформил ключ в окошке. Через неделю пишет: «А где он теперь? И PIN не помню». Ответ нашёлся на листе-подтверждении, который ему выдали в тот же день, — PIN был записан там.",
+shareP:"Отправить родителям",
+shareParText:"Сохранил для тебя: Chave Móvel Digital — это номер телефона + PIN. Три шага, крупно:",
+foot2:"Независимый гид, не официальный сервис государства. Собрано по официальным страницам gov.pt и autenticacao.gov.pt, ноябрь 2026. Нарисованные экраны — схемы, не копии."
 };
 L.es = {code:"ES",name:"Español",
 mt:"¿Dónde está mi Chave Móvel Digital? Entrar en tres pasos — nDm",
@@ -532,7 +575,16 @@ wa:"Seguir en WhatsApp",more:"Leer en la fuente oficial →",
 hint:"¿Olvidaste el PIN? Busca primero la <b>hoja que te dieron al activar la llave</b> — muchas veces está ahí.",
 zeT:"El dibujo animado en 20 segundos",
 zeP:"Doña Rosa busca la llave en el cajón — y Zé le enseña dónde está. Toca 🔊 para el sonido. Animación creada con IA.",
-foot2:"Hecho a partir de las páginas oficiales gov.pt y autenticacao.gov.pt, noviembre de 2026. Las pantallas dibujadas son esquemas, no copias."
+rulesT:"4 reglas para no perder la llave",
+r1:"<b>La llave es el número + el PIN.</b> No hay tarjeta ni papel que buscar.",
+r2:"<b>No adivines el PIN.</b> Tras unos intentos fallidos la llave se bloquea.",
+r3:"<b>La hoja de la ventanilla es tu tesoro.</b> Guárdala en casa, lejos del móvil.",
+r4:"<b>El PIN de firma es otro.</b> Solo sirve para firmar documentos.",
+caseT:"Nuestro caso",
+case:"Un conocido activó la llave en la ventanilla. Una semana después nos escribió: «¿Dónde está ahora? Y el PIN no lo recuerdo». La respuesta estaba en la hoja de confirmación que le dieron ese día: el PIN estaba apuntado allí.",
+shareP:"Enviar a tus padres",
+shareParText:"Te lo guardé: la Chave Móvel Digital es tu número de móvil + el PIN. Tres pasos, letra grande:",
+foot2:"Guía independiente, no es un servicio oficial del Estado. Hecho a partir de las páginas oficiales gov.pt y autenticacao.gov.pt, noviembre de 2026. Las pantallas dibujadas son esquemas, no copias."
 };
 L.de = {code:"DE",name:"Deutsch",
 mt:"Wo ist meine Chave Móvel Digital? In drei Schritten anmelden — nDm",
@@ -595,7 +647,16 @@ wa:"Auf WhatsApp folgen",more:"Offizielle Quelle lesen →",
 hint:"PIN vergessen? Zuerst das <b>Blatt suchen, das Sie bei der Aktivierung bekommen haben</b> – oft steht sie dort.",
 zeT:"Der Zeichentrick in 20 Sekunden",
 zeP:"Dona Rosa sucht ihren Schlüssel in der Schublade – und Zé zeigt, wo er wirklich ist. 🔊 tippen für Ton. Animation mit KI erstellt.",
-foot2:"Erstellt nach den offiziellen Seiten gov.pt und autenticacao.gov.pt, November 2026. Die gezeichneten Bildschirme sind Schemata, keine Kopien."
+rulesT:"4 Regeln, damit der Schlüssel nie verloren geht",
+r1:"<b>Der Schlüssel ist Nummer + PIN.</b> Es gibt keine Karte und keinen Zettel zu suchen.",
+r2:"<b>PIN nicht raten.</b> Nach einigen Fehlversuchen wird der Schlüssel gesperrt.",
+r3:"<b>Das Blatt vom Schalter ist Ihr Schatz.</b> Zu Hause aufbewahren, getrennt vom Handy.",
+r4:"<b>Die Signatur-PIN ist eine andere.</b> Sie dient nur zum Unterschreiben.",
+caseT:"Unser Fall",
+case:"Ein Bekannter hat den Schlüssel am Schalter aktiviert. Eine Woche später schrieb er: „Wo ist der jetzt? Und die PIN weiß ich nicht mehr.“ Die Antwort stand auf dem Bestätigungsblatt vom selben Tag – die PIN war dort notiert.",
+shareP:"An die Eltern senden",
+shareParText:"Für dich gespeichert: Die Chave Móvel Digital ist deine Handynummer + PIN. Drei Schritte, große Schrift:",
+foot2:"Unabhängiger Leitfaden, kein offizieller Dienst des Staates. Erstellt nach den offiziellen Seiten gov.pt und autenticacao.gov.pt, November 2026. Die gezeichneten Bildschirme sind Schemata, keine Kopien."
 };
 </script>
 <script>
@@ -659,6 +720,10 @@ document.getElementById('share').onclick=function(){var t=L[lang];var u=location
   var d={title:document.title,text:t.shareText,url:u};
   if(navigator.share){navigator.share(d).catch(function(){});}
   else{navigator.clipboard&&navigator.clipboard.writeText(u);this.textContent=t.copied;var b=this;setTimeout(function(){b.textContent=t.share;},1600);}};
+document.getElementById('shareP').onclick=function(){var t=L[lang];var u=location.origin+langPath(lang)+'?utm_source=share&utm_medium=parents&utm_campaign=cmd';
+  var d={title:document.title,text:t.shareParText,url:u};
+  if(navigator.share){navigator.share(d).catch(function(){});}
+  else{navigator.clipboard&&navigator.clipboard.writeText(t.shareParText+' '+u);this.textContent=t.copied;var b=this;setTimeout(function(){b.textContent=t.shareP;},1600);}};
 document.getElementById('yr').textContent=new Date().getFullYear();
 applyTheme();paintMenu();apply();
 })();

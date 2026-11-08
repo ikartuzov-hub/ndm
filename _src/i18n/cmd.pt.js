@@ -59,5 +59,14 @@ wa:"Seguir no WhatsApp",more:"Ler na fonte oficial →",
 hint:"Esqueceu o PIN? Procure primeiro a <b>folha que recebeu quando ativou a chave</b> — muitas vezes está lá escrito.",
 zeT:"O desenho animado em 20 segundos",
 zeP:"A D. Rosa procura a chave na gaveta — e o Zé mostra onde ela está. Carregue em 🔊 para o som. Animação criada com IA.",
-foot2:"Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias."
+rulesT:"4 regras para não perder a chave",
+r1:"<b>A chave é o número + o PIN.</b> Não há cartão nem papel para procurar.",
+r2:"<b>Não adivinhe o PIN.</b> Depois de algumas tentativas erradas a chave bloqueia.",
+r3:"<b>A folha do balcão é o seu tesouro.</b> Guarde-a em casa, longe do telemóvel.",
+r4:"<b>O PIN de assinatura é outro.</b> Serve só para assinar documentos.",
+caseT:"O nosso caso",
+case:"Um conhecido ativou a chave no balcão. Uma semana depois escreveu-nos: «Onde está agora? E o PIN já não me lembro.» A resposta estava na folha de confirmação que lhe deram nesse dia — o PIN estava lá apontado.",
+shareP:"Enviar aos pais",
+shareParText:"Guardei para si: a Chave Móvel Digital é o número de telemóvel + o PIN. Três passos, letra grande:",
+foot2:"Guia independente, não é um serviço oficial do Estado. Feito a partir das páginas oficiais gov.pt e autenticacao.gov.pt, novembro de 2026. Os ecrãs desenhados são esquemas, não cópias."
 };

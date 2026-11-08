@@ -59,5 +59,14 @@ wa:"Seguir en WhatsApp",more:"Leer en la fuente oficial →",
 hint:"¿Olvidaste el PIN? Busca primero la <b>hoja que te dieron al activar la llave</b> — muchas veces está ahí.",
 zeT:"El dibujo animado en 20 segundos",
 zeP:"Doña Rosa busca la llave en el cajón — y Zé le enseña dónde está. Toca 🔊 para el sonido. Animación creada con IA.",
-foot2:"Hecho a partir de las páginas oficiales gov.pt y autenticacao.gov.pt, noviembre de 2026. Las pantallas dibujadas son esquemas, no copias."
+rulesT:"4 reglas para no perder la llave",
+r1:"<b>La llave es el número + el PIN.</b> No hay tarjeta ni papel que buscar.",
+r2:"<b>No adivines el PIN.</b> Tras unos intentos fallidos la llave se bloquea.",
+r3:"<b>La hoja de la ventanilla es tu tesoro.</b> Guárdala en casa, lejos del móvil.",
+r4:"<b>El PIN de firma es otro.</b> Solo sirve para firmar documentos.",
+caseT:"Nuestro caso",
+case:"Un conocido activó la llave en la ventanilla. Una semana después nos escribió: «¿Dónde está ahora? Y el PIN no lo recuerdo». La respuesta estaba en la hoja de confirmación que le dieron ese día: el PIN estaba apuntado allí.",
+shareP:"Enviar a tus padres",
+shareParText:"Te lo guardé: la Chave Móvel Digital es tu número de móvil + el PIN. Tres pasos, letra grande:",
+foot2:"Guía independiente, no es un servicio oficial del Estado. Hecho a partir de las páginas oficiales gov.pt y autenticacao.gov.pt, noviembre de 2026. Las pantallas dibujadas son esquemas, no copias."
 };

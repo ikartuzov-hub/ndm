@@ -59,5 +59,14 @@ wa:"Auf WhatsApp folgen",more:"Offizielle Quelle lesen →",
 hint:"PIN vergessen? Zuerst das <b>Blatt suchen, das Sie bei der Aktivierung bekommen haben</b> – oft steht sie dort.",
 zeT:"Der Zeichentrick in 20 Sekunden",
 zeP:"Dona Rosa sucht ihren Schlüssel in der Schublade – und Zé zeigt, wo er wirklich ist. 🔊 tippen für Ton. Animation mit KI erstellt.",
-foot2:"Erstellt nach den offiziellen Seiten gov.pt und autenticacao.gov.pt, November 2026. Die gezeichneten Bildschirme sind Schemata, keine Kopien."
+rulesT:"4 Regeln, damit der Schlüssel nie verloren geht",
+r1:"<b>Der Schlüssel ist Nummer + PIN.</b> Es gibt keine Karte und keinen Zettel zu suchen.",
+r2:"<b>PIN nicht raten.</b> Nach einigen Fehlversuchen wird der Schlüssel gesperrt.",
+r3:"<b>Das Blatt vom Schalter ist Ihr Schatz.</b> Zu Hause aufbewahren, getrennt vom Handy.",
+r4:"<b>Die Signatur-PIN ist eine andere.</b> Sie dient nur zum Unterschreiben.",
+caseT:"Unser Fall",
+case:"Ein Bekannter hat den Schlüssel am Schalter aktiviert. Eine Woche später schrieb er: „Wo ist der jetzt? Und die PIN weiß ich nicht mehr.“ Die Antwort stand auf dem Bestätigungsblatt vom selben Tag – die PIN war dort notiert.",
+shareP:"An die Eltern senden",
+shareParText:"Für dich gespeichert: Die Chave Móvel Digital ist deine Handynummer + PIN. Drei Schritte, große Schrift:",
+foot2:"Unabhängiger Leitfaden, kein offizieller Dienst des Staates. Erstellt nach den offiziellen Seiten gov.pt und autenticacao.gov.pt, November 2026. Die gezeichneten Bildschirme sind Schemata, keine Kopien."
 };

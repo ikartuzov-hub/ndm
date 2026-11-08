@@ -59,5 +59,14 @@ wa:"Follow on WhatsApp",more:"Read the official source →",
 hint:"Forgot the PIN? First look for the <b>sheet you got when the key was activated</b> — it is often written there.",
 zeT:"The 20-second cartoon",
 zeP:"Dona Rosa searches the drawer for her key — and Zé shows where it really is. Tap 🔊 for sound. Animation created with AI.",
-foot2:"Built from the official gov.pt and autenticacao.gov.pt pages, November 2026. The drawn screens are diagrams, not copies."
+rulesT:"4 rules so you never lose the key",
+r1:"<b>The key is the number + the PIN.</b> There is no card or paper to look for.",
+r2:"<b>Don't guess the PIN.</b> After a few wrong tries the key locks.",
+r3:"<b>The counter sheet is your treasure.</b> Keep it at home, away from the phone.",
+r4:"<b>The signature PIN is a different one.</b> It is only for signing documents.",
+caseT:"Our case",
+case:"A friend activated the key at the counter. A week later he wrote: “Where is it now? And I don't remember the PIN.” The answer was on the confirmation sheet he got that day — the PIN was written there.",
+shareP:"Send to your parents",
+shareParText:"Saved this for you: the Chave Móvel Digital is your phone number + PIN. Three steps, large print:",
+foot2:"Independent guide, not an official government service. Built from the official gov.pt and autenticacao.gov.pt pages, November 2026. The drawn screens are diagrams, not copies."
 };
