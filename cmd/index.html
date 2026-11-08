@@ -638,8 +638,8 @@ document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'lig
 /* вау: тап по формуле — собрать ключ ещё раз */
 var f=document.getElementById('formula');
 f.onclick=function(){f.classList.add('replay');void f.offsetWidth;f.classList.remove('replay');};
-/* мультик с Зé: PT/RU — свои, остальным EN; играет без звука, когда виден */
-function zeSrc(){var v=document.getElementById('zeV');var k=lang==='pt'||lang==='ru'?lang:'en';
+/* мультик с Зé: свой на каждом из 5 языков; играет без звука, когда виден */
+function zeSrc(){var v=document.getElementById('zeV');var k=lang;
   if(v.getAttribute('data-k')===k)return;v.setAttribute('data-k',k);
   v.poster='/cmd/video/ze_'+k+'.jpg';v.src='/cmd/video/ze_'+k+'.mp4';}
 if('IntersectionObserver' in window){var zv=document.getElementById('zeV');new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){zv.play().catch(function(){});}else zv.pause();});},{threshold:.5}).observe(zv);}
