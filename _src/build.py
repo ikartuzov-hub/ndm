@@ -334,6 +334,28 @@ write("cmd/index.html", html)
 PAGES.append(SITE + "/cmd/")
 print("built: cmd/index.html")
 
+# ---------- /renda/ — Renda até 2 300 €: IRS 10 % em vez de 25 % (08.11.2026) ----------
+# Устроена как /cmd/: один экран, калькулятор-ползунок (без ввода текста), роли сдаю/снимаю,
+# «золотая зона» 2 301–2 760 €, пояснения по тапу. Значок-домик в терракоте — _src/renda-assets.py.
+subprocess_run([__import__("sys").executable, "_src/renda-assets.py"], check=True)
+ren = read("_src/renda-body.html")
+ren = ren.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/renda.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/renda.%s.js" % L)))
+DESC_RENDA = ("Desde 2026, as rendas habitacionais até 2 300 € por mês pagam IRS a 10 % em vez de 25 %. "
+              "Às vezes baixar a renda rende mais ao senhorio. Calculadora para senhorios e inquilinos.")
+html = wrap(FONTS + ren, lang="pt",
+            title="Renda até 2 300 €: IRS de 10 % em vez de 25 % — calculadora — nDm",
+            desc=DESC_RENDA, app="Renda", root="../",
+            ogtitle="Renda até 2 300 €: IRS de 10 % em vez de 25 %. Faça a conta",
+            og=SITE + "/renda/og-image.png", url=SITE + "/renda/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/renda/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/renda/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/renda/manifest.webmanifest"'))
+write("renda/index.html", html)
+PAGES.append(SITE + "/renda/")
+print("built: renda/index.html")
+
 # ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
 # Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
 subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)

@@ -19,6 +19,8 @@ CD_PATHS = ['M44 29 A21 21 0 1 0 44 61', 'M76 20 L76 70', 'M76 57 A12 12 0 1 1 5
 A_PATHS = ['M30 70 L50 20 L70 70', 'M38 50 L62 50']
 # ключ — Chave Móvel Digital (/cmd/), принято 08.11.2026; бирюза #0E6E63
 KEY_PATHS = ['M20 45 A14 14 0 1 0 48 45 A14 14 0 1 0 20 45', 'M48 45 L80 45', 'M70 45 L70 56', 'M79 45 L79 53']
+# домик — Renda até 2 300 € / IRS 10 % (/renda/), принято 08.11.2026; терракота #A8461F
+HOUSE_PATHS = ['M24 48 L50 24 L76 48', 'M32 43 L32 70 L68 70 L68 43', 'M45 70 L45 57 L55 57 L55 70']
 S_PATH = ("M68 26 C63 19 55 17 48 17 C37 17 31 23 32 31 C33 40 43 42 50 44 "
           "C60 46 68 50 68 58 C68 66 60 71 50 71 C42 71 35 68 31 63")
 
@@ -57,18 +59,18 @@ def mark(d, k, col, ox=0, oy=0, glyph="sigma"):
 def build(out, acc, tile, short, start, glyph="sigma"):
     os.makedirs(out, exist_ok=True)
     A, T = rgb(acc), rgb(tile)
-    paths = (CD_PATHS if glyph == "cd" else A_PATHS if glyph == "a" else KEY_PATHS if glyph == "key"
+    paths = (CD_PATHS if glyph == "cd" else A_PATHS if glyph == "a" else KEY_PATHS if glyph == "key" else HOUSE_PATHS if glyph == "house"
              else [S_PATH if glyph == "s" else "M68 20 L32 20 L52 45 L32 70 L68 70"])
     svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="%s">'
            '<rect width="100" height="100" rx="23" fill="%s"/>'
            '<g fill="none" stroke="%s" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">%s'
            '<path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></g></svg>\n') % (
         short, tile, acc, "".join('<path d="%s"/>' % x for x in paths))
-    for size in ((180, 192, 512) if glyph in ("cd", "a", "key") else ()):
+    for size in ((180, 192, 512) if glyph in ("cd", "a", "key", "house") else ()):
         import cairosvg
         cairosvg.svg2png(bytestring=svg.encode(), write_to="%s/icon-%d.png" % (out, size),
                          output_width=size, output_height=size)
-    for size in (() if glyph in ("cd", "a", "key") else (180, 192, 512)):
+    for size in (() if glyph in ("cd", "a", "key", "house") else (180, 192, 512)):
         S = size * 4
         im = Image.new("RGB", (S, S), T)
         mark(ImageDraw.Draw(im), S / 100.0, A, glyph=glyph)

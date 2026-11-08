@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#A8461F;--accs:#FBE9DF;--grn:#0E6E63;--grns:#E0F2EE;--gold:#E3A21A;--golds:#FDF1D6;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6;--red:#C0392B;--lil:#8E5BA8}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--acc)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:30px;text-align:center;font-size:50px;font-weight:700;color:var(--ink);padding:0 40px;line-height:1.15}
+  #cap small{display:block;font-size:32px;font-weight:400;color:var(--soft);margin-top:10px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;color:var(--acc);font-weight:700}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px;font-weight:400}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"RENDA ATÉ 2 300 € · IRS 10 %", bot:"calculadora gratuita · 5 línguas",
+   c1:"2 500 € e ninguém liga", c1s:"o Sr. Manuel espera há um mês",
+   c2:"E se baixar para 2 300 €?", c2s:"pergunta o Zé",
+   c3:"Até 2 300 €, o IRS é 10 %", c3s:"acima, os habituais 25 %",
+   c4:"+2 340 € por ano", c4s:"com a renda mais baixa",
+   c5:"Atenção: 2 301 €", c5s:"1 € acima — e a renda toda volta aos 25 %",
+   c6:"Faça a sua conta", c6s:"senhorio ou inquilino · em dois toques",
+   foot:"ajuda.seedwave.pt/renda", ai:"animação criada com IA",
+   sign:"ARRENDA-SE", man:"Sr. Manuel", yr:"por ano", tax:"IRS"},
+ ru:{top:"АРЕНДА ДО 2 300 € · НАЛОГ 10 %", bot:"бесплатный калькулятор · 5 языков",
+   c1:"2 500 € — и тишина", c1s:"сеньор Мануэл ждёт арендатора месяц",
+   c2:"А если 2 300 €?", c2s:"спрашивает Зе",
+   c3:"До 2 300 € налог — 10 %", c3s:"выше — обычные 25 %",
+   c4:"+2 340 € в год", c4s:"при цене ниже",
+   c5:"Осторожно: 2 301 €", c5s:"на 1 € выше — и вся аренда снова по 25 %",
+   c6:"Посчитайте свою", c6s:"сдаёте или снимаете · два касания",
+   foot:"ajuda.seedwave.pt/renda/ru", ai:"анимация создана с ИИ",
+   sign:"ARRENDA-SE", man:"Мануэл", yr:"в год", tax:"налог"},
+ en:{top:"RENT UP TO €2,300 · 10% TAX", bot:"free calculator · 5 languages",
+   c1:"€2,500 and no calls", c1s:"Mr Manuel has waited a month",
+   c2:"What about €2,300?", c2s:"asks Zé",
+   c3:"Up to €2,300, tax is 10%", c3s:"above that, the usual 25%",
+   c4:"+€2,340 a year", c4s:"with the lower rent",
+   c5:"Careful: €2,301", c5s:"€1 over — and the whole rent is back at 25%",
+   c6:"Do your own maths", c6s:"landlord or tenant · two taps",
+   foot:"ajuda.seedwave.pt/renda/en", ai:"animation created with AI",
+   sign:"ARRENDA-SE", man:"Mr Manuel", yr:"a year", tax:"tax"},
+};
+let T=L.pt;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eo=x=>1-Math.pow(1-x,3);
+const bk=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+function op(e,v){e.setAttribute('opacity',clamp(v))} function tr(e,s){e.setAttribute('transform',s)}
+const S=$('s');
+const fmt=(n,l)=>{const s=Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,l==='en'?',':' ');return l==='en'?'€'+s:s+' €'};
+let LG='pt';
+
+// ---------- house with sign (center) ----------
+const HOUSE=el('g',{},S);
+el('path',{d:'M430 560 L560 450 L690 560z',fill:'var(--acc)'},HOUSE);
+el('rect',{x:450,y:555,width:220,height:195,fill:'#FFF7EE',stroke:'#E6D3C2','stroke-width':4},HOUSE);
+el('rect',{x:540,y:660,width:40,height:90,rx:4,fill:'#B88A5A'},HOUSE);
+el('rect',{x:470,y:590,width:50,height:46,rx:4,fill:'#CFE6F2',stroke:'#B88A5A','stroke-width':4},HOUSE);
+el('rect',{x:600,y:590,width:50,height:46,rx:4,fill:'#CFE6F2',stroke:'#B88A5A','stroke-width':4},HOUSE);
+const WEB=el('path',{d:'M450 555 q20 22 0 44 M450 555 q30 10 44 0 M450 577 q14 0 22 -22',stroke:'#B9AFA6','stroke-width':2,fill:'none',opacity:0},HOUSE);
+const SIGN=el('g',{},S);
+el('rect',{x:470,y:760,width:12,height:60,fill:'#8C6A48'},SIGN);
+el('rect',{x:400,y:705,width:320,height:110,rx:14,fill:'#fff',stroke:'var(--acc)','stroke-width':6},SIGN);
+const signT=txt(SIGN,560,742,'',{'font-size':24,'font-weight':800,'text-anchor':'middle',fill:'var(--acc)','letter-spacing':'3'});
+const signP=txt(SIGN,560,797,'',{'font-size':48,'font-weight':800,'text-anchor':'middle',fill:'var(--ink)',class:'m'});
+const STRIKE=el('path',{d:'M450 784 L670 784',stroke:'var(--red)','stroke-width':8,'stroke-linecap':'round',opacity:0},SIGN);
+
+// ---------- bars ----------
+const BARS=el('g',{opacity:0},S);
+const b1l=txt(BARS,330,330,'',{'font-size':32,'font-weight':700,fill:'var(--soft)'});
+el('rect',{x:330,y:350,width:430,height:90,rx:22,fill:'#EFE6DD'},BARS);
+const b1=el('rect',{x:330,y:350,width:0,height:90,rx:22,fill:'var(--acc)'},BARS);
+const b1v=txt(BARS,350,410,'',{'font-size':40,'font-weight':800,fill:'#fff',class:'m'});
+const b2l=txt(BARS,330,500,'',{'font-size':32,'font-weight':700,fill:'var(--soft)'});
+el('rect',{x:330,y:520,width:430,height:90,rx:22,fill:'#EFE6DD'},BARS);
+const b2=el('rect',{x:330,y:520,width:0,height:90,rx:22,fill:'var(--grn)'},BARS);
+const b2v=txt(BARS,350,580,'',{'font-size':40,'font-weight':800,fill:'#fff',class:'m'});
+const PLUS=el('g',{opacity:0},S);
+el('rect',{x:-210,y:-50,width:420,height:100,rx:26,fill:'var(--golds)',stroke:'var(--gold)','stroke-width':6},PLUS);
+const plusT=txt(PLUS,0,18,'',{'font-size':46,'font-weight':800,'text-anchor':'middle',fill:'var(--ink)'});
+
+// ---------- coins ----------
+const coins=[];for(let i=0;i<14;i++){const g=el('g',{opacity:0},S);el('circle',{cx:0,cy:0,r:22,fill:'var(--gold)',stroke:'#B8800F','stroke-width':4},g);txt(g,0,9,'€',{'font-size':24,'font-weight':800,'text-anchor':'middle',fill:'#7A5208'});coins.push(g)}
+const PIG=el('g',{opacity:0},S);
+el('ellipse',{cx:0,cy:0,rx:90,ry:66,fill:'#F4A7B9'},PIG);el('circle',{cx:78,cy:-8,r:22,fill:'#F08FA6'},PIG);
+el('circle',{cx:40,cy:-24,r:7,fill:'#1F1A17'},PIG);el('path',{d:'M-20 -66 h40',stroke:'#C7607A','stroke-width':8,'stroke-linecap':'round'},PIG);
+el('rect',{x:-56,y:50,width:22,height:30,rx:8,fill:'#F08FA6'},PIG);el('rect',{x:30,y:50,width:22,height:30,rx:8,fill:'#F08FA6'},PIG);
+const ALERT=el('g',{opacity:0},S);
+el('path',{d:'M0 -90 L95 75 H-95z',fill:'var(--red)'},ALERT);txt(ALERT,0,50,'!',{'font-size':110,'font-weight':900,'text-anchor':'middle',fill:'#fff'});
+
+// ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{id:'man'},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+
+
+// ---------- Sr. Manuel (right): landlord, flat cap, moustache, brown vest ----------
+const R=el('g',{id:'manuel'},S); const rRoot=el('g',{},R);
+el('rect',{x:800,y:600,width:42,height:150,rx:18,fill:'#4A4038'},rRoot); el('rect',{x:856,y:600,width:42,height:150,rx:18,fill:'#4A4038'},rRoot);
+el('ellipse',{cx:820,cy:752,rx:36,ry:13,fill:'#1F1A17'},rRoot); el('ellipse',{cx:876,cy:752,rx:36,ry:13,fill:'#1F1A17'},rRoot);
+el('rect',{x:772,y:430,width:154,height:195,rx:40,fill:'#F4EEE6'},rRoot);
+el('path',{d:'M772 470 q0 -40 40 -40 h20 v195 h-60z M926 470 q0 -40 -40 -40 h-20 v195 h60z',fill:'#7A5638'},rRoot);
+el('circle',{cx:849,cy:345,r:76,fill:'var(--skin)'},rRoot);
+el('path',{d:'M770 318 q10 -66 80 -70 q70 4 80 70 z',fill:'#5E5A57'},rRoot);
+el('path',{d:'M764 318 h120 q10 0 10 8 v4 h-130z',fill:'#4C4846'},rRoot);
+const rEyeL=el('ellipse',{cx:827,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot); const rEyeR=el('ellipse',{cx:871,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot);
+const rBrowL=el('path',{d:'M810 322 l28 -2',stroke:'#5E5A57','stroke-width':6,'stroke-linecap':'round',fill:'none'},rRoot);
+const rBrowR=el('path',{d:'M858 320 l28 2',stroke:'#5E5A57','stroke-width':6,'stroke-linecap':'round',fill:'none'},rRoot);
+el('path',{d:'M818 374 q31 -18 62 0 q-14 10 -31 4 q-17 6 -31 -4z',fill:'#5E5A57'},rRoot);
+const rMouth=el('path',{d:'M834 396 h30',stroke:'#8C3B2A','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rCheeks=el('g',{opacity:0},rRoot); el('circle',{cx:808,cy:368,r:9,fill:'#F2A08A'},rCheeks); el('circle',{cx:890,cy:368,r:9,fill:'#F2A08A'},rCheeks);
+const rArmL=el('g',{},rRoot); el('path',{d:'M786 470 l-50 100',stroke:'#F4EEE6','stroke-width':28,'stroke-linecap':'round'},rArmL); el('circle',{cx:736,cy:572,r:20,fill:'var(--skin)'},rArmL);
+const rArmR=el('g',{},rRoot); el('path',{d:'M912 470 l50 100',stroke:'#F4EEE6','stroke-width':28,'stroke-linecap':'round'},rArmR); el('circle',{cx:962,cy:572,r:20,fill:'var(--skin)'},rArmR);
+const qms=[]; for(let i=0;i<3;i++){const q=txt(R,770+i*60,230-(i%2)*30,'?',{'font-size':54,'font-weight':800,fill:'var(--soft)',opacity:0});qms.push(q)}
+const sweat=el('path',{d:'M930 300 q-10 18 0 26 q10 -8 0 -26z',fill:'#7FB3D5',opacity:0},R);
+const nameTag=txt(R,849,800,'',{'font-size':28,fill:'var(--soft)','text-anchor':'middle'});
+
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+function setLang(l){T=L[l]||L.pt;LG=l;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;signT.textContent=T.sign;nameTag.textContent=T.man}
+setLang('pt');
+// 0–4 empty sign · 4–7.5 Zé: 2300? · 7.5–12 bars · 12–15 coins/+2340 · 15–18 2301 warning · 18–21 end
+const DUR=21;
+function render(t){
+  let c;
+  if(t<4)c=[T.c1,T.c1s]; else if(t<7.5)c=[T.c2,T.c2s]; else if(t<12)c=[T.c3,T.c3s]; else if(t<15)c=[T.c4,T.c4s]; else if(t<18)c=[T.c5,T.c5s]; else c=[T.c6,T.c6s];
+  cap(c[0],c[1]); $('cap').style.opacity=t<.5?seg(t,0,.5):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>18.1?seg(t,18.1,18.7):0;
+  // ---- Zé ----
+  op(G,seg(t,4,4.5)); let zs=t<4.6?.6+.4*bk(seg(t,4,4.6)):1;
+  let zMood=(t>9&&t<15)||t>18?'happy':'neutral';
+  mouth.setAttribute('d',zMood==='happy'?'M186 378 q29 30 58 0':'M192 384 h44'); op(cheekL,zMood==='happy'?1:0); op(cheekR,zMood==='happy'?1:0);
+  let ang=0,fi=0,th=0,wob=0;
+  if(t>4.4&&t<7.3){const u=seg(t,4.4,4.9)*(1-seg(t,6.9,7.3));ang=-75*eio(u);fi=u;wob=Math.sin(t*10)*6*u}
+  if(t>15.4&&t<17.6){const u=seg(t,15.4,15.8)*(1-seg(t,17.2,17.6));ang=-95*eio(u);fi=u;}
+  if(t>18.4){const u=bk(seg(t,18.4,19));ang=-125*u;th=u;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(finger,fi); op(thumb,th); op(handR,1-Math.max(fi,th));
+  tr(finger,`rotate(${-(ang+wob)} 340 580)`); tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  const wk=(t>19.6&&t<20)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  op(puff,t>4.6&&t<7.2?1:0);
+  let dy=0,rot=0; if(t>18){const u=seg(t,18,18.4);dy=-22*Math.abs(Math.sin((t-18)*7))*u;rot=4*Math.sin((t-18)*7)*u;}
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${zs}) translate(-215 -600)`);
+  // ---- Manuel ----
+  op(R,seg(t,0,.4));
+  let rm='bored'; if(t>4.8&&t<7.5)rm='shock'; if(t>10.4&&t<15)rm='happy'; if(t>15.3&&t<17.6)rm='shock'; if(t>17.8)rm='happy';
+  rMouth.setAttribute('d',rm==='happy'?'M830 390 q19 22 38 0':rm==='shock'?'M842 396 a7 9 0 1 0 14 0 a7 9 0 1 0 -14 0':'M834 398 q15 -4 30 0');
+  rBrowL.setAttribute('d',rm==='shock'?'M810 312 l28 -8':rm==='happy'?'M810 318 l28 -4':'M810 324 l28 0'); rBrowR.setAttribute('d',rm==='shock'?'M858 304 l28 8':rm==='happy'?'M858 314 l28 4':'M858 324 l28 0');
+  op(rCheeks,rm==='happy'?1:0); op(sweat,(t>5&&t<7.4)||(t>15.5&&t<17.6)?1:0); tr(sweat,`translate(0 ${((t*40)%30)})`);
+  qms.forEach((q,i)=>{const on=t>.8+i*.4&&t<4.2;op(q,on?.5+.5*Math.abs(Math.sin(t*3+i)):0)});
+  let ra=0,la=0,rdy=0,rrot=0;
+  if(t<4.2){la=10*Math.sin(t*2);} // tapping foot
+  if(t>4.8&&t<7.4){const u=seg(t,4.8,5.1)*(1-seg(t,7,7.4));ra=-60*u;la=60*u;}
+  if(t>12.2&&t<15){const u=seg(t,12.2,12.6)*(1-seg(t,14.6,15));ra=-150*u;la=150*u;}
+  if(t>18){const u=seg(t,18,18.4);rdy=-20*Math.abs(Math.sin((t-18)*7+1))*u;rrot=-4*Math.sin((t-18)*7)*u;ra=-120*u;la=120*u;}
+  tr(rArmR,`rotate(${ra} 912 470)`); tr(rArmL,`rotate(${la} 786 470)`);
+  tr(rRoot,`translate(0 ${rdy+(t<4.2?3*Math.sin(t*6):0)}) rotate(${rrot} 849 600)`);
+  // ---- house + sign ----
+  const houseOn=(1-seg(t,7.5,7.9))+seg(t,11.8,12.2)*(1-seg(t,14.8,15.1))+seg(t,15,15.3)*(1-seg(t,17.8,18.1))+seg(t,18.1,18.5);
+  op(HOUSE,Math.min(1,houseOn)); op(SIGN,Math.min(1,houseOn)); op(WEB,seg(t,1.5,2.5)*(1-seg(t,12,12.4)));
+  let price=2500;
+  if(t>6&&t<7.5){price=2500; op(STRIKE,seg(t,6,6.4));} else op(STRIKE,0);
+  if(t>=11.8)price=2300;
+  if(t>15.6&&t<17.4)price=2301;
+  signP.textContent=fmt(price,LG); signP.setAttribute('fill',price===2301?'var(--red)':price===2300?'var(--grn)':'var(--ink)');
+  {const p=t>12&&t<12.6?bk(seg(t,12,12.6)):1;const sh=price===2301?Math.sin(t*40)*4:0;tr(SIGN,`translate(${560+sh} 760) scale(${p}) translate(-560 -760)`);}
+  // ---- bars 7.5–12 ----
+  {const o=seg(t,7.6,8)*(1-seg(t,11.6,12));op(BARS,o);
+   const max=25000,W=430;
+   const u1=eio(seg(t,8.2,9.2)),u2=eio(seg(t,9.4,10.4));
+   b1.setAttribute('width',W*22500/max*u1); b2.setAttribute('width',W*24840/max*u2);
+   b1l.textContent=fmt(2500,LG)+' · '+T.tax+' 25 %'; b2l.textContent=fmt(2300,LG)+' · '+T.tax+' 10 %';
+   b1v.textContent=u1>.3?fmt(22500*u1,LG):''; b2v.textContent=u2>.3?fmt(24840*u2,LG):'';}
+  // ---- plus + coins 12–15 ----
+  {const p=bk(seg(t,10.6,11.1));op(PLUS,(t<12?seg(t,10.6,10.8)*(1-seg(t,11.6,11.9)):0)+(t>=12?seg(t,12.3,12.6)*(1-seg(t,14.7,15)):0));
+   plusT.textContent='+'+fmt(2340,LG)+' '+T.yr;
+   tr(PLUS,t<12?`translate(545 700) scale(${p})`:`translate(560 330) scale(${.9+.05*Math.sin(t*5)})`);}
+  op(PIG,seg(t,12.4,12.8)*(1-seg(t,14.7,15))); tr(PIG,`translate(560 ${630}) scale(${.9+.06*Math.sin(t*8)})`);
+  if(t>12.4&&t<15){op(HOUSE,0);op(SIGN,0);}
+  coins.forEach((g,i)=>{const t0=12.5+i*.14;const u=seg(t,t0,t0+.7);op(g,u>0&&u<1?1:0);tr(g,`translate(${430+((i*73)%260)} ${180+u*430}) rotate(${u*360})`)});
+  // ---- alert 15–18 ----
+  {const a=bk(seg(t,15.7,16.1));op(ALERT,a*(1-seg(t,17.4,17.7)));tr(ALERT,`translate(560 430) scale(${.8*a+.04*Math.sin(t*12)})`);}
+}
+render(0);
+</script></body></html>
