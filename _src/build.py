@@ -312,6 +312,28 @@ write("aima/index.html", html)
 PAGES.append(SITE + "/aima/")
 print("built: aima/index.html")
 
+# ---------- /cmd/ — Chave Móvel Digital: «número + PIN = a sua chave» (08.11.2026) ----------
+# Устроена как /cesd/lite/: один экран, пояснения по тапу, памятка на печать.
+# Значок-ключ в бирюзе и обложка — _src/cmd-assets.py; тексты — _src/i18n/cmd.*.js.
+subprocess_run([__import__("sys").executable, "_src/cmd-assets.py"], check=True)
+cmd = read("_src/cmd-body.html")
+cmd = cmd.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/cmd.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/cmd.%s.js" % L)))
+DESC_CMD = ("A Chave Móvel Digital não é um cartão nem uma app: é o seu número de telemóvel e o PIN que escolheu. "
+            "Como entrar nas Finanças e na Segurança Social, e o que fazer se esqueceu o PIN.")
+html = wrap(FONTS + cmd, lang="pt",
+            title="Onde está a minha Chave Móvel Digital? Em três passos — nDm",
+            desc=DESC_CMD, app="Chave", root="../",
+            ogtitle="Onde está a minha Chave Móvel Digital? Número + PIN = a sua chave",
+            og=SITE + "/cmd/og-image.png", url=SITE + "/cmd/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/cmd/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/cmd/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/cmd/manifest.webmanifest"'))
+write("cmd/index.html", html)
+PAGES.append(SITE + "/cmd/")
+print("built: cmd/index.html")
+
 # ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
 # Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
 subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)
