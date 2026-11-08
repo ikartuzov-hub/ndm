@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+:root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--teal:#2F6F8F;--skin:#F2C9A6;--line:#E6DED6;--acc:#A8461F}
+html,body{margin:0;background:var(--bg)}body{width:1620px;height:1000px;position:relative;font-family:Inter,system-ui,sans-serif}
+svg{position:absolute;left:0;top:0} .lab{position:absolute;top:840px;width:540px;text-align:center;font-weight:700;font-size:34px;color:var(--ink)}
+.lab small{display:block;font-weight:400;font-size:22px;color:var(--soft);margin-top:6px}
+h1{position:absolute;top:24px;left:0;right:0;text-align:center;font-size:40px;margin:0;color:var(--ink)}
+</style></head><body><h1>Зé растёт вместе с проектами</h1>
+<div class="lab" style="left:0">1 · Простой Зé<small>бюрократия для людей · гиды nDm</small></div>
+<div class="lab" style="left:540px">2 · Зé-предприниматель<small>ИП и малый бизнес · Prazos, мелкие субсидии</small></div>
+<div class="lab" style="left:1080px">3 · Зé-консультант<small>субсидии организаций · Painel, Portugal 2030</small></div>
+<script>
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+const ROOT=el('svg',{width:1620,height:1000,viewBox:'0 0 1620 1000'},document.body);
+function makeZe(ox,level){
+ const S=el('g',{transform:`translate(${ox} 40)`},ROOT);
+ // ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+
+
+
+ mouth.setAttribute('d','M186 378 q29 30 58 0'); cheekL.setAttribute('opacity',1); cheekR.setAttribute('opacity',1);
+ if(level>=2){ // тёмно-синий блейзер поверх рубашки, лацканы, коричневые туфли, аккуратные усы
+   const jk=el('g',{},manRoot); manRoot.insertBefore(jk,armL);
+   el('path',{d:'M140 470 q0 -40 40 -40 h22 l13 60 l13 -60 h22 q40 0 40 40 v150 h-150z',fill:'#24384F'},jk);
+   el('path',{d:'M202 430 l13 60 l-26 -20z M228 430 l-13 60 l26 -20z',fill:'#1A2A3C'},jk);
+   el('circle',{cx:215,cy:560,r:5,fill:'#C9A227'},jk);
+   el('path',{d:'M190 372 q25 -14 50 0 q-12 8 -25 3 q-13 5 -25 -3z',fill:'#4A2E1E'},manRoot);
+   legs.querySelectorAll('ellipse').forEach(e=>e.setAttribute('fill','#6B3B1F'));
+   armL.querySelector('path').setAttribute('stroke','#24384F'); armR.querySelector('path').setAttribute('stroke','#24384F');
+ }
+ if(level>=3){ // костюм графит, галстук, бородка из барбершопа, папка с документами
+   manRoot.querySelectorAll('path').forEach(p=>{if(p.getAttribute('fill')==='#24384F')p.setAttribute('fill','#2E2F38')});
+   armL.querySelector('path').setAttribute('stroke','#2E2F38'); armR.querySelector('path').setAttribute('stroke','#2E2F38');
+   legs.querySelectorAll('rect').forEach(e=>e.setAttribute('fill','#2E2F38'));
+   legs.querySelectorAll('ellipse').forEach(e=>e.setAttribute('fill','#1F1A17'));
+   el('path',{d:'M209 440 h12 l4 14 l-10 60 l-10 -60z',fill:'var(--acc)'},manRoot);
+   el('path',{d:'M160 372 q8 58 55 62 q47 -4 55 -62 q-10 30 -55 32 q-45 -2 -55 -32z',fill:'#4A2E1E'},manRoot);
+   const fol=el('g',{transform:'translate(66 560) rotate(-8)'},armL);
+   el('rect',{x:-6,y:-10,width:62,height:80,rx:6,fill:'#C9A227'},fol); el('rect',{x:4,y:2,width:42,height:6,rx:3,fill:'#fff',opacity:.8},fol);
+ }
+}
+makeZe(55,1); makeZe(595,2); makeZe(1135,3);
+</script></body></html>
