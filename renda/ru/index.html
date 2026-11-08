@@ -102,6 +102,10 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 .where{background:var(--gold-soft);border-radius:16px;padding:12px 16px;margin:14px 0 0;font-size:16.5px}
 .where b{display:block;font-family:Bitter,Georgia,serif;font-size:18px;margin-bottom:2px}
 h2.sec{font-size:23px;margin:30px 0 10px}
+.ze{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:22px 0 8px;padding:12px 12px 10px}
+.ze h2{font-size:21px;margin:2px 4px 10px}
+.ze video{display:block;width:100%;aspect-ratio:1/1;border-radius:14px;background:#FAF6F1}
+.ze p{margin:8px 4px 0;font-size:13.5px;color:var(--ink-soft)}
 /* вау: калькулятор */
 .calc{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:16px 0 8px;padding:16px 16px 18px}
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
@@ -155,6 +159,12 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;bac
   <p class="calcnote" data-t="calcNote">Упрощённый расчёт: аренда × 12, без вычетов (IMI, кондоминиум, ремонт) и без englobamento. Это не налоговая консультация — точный расчёт сделает ваш contabilista.</p>
 </div>
 <p class="slogan" data-t="slogan">Цена ниже — <span>доход выше</span></p>
+
+<div class="ze" id="ze">
+  <h2 data-t="zeT">Мультик за 20 секунд</h2>
+  <video id="zeV" controls="" playsinline="" muted="" loop="" preload="metadata" data-k="ru" poster="/renda/video/ze_ru.jpg" src="/renda/video/ze_ru.mp4"></video>
+  <p data-t="zeP">Сеньор Мануэл снижает цену — и выигрывает. Нажмите 🔊, чтобы включить звук. Анимация создана с ИИ.</p>
+</div>
 
 <div class="where"><b data-t="zoneT">Где проходит граница</b><span data-t="zone">При аренде от <strong>2 301 до 2 760 €</strong> хозяину выгоднее опустить её до 2 300 €. При 2 760 € доход на руках одинаков в обоих вариантах, а выше этой суммы выгоднее оставить цену и платить 25 %.</span></div>
 
@@ -217,6 +227,8 @@ v_outT:"Acima de {be} não compensa baixar até ao limite",
 v_out_s:"Mesmo a 25 %, esta renda deixa-lhe mais {d} por ano do que 2 300 € a 10 %.",
 v_out_i:"Aqui o argumento fiscal não serve: se baixar para {lim}, o senhorio perde {d} por ano. Negocie com outros argumentos.",
 calcNote:"Conta simplificada: renda × 12, sem despesas dedutíveis (IMI, condomínio, obras) nem englobamento. Não é aconselhamento fiscal — o seu contabilista faz a conta exata.",
+zeT:"A animação em 20 segundos",
+zeP:"O Sr. Manuel baixa a renda — e ganha. Toque em 🔊 para ligar o som. Animação criada com IA.",
 slogan:"Renda mais baixa — <span>rendimento mais alto</span>",
 zoneT:"Onde fica a fronteira",
 zone:"Com uma renda entre <strong>2 301 € e 2 760 €</strong>, compensa ao senhorio baixá-la para 2 300 €. A 2 760 € o líquido é igual nos dois casos; acima disso, compensa manter o valor e pagar 25 %.",
@@ -274,6 +286,8 @@ v_outT:"Above {be}, lowering to the cap doesn't pay",
 v_out_s:"Even at 25%, this rent leaves you {d} more per year than €2,300 at 10%.",
 v_out_i:"The tax argument won't work here: lowering to {lim} costs the landlord {d} a year. Negotiate on other grounds.",
 calcNote:"Simplified: rent × 12, no deductible expenses (IMI, condominium, repairs) and no englobamento. Not tax advice — your contabilista will do the exact figures.",
+zeT:"The cartoon in 20 seconds",
+zeP:"Mr Manuel lowers the rent — and wins. Tap 🔊 for sound. Animation created with AI.",
 slogan:"Lower rent — <span>higher income</span>",
 zoneT:"Where the line is",
 zone:"With a rent between <strong>€2,301 and €2,760</strong>, the landlord does better by lowering it to €2,300. At €2,760 the net is the same either way; above that, keeping the rent and paying 25% pays more.",
@@ -331,6 +345,8 @@ v_outT:"Выше {be} снижать до порога невыгодно",
 v_out_s:"Даже при 25 % такая цена даёт на руки на {d} в год больше, чем 2 300 € при 10 %.",
 v_out_i:"Здесь налоговый аргумент не сработает: при снижении до {lim} хозяин потеряет {d} в год. Торгуйтесь другими доводами.",
 calcNote:"Упрощённый расчёт: аренда × 12, без вычетов (IMI, кондоминиум, ремонт) и без englobamento. Это не налоговая консультация — точный расчёт сделает ваш contabilista.",
+zeT:"Мультик за 20 секунд",
+zeP:"Сеньор Мануэл снижает цену — и выигрывает. Нажмите 🔊, чтобы включить звук. Анимация создана с ИИ.",
 slogan:"Цена ниже — <span>доход выше</span>",
 zoneT:"Где проходит граница",
 zone:"При аренде от <strong>2 301 до 2 760 €</strong> хозяину выгоднее опустить её до 2 300 €. При 2 760 € доход на руках одинаков в обоих вариантах, а выше этой суммы выгоднее оставить цену и платить 25 %.",
@@ -388,6 +404,8 @@ v_outT:"Por encima de {be} no compensa bajar al límite",
 v_out_s:"Incluso al 25 %, este alquiler le deja {d} más al año que 2.300 € al 10 %.",
 v_out_i:"Aquí el argumento fiscal no funciona: al bajar a {lim} el propietario pierde {d} al año. Negocie con otros argumentos.",
 calcNote:"Cálculo simplificado: alquiler × 12, sin gastos deducibles (IMI, comunidad, obras) ni englobamento. No es asesoramiento fiscal: el cálculo exacto lo hace su contabilista.",
+zeT:"La animación en 20 segundos",
+zeP:"El Sr. Manuel baja el alquiler — y gana. Toque 🔊 para activar el sonido. Animación creada con IA.",
 slogan:"Alquiler más bajo — <span>ingreso más alto</span>",
 zoneT:"Dónde está la frontera",
 zone:"Con un alquiler entre <strong>2.301 € y 2.760 €</strong>, al propietario le compensa bajarlo a 2.300 €. A 2.760 € el neto es igual en ambos casos; por encima, compensa mantenerlo y pagar el 25 %.",
@@ -445,6 +463,8 @@ v_outT:"Über {be} lohnt sich das Senken nicht",
 v_out_s:"Selbst mit 25 % bleiben bei dieser Miete {d} pro Jahr mehr als bei 2.300 € mit 10 %.",
 v_out_i:"Hier zieht das Steuerargument nicht: Beim Senken auf {lim} verliert der Vermieter {d} im Jahr. Verhandeln Sie mit anderen Argumenten.",
 calcNote:"Vereinfacht: Miete × 12, ohne abziehbare Kosten (IMI, Hausgeld, Reparaturen) und ohne englobamento. Keine Steuerberatung — die genaue Rechnung macht Ihr contabilista.",
+zeT:"Der Zeichentrick in 20 Sekunden",
+zeP:"Herr Manuel senkt die Miete — und gewinnt. Tippen Sie auf 🔊 für Ton. Animation mit KI erstellt.",
 slogan:"Niedrigere Miete — <span>höheres Einkommen</span>",
 zoneT:"Wo die Grenze liegt",
 zone:"Bei einer Miete zwischen <strong>2.301 und 2.760 €</strong> fährt der Vermieter mit 2.300 € besser. Bei 2.760 € ist das Netto gleich; darüber lohnt es sich, die Miete zu halten und 25 % zu zahlen.",
@@ -508,6 +528,7 @@ function apply(){
   document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
   lsSet('ndm-lang',lang);
   if(window.calc)calc();
+  if(window.zeSrc)zeSrc();
   if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
   if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
 }
@@ -550,6 +571,12 @@ rng.style.setProperty('--z1',((LIM-MIN)/(MAX-MIN)*100)+'%');
 rng.style.setProperty('--z2',((BE-MIN)/(MAX-MIN)*100)+'%');
 rng.addEventListener('input',calc);window.calc=calc;
 document.querySelectorAll('.roles button').forEach(function(x){x.onclick=function(){role=x.getAttribute('data-r');lsSet('ndm-renda-role',role);calc();};});
+/* мультик с Зé: PT/RU — свои, остальным EN; играет без звука, когда виден */
+function zeSrc(){var v=document.getElementById('zeV');var k=lang==='pt'||lang==='ru'?lang:'en';
+  var u='/renda/video/ze_'+k+'.mp4';if(v.getAttribute('data-k')===k)return;v.setAttribute('data-k',k);
+  v.poster='/renda/video/ze_'+k+'.jpg';v.src=u;}
+window.zeSrc=zeSrc;
+if('IntersectionObserver' in window){var zv=document.getElementById('zeV');new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){zv.play().catch(function(){});}else zv.pause();});},{threshold:.5}).observe(zv);}
 /* шторка */
 var veil=document.getElementById('veil'),sh=document.getElementById('sheet');
 function openSheet(k){var t=L[lang];document.getElementById('shT').innerHTML=t[k+'T']||'';document.getElementById('shP').innerHTML=t[k]||'';
