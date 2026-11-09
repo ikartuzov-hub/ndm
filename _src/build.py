@@ -70,6 +70,7 @@ BAR = """<div class="bar">
 
 FOOTER = """<footer>
     © <span id="yr"></span> <a id="hubLink" href="https://seedwave.pt/hub/" target="_blank" rel="noopener">SeedWave</a>
+    · <a data-mad href="https://seedwave.pt/madeira/?lang=pt&amp;utm_source=ndm&amp;utm_medium=footer">Madeira</a>
     · <a href="https://www.linkedin.com/in/igor-kartuzov" target="_blank" rel="noopener">Igor Kartuzov</a>
   </footer>"""
 
