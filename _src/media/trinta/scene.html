@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#5E8C00;--accs:#F1F7E1;--grn:#0E6E63;--grns:#E0F2EE;--gold:#E3A21A;--golds:#FDF1D6;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6;--red:#C0392B;--lil:#8E5BA8}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--acc)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:30px;text-align:center;font-size:50px;font-weight:700;color:var(--ink);padding:0 40px;line-height:1.15}
+  #cap small{display:block;font-size:32px;font-weight:400;color:var(--soft);margin-top:10px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;color:var(--acc);font-weight:700}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px;font-weight:400}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"FUNCIONAMENTO 2030 · MADEIRA", bot:"calculadora gratuita · 5 línguas",
+   c1:"2025: tudo pago", c1s:"o Sr. Rui pagou as contas do café sozinho",
+   c2:"E os 30 % de volta?", c2s:"pergunta o Zé",
+   c3:"Custos de 2025 × 30 %", c3s:"renda, luz, água, Segurança Social, contabilidade",
+   c4:"Até 15 648 € de volta", c4s:"a fundo perdido · teto de 20 000 €",
+   c5:"Prazo: 04.12, 17h00", c5s:"e é um concurso: nem todos passam",
+   c6:"Faça a sua conta", c6s:"cinco cursores · sem escrever nada",
+   foot:"seedwave.pt/trinta", ai:"animação criada com IA",
+   man:"Sr. Rui", paid:"PAGO", rc:"CUSTOS 2025", tot:"TOTAL", upto:"até", mon:"DEZ",
+   rows:["Renda","Luz","Água","Seg. Social","Contabil."]},
+ ru:{top:"FUNCIONAMENTO 2030 · МАДЕЙРА", bot:"бесплатный калькулятор · 5 языков",
+   c1:"2025: всё оплачено", c1s:"сеньор Руй сам заплатил по счетам кафе",
+   c2:"А 30 % вернуть?", c2s:"спрашивает Зе",
+   c3:"Расходы 2025 × 30 %", c3s:"аренда, свет, вода, взносы SS, бухгалтер",
+   c4:"До 15 648 € обратно", c4s:"безвозвратно · потолок 20 000 €",
+   c5:"Срок: 04.12, 17:00", c5s:"и это конкурс: проходят не все",
+   c6:"Посчитай свою сумму", c6s:"пять ползунков · печатать не нужно",
+   foot:"seedwave.pt/trinta/ru", ai:"анимация создана с ИИ",
+   man:"Руй", paid:"ОПЛАЧЕНО", rc:"РАСХОДЫ 2025", tot:"ИТОГО", upto:"до", mon:"ДЕК",
+   rows:["Аренда","Свет","Вода","Взносы SS","Бухгалтер"]},
+ en:{top:"FUNCIONAMENTO 2030 · MADEIRA", bot:"free calculator · 5 languages",
+   c1:"2025: all paid", c1s:"Mr Rui paid the café's bills himself",
+   c2:"What about 30% back?", c2s:"asks Zé",
+   c3:"2025 costs × 30%", c3s:"rent, power, water, Social Security, accounting",
+   c4:"Up to €15,648 back", c4s:"non-repayable · €20,000 ceiling",
+   c5:"Deadline: 4 Dec, 17:00", c5s:"and it is a competition: not everyone passes",
+   c6:"Work out your figure", c6s:"five sliders · no typing",
+   foot:"seedwave.pt/trinta/en", ai:"animation created with AI",
+   man:"Mr Rui", paid:"PAID", rc:"2025 COSTS", tot:"TOTAL", upto:"up to", mon:"DEC",
+   rows:["Rent","Power","Water","Social Sec.","Accounting"]},
+};
+let T=L.pt;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eo=x=>1-Math.pow(1-x,3);
+const bk=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+function op(e,v){e.setAttribute('opacity',clamp(v))} function tr(e,s){e.setAttribute('transform',s)}
+const S=$('s');
+const fmt=(n,l)=>{const s=Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,l==='en'?',':' ');return l==='en'?'€'+s:s+' €'};
+let LG='pt';
+
+const AM=[18000,4800,960,26400,2000], TOTAL=52160, BACK=15648;
+// ---------- оплаченные счета (центр) ----------
+const BILLS=el('g',{},S); const bills=[];
+const BC=['#C24A18','#E3A21A','#2F6F8F','#8E5BA8'];
+for(let i=0;i<4;i++){const g=el('g',{},BILLS);
+  el('rect',{x:-95,y:-125,width:190,height:250,rx:10,fill:'#fff',stroke:'var(--line)','stroke-width':4},g);
+  el('circle',{cx:-62,cy:-90,r:14,fill:BC[i]},g);
+  el('path',{d:'M-36 -90 h100 M-70 -50 h140 M-70 -22 h110 M-70 6 h130',stroke:'#D9D0C7','stroke-width':10,'stroke-linecap':'round'},g);
+  const st=el('g',{transform:'rotate(-12)'},g);
+  el('rect',{x:-80,y:44,width:160,height:50,rx:8,fill:'none',stroke:'var(--red)','stroke-width':5},st);
+  const pt=txt(st,0,80,'',{'font-size':27,'font-weight':800,'text-anchor':'middle',fill:'var(--red)'});
+  bills.push({g,pt});}
+// ---------- чек ----------
+const RC=el('g',{opacity:0},S);
+el('path',{d:'M400 250 h330 v520 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16 l-22 16 l-22 -16z',fill:'#fff',stroke:'var(--line)','stroke-width':4},RC);
+const rcT=txt(RC,565,300,'',{'font-size':28,'font-weight':700,'text-anchor':'middle',fill:'var(--ink)',class:'m','letter-spacing':'2'});
+el('path',{d:'M424 322 h282',stroke:'#B9AFA6','stroke-width':3,'stroke-dasharray':'8 8'},RC);
+const rows=[];for(let i=0;i<5;i++){const y=368+i*52;const a=txt(RC,424,y,'',{'font-size':27,fill:'var(--ink)'});const b=txt(RC,706,y,'',{'font-size':27,'font-weight':700,'text-anchor':'end',fill:'var(--ink)',class:'m'});rows.push({a,b})}
+el('path',{d:'M424 606 h282',stroke:'var(--ink)','stroke-width':4},RC);
+const totL=txt(RC,424,650,'',{'font-size':26,'font-weight':700,fill:'var(--soft)'});
+const totV=txt(RC,706,654,'',{'font-size':36,'font-weight':800,'text-anchor':'end',fill:'var(--ink)',class:'m'});
+const STAMP=el('g',{opacity:0},S);
+el('rect',{x:-95,y:-46,width:190,height:92,rx:14,fill:'#fff',stroke:'var(--acc)','stroke-width':8},STAMP);
+const stT=txt(STAMP,0,20,'',{'font-size':56,'font-weight':900,'text-anchor':'middle',fill:'var(--acc)'});
+// ---------- выигрыш ----------
+const PLUS=el('g',{opacity:0},S);
+el('rect',{x:-205,y:-58,width:410,height:116,rx:28,fill:'var(--golds)',stroke:'var(--gold)','stroke-width':6},PLUS);
+const plusT=txt(PLUS,0,18,'',{'font-size':50,'font-weight':800,'text-anchor':'middle',fill:'var(--ink)'});
+const coins=[];for(let i=0;i<14;i++){const g=el('g',{opacity:0},S);el('circle',{cx:0,cy:0,r:22,fill:'var(--gold)',stroke:'#B8800F','stroke-width':4},g);txt(g,0,9,'€',{'font-size':24,'font-weight':800,'text-anchor':'middle',fill:'#7A5208'});coins.push(g)}
+// ---------- календарь + тревога ----------
+const CAL=el('g',{opacity:0},S);
+el('rect',{x:-130,y:-150,width:260,height:300,rx:22,fill:'#fff',stroke:'var(--line)','stroke-width':5},CAL);
+el('path',{d:'M-130 -128 q0 -22 22 -22 h216 q22 0 22 22 v52 h-260z',fill:'var(--red)'},CAL);
+const calM=txt(CAL,0,-92,'',{'font-size':40,'font-weight':800,'text-anchor':'middle',fill:'#fff','letter-spacing':'4'});
+txt(CAL,0,52,'4',{'font-size':170,'font-weight':900,'text-anchor':'middle',fill:'var(--ink)'});
+txt(CAL,0,118,'17:00',{'font-size':46,'font-weight':800,'text-anchor':'middle',fill:'var(--red)',class:'m'});
+const ALERT=el('g',{opacity:0},S);
+el('path',{d:'M0 -90 L95 75 H-95z',fill:'var(--red)'},ALERT);txt(ALERT,0,50,'!',{'font-size':110,'font-weight':900,'text-anchor':'middle',fill:'#fff'});
+
+// ---------- hero Zé (left) — как в эталоне, не перерисовывать ----------
+// ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{id:'man'},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+// Гардероб Зé: уровень образа по уровню проекта (принято 08.11.2026, паспорт Зé в Notion).
+// Вставлять в scene.html ПОСЛЕ блока «hero Zé» (нужны переменные manRoot, legs, armL, armR) и вызвать zeLook(N).
+// 1 — Простой Зé: рубашка #2F6F8F, без растительности (бюрократия для людей, гиды nDm).
+// 2 — Зé-предприниматель: тёмно-синий блейзер, аккуратные усы, коричневые туфли (ИП, малый бизнес, Prazos).
+// 3 — Зé-консультант / банкир: похудел и подкачался, белая рубашка, приталенный костюм, часы, кейс
+//     (субсидии организаций: Painel de Apoios, Portugal 2030, Funcionamento).
+function zeLook(level){
+  if(level<2) return;
+  if(level>=3) return zeBanker();
+  const JK='#24384F';
+  const jk=el('g',{},manRoot); manRoot.insertBefore(jk,armL);
+  el('path',{d:'M140 470 q0 -40 40 -40 h22 l13 60 l13 -60 h22 q40 0 40 40 v150 h-150z',fill:JK},jk);
+  el('path',{d:'M202 430 l13 60 l-26 -20z M228 430 l-13 60 l26 -20z',fill:'#1A2A3C'},jk);
+  el('circle',{cx:215,cy:560,r:5,fill:'#C9A227'},jk);
+  armL.querySelector('path').setAttribute('stroke',JK); armR.querySelector('path').setAttribute('stroke',JK);
+  el('path',{d:'M190 372 q25 -14 50 0 q-12 8 -25 3 q-13 5 -25 -3z',fill:'#4A2E1E'},manRoot);   // усы
+  legs.querySelectorAll('ellipse').forEach(e=>e.setAttribute('fill','#6B3B1F'));             // коричневые туфли
+}
+// 3 — Зé-консультант / банкир: похудел и подкачался (V-силуэт, без второго подбородка),
+// белая рубашка, приталенный тёмно-синий костюм, галстук цвета акцента, платок в кармане,
+// золотые часы, короткая ухоженная борода, чёрные лакированные туфли, тонкий кейс.
+function zeBanker(){
+  const SUIT='#1B2433', SUIT2='#121925';
+  // убрать «второй подбородок» и старое туловище
+  manRoot.querySelectorAll('path').forEach(p=>{if(p.getAttribute('opacity')==='0.35'||p.getAttribute('opacity')==='.35')p.remove()});
+  manRoot.querySelectorAll('rect').forEach(r=>{if(r.getAttribute('fill')==='var(--teal)')r.remove()});
+  // ноги стройнее, костюмные брюки, лакированные туфли
+  legs.innerHTML='';
+  el('rect',{x:170,y:600,width:36,height:150,rx:14,fill:SUIT},legs); el('rect',{x:224,y:600,width:36,height:150,rx:14,fill:SUIT},legs);
+  el('path',{d:'M150 752 q2 -14 22 -14 h26 q10 0 10 14z M222 752 q0 -14 10 -14 h26 q20 0 22 14z',fill:'#0E0E12'},legs);
+  el('path',{d:'M160 744 h18 M236 744 h18',stroke:'#fff','stroke-width':3,'stroke-linecap':'round',opacity:.5},legs);
+  const body=el('g',{},manRoot); manRoot.insertBefore(body,armL);
+  // белая рубашка, V-силуэт: широкие плечи, узкая талия
+  el('path',{d:'M146 470 q0 -40 40 -42 h58 q40 2 40 42 l-20 150 h-98z',fill:'#FFFFFF',stroke:'#E3E6EA','stroke-width':2},body);
+  // пиджак: две полы, открытая грудь
+  el('path',{d:'M146 470 q0 -40 40 -42 h10 l12 66 l-10 126 h-44z',fill:SUIT},body);
+  el('path',{d:'M284 470 q0 -40 -40 -42 h-10 l-12 66 l10 126 h44z',fill:SUIT},body);
+  el('path',{d:'M196 428 l12 66 l-26 -32z M234 428 l-12 66 l26 -32z',fill:SUIT2},body);          // лацканы
+  el('path',{d:'M215 540 v70',stroke:'#E3E6EA','stroke-width':2},body); el('circle',{cx:215,cy:556,r:2.5,fill:'#C9CDD3'},body); el('circle',{cx:215,cy:586,r:2.5,fill:'#C9CDD3'},body); // пуговицы рубашки
+  el('path',{d:'M207 430 h16 l5 16 l-13 74 l-13 -74z',fill:'var(--acc)'},body);                  // галстук
+  el('path',{d:'M203 430 l12 12 l12 -12',fill:'none',stroke:'#E3E6EA','stroke-width':3},body);  // воротник
+  el('path',{d:'M244 512 l18 -4 l2 8 l-18 4z',fill:'#FFFFFF'},body);                             // платок в кармане
+  // лицо стройнее: голова чуть уже, уши ближе
+  manRoot.querySelectorAll('circle').forEach(c=>{const cx=+c.getAttribute('cx'),cy=+c.getAttribute('cy'),r=+c.getAttribute('r');
+    if(cx===215&&cy===345&&r===78)c.setAttribute('transform','translate(215 345) scale(0.9 1) translate(-215 -345)');
+    if(cy===350&&(cx===137||cx===293))c.setAttribute('cx',cx===137?145:285);});
+  // руки в рукавах костюма, тоньше; золотые часы на левом запястье
+  [armL,armR].forEach(a=>{const p=a.querySelector('path');p.setAttribute('stroke',SUIT);p.setAttribute('stroke-width',26);});
+  el('rect',{x:80,y:548,width:22,height:12,rx:4,fill:'#D4AF37',transform:'rotate(-60 91 554)'},armL);
+  // короткая ухоженная борода + усы
+  el('path',{d:'M166 376 q6 44 49 48 q43 -4 49 -48 q-8 22 -49 24 q-41 -2 -49 -24z',fill:'#3E2617'},manRoot);
+  el('path',{d:'M188 372 q27 -12 54 0 q-14 7 -27 3 q-13 4 -27 -3z',fill:'#3E2617'},manRoot);
+  // тонкий кожаный кейс
+  const bc=el('g',{transform:'translate(58 584)'},armL);
+  el('rect',{x:-14,y:-6,width:30,height:12,rx:5,fill:'none',stroke:'#2A1C14','stroke-width':4},bc);
+  el('rect',{x:-40,y:4,width:84,height:58,rx:7,fill:'#3A2416'},bc);
+  el('rect',{x:-4,y:22,width:12,height:7,rx:2,fill:'#D4AF37'},bc);
+}
+
+zeLook(2);
+
+// ---------- Sr. Rui (справа): хозяин кафе, тёмные волосы, зелёный фартук ----------
+const R=el('g',{id:'rui'},S); const rRoot=el('g',{},R);
+el('rect',{x:800,y:600,width:42,height:150,rx:18,fill:'#4A4038'},rRoot); el('rect',{x:856,y:600,width:42,height:150,rx:18,fill:'#4A4038'},rRoot);
+el('ellipse',{cx:820,cy:752,rx:36,ry:13,fill:'#1F1A17'},rRoot); el('ellipse',{cx:876,cy:752,rx:36,ry:13,fill:'#1F1A17'},rRoot);
+el('rect',{x:772,y:430,width:154,height:195,rx:40,fill:'#F4EEE6'},rRoot);
+el('path',{d:'M806 478 h86 v170 q0 12 -12 12 h-62 q-12 0 -12 -12z',fill:'#3F6B2A'},rRoot);
+el('path',{d:'M812 478 q37 -56 74 0',fill:'none',stroke:'#3F6B2A','stroke-width':8},rRoot);
+el('rect',{x:826,y:560,width:46,height:36,rx:6,fill:'none',stroke:'#2C4C1D','stroke-width':4},rRoot);
+el('circle',{cx:849,cy:345,r:76,fill:'var(--skin)'},rRoot);
+el('path',{d:'M775 330 q-6 -84 74 -86 q80 2 74 86 q-12 -44 -74 -46 q-62 2 -74 46z',fill:'#3A2A22'},rRoot);
+const rEyeL=el('ellipse',{cx:827,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot); const rEyeR=el('ellipse',{cx:871,cy:345,rx:6,ry:7,fill:'#1F1A17'},rRoot);
+const rBrowL=el('path',{d:'M810 322 l28 -2',stroke:'#3A2A22','stroke-width':6,'stroke-linecap':'round',fill:'none'},rRoot);
+const rBrowR=el('path',{d:'M858 320 l28 2',stroke:'#3A2A22','stroke-width':6,'stroke-linecap':'round',fill:'none'},rRoot);
+const rMouth=el('path',{d:'M834 396 h30',stroke:'#8C3B2A','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rCheeks=el('g',{opacity:0},rRoot); el('circle',{cx:808,cy:368,r:9,fill:'#F2A08A'},rCheeks); el('circle',{cx:890,cy:368,r:9,fill:'#F2A08A'},rCheeks);
+const rArmL=el('g',{},rRoot); el('path',{d:'M786 470 l-50 100',stroke:'#F4EEE6','stroke-width':28,'stroke-linecap':'round'},rArmL); el('circle',{cx:736,cy:572,r:20,fill:'var(--skin)'},rArmL);
+const rArmR=el('g',{},rRoot); el('path',{d:'M912 470 l50 100',stroke:'#F4EEE6','stroke-width':28,'stroke-linecap':'round'},rArmR); el('circle',{cx:962,cy:572,r:20,fill:'var(--skin)'},rArmR);
+const sigh=[]; for(let i=0;i<3;i++){const q=txt(R,780+i*56,228-(i%2)*30,'€',{'font-size':50,'font-weight':800,fill:'var(--soft)',opacity:0});sigh.push(q)}
+const sweat=el('path',{d:'M930 300 q-10 18 0 26 q10 -8 0 -26z',fill:'#7FB3D5',opacity:0},R);
+const nameTag=txt(R,849,800,'',{'font-size':28,fill:'var(--soft)','text-anchor':'middle'});
+
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+function setLang(l){T=L[l]||L.pt;LG=l;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;nameTag.textContent=T.man;
+  bills.forEach(b=>b.pt.textContent=T.paid); rcT.textContent=T.rc; totL.textContent=T.tot; calM.textContent=T.mon; stT.textContent=l==='en'?'× 30%':'× 30 %';
+  rows.forEach((r,i)=>{r.a.textContent=T.rows[i]});}
+setLang('pt');
+// 0–4 счета оплачены · 4–7.5 Зé: 30 %? · 7.5–12 чек считает · 12–15 «до 15 648 €» + монеты · 15–18 срок и конкурс · 18–21 финал
+const DUR=21;
+const BP=[[470,470,-9],[560,440,5],[650,480,12],[565,570,-3]];
+function render(t){
+  let c;
+  if(t<4)c=[T.c1,T.c1s]; else if(t<7.5)c=[T.c2,T.c2s]; else if(t<12)c=[T.c3,T.c3s]; else if(t<15)c=[T.c4,T.c4s]; else if(t<18)c=[T.c5,T.c5s]; else c=[T.c6,T.c6s];
+  cap(c[0],c[1]); $('cap').style.opacity=t<.5?seg(t,0,.5):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>18.1?seg(t,18.1,18.7):0;
+  // ---- Zé ----
+  op(G,seg(t,4,4.5)); let zs=t<4.6?.6+.4*bk(seg(t,4,4.6)):1;
+  let zMood=(t>9&&t<15)||t>18?'happy':'neutral';
+  mouth.setAttribute('d',zMood==='happy'?'M186 378 q29 30 58 0':'M192 384 h44'); op(cheekL,zMood==='happy'?1:0); op(cheekR,zMood==='happy'?1:0);
+  let ang=0,fi=0,th=0,wob=0;
+  if(t>4.4&&t<7.3){const u=seg(t,4.4,4.9)*(1-seg(t,6.9,7.3));ang=-75*eio(u);fi=u;wob=Math.sin(t*10)*6*u}
+  if(t>15.4&&t<17.6){const u=seg(t,15.4,15.8)*(1-seg(t,17.2,17.6));ang=-95*eio(u);fi=u;}
+  if(t>18.4){const u=bk(seg(t,18.4,19));ang=-125*u;th=u;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(finger,fi); op(thumb,th); op(handR,1-Math.max(fi,th));
+  tr(finger,`rotate(${-(ang+wob)} 340 580)`); tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  const wk=(t>19.6&&t<20)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  op(puff,t>4.6&&t<7.2?1:0);
+  let dy=0,rot=0; if(t>18){const u=seg(t,18,18.4);dy=-22*Math.abs(Math.sin((t-18)*7))*u;rot=4*Math.sin((t-18)*7)*u;}
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${zs}) translate(-215 -600)`);
+  // ---- Rui ----
+  op(R,seg(t,0,.4));
+  let rm='bored'; if(t>4.8&&t<7.5)rm='shock'; if(t>10.6&&t<15)rm='happy'; if(t>15.3&&t<17.6)rm='shock'; if(t>17.8)rm='happy';
+  rMouth.setAttribute('d',rm==='happy'?'M830 390 q19 22 38 0':rm==='shock'?'M842 396 a7 9 0 1 0 14 0 a7 9 0 1 0 -14 0':'M834 400 q15 -8 30 0');
+  rBrowL.setAttribute('d',rm==='shock'?'M810 312 l28 -8':rm==='happy'?'M810 318 l28 -4':'M810 318 l28 6'); rBrowR.setAttribute('d',rm==='shock'?'M858 304 l28 8':rm==='happy'?'M858 314 l28 4':'M858 324 l28 -6');
+  op(rCheeks,rm==='happy'?1:0); op(sweat,(t>1&&t<4)||(t>15.5&&t<17.6)?1:0); tr(sweat,`translate(0 ${((t*40)%30)})`);
+  sigh.forEach((q,i)=>{const t0=.8+i*.9;const u=seg(t,t0,t0+1.4);op(q,t<4.2&&u>0&&u<1?1-u:0);tr(q,`translate(0 ${-70*u})`)});
+  let ra=0,la=0,rdy=0,rrot=0;
+  if(t>4.8&&t<7.4){const u=seg(t,4.8,5.1)*(1-seg(t,7,7.4));ra=-60*u;la=60*u;}
+  if(t>12.2&&t<15){const u=seg(t,12.2,12.6)*(1-seg(t,14.6,15));ra=-150*u;la=150*u;}
+  if(t>18){const u=seg(t,18,18.4);rdy=-20*Math.abs(Math.sin((t-18)*7+1))*u;rrot=-4*Math.sin((t-18)*7)*u;ra=-120*u;la=120*u;}
+  tr(rArmR,`rotate(${ra} 912 470)`); tr(rArmL,`rotate(${la} 786 470)`);
+  tr(rRoot,`translate(0 ${rdy+(t<4.2?4*Math.sin(t*2.2):0)}) rotate(${rrot} 849 600)`);
+  // ---- счета: падают по одному 0.3–2.7, затем улетают в чек 7.5–8.3 ----
+  bills.forEach((b,i)=>{const t0=.3+i*.6;const inn=bk(seg(t,t0,t0+.45));const out=eio(seg(t,7.5+i*.12,8.1+i*.12));
+    const [x,y,r]=BP[i];const s=(.3+.7*inn)*(1-.75*out);
+    op(b.g,seg(t,t0,t0+.15)*(1-seg(t,7.9+i*.12,8.1+i*.12)));
+    tr(b.g,`translate(${x+(565-x)*out} ${y-(1-inn)*260+(420-y)*out}) rotate(${r*(1-out)}) scale(${s})`);
+    const st=b.g.lastChild; op(st,seg(t,t0+.5,t0+.6)); });
+  // ---- чек 7.9–12: строки по одной, итог катится ----
+  {const o=seg(t,7.9,8.3)*(1-seg(t,11.7,12));op(RC,o); const p=seg(t,7.9,8.4);tr(RC,`translate(-28 ${-30*(1-eo(p))})`);
+   let sum=0;
+   rows.forEach((r,i)=>{const t0=8.4+i*.42;const u=seg(t,t0,t0+.3);op(r.a,u);op(r.b,u);r.b.textContent=fmt(AM[i],LG);sum+=AM[i]*eo(seg(t,t0,t0+.4))});
+   totV.textContent=fmt(sum,LG); op(totV,seg(t,8.4,8.6)); op(totL,seg(t,8.4,8.6));
+   const s=bk(seg(t,10.7,11.1));op(STAMP,seg(t,10.7,10.8)*(1-seg(t,11.7,12)));tr(STAMP,`translate(560 722) rotate(-8) scale(${2.2-1.2*Math.min(1,s)})`);}
+  // ---- выигрыш 12–15 ----
+  {const p=bk(seg(t,12,12.5));op(PLUS,seg(t,12,12.2)*(1-seg(t,14.7,15)));
+   plusT.textContent=T.upto+' '+fmt(BACK*eo(seg(t,12.1,13.3)),LG);
+   tr(PLUS,`translate(535 340) scale(${p*(1+.03*Math.sin(t*5))})`);}
+  coins.forEach((g,i)=>{const t0=12.5+i*.15;const u=seg(t,t0,t0+.8);op(g,u>0&&u<1?1:0);
+    const x=470+((i*61)%190)+(849-560)*eio(u), y=480+((i*37)%60)+Math.sin(u*Math.PI)*-120+110*u;tr(g,`translate(${x} ${y}) rotate(${u*360})`)});
+  // ---- срок 15–18 ----
+  {const a=bk(seg(t,15.1,15.5));const o=seg(t,15.1,15.3)*(1-seg(t,17.6,17.9));op(CAL,o);tr(CAL,`translate(565 470) scale(${a}) rotate(${Math.sin(t*30)*1.2*seg(t,16,16.2)})`);
+   const b=bk(seg(t,16,16.4));op(ALERT,seg(t,16,16.1)*(1-seg(t,17.6,17.9)));tr(ALERT,`translate(700 330) scale(${.55*b+.03*Math.sin(t*12)})`);}
+  // ---- финал 18–21: мини-чек с итогом ----
+  {const o=seg(t,18.1,18.5);if(t>=18){op(RC,o);tr(RC,'translate(-28 0)');rows.forEach((r,i)=>{op(r.a,1);op(r.b,1);r.b.textContent=fmt(AM[i],LG)});totV.textContent=fmt(TOTAL,LG);op(totV,1);op(totL,1);
+    op(STAMP,o);tr(STAMP,'translate(560 722) rotate(-8) scale(1)');}}
+}
+render(0);
+</script></body></html>
