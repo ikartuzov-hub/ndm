@@ -411,12 +411,13 @@ m.onclick=function(e){var b=e.target.closest('button');if(!b)return;var k=b.getA
 document.addEventListener('click',function(){m.classList.remove('on');});
 document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
 document.getElementById('cases').onclick=function(e){var b=e.target.closest('button');if(!b)return;var n=+b.getAttribute('data-c');setCase(curCase===n?0:n);tr('acidente_case',{c:n});};
-/* мультик с Зé — сессия 3: блок покажется сам, когда в /acidente/video/ появятся ролики (ZE=true) */
-var ZE=false;
+/* мультик с Зé (эпизод 06): свой на каждом из 5 языков; играет без звука, когда виден */
+var ZE=true;
 function zeSrc(){if(!ZE)return;var box=document.getElementById('ze');box.hidden=false;var v=document.getElementById('zeV');
   if(v.getAttribute('data-k')===lang)return;v.setAttribute('data-k',lang);
-  var k=(lang==='pt'||lang==='ru'||lang==='en')?lang:'en';
+  var k=lang;
   v.poster='/acidente/video/ze_'+k+'.jpg';v.src='/acidente/video/ze_'+k+'.mp4';}
+if('IntersectionObserver' in window){var zv=document.getElementById('zeV');new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){zv.play().catch(function(){});}else zv.pause();});},{threshold:.5}).observe(zv);}
 /* полноэкранная фраза + голос PT-PT */
 var big=document.getElementById('big'),cur=0;
 function show(i){cur=(i+PH.length)%PH.length;document.getElementById('bigPt').textContent=PH[cur].pt;
