@@ -119,4 +119,4 @@ src6:"CGD — accident with a rental car",
 share:"Send to a friend",
 shareText:"Car accident in Portugal without speaking Portuguese: the first 5 minutes, full-screen phrases and the accident form box by box.",
 wa:"New guides on our WhatsApp channel",
-foot2:"Not legal advice. Rules checked against official sources on 15.11.2026. Art. 88 and 89 of the Código da Estrada — from secondary sources."};
+foot2:"Not legal advice. Rules checked against official sources on 15.11.2026. Código da Estrada (Art. 85, 88, 89) — ANSR 2026 republication."};

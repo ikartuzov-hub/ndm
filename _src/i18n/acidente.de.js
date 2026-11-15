@@ -119,4 +119,4 @@ src6:"CGD — Unfall mit dem Mietwagen",
 share:"An Freunde senden",
 shareText:"Autounfall in Portugal ohne Portugiesisch: die ersten 5 Minuten, Sätze im Vollbild und der Unfallbericht Feld für Feld.",
 wa:"Neue Ratgeber im WhatsApp-Kanal",
-foot2:"Keine Rechtsberatung. Regeln am 15.11.2026 anhand offizieller Quellen geprüft. Art. 88 und 89 des Código da Estrada — nach Sekundärquellen."};
+foot2:"Keine Rechtsberatung. Regeln am 15.11.2026 anhand offizieller Quellen geprüft. Código da Estrada (Art. 85, 88, 89) — ANSR-Neufassung 2026."};

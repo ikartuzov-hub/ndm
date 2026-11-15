@@ -118,4 +118,4 @@ src6:"CGD — Acidente com carro alugado",
 share:"Enviar a um amigo",
 shareText:"Acidente de carro em Portugal sem falar português: os primeiros 5 minutos, frases em ecrã inteiro e a declaração amigável campo a campo.",
 wa:"Novos guias no canal de WhatsApp",
-foot2:"Não é aconselhamento jurídico. Regras confirmadas nas fontes oficiais a 15.11.2026. Art. 88.º e 89.º do Código da Estrada — por fontes secundárias."};
+foot2:"Não é aconselhamento jurídico. Regras confirmadas nas fontes oficiais a 15.11.2026. Código da Estrada (art. 85.º, 88.º e 89.º) — republicação ANSR 2026."};

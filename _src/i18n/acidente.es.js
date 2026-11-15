@@ -119,4 +119,4 @@ src6:"CGD: accidente con coche de alquiler",
 share:"Enviar a un amigo",
 shareText:"Accidente de coche en Portugal sin hablar portugués: los primeros 5 minutos, frases a pantalla completa y el parte casilla a casilla.",
 wa:"Nuevas guías en el canal de WhatsApp",
-foot2:"No es asesoramiento jurídico. Normas comprobadas en fuentes oficiales el 15.11.2026. Art. 88 y 89 del Código da Estrada: por fuentes secundarias."};
+foot2:"No es asesoramiento jurídico. Normas comprobadas en fuentes oficiales el 15.11.2026. Código da Estrada (art. 85, 88 y 89): republicación de la ANSR 2026."};
