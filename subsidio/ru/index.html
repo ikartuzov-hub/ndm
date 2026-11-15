@@ -409,7 +409,82 @@ footer a:hover{color:var(--accent)}
     <button class="share" id="share" type="button"><span data-t="shareBtn">Отправить эту инструкцию</span></button>
   </section>
 
-  <footer>
+  <style>
+.lisb{--lb:#F6F5FF;--ll:#E4E1FB;--la:#6D5DFC;--lah:#5445E6;--li:#1B1A2E;--lm:#5C5B78;--lon:#fff;
+ box-sizing:border-box;max-width:560px;margin:36px auto 8px;padding:18px 18px 16px;border:2px solid var(--la);border-radius:16px;
+ background:var(--lb);color:var(--li);font:400 16px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:left}
+:root[data-theme="dark"] .lisb{--lb:#1A1A33;--ll:#2E2C55;--la:#8B7DFF;--lah:#A297FF;--li:#F1EFFF;--lm:#A9A6C9;--lon:#121226}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]) .lisb{--lb:#1A1A33;--ll:#2E2C55;--la:#8B7DFF;--lah:#A297FF;--li:#F1EFFF;--lm:#A9A6C9;--lon:#121226}}
+.lisb *{box-sizing:border-box}
+.lisb-top{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.lisb-top svg{width:38px;height:38px;flex:none;border:1px solid var(--ll);border-radius:11px;padding:5px;background:transparent}
+.lisb-top b{display:block;font-weight:600;font-size:16px;line-height:1.2}
+.lisb-top small{display:block;font-size:13px;color:var(--lm)}
+.lisb h3{margin:0 0 10px;font:600 18px/1.3 inherit;font-family:inherit;color:var(--li)}
+.lisb ul{list-style:none;margin:0 0 10px;padding:0}
+.lisb li{position:relative;padding:3px 0 3px 26px;font-size:15.5px;color:var(--li)}
+.lisb li::before{content:"";position:absolute;left:4px;top:9px;width:11px;height:6px;border-left:2px solid var(--la);border-bottom:2px solid var(--la);transform:rotate(-45deg)}
+.lisb p{margin:0 0 8px;font-size:15px;color:var(--lm)}
+.lisb p.lisb-tail{color:var(--li);font-weight:500}
+.lisb a.lisb-btn{display:block;margin:12px 0 10px;padding:13px 16px;border-radius:12px;background:var(--la);color:var(--lon);
+ font-weight:600;font-size:16.5px;text-align:center;text-decoration:none;min-height:48px}
+.lisb a.lisb-btn:hover,.lisb a.lisb-btn:focus-visible{background:var(--lah);outline:none}
+.lisb p.lisb-note{font-size:12.5px;margin:0}
+@media print{.lisb{display:none}}
+</style>
+<aside class="lisb" id="lisBridge" data-guide="voos" aria-label="Lis">
+  <div class="lisb-top"><svg viewBox="0 0 100 100" fill="none" stroke="var(--la)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M35 18 L35 66 L60 66"></path><path d="M14 84 Q26 78 38 84 Q50 90 62 84 Q74 78 86 84"></path></svg>
+    <div><b>Lis</b><small data-lb="sub">ИИ-секретарь · сделан на Мадейре</small></div></div>
+  <h3 data-lb="h">Эту заявку подавали вдвоём: человек и его ИИ-секретарь</h3>
+  <ul data-lb="l"><li>разобрал счёт авиакомпании до строки</li><li>заполнил поля портала и сверил суммы</li><li>заметил, что портал занизил возврат на 170 €</li></ul>
+  <p data-lb="m">Человек вошёл своим ключом и нажал «Отправить».</p>
+  <p class="lisb-tail" data-lb="tail">Лис — такой же секретарь, настроенный под тебя.</p>
+  <a class="lisb-btn" id="lisBridgeBtn" href="https://l.seedwave.pt/?lang=ru&amp;utm_source=ndm&amp;utm_medium=bridge&amp;utm_campaign=voos" rel="noopener"><span data-lb="btn">Хочу такого же</span> →</a>
+  <p class="lisb-note" data-lb="note">Лис работает только с тем, к чему ты сам открыл доступ.</p>
+</aside>
+<script>
+(function(){
+var T={
+ru:{sub:"ИИ-секретарь · сделан на Мадейре",tail:"Лис — такой же секретарь, настроенный под тебя.",btn:"Хочу такого же",note:"Лис работает только с тем, к чему ты сам открыл доступ.",
+ voos:{h:"Эту заявку подавали вдвоём: человек и его ИИ-секретарь",l:["разобрал счёт авиакомпании до строки","заполнил поля портала и сверил суммы","заметил, что портал занизил возврат на 170 €"],m:"Человек вошёл своим ключом и нажал «Отправить»."},
+ cesd:{h:"Эту карту получали вдвоём: человек и его ИИ-секретарь",l:["провёл запасным путём, когда портал отказал","составил обращение на португальском","следил за ответом службы до самой поездки"],m:"Человек вошёл своим ключом и поставил подпись."},
+ acidente:{h:"Этот гид вырос из настоящего ДТП. Рядом был ИИ-секретарь",l:["голосом подсказал порядок действий на месте","дал фразы по-португальски для звонка в полицию","собрал план: страховая, сроки, подменная машина"],m:"Решения принимал человек."}},
+pt:{sub:"Secretário de IA · feito na Madeira",tail:"O Lis é um secretário assim, configurado à medida de cada pessoa.",btn:"Quero um igual",note:"O Lis só trabalha com aquilo a que a própria pessoa deu acesso.",
+ voos:{h:"Este pedido foi feito a dois: uma pessoa e o seu secretário de IA",l:["leu a fatura da companhia aérea linha a linha","preencheu os campos do portal e conferiu os valores","reparou que o portal tinha reduzido o reembolso em 170 €"],m:"A pessoa entrou com a sua chave e carregou em «Submeter»."},
+ cesd:{h:"Este cartão foi obtido a dois: uma pessoa e o seu secretário de IA",l:["indicou o caminho alternativo quando o portal recusou","redigiu o pedido em português","acompanhou a resposta dos serviços até à viagem"],m:"A pessoa entrou com a sua chave e assinou."},
+ acidente:{h:"Este guia nasceu de um acidente real. Ao lado estava um secretário de IA",l:["indicou por voz, no local, o que fazer primeiro","deu as frases em português para ligar à polícia","preparou o plano: seguradora, prazos, viatura de substituição"],m:"As decisões foram da pessoa."}},
+en:{sub:"AI secretary · made in Madeira",tail:"Lis is a secretary like that, set up for one person at a time.",btn:"I want one too",note:"Lis only works with what its owner has opened access to.",
+ voos:{h:"This claim was filed by two: a person and their AI secretary",l:["read the airline invoice line by line","filled in the portal fields and checked the amounts","noticed the portal had cut the refund by €170"],m:"The person signed in with their own key and pressed Submit."},
+ cesd:{h:"This card was obtained by two: a person and their AI secretary",l:["showed the fallback route when the portal refused","drafted the request in Portuguese","kept track of the reply right up to the trip"],m:"The person signed in with their own key and signed."},
+ acidente:{h:"This guide grew out of a real accident. An AI secretary was alongside",l:["talked through what to do first, by voice, on the spot","gave the Portuguese phrases for calling the police","put together the plan: insurer, deadlines, replacement car"],m:"The decisions were the person's."}},
+es:{sub:"Secretario de IA · hecho en Madeira",tail:"Lis es un secretario así, configurado a la medida de cada persona.",btn:"Quiero uno igual",note:"Lis solo trabaja con aquello a lo que la propia persona dio acceso.",
+ voos:{h:"Esta solicitud se hizo entre dos: una persona y su secretario de IA",l:["leyó la factura de la aerolínea línea por línea","rellenó los campos del portal y comprobó los importes","detectó que el portal había reducido el reembolso en 170 €"],m:"La persona entró con su clave y pulsó «Submeter»."},
+ cesd:{h:"Esta tarjeta se consiguió entre dos: una persona y su secretario de IA",l:["indicó la vía alternativa cuando el portal la rechazó","redactó la solicitud en portugués","siguió la respuesta del organismo hasta el viaje"],m:"La persona entró con su clave y firmó."},
+ acidente:{h:"Esta guía nació de un accidente real. Al lado había un secretario de IA",l:["indicó por voz, en el lugar, qué hacer primero","dio las frases en portugués para llamar a la policía","preparó el plan: aseguradora, plazos, coche de sustitución"],m:"Las decisiones las tomó la persona."}},
+de:{sub:"KI-Sekretär · gemacht auf Madeira",tail:"Lis ist so ein Sekretär, eingerichtet für genau einen Menschen.",btn:"So einen will ich",note:"Lis arbeitet nur mit dem, wofür sein Besitzer selbst den Zugang geöffnet hat.",
+ voos:{h:"Diesen Antrag haben zwei gestellt: ein Mensch und sein KI-Sekretär",l:["hat die Rechnung der Airline Zeile für Zeile gelesen","hat die Felder im Portal ausgefüllt und die Beträge geprüft","hat bemerkt, dass das Portal die Erstattung um 170 € gekürzt hatte"],m:"Der Mensch hat sich mit seinem Schlüssel angemeldet und auf «Submeter» gedrückt."},
+ cesd:{h:"Diese Karte haben zwei bekommen: ein Mensch und sein KI-Sekretär",l:["hat den Ausweichweg gezeigt, als das Portal ablehnte","hat die Anfrage auf Portugiesisch verfasst","hat die Antwort der Behörde bis zur Reise verfolgt"],m:"Der Mensch hat sich mit seinem Schlüssel angemeldet und unterschrieben."},
+ acidente:{h:"Dieser Leitfaden entstand aus einem echten Unfall. Ein KI-Sekretär war dabei",l:["hat vor Ort per Stimme gesagt, was zuerst zu tun ist","hat die portugiesischen Sätze für den Anruf bei der Polizei geliefert","hat den Plan erstellt: Versicherung, Fristen, Ersatzwagen"],m:"Entschieden hat der Mensch."}}
+};
+var box=document.getElementById('lisBridge');if(!box)return;
+var g=box.getAttribute('data-guide'),btn=document.getElementById('lisBridgeBtn');
+function L(){var h=(document.documentElement.getAttribute('lang')||'pt').slice(0,2).toLowerCase();return T[h]?h:'pt';}
+function paint(){var k=L(),t=T[k],s=t[g];
+  var v={sub:t.sub,h:s.h,m:s.m,tail:t.tail,btn:t.btn,note:t.note};
+  box.querySelectorAll('[data-lb]').forEach(function(e){var n=e.getAttribute('data-lb');
+    if(n==='l'){e.innerHTML=s.l.map(function(x){return '<li>'+x+'</li>';}).join('');}
+    else if(e.textContent!==v[n])e.textContent=v[n];});
+  btn.href='https://l.seedwave.pt/?lang='+k+'&utm_source=ndm&utm_medium=bridge&utm_campaign='+g;}
+function tr(ev){try{window.swTrack&&window.swTrack(ev,{guide:g,lang:L(),page:location.pathname});}catch(e){}}
+paint();
+if(window.MutationObserver)new MutationObserver(paint).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+btn.addEventListener('click',function(){tr('lis_bridge_click');});
+if(window.IntersectionObserver){var seen=false;var io=new IntersectionObserver(function(en){
+  if(seen||!en[0].isIntersecting)return;seen=true;io.disconnect();
+  var n=0;(function go(){if(window.swTrack)tr('lis_bridge_view');else if(n++<20)setTimeout(go,500);})();},{threshold:.5});io.observe(box);}
+})();
+</script>
+<footer>
     © <span id="yr">2026</span> <a id="hubLink" href="https://seedwave.pt/hub/?lang=ru" target="_blank" rel="noopener">SeedWave</a>
     · <a data-mad="" href="https://seedwave.pt/madeira/?lang=ru&amp;utm_source=ndm&amp;utm_medium=footer">Madeira</a>
     · <a href="https://www.linkedin.com/in/igor-kartuzov" target="_blank" rel="noopener">Igor Kartuzov</a>
