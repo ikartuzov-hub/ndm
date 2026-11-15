@@ -17,6 +17,16 @@ T.pt = {
   ],
   needNote: "Se tem ou não direito ao subsídio — <a class=\"lnk\" href=\"/?p=check\">três perguntas</a>, meio minuto. O que exatamente devolvem e quanto — <a class=\"lnk\" href=\"./dinheiro/\">Quanto dinheiro e porquê</a>.",
 
+  routesH: "Que viagens contam",
+  routesP: "A lei (DL 37-A/2025, alterado pela Lei n.º 23/2026) fala de ligações aéreas nacionais, com origem e destino final em Portugal:",
+  routes: [
+    "<b>Madeira ↔ continente</b> — Lisboa, Porto, Faro, nos dois sentidos. Porto Santo também é Madeira, incluindo com escala no Funchal.",
+    "<b>Açores ↔ continente</b> e <b>Madeira ↔ Açores</b>.",
+    "<b>Com escala</b> — se a ligação não passar de 24 horas. Bilhetes separados só são aceites quando a escala é nas ilhas.",
+    "O troço marítimo entre ilhas — só em conjunto com uma viagem aérea elegível."
+  ],
+  routesNote: "<b>Não é aqui:</b> Porto Santo ↔ Funchal — é um subsídio regional à parte, com o <a class=\"lnk\" href=\"../cartao/\">Cartão de Residente</a>. Um bilhete numa só reserva com destino final no estrangeiro (por exemplo, Funchal → Lisboa → Praga) — pelo texto da lei não conta: a lei fala de viagens que começam e acabam em Portugal. Não encontrámos um esclarecimento direto no portal — vamos verificar com um bilhete nosso destes e acrescentamos.",
+
   exH: "Vamos ver este exemplo",
   exP: "Abaixo está um pedido real: Funchal → Lisboa → Funchal, TAP, residente da Madeira. Aprovado e pago. Todos os números dos passos vêm da sua fatura, e ao longo do texto mostra-se de que linha exata.",
   calcHead: "Como o portal calculou o reembolso",
@@ -86,13 +96,14 @@ T.pt = {
         "A coluna " + P("TOTAL") + " não se transcreve para o portal, mas serve para conferir: o " + P("Custo") + ", que o portal calcula sozinho, tem de coincidir com este número.",
         "A coluna " + P("DESCONTO") + " — se aparecer um desconto, guarde o valor. No quarto passo vai ser preciso subtraí-lo da tarifa, senão a soma não bate certo."
       ],
-      imgs3: [{ src: "img/c4.jpg", cap: "Parte dois: o itinerário. Abaixo está o mesmo bloco, Volta." }],
+      imgs3: [{ src: "img/c4.jpg", cap: "Parte dois: o itinerário. Imagem de setembro de 2026 — desde outubro o portal está um pouco diferente; todas as diferenças estão abaixo." }],
       fields3: [
-        P("Origem Inicial da Viagem") + " e " + P("Destino Final da Viagem") + " — aqui são regiões, não aeroportos: " + P("Madeira") + ", " + P("Lisboa") + ".",
+        P("Origem Inicial da Viagem") + " e " + P("Destino Final da Viagem") + " — agora são <b>aeroportos</b>, não regiões: " + P("Funchal") + ", " + P("Lisboa") + ". A imagem ainda mostra a versão antiga, com regiões.",
         P("Data de Partida") + " e " + P("Hora de Partida") + " são obrigatórias. " + P("Data de Chegada") + " e " + P("Hora de Chegada") + " — sem asterisco, mas preencha-as: o operador confere-as com o comprovativo de embarque. Datas e horas — vêm dos segmentos na segunda página da fatura (mostrada no passo 4).",
         P("Companhia Aérea") + " e " + P("Número de Reserva") + " — código de reserva de seis letras, o portal sugere " + P("EX: WAAXYI") + ". Não é o número do bilhete.",
-        P("Acrescentar Escala?") + " — " + P("Sim") + " só se houve escala dentro do mesmo bilhete."
+        P("Acrescentar Escala?") + " — " + P("Sim") + " só se houve escala dentro do mesmo bilhete. Pela lei, a ligação conta se a escala não passar de 24 horas."
       ],
+      note3: { h: "Novo no portal desde outubro de 2026", p: P("Tipo de Viagem") + " — seletor novo (desde outubro de 2026): " + P("Ida") + " ou " + P("Ida e Volta") + ". Para ida e volta escolha " + P("Ida e Volta") + " — aparece então o bloco Volta.", p2: P("Tem fatura da viagem de ida diferente da de volta?") + " — também é novo. " + P("Sim") + " se a ida e a volta foram compradas com faturas diferentes: o portal pede a segunda fatura. Uma só fatura para os dois sentidos — " + P("Não") + "." },
       imgs4: [{ src: "img/c5.jpg", cap: "Parte três: os dois ficheiros. Não podem ser trocados." }],
       fields4: [
         P("Fatura(s) de Viagem emitidas por Companhia Aérea ou intermediário") + " — aqui vai a <b>fatura</b>: na TAP é o ficheiro " + P("AIE APXIE026_….pdf") + ".",
@@ -121,6 +132,7 @@ T.pt = {
         P("Taxa de Serviço a Passageiros - YP") + ", " + P("Sobretaxa de Combustível - YQ") + ", " + P("Taxa de Carbono - J9") + " e " + P("Sobretaxa de Segurança - PT") + " — copiam-se da fatura linha a linha, pelos códigos. Os campos das taxas não têm asterisco: passam vazios sem erro, e num bilhete normal isso são cerca de 157 € — mais de um terço do reembolso.",
         "Escreva vírgula, não ponto. Onde não há valor, ponha 0."
       ],
+      note2: { h: "Bilhete pago com milhas ou certificado", p: "Se parte do bilhete foi paga com milhas ou com um certificado — em " + P("Valor da Tarifa") + " escreve-se só o valor pago em euros. É a própria indicação do portal por baixo do campo da tarifa (novo desde outubro de 2026)." },
       imgs3: [{ src: "img/f2.jpg", cap: "Segunda página da fatura — Declaração para efeitos de Subsídio de Mobilidade. Os sete números estão todos aqui." }],
       fields3: [
         "<b>Linha do cálculo da tarifa</b> — o único sítio em todos os documentos onde a tarifa aparece dividida em «ida» e «volta». " + P("FNC TP LIS202.00TP FNC90.00EUR292.00END") + " lê-se da esquerda para a direita: de FNC pelo voo TP até LIS — <b>202,00</b>; depois, pelo voo TP até FNC — <b>90,00</b>; total 292,00. O primeiro número vai para " + P("Valor da Tarifa (Ida)") + ", o segundo para " + P("Valor da Tarifa (Volta)") + ".",
@@ -146,7 +158,7 @@ T.pt = {
     },
     {
       h: "Próximos Passos",
-      p: "O quinto ecrã só aparece depois de clicar em " + P("Submeter") + ". Ainda não temos uma imagem — não submetemos um pedido real só para tirar a fotografia. Faremos o pedido no próximo voo real e acrescentamos aqui. Para ser honesto: este passo ainda não está mostrado. O que acontece depois de submeter — <a class=\"lnk\" href=\"#depois\">mais abaixo, «Quanto tempo esperar»</a>.",
+      p: "O quinto ecrã só aparece depois de clicar em " + P("Submeter") + ". Passámos por ele no nosso pedido de 8 de outubro de 2026: um " + P("Pedido realizado com sucesso") + " e três pontos. O primeiro — vai receber uma notificação sobre o pedido. O segundo — o pagamento é feito até dois dias úteis depois da validação (no nosso caso, no dia seguinte ao " + P("Aprovado") + "). O terceiro fala da confirmação da comparência no aeroporto; aparece a todos, mesmo a quem já viajou — é um texto-modelo, não há nada a fazer. O que vem a seguir — <a class=\"lnk\" href=\"#depois\">mais abaixo, «Quanto tempo esperar»</a>.",
       imgs: []
     }
   ],
@@ -215,7 +227,7 @@ T.pt = {
 
   endH: "Se ficou preso",
   endP: "O único contacto em todo o portal é " + P("infossm@ctt.pt") + ". Nem telefone, nem chat, nem formulário de contacto. Escreva em português e indique sempre o " + P("Número de Pedido") + ".",
-  lawP: "Desde 6 de junho de 2026 está em vigor a Lei n.º 23/2026: o subsídio passou a chamar-se Mecanismo de Continuidade Territorial, o tecto de reembolso foi eliminado, e o portal ainda não foi atualizado às novas regras. O que isto muda para si — <a class=\"lnk\" href=\"/?p=news\">O que mudou na lei</a>.",
+  lawP: "Desde 6 de junho de 2026 está em vigor a Lei n.º 23/2026: o subsídio passou a chamar-se Mecanismo de Continuidade Territorial e o tecto de reembolso foi eliminado. O portal já calcula pelas regras novas — os nossos pedidos de 569,15 € foram aprovados sem corte aos 400 €. O que isto muda para si — <a class=\"lnk\" href=\"/?p=news\">O que mudou na lei</a>.",
   shareBtn: "Enviar esta instrução",
   shareTitle: "O pedido em cinco passos — nDm",
   shareText: "Subsídio de voos: como submeter o pedido sem perder dinheiro —",

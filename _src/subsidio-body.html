@@ -18,6 +18,13 @@
     <p class="note" data-t="needNote"></p>
   </section>
 
+  <section class="sect" id="rotas">
+    <h2 data-t="routesH"></h2>
+    <p data-t="routesP"></p>
+    <ul class="need" id="routes"></ul>
+    <p class="note" data-t="routesNote"></p>
+  </section>
+
   <section class="sect">
     <h2 data-t="exH"></h2>
     <p data-t="exP"></p>
@@ -94,6 +101,7 @@ NDM.init(function(t){
 
   $('facts').innerHTML = t.facts.map(function(f){ return '<li>' + f + '</li>'; }).join('');
   $('need').innerHTML = t.need.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('');
+  $('routes').innerHTML = t.routes.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('');
 
   $('calc').innerHTML = t.calc.map(function(r){
     return '<div class="cr ' + (r[2] || '') + '"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
@@ -106,7 +114,9 @@ NDM.init(function(t){
     if (i === 0) h += NDM.act(t);
     h += figs(s.imgs) + marks(s.fields);
     h += figs(s.imgs2) + marks(s.fields2);
+    if (s.note2) h += '<div class="warn">' + warn(s.note2) + '</div>';
     h += figs(s.imgs3) + marks(s.fields3);
+    if (s.note3) h += '<div class="warn">' + warn(s.note3) + '</div>';
     h += figs(s.imgs4) + marks(s.fields4);
     if (s.after) h += '<p style="margin-top:18px">' + s.after + '</p>';
     if (s.warn) h += '<div class="warn">' + warn(s.warn) + '</div>';

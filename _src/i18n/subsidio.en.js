@@ -17,6 +17,16 @@ T.en = {
   ],
   needNote: "Whether you are eligible at all — <a class=\"lnk\" href=\"/?p=check\">three questions</a>, half a minute. What exactly is refunded and how much — <a class=\"lnk\" href=\"./dinheiro/\">How much money and what for</a>.",
 
+  routesH: "Which flights qualify",
+  routesP: "The law (DL 37-A/2025, as amended by Lei n.º 23/2026) covers domestic flights that start and finally end in Portugal:",
+  routes: [
+    "<b>Madeira ↔ mainland</b> — Lisbon, Porto, Faro, both ways. Porto Santo counts as Madeira too, including with a connection in Funchal.",
+    "<b>Azores ↔ mainland</b> and <b>Madeira ↔ Azores</b>.",
+    "<b>With a connection</b> — if the layover is no longer than 24 hours. Separate tickets are accepted only when the connection is on the islands.",
+    "A sea leg between islands — only together with an eligible flight."
+  ],
+  routesNote: "<b>Not here:</b> Porto Santo ↔ Funchal — that is a separate regional subsidy, with the <a class=\"lnk\" href=\"../cartao/\">resident card</a>. A single booking whose final destination is abroad (say, Funchal → Lisbon → Prague) does not qualify on the wording of the law: it is about trips that start and end in Portugal. We found no direct clarification on the portal — we will test it on a ticket of our own and add the result.",
+
   exH: "Following one real example",
   exP: "Below is a real claim: Funchal → Lisbon → Funchal, TAP, Madeira resident. Approved and paid. Every figure in the steps is taken from its invoice, and we show which line each one comes from.",
   calcHead: "How the portal calculated the refund",
@@ -86,13 +96,14 @@ T.en = {
         "The " + P("TOTAL") + " column is not entered into the portal, but it is what you check against: the " + P("Custo") + " the portal calculates itself must match this figure.",
         "The " + P("DESCONTO") + " column — if there is a discount here, note it. At step four you will have to subtract it from the fare, or the total will not add up."
       ],
-      imgs3: [{ src: "img/c4.jpg", cap: "Part two: the route. Below is an identical Volta block." }],
+      imgs3: [{ src: "img/c4.jpg", cap: "Part two: the route. Screenshot from September 2026 — since October the portal looks slightly different; every change is listed below." }],
       fields3: [
-        P("Origem Inicial da Viagem") + " and " + P("Destino Final da Viagem") + " — these are regions, not airports: " + P("Madeira") + ", " + P("Lisboa") + ".",
+        P("Origem Inicial da Viagem") + " and " + P("Destino Final da Viagem") + " — these are now <b>airports</b>, not regions: " + P("Funchal") + ", " + P("Lisboa") + ". The screenshot still shows the old version with regions.",
         P("Data de Partida") + " and " + P("Hora de Partida") + " are required. " + P("Data de Chegada") + " and " + P("Hora de Chegada") + " carry no asterisk, but fill them in: the operator checks them against the boarding pass. Dates and times come from the segments on page two of the invoice (shown at step 4).",
         P("Companhia Aérea") + " and " + P("Número de Reserva") + " — the six-letter booking code, the portal suggests " + P("EX: WAAXYI") + ". This is not the ticket number.",
-        P("Acrescentar Escala?") + " — " + P("Sim") + " only if there was a connection within a single ticket."
+        P("Acrescentar Escala?") + " — " + P("Sim") + " only if there was a connection within a single ticket. Under the law a connection counts if the layover is no longer than 24 hours."
       ],
+      note3: { h: "New in the portal since October 2026", p: P("Tipo de Viagem") + " — a new switch (since October 2026): " + P("Ida") + " or " + P("Ida e Volta") + ". For a return trip choose " + P("Ida e Volta") + " — the Volta block then appears.", p2: P("Tem fatura da viagem de ida diferente da de volta?") + " — also new. " + P("Sim") + " if the outbound and return were bought on separate invoices: the portal will ask for the second one. One invoice for both directions — " + P("Não") + "." },
       imgs4: [{ src: "img/c5.jpg", cap: "Part three: two files. They must not be mixed up." }],
       fields4: [
         P("Fatura(s) de Viagem emitidas por Companhia Aérea ou intermediário") + " — this is where the <b>invoice</b> goes: for TAP, the file " + P("AIE APXIE026_….pdf") + ".",
@@ -121,6 +132,7 @@ T.en = {
         P("Taxa de Serviço a Passageiros - YP") + ", " + P("Sobretaxa de Combustível - YQ") + ", " + P("Taxa de Carbono - J9") + " and " + P("Sobretaxa de Segurança - PT") + " — copied from the invoice line by line, by code. The fee fields carry no asterisk: they go through blank without an error, and on a normal ticket that is about €157 — over a third of the refund.",
         "Use a comma, not a full stop. Where there is no value, enter 0."
       ],
+      note2: { h: "Ticket paid with miles or a voucher", p: "If part of the ticket was paid with miles or a voucher, enter in " + P("Valor da Tarifa") + " only the amount paid in euros. This is the portal's own hint under the fare field (new since October 2026)." },
       imgs3: [{ src: "img/f2.jpg", cap: "Page two of the invoice — Declaração para efeitos de Subsídio de Mobilidade. All seven figures are here." }],
       fields3: [
         "<b>Fare calculation line</b> — the only place in any document where the fare is split into “outbound” and “return”. " + P("FNC TP LIS202.00TP FNC90.00EUR292.00END") + " reads left to right: from FNC on flight TP to LIS — <b>202.00</b>; then flight TP to FNC — <b>90.00</b>; total 292.00. The first figure goes into " + P("Valor da Tarifa (Ida)") + ", the second into " + P("Valor da Tarifa (Volta)") + ".",
@@ -146,7 +158,7 @@ T.en = {
     },
     {
       h: "Próximos Passos",
-      p: "The fifth screen appears only after clicking " + P("Submeter") + ". We do not have a screenshot yet — we have not submitted a real claim just for the picture. We will go through it on the next real flight and add it here. To be honest: this step is not shown yet. What happens after submission — <a class=\"lnk\" href=\"#depois\">below, “How long to wait”</a>.",
+      p: "The fifth screen appears only after clicking " + P("Submeter") + ". We went through it on our own claim of 8 October 2026: a " + P("Pedido realizado com sucesso") + " and three points. One — you will get a notification about the claim. Two — payment is made within two working days after validation (for us, the day after " + P("Aprovado") + "). Three is about confirming you showed up at the airport; everyone sees it, even if the trip is already behind you — it is boilerplate, nothing to do. What comes next — <a class=\"lnk\" href=\"#depois\">below, “How long to wait”</a>.",
       imgs: []
     }
   ],
@@ -215,7 +227,7 @@ T.en = {
 
   endH: "If you get stuck",
   endP: "The only contact on the whole portal is " + P("infossm@ctt.pt") + ". No phone, no chat, no feedback form. Write in Portuguese and always include the " + P("Número de Pedido") + ".",
-  lawP: "Since 6 June 2026, Lei n.º 23/2026 has been in force: the subsidy was renamed Mecanismo de Continuidade Territorial, the reimbursement cap was removed, and the portal has not yet been updated to match. What this changes for you — <a class=\"lnk\" href=\"/?p=news\">What changed in the law</a>.",
+  lawP: "Since 6 June 2026, Lei n.º 23/2026 has been in force: the subsidy was renamed Mecanismo de Continuidade Territorial and the reimbursement cap was removed. The portal already calculates by the new rules — our claims for 569.15 € were approved with no cut to 400 €. What this changes for you — <a class=\"lnk\" href=\"/?p=news\">What changed in the law</a>.",
   shareBtn: "Send this guide",
   shareTitle: "The claim in five steps — nDm",
   shareText: "Flight subsidy: how to file and not lose money —",

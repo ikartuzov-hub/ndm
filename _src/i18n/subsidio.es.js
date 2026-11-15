@@ -17,6 +17,16 @@ T.es = {
   ],
   needNote: "Si le corresponde o no la subsidio, en <a class=\"lnk\" href=\"/?p=check\">tres preguntas</a>, medio minuto. Qué se devuelve exactamente y cuánto: <a class=\"lnk\" href=\"./dinheiro/\">Cuánto dinero y por qué</a>.",
 
+  routesH: "Qué vuelos cuentan",
+  routesP: "La ley (DL 37-A/2025, modificado por la Lei n.º 23/2026) habla de vuelos nacionales con origen y destino final en Portugal:",
+  routes: [
+    "<b>Madeira ↔ continente</b> — Lisboa, Oporto, Faro, en los dos sentidos. Porto Santo también es Madeira, incluso con escala en Funchal.",
+    "<b>Azores ↔ continente</b> y <b>Madeira ↔ Azores</b>.",
+    "<b>Con escala</b> — si la conexión no supera las 24 horas. Los billetes separados solo se aceptan cuando la escala es en las islas.",
+    "El tramo marítimo entre islas — solo junto con un vuelo que cuente."
+  ],
+  routesNote: "<b>No es aquí:</b> Porto Santo ↔ Funchal — es una subsidio regional aparte, con la <a class=\"lnk\" href=\"../cartao/\">tarjeta de residente</a>. Un billete en una sola reserva con destino final en el extranjero (por ejemplo, Funchal → Lisboa → Praga) no cuenta según el texto de la ley: habla de viajes que empiezan y terminan en Portugal. No encontramos una aclaración directa en el portal — lo comprobaremos con un billete nuestro así y lo añadiremos.",
+
   exH: "Lo explicamos con este ejemplo",
   exP: "Abajo, una solicitud real: Funchal → Lisboa → Funchal, TAP, residente de Madeira. Aprobada y pagada. Todas las cifras de los pasos vienen de su factura, y se indica de qué línea exacta.",
   calcHead: "Cómo calcula el portal el reembolso",
@@ -86,13 +96,14 @@ T.es = {
         "La columna " + P("TOTAL") + " no se copia al portal, pero sirve para comprobar: el " + P("Custo") + " que calcula el portal debe coincidir con ese número.",
         "La columna " + P("DESCONTO") + " — si hay un descuento, anótelo. En el cuarto paso habrá que restarlo de la tarifa, o la suma no cuadrará."
       ],
-      imgs3: [{ src: "img/c4.jpg", cap: "Segunda parte: el itinerario. Debajo hay un bloque idéntico, Volta." }],
+      imgs3: [{ src: "img/c4.jpg", cap: "Segunda parte: el itinerario. Captura de septiembre de 2026 — desde octubre el portal se ve un poco distinto; todas las diferencias están abajo." }],
       fields3: [
-        P("Origem Inicial da Viagem") + " y " + P("Destino Final da Viagem") + " — aquí van regiones, no aeropuertos: " + P("Madeira") + ", " + P("Lisboa") + ".",
+        P("Origem Inicial da Viagem") + " y " + P("Destino Final da Viagem") + " — ahora son <b>aeropuertos</b>, no regiones: " + P("Funchal") + ", " + P("Lisboa") + ". La captura aún muestra la versión antigua, con regiones.",
         P("Data de Partida") + " y " + P("Hora de Partida") + " son obligatorios. " + P("Data de Chegada") + " y " + P("Hora de Chegada") + " — sin asterisco, pero rellénelos: el operador los coteja con la tarjeta de embarque. Fechas y horas salen de los segmentos de la segunda página de la factura (se muestra en el paso 4).",
         P("Companhia Aérea") + " y " + P("Número de Reserva") + " — el código de reserva de seis letras; el portal sugiere " + P("EX: WAAXYI") + ". No es el número del billete.",
-        P("Acrescentar Escala?") + " — " + P("Sim") + " solo si hubo escala dentro del mismo billete."
+        P("Acrescentar Escala?") + " — " + P("Sim") + " solo si hubo escala dentro del mismo billete. Según la ley, la conexión cuenta si la escala no supera las 24 horas."
       ],
+      note3: { h: "Novedad en el portal desde octubre de 2026", p: P("Tipo de Viagem") + " — selector nuevo (desde octubre de 2026): " + P("Ida") + " o " + P("Ida e Volta") + ". Para ida y vuelta elija " + P("Ida e Volta") + " — entonces aparece el bloque Volta.", p2: P("Tem fatura da viagem de ida diferente da de volta?") + " — también es nuevo. " + P("Sim") + " si la ida y la vuelta se compraron con facturas distintas: el portal pedirá la segunda factura. Una sola factura para los dos sentidos — " + P("Não") + "." },
       imgs4: [{ src: "img/c5.jpg", cap: "Tercera parte: dos archivos. No se pueden confundir." }],
       fields4: [
         P("Fatura(s) de Viagem emitidas por Companhia Aérea ou intermediário") + " — aquí va la <b>factura</b>: en TAP es el archivo " + P("AIE APXIE026_….pdf") + ".",
@@ -121,6 +132,7 @@ T.es = {
         P("Taxa de Serviço a Passageiros - YP") + ", " + P("Sobretaxa de Combustível - YQ") + ", " + P("Taxa de Carbono - J9") + " y " + P("Sobretaxa de Segurança - PT") + " — se copian de la factura línea por línea, por código. Los campos de tasas no llevan asterisco: pasan vacíos sin error, y en un billete normal son unos 157 € — más de un tercio del reembolso.",
         "Escriba coma, no punto. Donde no haya valor, ponga 0."
       ],
+      note2: { h: "Billete pagado con millas o certificado", p: "Si parte del billete se pagó con millas o con un certificado, en " + P("Valor da Tarifa") + " se escribe solo lo pagado en euros. Es la propia indicación del portal bajo el campo de la tarifa (nuevo desde octubre de 2026)." },
       imgs3: [{ src: "img/f2.jpg", cap: "Segunda página de la factura — Declaração para efeitos de Subsídio de Mobilidade. Las siete cifras están aquí." }],
       fields3: [
         "<b>Línea de cálculo de la tarifa</b> — el único lugar de todos los documentos donde la tarifa se desglosa en «ida» y «vuelta». " + P("FNC TP LIS202.00TP FNC90.00EUR292.00END") + " se lee de izquierda a derecha: de FNC con el vuelo TP a LIS, <b>202,00</b>; luego con el vuelo TP a FNC, <b>90,00</b>; total 292,00. El primer número va a " + P("Valor da Tarifa (Ida)") + ", el segundo a " + P("Valor da Tarifa (Volta)") + ".",
@@ -146,7 +158,7 @@ T.es = {
     },
     {
       h: "Próximos Passos",
-      p: "La quinta pantalla solo aparece después de pulsar " + P("Submeter") + ". Todavía no tenemos captura — no hemos enviado una solicitud real solo para la foto. Haremos la subida en el próximo vuelo real y la añadiremos aquí. Para ser honestos: este paso no está mostrado. Qué pasa después de enviar: <a class=\"lnk\" href=\"#depois\">más abajo, «Cuánto esperar»</a>.",
+      p: "La quinta pantalla solo aparece después de pulsar " + P("Submeter") + ". La vimos con nuestra propia solicitud del 8 de octubre de 2026: un " + P("Pedido realizado com sucesso") + " y tres puntos. Uno — recibirá una notificación sobre la solicitud. Dos — el pago se hace en dos días hábiles tras la validación (en nuestro caso, al día siguiente del " + P("Aprovado") + "). Tres habla de confirmar la presentación en el aeropuerto; lo ven todos, aunque ya hayan volado — es un texto de plantilla, no hay que hacer nada. Lo que sigue: <a class=\"lnk\" href=\"#depois\">más abajo, «Cuánto esperar»</a>.",
       imgs: []
     }
   ],
@@ -215,7 +227,7 @@ T.es = {
 
   endH: "Si se queda atascado",
   endP: "El único contacto de todo el portal es " + P("infossm@ctt.pt") + ". Ni teléfono, ni chat, ni formulario de contacto. Escriba en portugués e indique siempre el " + P("Número de Pedido") + ".",
-  lawP: "Desde el 6 de junio de 2026 está en vigor la Lei n.º 23/2026: la subsidio pasó a llamarse Mecanismo de Continuidade Territorial, se eliminó el techo del reembolso, y el portal todavía no se ha adaptado a las reglas nuevas. Qué cambia esto para usted: <a class=\"lnk\" href=\"/?p=news\">Qué cambió en la ley</a>.",
+  lawP: "Desde el 6 de junio de 2026 está en vigor la Lei n.º 23/2026: la subsidio pasó a llamarse Mecanismo de Continuidade Territorial y se eliminó el techo del reembolso. El portal ya calcula con las reglas nuevas: nuestras solicitudes de 569,15 € se aprobaron sin recorte a 400 €. Qué cambia esto para usted: <a class=\"lnk\" href=\"/?p=news\">Qué cambió en la ley</a>.",
   shareBtn: "Enviar esta guía",
   shareTitle: "La solicitud en cinco pasos — nDm",
   shareText: "Subsidio por vuelos: cómo solicitarla sin perder dinero —",

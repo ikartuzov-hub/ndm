@@ -17,6 +17,16 @@ T.de = {
   ],
   needNote: "Ob Ihnen die Subsidie überhaupt zusteht — <a class=\"lnk\" href=\"/?p=check\">drei Fragen</a>, eine halbe Minute. Was genau erstattet wird und wie viel — <a class=\"lnk\" href=\"./dinheiro/\">Wie viel Geld und wofür</a>.",
 
+  routesH: "Welche Flüge zählen",
+  routesP: "Das Gesetz (DL 37-A/2025, geändert durch Lei n.º 23/2026) erfasst Inlandsflüge, die in Portugal beginnen und enden:",
+  routes: [
+    "<b>Madeira ↔ Festland</b> — Lissabon, Porto, Faro, in beide Richtungen. Porto Santo zählt ebenfalls als Madeira, auch mit Umstieg in Funchal.",
+    "<b>Azoren ↔ Festland</b> und <b>Madeira ↔ Azoren</b>.",
+    "<b>Mit Umstieg</b> — wenn die Verbindung nicht länger als 24 Stunden dauert. Getrennte Tickets werden nur angenommen, wenn der Umstieg auf den Inseln liegt.",
+    "Eine Schiffsstrecke zwischen den Inseln — nur zusammen mit einem förderfähigen Flug."
+  ],
+  routesNote: "<b>Nicht hier:</b> Porto Santo ↔ Funchal — das ist eine eigene regionale Förderung, mit der <a class=\"lnk\" href=\"../cartao/\">Residentenkarte</a>. Eine einzige Buchung mit Endziel im Ausland (etwa Funchal → Lissabon → Prag) zählt nach dem Wortlaut des Gesetzes nicht: Es geht um Reisen, die in Portugal beginnen und enden. Eine direkte Klarstellung im Portal haben wir nicht gefunden — wir prüfen es mit einem eigenen solchen Ticket und ergänzen.",
+
   exH: "So sehen wir es an diesem Beispiel",
   exP: "Unten steht ein echter Antrag: Funchal → Lissabon → Funchal, TAP, Ansässiger von Madeira. Genehmigt und ausgezahlt. Alle Zahlen in den Schritten stammen aus seiner Rechnung, und es wird jeweils gezeigt, aus welcher Zeile genau.",
   calcHead: "Wie das Portal die Erstattung berechnet hat",
@@ -86,13 +96,14 @@ T.de = {
         "Die Spalte " + P("TOTAL") + " wird nicht ins Portal übertragen, dient aber der Kontrolle: " + P("Custo") + ", das das Portal selbst berechnet, muss mit dieser Zahl übereinstimmen.",
         "Die Spalte " + P("DESCONTO") + " — steht dort ein Rabatt, merken Sie ihn sich. Im vierten Schritt müssen Sie ihn vom Tarif abziehen, sonst stimmt die Summe nicht."
       ],
-      imgs3: [{ src: "img/c4.jpg", cap: "Teil zwei: die Reiseroute. Darunter derselbe Block für Volta." }],
+      imgs3: [{ src: "img/c4.jpg", cap: "Teil zwei: die Reiseroute. Aufnahme vom September 2026 — seit Oktober sieht das Portal etwas anders aus; alle Unterschiede stehen unten." }],
       fields3: [
-        P("Origem Inicial da Viagem") + " und " + P("Destino Final da Viagem") + " — hier stehen Regionen, keine Flughäfen: " + P("Madeira") + ", " + P("Lisboa") + ".",
+        P("Origem Inicial da Viagem") + " und " + P("Destino Final da Viagem") + " — jetzt sind das <b>Flughäfen</b>, keine Regionen mehr: " + P("Funchal") + ", " + P("Lisboa") + ". Die Aufnahme zeigt noch die alte Version mit Regionen.",
         P("Data de Partida") + " und " + P("Hora de Partida") + " sind Pflichtfelder. " + P("Data de Chegada") + " und " + P("Hora de Chegada") + " — ohne Sternchen, aber ausfüllen: Der Sachbearbeiter gleicht sie mit der Bordkarte ab. Daten und Uhrzeiten stammen aus den Segmenten auf Seite zwei der Rechnung (gezeigt in Schritt 4).",
         P("Companhia Aérea") + " und " + P("Número de Reserva") + " — der sechsstellige Buchungscode, das Portal zeigt als Hinweis " + P("EX: WAAXYI") + ". Das ist nicht die Ticketnummer.",
-        P("Acrescentar Escala?") + " — " + P("Sim") + " nur, wenn es innerhalb eines Tickets einen Zwischenstopp gab."
+        P("Acrescentar Escala?") + " — " + P("Sim") + " nur, wenn es innerhalb eines Tickets einen Zwischenstopp gab. Laut Gesetz zählt eine Verbindung, wenn der Umstieg nicht länger als 24 Stunden dauert."
       ],
+      note3: { h: "Neu im Portal seit Oktober 2026", p: P("Tipo de Viagem") + " — ein neuer Schalter (seit Oktober 2026): " + P("Ida") + " oder " + P("Ida e Volta") + ". Für Hin- und Rückflug " + P("Ida e Volta") + " wählen — dann erscheint der Block Volta.", p2: P("Tem fatura da viagem de ida diferente da de volta?") + " — ebenfalls neu. " + P("Sim") + ", wenn Hin- und Rückflug mit getrennten Rechnungen gekauft wurden: Das Portal verlangt dann die zweite Rechnung. Eine Rechnung für beide Richtungen — " + P("Não") + "." },
       imgs4: [{ src: "img/c5.jpg", cap: "Teil drei: zwei Dateien. Die dürfen nicht verwechselt werden." }],
       fields4: [
         P("Fatura(s) de Viagem emitidas por Companhia Aérea ou intermediário") + " — hierhin kommt die <b>Rechnung</b>: Bei TAP ist das die Datei " + P("AIE APXIE026_….pdf") + ".",
@@ -121,6 +132,7 @@ T.de = {
         P("Taxa de Serviço a Passageiros - YP") + ", " + P("Sobretaxa de Combustível - YQ") + ", " + P("Taxa de Carbono - J9") + " und " + P("Sobretaxa de Segurança - PT") + " — werden zeilenweise nach Codes aus der Rechnung übertragen. Die Gebührenfelder haben kein Sternchen: leer gehen sie ohne Fehlermeldung durch, und bei einem normalen Ticket sind das rund 157 € — über ein Drittel der Erstattung.",
         "Schreiben Sie ein Komma, keinen Punkt. Wo kein Wert vorhanden ist — tragen Sie 0 ein."
       ],
+      note2: { h: "Ticket mit Meilen oder Gutschein bezahlt", p: "Wurde ein Teil des Tickets mit Meilen oder einem Gutschein bezahlt, gehört in " + P("Valor da Tarifa") + " nur der in Euro bezahlte Betrag. Das ist der Hinweis des Portals selbst unter dem Tariffeld (neu seit Oktober 2026)." },
       imgs3: [{ src: "img/f2.jpg", cap: "Die zweite Seite der Rechnung — Declaração para efeitos de Subsídio de Mobilidade. Alle sieben Zahlen stehen hier." }],
       fields3: [
         "<b>Die Tarifberechnungszeile</b> — die einzige Stelle in allen Dokumenten, an der der Tarif in „hin“ und „zurück“ aufgeteilt ist. " + P("FNC TP LIS202.00TP FNC90.00EUR292.00END") + " liest sich von links nach rechts: von FNC mit Flug TP nach LIS — <b>202,00</b>; weiter mit Flug TP nach FNC — <b>90,00</b>; insgesamt 292,00. Die erste Zahl kommt in " + P("Valor da Tarifa (Ida)") + ", die zweite in " + P("Valor da Tarifa (Volta)") + ".",
@@ -146,7 +158,7 @@ T.de = {
     },
     {
       h: "Próximos Passos",
-      p: "Der fünfte Bildschirm erscheint erst nach dem Klick auf " + P("Submeter") + ". Ein Bild davon haben wir noch nicht — wir haben keinen echten Antrag nur für ein Foto abgeschickt. Beim nächsten echten Flug gehen wir die Einreichung durch und ergänzen es hier. Ehrlich gesagt: Dieser Schritt wird hier nicht gezeigt. Was nach dem Absenden passiert — <a class=\"lnk\" href=\"#depois\">Nach dem Einreichen</a>.",
+      p: "Der fünfte Bildschirm erscheint erst nach dem Klick auf " + P("Submeter") + ". Wir haben ihn mit unserem eigenen Antrag vom 8. Oktober 2026 gesehen: ein " + P("Pedido realizado com sucesso") + " und drei Punkte. Erstens — Sie erhalten eine Benachrichtigung zum Antrag. Zweitens — die Zahlung erfolgt innerhalb von zwei Werktagen nach der Prüfung (bei uns am Tag nach " + P("Aprovado") + "). Drittens geht es um die Bestätigung des Erscheinens am Flughafen; das sieht jeder, auch wenn der Flug schon hinter einem liegt — ein Standardtext, nichts zu tun. Wie es weitergeht — <a class=\"lnk\" href=\"#depois\">Nach dem Einreichen</a>.",
       imgs: []
     }
   ],
@@ -215,7 +227,7 @@ T.de = {
 
   endH: "Wenn Sie nicht weiterkommen",
   endP: "Der einzige Kontakt im gesamten Portal ist " + P("infossm@ctt.pt") + ". Kein Telefon, kein Chat, kein Kontaktformular. Schreiben Sie auf Portugiesisch und geben Sie unbedingt die " + P("Número de Pedido") + " an.",
-  lawP: "Seit dem 6. Juni 2026 gilt das Lei n.º 23/2026: Die Subsidie wurde in Mecanismo de Continuidade Territorial umbenannt, die Erstattungsobergrenze wurde aufgehoben, und das Portal ist noch nicht an die neuen Regeln angepasst. Was das für Sie ändert — <a class=\"lnk\" href=\"/?p=news\">Was sich im Gesetz geändert hat</a>.",
+  lawP: "Seit dem 6. Juni 2026 gilt das Lei n.º 23/2026: Die Subsidie wurde in Mecanismo de Continuidade Territorial umbenannt, die Erstattungsobergrenze wurde aufgehoben. Das Portal rechnet bereits nach den neuen Regeln — unsere Anträge über 569,15 € wurden ohne Kürzung auf 400 € bewilligt. Was das für Sie ändert — <a class=\"lnk\" href=\"/?p=news\">Was sich im Gesetz geändert hat</a>.",
   shareBtn: "Diese Anleitung senden",
   shareTitle: "Der Antrag in fünf Schritten — nDm",
   shareText: "Subsidie für Flüge: wie Sie beantragen, ohne Geld zu verlieren —",
