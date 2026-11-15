@@ -380,6 +380,28 @@ write("acidente/index.html", html)
 PAGES.append(SITE + "/acidente/")
 print("built: acidente/index.html")
 
+# ---------- /acidente/lite/ — «Лайт»: 8 шагов на одном экране, кто въехал / в кого въехали (15.11.2026) ----------
+# Иконка — инверсия полной версии (белый треугольник на красно-оранжевом), свой манифест.
+# Образцы заполненного бланка A4 на 5 языках — _src/acidente-pdf.py (Chromium → PDF).
+subprocess_run([__import__("sys").executable, "_src/acidente-pdf.py"], check=True)
+acl = read("_src/acidente-lite-body.html")
+acl = acl.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/acidentelite.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/acidentelite.%s.js" % L)))
+html = wrap(FONTS + acl, lang="pt",
+            title="Acidente de carro em Portugal — 8 passos, em curto (Lite) — nDm",
+            desc=("Bateram-te ou bateste: quatro piscas, colete, triângulo, fotos, documentos, declaração amigável, "
+                  "polícia, seguro. Marca os passos com o dedo; frases em ecrã inteiro e com voz."),
+            app="Acidente Lite", root="../../",
+            ogtitle="Acidente? Vai passo a passo — 8 passos no telemóvel",
+            og=SITE + "/acidente/og-image.png", url=SITE + "/acidente/lite/")
+html = (html.replace('href="../../icon.svg?v=1"', 'href="/acidente/lite/icon.svg?v=1"')
+            .replace('href="../../apple-touch-icon.png"', 'href="/acidente/lite/icon-180.png"')
+            .replace('href="../../manifest.webmanifest"', 'href="/acidente/lite/manifest.webmanifest"'))
+write("acidente/lite/index.html", html)
+PAGES.append(SITE + "/acidente/lite/")
+print("built: acidente/lite/index.html")
+
 # ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
 # Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
 subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)

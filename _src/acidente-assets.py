@@ -61,9 +61,9 @@ def og():
 
 SW = """/* nDm · /acidente/ — офлайн: страница и её значки остаются в телефоне после первого открытия.
    Сеть первой (свежий текст), без сети — из кэша. */
-var C='acidente-v1';
+var C='acidente-v2';
 self.addEventListener('install',function(e){self.skipWaiting();e.waitUntil(caches.open(C).then(function(c){
-  return c.addAll(['/acidente/','/acidente/icon.svg','/acidente/icon-192.png']).catch(function(){});}));});
+  return c.addAll(['/acidente/','/acidente/lite/','/acidente/icon.svg','/acidente/icon-192.png']).catch(function(){});}));});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(x){return x.indexOf('acidente-')===0&&x!==C;}).map(function(x){return caches.delete(x);}));}).then(function(){return self.clients.claim();}));});
 self.addEventListener('fetch',function(e){var r=e.request;if(r.method!=='GET')return;var u=new URL(r.url);
   if(u.origin!==location.origin||u.pathname.indexOf('/acidente/')!==0)return;
@@ -74,6 +74,7 @@ self.addEventListener('fetch',function(e){var r=e.request;if(r.method!=='GET')re
 
 if __name__ == "__main__":
     sigma("acidente", "#B4410F", "#FBE6DA", "Acidente", "/acidente/", "tri")
+    sigma("acidente/lite", "#FFFFFF", "#B4410F", "Acidente Lite", "/acidente/lite/", "tri")
     og()
     io.open("acidente/sw.js", "w", encoding="utf-8").write(SW)
     print("acidente sw ok")

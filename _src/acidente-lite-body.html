@@ -1,0 +1,300 @@
+<style>
+:root{color-scheme:light;--bg:#FAF6F1;--ink:#1A1512;--ink-soft:#5E5248;--line:#E6D9CC;--accent:#B4410F;--accent-soft:#FBE6DA;--card:#fff;--surface:#fff;--ok:#2E7D4F;--ok-soft:#E3F3E9}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12110F;--ink:#F2EAE2;--ink-soft:#BBAE9F;--line:#38302A;--accent:#FF8A4C;--accent-soft:#3A2216;--card:#1C1915;--surface:#1C1915;--ok:#6FD39A;--ok-soft:#16301F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "IBM Plex Sans",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 120px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.2;margin:0}
+body:before{content:"";position:fixed;top:0;left:0;right:0;height:60px;background:var(--bg);z-index:5}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif}
+.brandmark small{font:600 11px/1 "IBM Plex Mono",monospace;color:#fff;background:var(--accent);border-radius:6px;padding:3px 6px;letter-spacing:.04em}
+:root[data-theme="dark"] .brandmark small{color:#2A1206}
+.topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
+#langmenu.on{display:block}
+#langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
+#langmenu button.cur{color:var(--accent);font-weight:600}
+header{padding:68px 0 0}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px}
+h1{font-size:28px;margin:0 0 6px}
+.lead{color:var(--ink-soft);font-size:16px;margin:0 0 12px}
+/* кто кого */
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+.roles button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:12px 10px;font:600 16px/1.2 "IBM Plex Sans",sans-serif;cursor:pointer;text-align:center}
+.roles button i{display:block;font-style:normal;font-size:28px;margin-bottom:4px}
+.roles button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+/* прогресс */
+.prog{position:sticky;top:56px;z-index:5;background:var(--bg);padding:6px 0 8px}
+.prog .bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:5px;transition:width .35s ease}
+.prog .lbl{display:flex;justify-content:space-between;font:600 13px "IBM Plex Mono",monospace;color:var(--ink-soft);margin-top:5px}
+.prog .lbl button{background:none;border:0;color:var(--ink-soft);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+/* шаги */
+.step{position:relative;display:grid;grid-template-columns:46px 1fr 40px;gap:10px;align-items:center;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 10px 12px 12px;margin:8px 0;cursor:pointer;transition:opacity .2s,border-color .2s}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px;position:relative}
+.step .n b{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);font:600 11px/17px "IBM Plex Mono",monospace;text-align:center;color:var(--ink-soft)}
+.step h3{font-size:18px;margin:0 0 2px}
+.step p{margin:0;font-size:15px;color:var(--ink-soft);line-height:1.35}
+.step .q{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:600 16px "IBM Plex Sans",sans-serif;cursor:pointer}
+.step.cur{border-color:var(--accent);box-shadow:0 6px 20px rgba(180,65,15,.14)}
+.step.done{opacity:.55;border-color:var(--ok)}
+.step.done .n{background:var(--ok-soft)}
+.step.done .n:after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--ok);color:#fff;border-radius:50%;font:700 22px sans-serif}
+.step.done h3{text-decoration:line-through;text-decoration-color:var(--ok)}
+.step a.tel{grid-column:2/4;display:block;text-align:center;background:var(--accent);color:#fff;border-radius:12px;padding:10px;font-weight:600;text-decoration:none;margin-top:4px}
+:root[data-theme="dark"] .step a.tel{color:#2A1206}
+.fin{display:none;background:var(--ok-soft);border:2px solid var(--ok);border-radius:18px;padding:14px 16px;margin:10px 0;font-size:16px}
+.fin.on{display:block}
+.fin b{color:var(--ok)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:16px 0 0}
+.box h2{font-size:19px;margin:0 0 4px}
+.box p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+.go{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:14px;padding:14px;font-weight:600;text-decoration:none;margin:10px 0 0;font-size:16.5px;border:0;width:100%;font-family:inherit;cursor:pointer}
+:root[data-theme="dark"] .go{color:#2A1206}
+.go.soft{background:var(--card);color:var(--accent);border:1.5px solid var(--accent)}
+.box.pre{border:2px dashed var(--accent);background:var(--accent-soft)}
+.chk{list-style:none;margin:10px 0 0;padding:0}
+.chk li{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:0 0 6px;font-size:15.5px;line-height:1.35;cursor:pointer}
+.chk li:before{content:"";flex:none;width:22px;height:22px;border:2px solid var(--ink-soft);border-radius:6px;margin-top:1px}
+.chk li.on{color:var(--ink-soft)}
+.chk li.on:before{content:"✓";background:var(--ok);border-color:var(--ok);color:#fff;font:700 15px/18px sans-serif;text-align:center}
+.jump{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 0}
+.jump a{display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.25;min-height:58px}
+.jump a i{font-style:normal;font-size:22px;flex:none}
+.jump a:active{border-color:var(--accent)}
+.box.car{background:#E3EEFA;border-color:#C9DBF2}.box.car h2{color:#2F6DB5}
+:root[data-theme="dark"] .box.car{background:#18263A;border-color:#2A3D57}:root[data-theme="dark"] .box.car h2{color:#7FB0EC}
+.box.car .go.soft{color:#2F6DB5;border-color:#2F6DB5}:root[data-theme="dark"] .box.car .go.soft{color:#7FB0EC;border-color:#7FB0EC}
+.lead a.tf{color:var(--accent);font-weight:600;text-underline-offset:3px;white-space:nowrap}
+.foot2{margin:20px 0 0;font-size:13.5px;color:var(--ink-soft);text-align:center}
+footer{margin-top:18px;padding-bottom:12px;text-align:center;font-size:15px;color:var(--ink-soft)}
+footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px;color:var(--ink-soft)}
+/* нижняя панель: всегда под пальцем */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--bg);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+.dock div{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr 2.2fr;gap:8px}
+.dock a,.dock button{display:flex;align-items:center;justify-content:center;gap:6px;border-radius:14px;padding:13px 8px;font:600 16px "IBM Plex Sans",sans-serif;text-decoration:none;border:0;cursor:pointer}
+.dock a{background:var(--card);color:var(--accent);border:2px solid var(--accent)}
+.dock button{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .dock button{color:#2A1206}
+/* шторка */
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:20;display:none}
+#veil.on{display:block}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--card);border-radius:22px 22px 0 0;padding:14px 20px calc(26px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;transform:translateY(110%);transition:transform .22s ease-out;box-shadow:0 -10px 40px rgba(0,0,0,.2);max-height:84vh;overflow:auto}
+#sheet.on{transform:none}
+#sheet:before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+#sheet h3{font-size:20px;margin:0 0 8px;padding-right:36px}
+#sheet p,#sheet li{font-size:16.5px;color:var(--ink-soft)}
+#sheet p{margin:0 0 8px}
+#sheet ul{margin:0 0 8px;padding-left:20px}
+#sheet b{color:var(--ink)}
+#sheet .x{position:absolute;right:12px;top:10px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font-size:16px;cursor:pointer}
+#sheet .phl button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 6px;color:var(--ink);font:500 15px/1.3 "IBM Plex Sans",sans-serif;cursor:pointer}
+#sheet .phl button i{font-style:normal;font-size:20px}
+#sheet .phl small{display:block;color:var(--ink-soft);font-weight:400}
+/* фраза на весь экран */
+#big{position:fixed;inset:0;z-index:30;background:var(--accent);color:#fff;display:none;flex-direction:column;padding:22px 22px calc(22px + env(safe-area-inset-bottom))}
+:root[data-theme="dark"] #big{color:#2A1206}
+#big.on{display:flex}
+#big .top{display:flex;justify-content:space-between;align-items:center;font:600 14px "IBM Plex Mono",monospace;opacity:.9}
+#big .top button{background:rgba(255,255,255,.2);color:inherit;border:0;border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer}
+#big .pt{flex:1;display:flex;align-items:center;font:700 clamp(30px,8.5vw,56px)/1.18 Bitter,Georgia,serif;margin:10px 0}
+#big .tr{font-size:18px;opacity:.92;margin:0 0 16px;min-height:2.4em}
+#big .nav{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px}
+#big .nav button{border:0;border-radius:16px;padding:16px 8px;font:600 17px "IBM Plex Sans",sans-serif;background:rgba(255,255,255,.95);color:#1A1512;cursor:pointer}
+#big .nav button.say{background:#1A1512;color:#fff}
+@media(prefers-reduced-motion:reduce){.prog .bar i,.step,#sheet{transition:none}}
+</style>
+
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="30" height="30" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M50 16 L80 68 L20 68 Z"/><path d="M50 36 L50 50"/><path d="M50 59 L50 59"/><path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></svg><b>nDm</b><small>LITE</small></a>
+<div class="topctrl"><button class="rb" id="langBtn" type="button" aria-label="Idioma">PT</button><button class="rb" id="themeBtn" type="button" aria-label="Tema">☀</button></div>
+<div id="langmenu"></div>
+
+<div class="wrap">
+<header>
+  <span class="tag" data-t="tag"></span>
+  <h1 data-t="h1"></h1>
+  <p class="lead"><span data-t="lead"></span> <a id="topFull" class="tf" href="/acidente/" data-t="topFull"></a></p>
+  <div class="roles" id="roles">
+    <button type="button" data-r="v"><i>💥</i><span data-t="rV"></span></button>
+    <button type="button" data-r="g"><i>🚗</i><span data-t="rG"></span></button>
+  </div>
+</header>
+
+<div class="prog"><div class="bar"><i id="barI"></i></div><div class="lbl"><span id="progT"></span><button type="button" id="reset" data-t="reset"></button></div></div>
+
+<div id="steps"></div>
+<div class="fin" id="fin" data-t="fin"></div>
+
+<div class="box pre" id="preBox">
+  <h2 data-t="preT"></h2>
+  <p data-t="preP"></p>
+  <ul class="chk" id="pre"></ul>
+  <a class="go" id="pdfLink" href="/acidente/daaa-exemplo-pt.pdf" download data-t="pdfGo"></a>
+</div>
+
+<div class="jump" id="jump">
+  <a data-a="#daaa" href="/acidente/#daaa"><i>📝</i><span data-t="j1"></span></a>
+  <a data-a="#frases" href="/acidente/#frases"><i>🗣</i><span data-t="j2"></span></a>
+  <a data-a="#dinheiro" href="/acidente/#dinheiro"><i>💶</i><span data-t="j3"></span></a>
+  <a data-a="#perguntas" href="/acidente/#perguntas"><i>❓</i><span data-t="j4"></span></a>
+</div>
+
+<div class="box car">
+  <h2 data-t="carT"></h2>
+  <p data-t="car"></p>
+  <a class="go soft" id="carLink" href="https://seedwave.pt/carro/" data-t="carGo"></a>
+</div>
+
+<div class="box">
+  <h2 data-t="fullT"></h2>
+  <p data-t="fullP"></p>
+  <a class="go soft" id="fullLink" href="/acidente/" data-t="fullGo"></a>
+</div>
+
+<button class="go" type="button" id="share" data-t="share"></button>
+<p class="foot2" data-t="foot2"></p>
+<footer>© <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink">SeedWave</a> · <a data-mad href="https://seedwave.pt/madeira/?lang=pt&amp;utm_source=ndm&amp;utm_medium=footer&amp;utm_content=acidente-lite">Madeira</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
+</div>
+
+<nav class="dock"><div><a href="tel:112">📞 112</a><button type="button" id="sosBtn" data-t="sos"></button></div></nav>
+
+<div id="veil"></div>
+<div id="sheet" role="dialog" aria-modal="true"><button class="x" type="button" id="sheetX" aria-label="close">✕</button><h3 id="shT"></h3><div id="shP"></div></div>
+<div id="big" role="dialog" aria-modal="true" aria-live="polite">
+  <div class="top"><span id="bigN"></span><button type="button" id="bigX" aria-label="close">✕</button></div>
+  <div class="pt" id="bigPt" lang="pt-PT"></div>
+  <p class="tr" id="bigTr"></p>
+  <div class="nav"><button type="button" id="bigPrev">‹</button><button type="button" class="say" id="bigSay"></button><button type="button" id="bigNext">›</button></div>
+</div>
+
+<script>
+const L = {};
+{{I18N}}
+</script>
+<script>
+(function(){
+var ORDER=['pt','en','ru','es','de'];
+/* Фразы PT-PT; r: v — в меня въехали, g — я въехал, b — обоим. Перевод — L[lang].ph по тому же индексу. */
+var PH=[
+ {i:'🗣',r:'b',pt:'Não falo português. Pode ler isto, por favor?'},
+ {i:'🩹',r:'b',pt:'Está tudo bem consigo? Alguém está ferido?'},
+ {i:'🙏',r:'g',pt:'Peço desculpa. Vamos tratar disto com calma.'},
+ {i:'📄',r:'b',pt:'Tem a declaração amigável?'},
+ {i:'✍️',r:'b',pt:'Vamos preencher a declaração amigável juntos.'},
+ {i:'🚦',r:'v',pt:'Eu estava parado. O seu carro bateu no meu.'},
+ {i:'🪪',r:'b',pt:'Pode mostrar-me a carta de condução e o seguro?'},
+ {i:'📑',r:'g',pt:'Aqui estão os meus documentos e o meu seguro.'},
+ {i:'📱',r:'b',pt:'Pode escrever o seu número de telefone, por favor?'},
+ {i:'💶',r:'v',pt:'Prefiro tratar pelo seguro. Não aceito dinheiro.'},
+ {i:'🛡',r:'g',pt:'Vou participar o acidente ao meu seguro.'},
+ {i:'✋',r:'b',pt:'Não concordo. Vamos chamar a polícia.'},
+ {i:'☎️',r:'b',pt:'Tive um acidente, sem feridos. Preciso da PSP. Estou em…'}
+];
+var ICON=['🚨','🦺','⚠️','📸','🪪','📝','👮','🛡'];
+/* куда ведёт «Подробнее в полной версии» из шторки каждого шага */
+var ANC=['#s1','#s2','#s2','#s3','#s4','#daaa','#policia','#depois'];
+var qs=new URLSearchParams(location.search);
+function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var lang=(window.NDM_LANG&&L[window.NDM_LANG])?window.NDM_LANG
+        :(qs.get('lang')||ls('ndm-lang')||(navigator.language||'pt').slice(0,2).toLowerCase());
+if(!L[lang])lang='pt';
+var theme=qs.get('theme')||ls('ndm-theme')||'light';
+var role=qs.get('r')==='g'?'g':(ls('acd-role')==='g'?'g':'v');
+var done={};
+function tr(ev,p){try{window.swTrack&&window.swTrack(ev,p||{});}catch(e){}}
+function langPath(Lg){var p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+  if(Lg!=='pt')p.push(Lg);
+  return '/'+(p.length?p.join('/')+'/':'');}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function fullPath(){return (lang==='pt'?'/acidente/':'/acidente/'+lang+'/')+(theme==='dark'?'?theme=dark':'');}
+function steps(){return L[lang].st.c.concat(L[lang].st[role]);}
+function paint(){
+  var t=L[lang],S=steps(),n=0,cur=-1;
+  S.forEach(function(s,i){if(done[i])n++;else if(cur<0)cur=i;});
+  document.getElementById('steps').innerHTML=S.map(function(s,i){
+    return '<div class="step'+(done[i]?' done':'')+(i===cur?' cur':'')+'" id="s'+(i+1)+'" data-i="'+i+'" role="button" tabindex="0">'
+      +'<div class="n">'+ICON[i]+'<b>'+(i+1)+'</b></div><div><h3>'+s[0]+'</h3><p>'+s[1]+'</p></div>'
+      +'<button type="button" class="q" data-q="'+i+'" aria-label="'+esc(t.more)+'">?</button>'
+      +(i===0?'<a class="tel" href="tel:112" data-stop="1">'+t.call+'</a>':'')+'</div>';}).join('');
+  document.getElementById('barI').style.width=(n/S.length*100)+'%';
+  document.getElementById('progT').textContent=t.prog.replace('{n}',n).replace('{m}',S.length);
+  document.getElementById('fin').classList.toggle('on',n===S.length);
+  document.querySelectorAll('#roles button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-r')===role);});
+}
+function apply(){
+  var t=L[lang];
+  document.documentElement.lang=lang==='pt'?'pt-PT':lang;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k]!==undefined)e.innerHTML=t[k];});
+  document.getElementById('langBtn').textContent=t.code;
+  document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
+  document.getElementById('fullLink').href=fullPath();
+  document.getElementById('carLink').href='https://seedwave.pt/carro/?lang='+lang+'&theme='+theme+'&utm_source=ndm&utm_medium=acidente-lite';
+  document.getElementById('topFull').href=fullPath();
+  document.getElementById('bigSay').textContent=t.say;
+  lsSet('ndm-lang',lang);
+  if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
+  if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
+  document.getElementById('pdfLink').href='/acidente/daaa-exemplo-'+lang+'.pdf';
+  var pc=(ls('acd-pre')||'').split(',');
+  document.getElementById('pre').innerHTML=t.pre.map(function(x,i){return '<li data-p="'+i+'"'+(pc.indexOf(String(i))>=0?' class="on"':'')+'>'+x+'</li>';}).join('');
+  document.querySelectorAll('#jump a').forEach(function(a){a.href=fullPath()+a.getAttribute('data-a');});
+  paint();
+}
+var m=document.getElementById('langmenu');
+function paintMenu(){m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
+  return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';}).join('');}
+document.getElementById('langBtn').onclick=function(e){e.stopPropagation();m.classList.toggle('on');};
+m.onclick=function(e){var b=e.target.closest('button');if(!b)return;var k=b.getAttribute('data-l');
+  if(window.NDM_LANG){lsSet('ndm-lang',k);location.href=langPath(k)+(theme==='dark'?'?theme=dark':'');return;}
+  lang=k;m.classList.remove('on');paintMenu();apply();};
+document.addEventListener('click',function(){m.classList.remove('on');});
+document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
+document.getElementById('roles').onclick=function(e){var b=e.target.closest('button');if(!b)return;var r=b.getAttribute('data-r');
+  if(r!==role){role=r;lsSet('acd-role',r);for(var k in done)if(+k>3)delete done[k];paint();tr('acidente_lite_role',{r:r});}};
+document.getElementById('pre').onclick=function(e){var li=e.target.closest('li');if(!li)return;li.classList.toggle('on');
+  var on=[].map.call(document.querySelectorAll('#pre li.on'),function(x){return x.getAttribute('data-p');});lsSet('acd-pre',on.join(','));tr('acidente_lite_pre',{n:on.length});};
+document.getElementById('pdfLink').addEventListener('click',function(){tr('acidente_pdf',{lang:lang,lite:1});});
+document.getElementById('reset').onclick=function(){done={};paint();window.scrollTo({top:0,behavior:'smooth'});};
+/* тап по карточке — «сделал», следующий шаг подсвечивается и подъезжает */
+var box=document.getElementById('steps');
+function toggle(i){done[i]=!done[i];paint();tr('acidente_lite_step',{n:i+1,role:role});
+  var nx=document.querySelector('.step.cur');if(done[i]&&nx)nx.scrollIntoView({behavior:'smooth',block:'center'});}
+box.addEventListener('click',function(e){if(e.target.closest('[data-stop]'))return;
+  var q=e.target.closest('[data-q]');if(q){e.stopPropagation();var qi=+q.getAttribute('data-q'),s=steps()[qi];openSheet(s[0],s[2]+'<a class="go soft" href="'+fullPath()+ANC[qi]+'" data-full="'+(qi+1)+'">'+L[lang].moreFull+'</a>');tr('acidente_lite_more',{n:qi+1});return;}
+  var st=e.target.closest('.step');if(st)toggle(+st.getAttribute('data-i'));});
+box.addEventListener('keydown',function(e){var st=e.target.closest('.step');if(st&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggle(+st.getAttribute('data-i'));}});
+/* шторка */
+var veil=document.getElementById('veil'),sh=document.getElementById('sheet');
+function openSheet(h,p){document.getElementById('shT').innerHTML=h;document.getElementById('shP').innerHTML=p;veil.classList.add('on');sh.classList.add('on');}
+function closeSheet(){veil.classList.remove('on');sh.classList.remove('on');}
+veil.onclick=closeSheet;document.getElementById('sheetX').onclick=closeSheet;
+/* «Показать португальцу»: список фраз под роль → фраза на весь экран + голос */
+var big=document.getElementById('big'),list=[],cur=0;
+function phr(){return PH.map(function(p,i){return i;}).filter(function(i){return PH[i].r==='b'||PH[i].r===role;});}
+document.getElementById('sosBtn').onclick=function(){var t=L[lang];list=phr();
+  openSheet(t.sos,'<p>'+t.sosP+'</p><div class="phl">'+list.map(function(i,k){return '<button type="button" data-k="'+k+'"><i>'+PH[i].i+'</i><span lang="pt-PT">'+esc(PH[i].pt)+'<small>'+esc(t.ph[i])+'</small></span></button>';}).join('')+'</div>');
+  tr('acidente_lite_sos');};
+document.getElementById('shP').addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(!b)return;closeSheet();show(+b.getAttribute('data-k'));big.classList.add('on');document.body.style.overflow='hidden';tr('acidente_phrase',{n:list[cur]+1,lite:1});});
+function show(k){cur=(k+list.length)%list.length;var i=list[cur];document.getElementById('bigPt').textContent=PH[i].pt;document.getElementById('bigTr').textContent=L[lang].ph[i];document.getElementById('bigN').textContent=(cur+1)+' / '+list.length;}
+function closeBig(){big.classList.remove('on');document.body.style.overflow='';try{speechSynthesis.cancel();}catch(e){}}
+document.getElementById('bigX').onclick=closeBig;
+document.getElementById('bigPrev').onclick=function(){show(cur-1);};
+document.getElementById('bigNext').onclick=function(){show(cur+1);};
+document.getElementById('bigSay').onclick=function(){try{var u=new SpeechSynthesisUtterance(PH[list[cur]].pt);u.lang='pt-PT';u.rate=.9;
+  var v=speechSynthesis.getVoices().filter(function(x){return /pt[-_]PT/i.test(x.lang);})[0];if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSheet();closeBig();}});
+document.getElementById('share').onclick=function(){var t=L[lang];var u=location.origin+langPath(lang)+'?utm_source=share&utm_medium=friend&utm_campaign=acidente-lite';
+  tr('acidente_share',{lite:1});
+  if(navigator.share){navigator.share({title:document.title,text:t.shareText,url:u}).catch(function(){});}
+  else{try{navigator.clipboard.writeText(t.shareText+' '+u);}catch(e){}this.textContent=t.copied;var b=this;setTimeout(function(){b.textContent=t.share;},1600);}};
+document.getElementById('yr').textContent=new Date().getFullYear();
+applyTheme();paintMenu();apply();
+if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('/acidente/sw.js',{scope:'/acidente/'}).catch(function(){});}
+})();
+</script>

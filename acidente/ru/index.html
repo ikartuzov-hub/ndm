@@ -70,6 +70,7 @@ h1{font-size:31px;margin:0 0 10px}
 .chips .wide{grid-column:1/-1;justify-content:center;background:#1A1512;color:#fff;font-weight:600}
 .slogan{font:600 20px/1.3 Bitter,Georgia,serif;text-align:center;margin:12px 0 2px;color:var(--ink)}
 .slogan span{color:var(--accent)}
+.litego{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 0;padding:12px;border:1.5px dashed var(--accent);border-radius:14px;color:var(--accent);font-weight:600;text-decoration:none;font-size:16px}
 .ze{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:18px 0 8px;padding:12px 12px 10px}
 .ze video{display:block;width:100%;aspect-ratio:1/1;border-radius:14px;background:#FAF6F1}
 .ze p{margin:8px 4px 0;font-size:14px;color:var(--ink-soft)}
@@ -209,6 +210,7 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
     <div class="chips" id="chipsTop"><button type="button" data-p="0"><i>🗣</i><span>Я не говорю по-португальски. Прочитайте это, пожалуйста.</span></button><button type="button" data-p="1"><i>🩹</i><span>С вами всё в порядке? Кто-нибудь пострадал?</span></button><button type="button" data-p="2"><i>📄</i><span>У вас есть бланк Declaração Amigável?</span></button><button type="button" data-p="3"><i>✍️</i><span>Давайте заполним бланк вместе.</span></button><button type="button" data-p="4"><i>🚦</i><span>Я стоял на красный. Ваша машина ударила сзади.</span></button><button type="button" data-p="5"><i>🪪</i><span>Покажите, пожалуйста, права, документ на машину и страховку.</span></button><button type="button" class="wide" data-p="0">Все 14 фраз →</button></div>
   </section>
   <p class="slogan" data-t="slogan">Удар — не повод <span>для паники</span></p>
+  <a class="litego" id="liteLink" href="/acidente/lite/ru/" data-t="liteGo">⚡ Коротко: 8 шагов на одном экране (Лайт)</a>
 </header>
 
 <div class="ze" id="ze" hidden="">
@@ -274,7 +276,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
 
 <div class="box" style="background:var(--gold-soft)">
   <h3 data-t="memoT" style="color:var(--ink)">Памятка в бардачок</h3>
-  <p data-t="memoP">Одна страница: пять шагов и главные фразы на португальском. Распечатайте и положите рядом с бланком.</p>
+  <p data-t="memoP">Одна страница: пять шагов и главные фразы на португальском. И образец заполненного бланка на A4. Распечатайте и положите в бардачок рядом с чистым бланком и страховкой.</p>
+  <a class="go" id="pdfLink" href="/acidente/daaa-exemplo-ru.pdf" download="" data-t="pdfGo">⬇ Образец заполненного бланка (A4, PDF)</a>
   <button class="go soft" type="button" id="printBtn" data-t="memoGo">Распечатать памятку</button>
 </div>
 
@@ -420,8 +423,10 @@ qa:[["Assinar a declaração é admitir a culpa?","Não. A assinatura é acordo 
 ["O culpado fugiu ou bati num carro vazio?","É precisa a participação da PSP ou da GNR — sem ela a seguradora não abre o processo. O bilhete no para-brisas é só um complemento. Fotografias, testemunhas, câmaras; à seguradora em 8 dias."],
 ["O culpado tem matrícula estrangeira?","A declaração europeia é a mesma. A seguradora estrangeira tem um representante em Portugal — encontra-o pelo Gabinete Português de Carta Verde; se não houver representante nem seguro, paga o próprio Gabinete."],
 ["Estou num carro alugado?","Ligue para o número de emergência do contrato de aluguer até 24 horas depois, de preferência antes de assinar a declaração. Não repare por conta própria. A franquia e o seguro (CDW) veem-se logo ao levantar o carro."]],
+liteGo:"⚡ Em curto: 8 passos num só ecrã (Lite)",
+pdfGo:"⬇ Exemplo da declaração preenchida (A4, PDF)",
 memoT:"Uma folha para o porta-luvas",
-memoP:"Uma página: os cinco passos e as frases principais. Imprima e guarde junto à declaração.",
+memoP:"Uma página: os cinco passos e as frases principais. E um exemplo da declaração preenchida em A4. Imprima e guarde no porta-luvas, junto à declaração em branco e ao seguro.",
 memoGo:"Imprimir a folha",
 memoH:"Acidente em Portugal — a folha do porta-luvas",
 m1:"Frases (mostre à outra pessoa):",
@@ -538,8 +543,10 @@ qa:[["Is signing the form admitting fault?","No. Your signature means you agree 
 ["The other driver drove off, or I hit an empty car?","You need a PSP or GNR report — without it the insurer won't open a claim. A note on the windscreen is only an extra. Photos, witnesses, cameras; to the insurer within 8 days."],
 ["The other car has foreign plates?","The European form is the same. The foreign insurer has a representative in Portugal — find it through the Gabinete Português de Carta Verde; if there's no representative or no insurance, the Gabinete pays."],
 ["I'm in a rental car?","Call the emergency number in the rental contract within 24 hours, ideally before signing the form. Don't arrange repairs yourself. Check the excess and the cover (CDW) when you pick up the car."]],
+liteGo:"⚡ Short version: 8 steps on one screen (Lite)",
+pdfGo:"⬇ Sample filled-in form (A4, PDF)",
 memoT:"A sheet for the glovebox",
-memoP:"One page: the five steps and the key phrases in Portuguese. Print it and keep it with the form.",
+memoP:"One page: the five steps and the key phrases in Portuguese. Plus a sample filled-in form on A4. Print them and keep them in the glovebox, next to a blank form and the insurance papers.",
 memoGo:"Print the sheet",
 memoH:"Car accident in Portugal — glovebox sheet",
 m1:"Phrases (show them to the other person):",
@@ -656,8 +663,10 @@ qa:[["Подпись в бланке — признание вины?","Нет. 
 ["Виновник уехал или задели пустую машину?","Нужен протокол PSP или GNR — без него страховая не возьмёт дело. Записка на стекле — только дополнение. Фото, свидетели, камеры; в страховую — в 8 дней."],
 ["Виновник на иностранной машине?","Европейский бланк такой же. Страховую представляет в Португалии её представитель — ищите через Gabinete Português de Carta Verde; если представителя или страховки нет, платит сам Gabinete."],
 ["Я на арендованной машине?","Позвоните по аварийному номеру из договора проката не позже чем через 24 часа, лучше до подписания бланка. Сами не ремонтируйте. Франшизу и страховку (CDW) проверяйте ещё при получении машины."]],
+liteGo:"⚡ Коротко: 8 шагов на одном экране (Лайт)",
+pdfGo:"⬇ Образец заполненного бланка (A4, PDF)",
 memoT:"Памятка в бардачок",
-memoP:"Одна страница: пять шагов и главные фразы на португальском. Распечатайте и положите рядом с бланком.",
+memoP:"Одна страница: пять шагов и главные фразы на португальском. И образец заполненного бланка на A4. Распечатайте и положите в бардачок рядом с чистым бланком и страховкой.",
 memoGo:"Распечатать памятку",
 memoH:"ДТП в Португалии — памятка",
 m1:"Фразы (покажите собеседнику):",
@@ -774,8 +783,10 @@ qa:[["¿Firmar el parte es reconocer la culpa?","No. La firma es acuerdo sobre l
 ["¿El culpable se fue, o golpeé un coche vacío?","Hace falta el atestado de la PSP o la GNR: sin él, el seguro no abre el expediente. La nota en el parabrisas es solo un complemento. Fotos, testigos, cámaras; al seguro en 8 días."],
 ["¿El culpable lleva matrícula extranjera?","El parte europeo es el mismo. La aseguradora extranjera tiene un representante en Portugal: búscalo en el Gabinete Português de Carta Verde; si no hay representante ni seguro, paga el propio Gabinete."],
 ["¿Voy en un coche de alquiler?","Llama al número de emergencia del contrato antes de 24 horas, mejor antes de firmar el parte. No lo repares por tu cuenta. La franquicia y la cobertura (CDW) se revisan al recoger el coche."]],
+liteGo:"⚡ Versión corta: 8 pasos en una pantalla (Lite)",
+pdfGo:"⬇ Ejemplo de parte rellenado (A4, PDF)",
 memoT:"Una hoja para la guantera",
-memoP:"Una página: los cinco pasos y las frases clave en portugués. Imprímela y guárdala junto al parte.",
+memoP:"Una página: los cinco pasos y las frases clave en portugués. Y un ejemplo de parte rellenado en A4. Imprímelos y guárdalos en la guantera, junto a un parte en blanco y el seguro.",
 memoGo:"Imprimir la hoja",
 memoH:"Accidente en Portugal: hoja para la guantera",
 m1:"Frases (enséñalas a la otra persona):",
@@ -892,8 +903,10 @@ qa:[["Ist die Unterschrift ein Schuldeingeständnis?","Nein. Die Unterschrift be
 ["Der Verursacher ist weggefahren, oder ich habe ein leeres Auto angefahren?","Es braucht einen Bericht von PSP oder GNR — ohne ihn eröffnet die Versicherung keinen Fall. Ein Zettel an der Windschutzscheibe ist nur eine Ergänzung. Fotos, Zeugen, Kameras; an die Versicherung binnen 8 Tagen."],
 ["Der Verursacher hat ein ausländisches Kennzeichen?","Das europäische Formular ist dasselbe. Der ausländische Versicherer hat einen Vertreter in Portugal — zu finden über das Gabinete Português de Carta Verde; gibt es keinen Vertreter oder keine Versicherung, zahlt das Gabinete selbst."],
 ["Ich fahre einen Mietwagen?","Innerhalb von 24 Stunden die Notrufnummer aus dem Mietvertrag anrufen, am besten vor der Unterschrift. Nicht selbst reparieren lassen. Selbstbeteiligung und Versicherung (CDW) schon bei der Abholung prüfen."]],
+liteGo:"⚡ Kurz: 8 Schritte auf einem Bildschirm (Lite)",
+pdfGo:"⬇ Ausgefülltes Musterformular (A4, PDF)",
 memoT:"Ein Blatt fürs Handschuhfach",
-memoP:"Eine Seite: die fünf Schritte und die wichtigsten Sätze auf Portugiesisch. Ausdrucken und zum Formular legen.",
+memoP:"Eine Seite: die fünf Schritte und die wichtigsten Sätze auf Portugiesisch. Dazu ein ausgefülltes Musterformular in A4. Ausdrucken und ins Handschuhfach legen, neben ein leeres Formular und die Versicherungspapiere.",
 memoGo:"Blatt ausdrucken",
 memoH:"Unfall in Portugal — Blatt fürs Handschuhfach",
 m1:"Sätze (der anderen Person zeigen):",
@@ -1013,6 +1026,8 @@ function apply(){
   document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
   document.getElementById('carLink').href='https://seedwave.pt/carro/?lang='+lang+'&theme='+theme+'&utm_source=ndm&utm_medium=acidente';
   document.getElementById('bigSay').textContent=t.say;
+  document.getElementById('liteLink').href=(lang==='pt'?'/acidente/lite/':'/acidente/lite/'+lang+'/')+(theme==='dark'?'?theme=dark':'');
+  document.getElementById('pdfLink').href='/acidente/daaa-exemplo-'+lang+'.pdf';
   lsSet('ndm-lang',lang);
   if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
   if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
@@ -1058,6 +1073,7 @@ var REC='Declaração\n\nEu, ____________, titular da carta de condução n.º _
 document.getElementById('recBtn').onclick=function(){var t=L[lang];
   openSheet(t.recT,'<p>'+t.recHint+'</p><pre lang="pt-PT">'+esc(REC)+'</pre><button class="go" type="button" id="recCopy">'+t.copy+'</button>'+(lang!=='pt'?'<p style="margin-top:12px"><b>'+t.recTrT+'</b></p><p>'+t.recTr+'</p>':''));
   document.getElementById('recCopy').onclick=function(){var b=this;try{navigator.clipboard.writeText(REC);}catch(e){}b.textContent=t.copied;setTimeout(function(){b.textContent=t.copy;},1600);};tr('acidente_receipt');};
+document.getElementById('pdfLink').addEventListener('click',function(){tr('acidente_pdf',{lang:lang});});
 document.getElementById('printBtn').onclick=function(){tr('acidente_print');window.print();};
 document.getElementById('share').onclick=function(){var t=L[lang];var u=location.origin+langPath(lang)+'?utm_source=share&utm_medium=friend&utm_campaign=acidente';
   var d={title:document.title,text:t.shareText,url:u};tr('acidente_share');
