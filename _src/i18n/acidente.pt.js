@@ -98,6 +98,8 @@ qa:[["Assinar a declaração é admitir a culpa?","Não. A assinatura é acordo 
 ["Estou num carro alugado?","Ligue para o número de emergência do contrato de aluguer até 24 horas depois, de preferência antes de assinar a declaração. Não repare por conta própria. A franquia e o seguro (CDW) veem-se logo ao levantar o carro."]],
 liteGo:"⚡ Em curto: 8 passos num só ecrã (Lite)",
 pdfGo:"⬇ Exemplo da declaração preenchida (A4, PDF)",
+pdfBlank:"⬇ Declaração em branco — reserva (A4, PDF)",
+pdfBlankP:"A original é gratuita na sua seguradora e tem folha autocopiativa. A de reserva: imprimir dois exemplares, preencher iguais, os dois assinam os dois.",
 memoT:"Uma folha para o porta-luvas",
 memoP:"Uma página: os cinco passos e as frases principais. E um exemplo da declaração preenchida em A4. Imprima e guarde no porta-luvas, junto à declaração em branco e ao seguro.",
 memoGo:"Imprimir a folha",

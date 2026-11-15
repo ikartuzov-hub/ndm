@@ -99,6 +99,8 @@ qa:[["Ist die Unterschrift ein Schuldeingeständnis?","Nein. Die Unterschrift be
 ["Ich fahre einen Mietwagen?","Innerhalb von 24 Stunden die Notrufnummer aus dem Mietvertrag anrufen, am besten vor der Unterschrift. Nicht selbst reparieren lassen. Selbstbeteiligung und Versicherung (CDW) schon bei der Abholung prüfen."]],
 liteGo:"⚡ Kurz: 8 Schritte auf einem Bildschirm (Lite)",
 pdfGo:"⬇ Ausgefülltes Musterformular (A4, PDF)",
+pdfBlank:"⬇ Leeres Formular — Reserve (A4, PDF)",
+pdfBlankP:"Das Original gibt es kostenlos bei der Versicherung, mit Durchschreibeblatt. Die Reserve: zwei Exemplare drucken, gleich ausfüllen, beide unterschreiben beide.",
 memoT:"Ein Blatt fürs Handschuhfach",
 memoP:"Eine Seite: die fünf Schritte und die wichtigsten Sätze auf Portugiesisch. Dazu ein ausgefülltes Musterformular in A4. Ausdrucken und ins Handschuhfach legen, neben ein leeres Formular und die Versicherungspapiere.",
 memoGo:"Blatt ausdrucken",

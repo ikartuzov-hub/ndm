@@ -99,6 +99,8 @@ qa:[["Is signing the form admitting fault?","No. Your signature means you agree 
 ["I'm in a rental car?","Call the emergency number in the rental contract within 24 hours, ideally before signing the form. Don't arrange repairs yourself. Check the excess and the cover (CDW) when you pick up the car."]],
 liteGo:"⚡ Short version: 8 steps on one screen (Lite)",
 pdfGo:"⬇ Sample filled-in form (A4, PDF)",
+pdfBlank:"⬇ Blank form — backup (A4, PDF)",
+pdfBlankP:"The original is free from your insurer and has a self-copying sheet. The backup: print two copies, fill in identically, both drivers sign both.",
 memoT:"A sheet for the glovebox",
 memoP:"One page: the five steps and the key phrases in Portuguese. Plus a sample filled-in form on A4. Print them and keep them in the glovebox, next to a blank form and the insurance papers.",
 memoGo:"Print the sheet",

@@ -55,6 +55,40 @@ NOTES = {
  "Danach: Rückseite (Participação) für die eigene Versicherung, binnen 8 Tagen. Verletzte, Streit oder kein Formular — 112."]),
 }
 
+BLANK = {
+"pt": ("Declaração em branco — reserva, se não houver a original", [
+ "A declaração original é <b>gratuita na sua seguradora</b> — peça duas. É melhor: tem folha autocopiativa, escreve-se uma vez e fica a cópia.",
+ "Esta folha é de reserva, para quando não há declaração no carro. Imprima <b>dois exemplares</b>.",
+ "Preencham os dois iguais; os dois condutores assinam as duas folhas; cada um fica com uma.",
+ "A seguradora aceita a participação por qualquer meio escrito (DL 291/2007, art. 35.º): o essencial são os factos iguais e as duas assinaturas.",
+ "Como preencher — veja o exemplo preenchido em ajuda.seedwave.pt/acidente."]),
+"en": ("Blank form — a backup if there is no original", [
+ "The original form is <b>free from your insurer</b> — ask for two. It's better: it has a self-copying second sheet, you write once and get the copy.",
+ "This sheet is a backup for when there's no form in the car. Print <b>two copies</b>.",
+ "Fill both in identically; both drivers sign both sheets; each keeps one.",
+ "Insurers accept a claim in any written form (DL 291/2007, art. 35): what matters is identical facts and both signatures.",
+ "How to fill it in — see the filled-in sample at ajuda.seedwave.pt/acidente."]),
+"ru": ("Чистый бланк — запасной вариант, если настоящего нет", [
+ "Настоящий бланк <b>бесплатно выдаёт ваша страховая</b> — попросите два. Он удобнее: второй лист копирующий, пишете один раз — копия отпечатывается.",
+ "Этот лист — запасной, на случай если бланка в машине нет. Распечатайте <b>два экземпляра</b>.",
+ "Заполните оба одинаково; оба водителя подписывают оба листа; каждый забирает один.",
+ "Страховая принимает заявление в любой письменной форме (DL 291/2007, ст. 35): главное — одинаковые факты и подписи обоих.",
+ "Как заполнять — образец заполненного бланка на ajuda.seedwave.pt/acidente."]),
+"es": ("Parte en blanco — reserva, si no hay el original", [
+ "El parte original es <b>gratis en tu aseguradora</b> — pide dos. Es mejor: tiene hoja autocopiativa, escribes una vez y sale la copia.",
+ "Esta hoja es de reserva, para cuando no hay parte en el coche. Imprime <b>dos ejemplares</b>.",
+ "Rellenad los dos iguales; los dos conductores firman las dos hojas; cada uno se queda una.",
+ "La aseguradora acepta el parte por cualquier medio escrito (DL 291/2007, art. 35): lo esencial son los mismos hechos y las dos firmas.",
+ "Cómo rellenarlo — mira el ejemplo rellenado en ajuda.seedwave.pt/acidente."]),
+"de": ("Leeres Formular — Reserve, falls kein Original da ist", [
+ "Das Original bekommen Sie <b>kostenlos bei Ihrer Versicherung</b> — fragen Sie nach zwei. Es ist besser: Durchschreibeblatt, einmal schreiben, Kopie entsteht.",
+ "Dieses Blatt ist eine Reserve, falls kein Formular im Auto liegt. <b>Zwei Exemplare</b> drucken.",
+ "Beide gleich ausfüllen; beide Fahrer unterschreiben beide Blätter; jeder behält eins.",
+ "Versicherer akzeptieren die Meldung in jeder schriftlichen Form (DL 291/2007, Art. 35): entscheidend sind gleiche Fakten und beide Unterschriften.",
+ "Wie man es ausfüllt — siehe Musterformular auf ajuda.seedwave.pt/acidente."]),
+}
+
+
 CIRC = ["estava estacionado / parado", "saía de um estacionamento / abria uma porta", "ia estacionar",
  "saía de um parque, local privado ou caminho particular", "entrava num parque, local privado ou caminho particular",
  "entrava numa rotunda", "circulava numa rotunda", "embateu na traseira de outro veículo (mesmo sentido, mesma fila)",
@@ -75,14 +109,15 @@ def col(side, d):
     # стрелка точки удара: A — сзади (низ картинки), B — спереди (верх)
     ar = ('<g stroke="#1F4FB5" stroke-width="4" fill="#1F4FB5"><path d="M30 99 L30 86"/><path d="M24 90 L30 82 L36 90 Z"/></g>' if side == "A"
           else '<g stroke="#1F4FB5" stroke-width="4" fill="#1F4FB5"><path d="M30 1 L30 14"/><path d="M24 10 L30 18 L36 10 Z"/></g>')
+    ar = ar if d['ap'] else ''
     car = ('<svg viewBox="0 0 60 100" width="36" height="60"><rect x="8" y="6" width="44" height="88" rx="12" fill="none" stroke="#444" stroke-width="2.5"/>'
            '<rect x="14" y="20" width="32" height="15" rx="3" fill="none" stroke="#444" stroke-width="1.5"/><text x="30" y="58" text-anchor="middle" font-size="9" fill="#888">frente</text>%s</svg>') % ar
     return f'''<div class="col" style="--hl:{hl};--st:{st}">
 <div class="cap">VEÍCULO {side}</div>
-<div class="f"><b>6</b> Tomador do seguro / segurado<br>Apelido: <i>{d["ap"]}</i> · Nome: <i>{d["nm"]}</i><br>Morada: <i>{d["mo"]}</i><br>País: <i>Portugal</i> · Tel.: <i>{d["tel"]}</i> · NIF: <i>{d["nif"]}</i></div>
-<div class="f"><b>7</b> Veículo a motor<br>Marca, modelo: <i>{d["car"]}</i><br>N.º de matrícula: <i>{d["mat"]}</i> · País: <i>PT</i></div>
-<div class="f"><b>8</b> Companhia de seguros<br>Nome: <i>{d["seg"]}</i><br>Apólice n.º: <i>{d["ap_n"]}</i> · Carta Verde: <i>—</i><br>Válida de <i>{d["de"]}</i> a <i>{d["a"]}</i><br>Danos próprios cobertos? <span class="bx">{"✕" if d["dp"] else ""}</span> sim <span class="bx">{"" if d["dp"] else "✕"}</span> não</div>
-<div class="f"><b>9</b> Condutor<br>Apelido: <i>{d["ap"]}</i> · Nome: <i>{d["nm"]}</i><br>Data de nasc.: <i>{d["nasc"]}</i><br>Carta de condução n.º: <i>{d["carta"]}</i> · Cat.: <i>B</i> · Válida até: <i>{d["val"]}</i></div>
+<div class="f"><b>6</b> Tomador do seguro / segurado<br>Apelido: <i>{d["ap"]}</i> · Nome: <i>{d["nm"]}</i><br>Morada: <i>{d["mo"]}</i><br>País: <i>{"Portugal" if d["ap"] else ""}</i> · Tel.: <i>{d["tel"]}</i> · NIF: <i>{d["nif"]}</i></div>
+<div class="f"><b>7</b> Veículo a motor<br>Marca, modelo: <i>{d["car"]}</i><br>N.º de matrícula: <i>{d["mat"]}</i> · País: <i>{"PT" if d["ap"] else ""}</i></div>
+<div class="f"><b>8</b> Companhia de seguros<br>Nome: <i>{d["seg"]}</i><br>Apólice n.º: <i>{d["ap_n"]}</i> · Carta Verde: <i>{"—" if d["ap"] else ""}</i><br>Válida de <i>{d["de"]}</i> a <i>{d["a"]}</i><br>Danos próprios cobertos? <span class="bx">{"✕" if d["dp"] is True else ""}</span> sim <span class="bx">{"✕" if d["dp"] is False else ""}</span> não</div>
+<div class="f"><b>9</b> Condutor<br>Apelido: <i>{d["ap"]}</i> · Nome: <i>{d["nm"]}</i><br>Data de nasc.: <i>{d["nasc"]}</i><br>Carta de condução n.º: <i>{d["carta"]}</i> · Cat.: <i>{"B" if d["ap"] else ""}</i> · Válida até: <i>{d["val"]}</i></div>
 <div class="f row"><div><b>10</b> Ponto de embate inicial</div>{car}</div>
 <div class="f"><b>11</b> Danos visíveis<br><i>{d["dan"]}</i></div>
 <div class="f"><b>14</b> As minhas observações<br><i>{d["obs"]}</i></div>
@@ -112,15 +147,20 @@ SKETCH = '''<svg viewBox="0 0 220 120" width="100%" height="150">
 </svg>'''
 
 
-def html(lang):
-    title, notes = NOTES[lang]
+def html(lang, blank=False):
+    title, notes = (BLANK if blank else NOTES)[lang]
+    E = {k: ('' if k != 'dp' else None) for k in A}
+    SK = '<div style="height:150px"></div>' if blank else SKETCH
+    def v(x):
+        return '' if blank else x
     rows = "".join('<tr><td class="c"><span class="bx">%s</span></td><td class="n">%d</td><td class="t">%s</td><td class="c"><span class="bx">%s</span></td></tr>' % (
-        "✕" if i == 0 else "", i + 1, t, "✕" if i == 7 else "") for i, t in enumerate(CIRC))
+        "✕" if (i == 0 and not blank) else "", i + 1, t, "✕" if (i == 7 and not blank) else "") for i, t in enumerate(CIRC))
     nl = "".join("<li>%s</li>" % n for n in notes)
     return f'''<!DOCTYPE html><html><head><meta charset="utf-8"><style>
 @page{{size:A4;margin:8mm}}
 *{{box-sizing:border-box}}
 body{{margin:0;font:8.1pt/1.32 "DejaVu Sans",sans-serif;color:#222}}
+i:empty{{display:inline-block;min-width:70px;border-bottom:1px dotted #999;height:9px}}
 i{{font-style:normal;color:#1F4FB5;font-weight:700;font-family:"DejaVu Sans Mono",monospace}}
 i.s{{font:italic 13pt "DejaVu Serif",serif;color:#1F4FB5}}
 .hd{{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #222;padding-bottom:3px;margin-bottom:4px}}
@@ -149,26 +189,26 @@ td.c{{width:16px;text-align:center}} td.n{{width:12px;color:#777;text-align:righ
 .notes li{{margin:0 0 2px;break-inside:avoid}}
 .ft{{display:flex;justify-content:space-between;font-size:7pt;color:#666;margin-top:3px}}
 </style></head><body>
-<div class="hd"><h1>DECLARAÇÃO AMIGÁVEL DE ACIDENTE AUTOMÓVEL</h1><span class="st">EXEMPLO · dados fictícios</span></div>
+<div class="hd"><h1>DECLARAÇÃO AMIGÁVEL DE ACIDENTE AUTOMÓVEL</h1><span class="st">{"EM BRANCO · reserva" if blank else "EXEMPLO · dados fictícios"}</span></div>
 <p class="sub">{title}</p>
 <div class="top">
- <div class="f"><b>1</b> Data do acidente / Hora<br><i>13/11/2026 · 13:40</i></div>
- <div class="f"><b>2</b> Localização — País: <i>PORTUGAL</i><br>Local: <i>LISBOA, AV. DAS FORÇAS ARMADAS (SEMÁFORO)</i></div>
- <div class="f"><b>3</b> Feridos, mesmo ligeiros<br><span class="bx">✕</span> não &nbsp; <span class="bx"></span> sim</div>
+ <div class="f"><b>1</b> Data do acidente / Hora<br><i>{v("13/11/2026 · 13:40")}</i></div>
+ <div class="f"><b>2</b> Localização — País: <i>{v("PORTUGAL")}</i><br>Local: <i>{v("LISBOA, AV. DAS FORÇAS ARMADAS (SEMÁFORO)")}</i></div>
+ <div class="f"><b>3</b> Feridos, mesmo ligeiros<br><span class="bx">{v("✕")}</span> não &nbsp; <span class="bx"></span> sim</div>
 </div>
 <div class="top2">
- <div class="f"><b>4</b> Danos materiais em veículos além de A e B: <span class="bx">✕</span> não <span class="bx"></span> sim · em objetos: <span class="bx">✕</span> não <span class="bx"></span> sim</div>
- <div class="f"><b>5</b> Testemunhas: <i>—</i></div>
+ <div class="f"><b>4</b> Danos materiais em veículos além de A e B: <span class="bx">{v("✕")}</span> não <span class="bx"></span> sim · em objetos: <span class="bx">{v("✕")}</span> não <span class="bx"></span> sim</div>
+ <div class="f"><b>5</b> Testemunhas: <i>{v("—")}</i></div>
 </div>
 <div class="grid">
-{col("A", A)}
+{col("A", E if blank else A)}
 <div>
  <div class="mid"><div class="cap">12 · CIRCUNSTÂNCIAS</div>
  <table><tr><td class="c"><b style="color:#2F6DB5">A</b></td><td></td><td style="color:#777">assinale com uma cruz</td><td class="c"><b style="color:#C99A06">B</b></td></tr>{rows}</table>
- <div class="cnt"><span>A: n.º de quadrados <i>1</i></span><span>B: <i>1</i></span></div></div>
- <div class="f" style="margin-top:4px"><b>13</b> Croquis do acidente no momento do embate{SKETCH}</div>
+ <div class="cnt"><span>A: n.º de quadrados <i>{v("1")}</i></span><span>B: <i>{v("1")}</i></span></div></div>
+ <div class="f" style="margin-top:4px"><b>13</b> Croquis do acidente no momento do embate{SK}</div>
 </div>
-{col("B", B)}
+{col("B", E if blank else B)}
 </div>
 <div class="notes"><h2>{title}</h2><ol>{nl}</ol></div>
 <div class="ft"><span>nDm · SeedWave — ajuda.seedwave.pt/acidente</span><span>112 · e-SEGURNET · ASF 217 983 983</span></div>
@@ -184,6 +224,9 @@ def main():
         for L in NOTES:
             pg.set_content(html(L), wait_until="load")
             pg.pdf(path="acidente/daaa-exemplo-%s.pdf" % L, format="A4", print_background=True,
+                   margin={"top": "8mm", "bottom": "8mm", "left": "8mm", "right": "8mm"})
+            pg.set_content(html(L, blank=True), wait_until="load")
+            pg.pdf(path="acidente/daaa-branco-%s.pdf" % L, format="A4", print_background=True,
                    margin={"top": "8mm", "bottom": "8mm", "left": "8mm", "right": "8mm"})
             print("pdf:", L)
         br.close()

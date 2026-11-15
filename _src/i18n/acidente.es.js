@@ -99,6 +99,8 @@ qa:[["¿Firmar el parte es reconocer la culpa?","No. La firma es acuerdo sobre l
 ["¿Voy en un coche de alquiler?","Llama al número de emergencia del contrato antes de 24 horas, mejor antes de firmar el parte. No lo repares por tu cuenta. La franquicia y la cobertura (CDW) se revisan al recoger el coche."]],
 liteGo:"⚡ Versión corta: 8 pasos en una pantalla (Lite)",
 pdfGo:"⬇ Ejemplo de parte rellenado (A4, PDF)",
+pdfBlank:"⬇ Parte en blanco — reserva (A4, PDF)",
+pdfBlankP:"El original es gratis en tu aseguradora y tiene hoja autocopiativa. El de reserva: imprime dos ejemplares, rellénalos iguales, los dos firman los dos.",
 memoT:"Una hoja para la guantera",
 memoP:"Una página: los cinco pasos y las frases clave en portugués. Y un ejemplo de parte rellenado en A4. Imprímelos y guárdalos en la guantera, junto a un parte en blanco y el seguro.",
 memoGo:"Imprimir la hoja",

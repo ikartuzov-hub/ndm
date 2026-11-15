@@ -241,6 +241,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <h3 data-t="memoT" style="color:var(--ink)"></h3>
   <p data-t="memoP"></p>
   <a class="go" id="pdfLink" href="/acidente/daaa-exemplo-pt.pdf" download data-t="pdfGo"></a>
+  <a class="go soft" id="pdfBlank" href="/acidente/daaa-branco-pt.pdf" download data-t="pdfBlank"></a>
+  <p data-t="pdfBlankP" style="font-size:14.5px;margin:8px 0 0;color:var(--ink-soft)"></p>
   <button class="go soft" type="button" id="printBtn" data-t="memoGo"></button>
 </div>
 
@@ -393,6 +395,7 @@ function apply(){
   document.getElementById('bigSay').textContent=t.say;
   document.getElementById('liteLink').href=(lang==='pt'?'/acidente/lite/':'/acidente/lite/'+lang+'/')+(theme==='dark'?'?theme=dark':'');
   document.getElementById('pdfLink').href='/acidente/daaa-exemplo-'+lang+'.pdf';
+  document.getElementById('pdfBlank').href='/acidente/daaa-branco-'+lang+'.pdf';
   lsSet('ndm-lang',lang);
   if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
   if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
@@ -438,6 +441,7 @@ var REC='Declaração\n\nEu, ____________, titular da carta de condução n.º _
 document.getElementById('recBtn').onclick=function(){var t=L[lang];
   openSheet(t.recT,'<p>'+t.recHint+'</p><pre lang="pt-PT">'+esc(REC)+'</pre><button class="go" type="button" id="recCopy">'+t.copy+'</button>'+(lang!=='pt'?'<p style="margin-top:12px"><b>'+t.recTrT+'</b></p><p>'+t.recTr+'</p>':''));
   document.getElementById('recCopy').onclick=function(){var b=this;try{navigator.clipboard.writeText(REC);}catch(e){}b.textContent=t.copied;setTimeout(function(){b.textContent=t.copy;},1600);};tr('acidente_receipt');};
+document.getElementById('pdfBlank').addEventListener('click',function(){tr('acidente_pdf_blank',{lang:lang});});
 document.getElementById('pdfLink').addEventListener('click',function(){tr('acidente_pdf',{lang:lang});});
 document.getElementById('printBtn').onclick=function(){tr('acidente_print');window.print();};
 document.getElementById('share').onclick=function(){var t=L[lang];var u=location.origin+langPath(lang)+'?utm_source=share&utm_medium=friend&utm_campaign=acidente';

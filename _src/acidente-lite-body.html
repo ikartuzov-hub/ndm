@@ -132,6 +132,8 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   <p data-t="preP"></p>
   <ul class="chk" id="pre"></ul>
   <a class="go" id="pdfLink" href="/acidente/daaa-exemplo-pt.pdf" download data-t="pdfGo"></a>
+  <a class="go soft" id="pdfBlank" href="/acidente/daaa-branco-pt.pdf" download data-t="pdfBlank"></a>
+  <p data-t="pdfBlankP" style="font-size:14.5px;margin:8px 0 0;color:var(--ink-soft)"></p>
 </div>
 
 <div class="jump" id="jump">
@@ -241,6 +243,7 @@ function apply(){
   if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
   if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
   document.getElementById('pdfLink').href='/acidente/daaa-exemplo-'+lang+'.pdf';
+  document.getElementById('pdfBlank').href='/acidente/daaa-branco-'+lang+'.pdf';
   var pc=(ls('acd-pre')||'').split(',');
   document.getElementById('pre').innerHTML=t.pre.map(function(x,i){return '<li data-p="'+i+'"'+(pc.indexOf(String(i))>=0?' class="on"':'')+'>'+x+'</li>';}).join('');
   document.querySelectorAll('#jump a').forEach(function(a){a.href=fullPath()+a.getAttribute('data-a');});
@@ -259,6 +262,7 @@ document.getElementById('roles').onclick=function(e){var b=e.target.closest('but
   if(r!==role){role=r;lsSet('acd-role',r);for(var k in done)if(+k>3)delete done[k];paint();tr('acidente_lite_role',{r:r});}};
 document.getElementById('pre').onclick=function(e){var li=e.target.closest('li');if(!li)return;li.classList.toggle('on');
   var on=[].map.call(document.querySelectorAll('#pre li.on'),function(x){return x.getAttribute('data-p');});lsSet('acd-pre',on.join(','));tr('acidente_lite_pre',{n:on.length});};
+document.getElementById('pdfBlank').addEventListener('click',function(){tr('acidente_pdf_blank',{lang:lang});});
 document.getElementById('pdfLink').addEventListener('click',function(){tr('acidente_pdf',{lang:lang,lite:1});});
 document.getElementById('reset').onclick=function(){done={};paint();window.scrollTo({top:0,behavior:'smooth'});};
 /* тап по карточке — «сделал», следующий шаг подсвечивается и подъезжает */
