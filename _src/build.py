@@ -357,6 +357,29 @@ write("renda/index.html", html)
 PAGES.append(SITE + "/renda/")
 print("built: renda/index.html")
 
+# ---------- /acidente/ — ДТП в Португалии: первые 5 минут, фразы, бланк DAAA (15.11.2026) ----------
+# Устроена как /cmd/: один экран, движок и стили внутри тела, тексты в _src/i18n/acidente.*.js.
+# Вау — «Показать португальцу»: фраза PT-PT на весь экран + голос; бланк DAAA схемой, три случая.
+# Значок-треугольник в красно-оранжевом, обложка и офлайн-воркер sw.js — _src/acidente-assets.py.
+subprocess_run([__import__("sys").executable, "_src/acidente-assets.py"], check=True)
+acd = read("_src/acidente-body.html")
+acd = acd.replace("{{I18N}}", "\n".join(
+    read("_src/i18n/acidente.%s.js" % L).strip()
+    for L in LANG_ORDER if os.path.exists("_src/i18n/acidente.%s.js" % L)))
+DESC_ACD = ("Acidente de carro em Portugal: os primeiros 5 minutos, frases em ecrã inteiro para mostrar, "
+            "a declaração amigável campo a campo, quando chamar a polícia e os prazos do seguro.")
+html = wrap(FONTS + acd, lang="pt",
+            title="Acidente de carro em Portugal: o que fazer e como preencher a declaração amigável — nDm",
+            desc=DESC_ACD, app="Acidente", root="../",
+            ogtitle="Acidente em Portugal: um toque não é motivo para pânico",
+            og=SITE + "/acidente/og-image.png", url=SITE + "/acidente/")
+html = (html.replace('href="../icon.svg?v=1"', 'href="/acidente/icon.svg?v=1"')
+            .replace('href="../apple-touch-icon.png"', 'href="/acidente/icon-180.png"')
+            .replace('href="../manifest.webmanifest"', 'href="/acidente/manifest.webmanifest"'))
+write("acidente/index.html", html)
+PAGES.append(SITE + "/acidente/")
+print("built: acidente/index.html")
+
 # ---------- /participar/ — «Заявить о себе 😉»: воронка nDm → SeedWave -------------
 # Форма → Make (webhook 3965164, сценарий 8141929) → Telegram Игорю + Notion «🙋 Заявить о себе».
 subprocess_run([__import__("sys").executable, "_src/participar-assets.py"], check=True)

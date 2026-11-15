@@ -1,0 +1,446 @@
+<style>
+:root{color-scheme:light;--bg:#FAF6F1;--ink:#1A1512;--ink-soft:#5E5248;--line:#E6D9CC;--accent:#B4410F;--accent-soft:#FBE6DA;--card:#fff;--surface:#fff;--gold:#E3A21A;--gold-soft:#FDF1D6;--blue:#2F6DB5;--blue-soft:#E3EEFA;--yel:#C99A06;--yel-soft:#FFF5CC}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12110F;--ink:#F2EAE2;--ink-soft:#BBAE9F;--line:#38302A;--accent:#FF8A4C;--accent-soft:#3A2216;--card:#1C1915;--surface:#1C1915;--gold:#F2B83A;--gold-soft:#3A2E14;--blue:#7FB0EC;--blue-soft:#18263A;--yel:#F2CF4A;--yel-soft:#36300F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 "IBM Plex Sans",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:600px;margin:0 auto;padding:0 18px 56px}
+h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.2;margin:0}
+.brandmark{position:fixed;top:12px;left:16px;height:40px;z-index:6;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brandmark b{font:700 19px/1 Bitter,Georgia,serif}
+.topctrl{position:fixed;top:12px;right:14px;z-index:7;display:flex;gap:8px}
+.rb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font:500 12px/1 "IBM Plex Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langmenu{position:fixed;top:56px;right:14px;z-index:8;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;min-width:170px}
+#langmenu.on{display:block}
+#langmenu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;color:var(--ink);font:400 15px "IBM Plex Sans",sans-serif;cursor:pointer}
+#langmenu button.cur{color:var(--accent);font-weight:600}
+header{padding:72px 0 4px}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+h1{font-size:31px;margin:0 0 10px}
+.lead{color:var(--ink-soft);font-size:18px;margin:0 0 6px}
+.lead b{color:var(--ink)}
+/* вау: «Показать португальцу» — фраза на весь экран + голос */
+.sos{position:relative;background:var(--accent);color:#fff;border-radius:24px;margin:16px 0 8px;padding:18px 18px 16px;overflow:hidden}
+:root[data-theme="dark"] .sos{color:#2A1206}
+.sos .tri{position:absolute;right:-8px;top:-6px;width:120px;height:120px;opacity:.22}
+.sos .tri path{animation:pulse 2.4s ease-in-out infinite;transform-origin:50px 50px}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.sos h2{font-size:23px;margin:0 0 4px;position:relative}
+.sos p{margin:0 0 12px;font-size:16px;opacity:.92;position:relative}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative}
+.chips button{background:rgba(255,255,255,.96);color:#1A1512;border:0;border-radius:14px;padding:11px 12px;text-align:left;font:500 15px/1.25 "IBM Plex Sans",sans-serif;cursor:pointer;min-height:58px;display:flex;gap:8px;align-items:center}
+.chips button i{font-style:normal;font-size:20px;flex:none}
+.chips button:active{transform:scale(.97)}
+.chips .wide{grid-column:1/-1;justify-content:center;background:#1A1512;color:#fff;font-weight:600}
+.slogan{font:600 20px/1.3 Bitter,Georgia,serif;text-align:center;margin:12px 0 2px;color:var(--ink)}
+.slogan span{color:var(--accent)}
+.ze{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:18px 0 8px;padding:12px 12px 10px}
+.ze video{display:block;width:100%;aspect-ratio:1/1;border-radius:14px;background:#FAF6F1}
+.ze p{margin:8px 4px 0;font-size:14px;color:var(--ink-soft)}
+h2.sec{font-size:24px;margin:34px 0 6px}
+p.sub{margin:0 0 10px;color:var(--ink-soft);font-size:16.5px}
+/* шаги */
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 16px 16px;margin:10px 0;display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:start}
+.step .ic{width:54px;height:54px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:28px}
+.step .no{font:600 13px "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.06em}
+.step h3{font-size:19px;margin:2px 0 4px}
+.step p{margin:0;color:var(--ink-soft);font-size:16.5px}
+.step p b{color:var(--ink)}
+/* бланк */
+.cases{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.cases button{flex:1 1 30%;min-width:150px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 10px;font:500 15px/1.25 "IBM Plex Sans",sans-serif;cursor:pointer;text-align:left}
+.cases button i{font-style:normal;display:block;font-size:20px;margin-bottom:2px}
+.cases button.on{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.cnote{background:var(--gold-soft);border-radius:16px;padding:12px 16px;font-size:16px;margin:0 0 10px}
+.blank{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:10px}
+.blank svg{display:block;width:100%;height:auto}
+.blank .z{cursor:pointer}
+.blank .z rect{transition:fill .2s}
+.blank .z:hover rect,.blank .z:focus rect{stroke-width:3}
+.blank .z.hl rect{fill:var(--gold-soft);stroke:var(--gold);stroke-width:3}
+.blank figcaption{font-size:14px;color:var(--ink-soft);text-align:center;margin-top:6px}
+.circ{margin:12px 0 0;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.circ .hd{display:grid;grid-template-columns:44px 1fr 44px;font:600 14px "IBM Plex Sans",sans-serif;text-align:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.circ .hd span:first-child{color:var(--blue)}.circ .hd span:last-child{color:var(--yel)}
+.circ .r{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;border-bottom:1px solid var(--line);padding:7px 0}
+.circ .r:last-child{border-bottom:0}
+.circ .bx{width:22px;height:22px;border:2px solid var(--ink-soft);border-radius:4px;margin:0 auto;display:flex;align-items:center;justify-content:center;font:700 15px/1 sans-serif;color:#fff}
+.circ .bx.a.on{background:var(--blue);border-color:var(--blue)}
+.circ .bx.b.on{background:var(--yel);border-color:var(--yel)}
+.circ .bx.mb{border-style:dashed;border-color:var(--yel)}
+.circ .lb{font-size:15px;line-height:1.3;padding:0 4px}
+.circ .lb b{display:block;font-weight:500;color:var(--ink)}
+.circ .lb small{color:var(--ink-soft);font-size:14px}
+.circ .lb em{font-style:normal;font:600 12px "IBM Plex Mono",monospace;color:var(--ink-soft);margin-right:4px}
+.circ .r.hit{background:var(--gold-soft)}
+.rules{margin:8px 0 0;padding:0;list-style:none;counter-reset:r}
+.rules li{counter-increment:r;position:relative;padding:12px 14px 12px 52px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 8px;font-size:16.5px}
+.rules li:before{content:counter(r);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font:600 15px/28px Bitter,serif;text-align:center}
+:root[data-theme="dark"] .rules li:before{color:#2A1206}
+.rules li b{color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.col{border-radius:18px;padding:14px 16px}
+.col h3{font-size:18px;margin:0 0 6px}
+.col ul{margin:0;padding-left:20px;font-size:16px}
+.col li{margin:0 0 5px}
+.col.y{background:var(--accent-soft)}.col.y h3{color:var(--accent)}
+.col.n{background:var(--blue-soft)}.col.n h3{color:var(--blue)}
+.box{background:var(--accent-soft);border-radius:20px;padding:16px 18px;margin:14px 0}
+.box h3{font-size:19px;margin:0 0 6px;color:var(--accent)}
+.box p{margin:0 0 6px;font-size:16.5px}
+.box ul{margin:6px 0 0;padding-left:20px;font-size:16.5px}
+.tl{margin:8px 0 0;padding:0;list-style:none;border-left:3px solid var(--accent);margin-left:10px}
+.tl li{position:relative;padding:0 0 14px 20px;font-size:16.5px}
+.tl li:before{content:"";position:absolute;left:-9px;top:5px;width:15px;height:15px;border-radius:50%;background:var(--card);border:3px solid var(--accent)}
+.tl li b{display:block;font-family:Bitter,Georgia,serif;font-size:18px}
+.case{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:16px;padding:14px 16px;margin:18px 0 0}
+.case b{display:block;font-family:Bitter,Georgia,serif;font-size:18px;margin-bottom:4px}
+.case p{margin:0 0 6px;font-size:16.5px;color:var(--ink-soft)}
+.calls{display:grid;gap:8px;margin:8px 0 0}
+.calls a{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;color:var(--ink);text-decoration:none;font-size:16px;line-height:1.3}
+.calls a i{font-style:normal;font-size:24px;flex:none;width:30px;text-align:center}
+.calls a b{display:block}
+.calls a small{color:var(--ink-soft);font-size:14.5px}
+.calls a.red{background:var(--accent);color:#fff;border-color:var(--accent)}
+.calls a.red small{color:#fff;opacity:.9}
+:root[data-theme="dark"] .calls a.red,:root[data-theme="dark"] .calls a.red small{color:#2A1206}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin:0 0 8px}
+.qa h3{font-size:17.5px;margin:0 0 4px}
+.qa p{margin:0;font-size:16px;color:var(--ink-soft)}
+.go{display:block;text-align:center;background:var(--accent);color:#fff;border-radius:14px;padding:15px;font-weight:600;text-decoration:none;margin:12px 0 0;font-size:17px;border:0;width:100%;font-family:inherit;cursor:pointer}
+:root[data-theme="dark"] .go{color:#2A1206}
+.go.soft{background:var(--card);color:var(--accent);border:1.5px solid var(--accent)}
+.go.wa{background:#25D366;color:#0B3D20;display:flex;align-items:center;justify-content:center;gap:10px}
+.go.wa svg{width:22px;height:22px;flex:none}
+.srcs{margin:8px 0 0;padding:0;list-style:none}
+.srcs li{margin:0 0 8px;font-size:15.5px}
+.srcs a{color:var(--accent);text-underline-offset:3px}
+.foot2{margin:24px 0 0;font-size:14px;color:var(--ink-soft);text-align:center}
+footer{margin-top:24px;padding-bottom:12px;text-align:center;font-size:15px;color:var(--ink-soft)}
+footer a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;display:inline-block;padding:8px 4px;color:var(--ink-soft)}
+/* шторка */
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:20;display:none}
+#veil.on{display:block}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--card);border-radius:22px 22px 0 0;padding:14px 22px 30px;max-width:600px;margin:0 auto;transform:translateY(110%);transition:transform .22s ease-out;box-shadow:0 -10px 40px rgba(0,0,0,.2);max-height:84vh;overflow:auto}
+#sheet.on{transform:none}
+#sheet:before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+#sheet h3{font-size:20px;margin:0 0 8px;padding-right:36px}
+#sheet p{margin:0 0 8px;font-size:17px;color:var(--ink-soft)}
+#sheet p b{color:var(--ink)}
+#sheet pre{white-space:pre-wrap;font:15px/1.5 "IBM Plex Sans",sans-serif;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 8px;color:var(--ink)}
+#sheet .x{position:absolute;right:12px;top:10px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);font-size:16px;cursor:pointer}
+/* полноэкранная фраза */
+#big{position:fixed;inset:0;z-index:30;background:var(--accent);color:#fff;display:none;flex-direction:column;padding:22px 22px calc(22px + env(safe-area-inset-bottom))}
+:root[data-theme="dark"] #big{color:#2A1206}
+#big.on{display:flex}
+#big .top{display:flex;justify-content:space-between;align-items:center;font:600 14px "IBM Plex Mono",monospace;opacity:.9}
+#big .top button{background:rgba(255,255,255,.2);color:inherit;border:0;border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer}
+#big .pt{flex:1;display:flex;align-items:center;font:700 clamp(30px,8.5vw,56px)/1.18 Bitter,Georgia,serif;margin:10px 0}
+#big .tr{font-size:18px;opacity:.92;margin:0 0 16px;min-height:2.4em}
+#big .nav{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px}
+#big .nav button{border:0;border-radius:16px;padding:16px 8px;font:600 17px "IBM Plex Sans",sans-serif;background:rgba(255,255,255,.95);color:#1A1512;cursor:pointer}
+#big .nav button.say{background:#1A1512;color:#fff}
+/* памятка на печать */
+#memo{display:none}
+@media print{
+  body{background:#fff;color:#000}
+  .wrap>*:not(#memo),.brandmark,.topctrl,#langmenu,#veil,#sheet,#big{display:none!important}
+  #memo{display:block!important;border:2px dashed #B4410F;border-radius:16px;padding:16px 20px;max-width:680px;margin:14px auto;font:14px/1.45 "IBM Plex Sans",sans-serif}
+  #memo h2{font:700 20px Bitter,serif;margin:0 0 6px;color:#B4410F}
+  #memo ol{margin:6px 0;padding-left:20px}
+  #memo .ph{margin:8px 0 0;padding:0;list-style:none}
+  #memo .ph li{margin:0 0 4px}
+  #memo .ln{border-bottom:1px solid #999;height:28px;margin:8px 0 2px;font-weight:600;color:#B4410F;padding-top:4px}
+}
+@media(prefers-reduced-motion:reduce){.sos .tri path{animation:none}#sheet{transition:none}.blank .z rect{transition:none}}
+</style>
+
+<a class="brandmark" href="https://ajuda.seedwave.pt/" aria-label="nDm"><svg width="30" height="30" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M50 16 L80 68 L20 68 Z"/><path d="M50 36 L50 50"/><path d="M50 59 L50 59"/><path d="M20 86 Q30 80 40 86 Q50 92 60 86 Q70 80 80 86"/></svg><b>nDm</b></a>
+<div class="topctrl"><button class="rb" id="langBtn" type="button" aria-label="Idioma">PT</button><button class="rb" id="themeBtn" type="button" aria-label="Tema">☀</button></div>
+<div id="langmenu"></div>
+
+<div class="wrap">
+<header>
+  <span class="tag" data-t="tag"></span>
+  <h1 data-t="h1"></h1>
+  <p class="lead" data-t="lead"></p>
+
+  <section class="sos" id="sos">
+    <svg class="tri" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M50 12 L88 78 L12 78 Z M50 36 L50 54 M50 66 L50 66"/></svg>
+    <h2 data-t="sosT"></h2>
+    <p data-t="sosP"></p>
+    <div class="chips" id="chipsTop"></div>
+  </section>
+  <p class="slogan" data-t="slogan"></p>
+</header>
+
+<div class="ze" id="ze" hidden>
+  <video id="zeV" controls playsinline muted loop preload="metadata"></video>
+  <p data-t="zeP"></p>
+</div>
+
+<h2 class="sec" id="first" data-t="fT"></h2>
+<p class="sub" data-t="fP"></p>
+<div class="step" id="s1"><div class="ic">⚠️</div><div><span class="no">1</span><h3 data-t="s1t"></h3><p data-t="s1"></p></div></div>
+<div class="step" id="s2"><div class="ic">🦺</div><div><span class="no">2</span><h3 data-t="s2t"></h3><p data-t="s2"></p></div></div>
+<div class="step" id="s3"><div class="ic">📸</div><div><span class="no">3</span><h3 data-t="s3t"></h3><p data-t="s3"></p></div></div>
+<div class="step" id="s4"><div class="ic">🪪</div><div><span class="no">4</span><h3 data-t="s4t"></h3><p data-t="s4"></p></div></div>
+<div class="step" id="s5"><div class="ic">📝</div><div><span class="no">5</span><h3 data-t="s5t"></h3><p data-t="s5"></p></div></div>
+
+<h2 class="sec" id="frases" data-t="phT"></h2>
+<p class="sub" data-t="phP"></p>
+<div class="chips" id="chipsAll" style="grid-template-columns:1fr"></div>
+
+<h2 class="sec" id="daaa" data-t="daT"></h2>
+<p class="sub" data-t="daP"></p>
+<ol class="rules"><li data-t="d1"></li><li data-t="d2"></li><li data-t="d3"></li></ol>
+<p class="sub" style="margin-top:14px" data-t="caseQ"></p>
+<div class="cases" id="cases">
+  <button type="button" data-c="1"><i>🚦</i><span data-t="c1"></span></button>
+  <button type="button" data-c="2"><i>🅿️</i><span data-t="c2"></span></button>
+  <button type="button" data-c="3"><i>↔️</i><span data-t="c3"></span></button>
+</div>
+<div class="cnote" id="cnote" data-t="c0"></div>
+<figure class="blank" style="margin:0"><svg id="blankSvg" viewBox="0 0 300 404" role="img" data-t-aria="daT"></svg><figcaption data-t="tapHint"></figcaption></figure>
+<div class="circ" id="circ"><div class="hd"><span>A</span><span data-t="circT"></span><span>B</span></div></div>
+<p class="sub" style="margin-top:10px" data-t="sumNote"></p>
+<div class="box"><h3 data-t="backT"></h3><p data-t="back"></p><a class="go soft" href="https://www.e-segurnet.pt/" target="_blank" rel="noopener" data-t="segGo"></a></div>
+
+<h2 class="sec" id="policia" data-t="polT"></h2>
+<div class="two">
+  <div class="col y"><h3 data-t="polYT"></h3><ul data-t="polY"></ul></div>
+  <div class="col n"><h3 data-t="polNT"></h3><ul data-t="polN"></ul></div>
+</div>
+<div class="box" style="background:var(--gold-soft)"><h3 style="color:var(--ink)" data-t="docT"></h3><p data-t="doc"></p></div>
+
+<h2 class="sec" id="dinheiro" data-t="cashT"></h2>
+<div class="box"><p data-t="cash"></p><button class="go" type="button" id="recBtn" data-t="recBtn"></button></div>
+
+<h2 class="sec" id="depois" data-t="afterT"></h2>
+<ul class="tl"><li data-t="a1"></li><li data-t="a2"></li><li data-t="a3"></li><li data-t="a4"></li><li data-t="a5"></li></ul>
+
+<div class="case" id="caso"><b data-t="caseT"></b><div data-t="case"></div></div>
+
+<h2 class="sec" id="contactos" data-t="callT"></h2>
+<div class="calls">
+  <a class="red" href="tel:112"><i>📞</i><span><b data-t="k1"></b><small data-t="k1s"></small></span></a>
+  <a href="#" class="t" data-d="dIns"><i>🛡</i><span><b data-t="k2"></b><small data-t="k2s"></small></span></a>
+  <a href="https://www.e-segurnet.pt/" target="_blank" rel="noopener"><i>📱</i><span><b data-t="k3"></b><small data-t="k3s"></small></span></a>
+  <a href="https://www.asf.com.pt/" target="_blank" rel="noopener"><i>🔎</i><span><b data-t="k4"></b><small data-t="k4s"></small></span></a>
+  <a href="https://www.gpcv.pt/" target="_blank" rel="noopener"><i>🌍</i><span><b data-t="k5"></b><small data-t="k5s"></small></span></a>
+  <a href="https://www.fga.pt/" target="_blank" rel="noopener"><i>🏛</i><span><b data-t="k6"></b><small data-t="k6s"></small></span></a>
+  <a href="tel:+351217983983"><i>☎️</i><span><b data-t="k7"></b><small data-t="k7s"></small></span></a>
+</div>
+
+<h2 class="sec" id="perguntas" data-t="faqT"></h2>
+<div id="faq"></div>
+
+<div class="box" style="background:var(--gold-soft)">
+  <h3 data-t="memoT" style="color:var(--ink)"></h3>
+  <p data-t="memoP"></p>
+  <button class="go soft" type="button" id="printBtn" data-t="memoGo"></button>
+</div>
+
+<div class="box" style="background:var(--blue-soft)">
+  <h3 data-t="carT" style="color:var(--blue)"></h3>
+  <p data-t="car"></p>
+  <a class="go soft" style="color:var(--blue);border-color:var(--blue)" id="carLink" href="https://seedwave.pt/carro/" data-t="carGo"></a>
+</div>
+
+<h2 class="sec" data-t="srcT"></h2>
+<ul class="srcs">
+  <li><a href="https://imt.madeira.gov.pt/images/Documentos%20Veiculos/Consolidacao%20Decreto-Lei%20n.o%20291_2007%20-%20Diario%20da%20Republica%20n.o%20160_2007%20Serie%20I%20de%202007-08-21%201.pdf" target="_blank" rel="noopener" data-t="src1"></a></li>
+  <li><a href="https://ansr.pt/sites/default/files/2026-07/republicacao-do-codigo-da-estrada.pdf" target="_blank" rel="noopener" data-t="src2"></a></li>
+  <li><a href="https://www.gov.pt/guias/cobertura-de-seguro-automovel-em-portugal" target="_blank" rel="noopener" data-t="src3"></a></li>
+  <li><a href="https://www.fidelidade.pt/PT/a-fidelidade/informacoes_legais/informacoes-relevantes/Documents/Protocolos_Acidentes_de_Via%C3%A7%C3%A3o.pdf" target="_blank" rel="noopener" data-t="src4"></a></li>
+  <li><a href="https://www.todoscontam.pt/sites/default/files/2021-07/brochura_informativa_-_acidente_automovel.pdf" target="_blank" rel="noopener" data-t="src5"></a></li>
+  <li><a href="https://www.cgd.pt/Site/Saldo-Positivo/mobilidade/Pages/acidente-com-carro-alugado.aspx" target="_blank" rel="noopener" data-t="src6"></a></li>
+</ul>
+
+<button class="go" type="button" id="share" data-t="share"></button>
+<a class="go wa" href="https://whatsapp.com/channel/0029VbDHFF8K0IBiiqgMON2K" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg><span data-t="wa"></span></a>
+
+<p class="foot2" data-t="foot2"></p>
+<footer>© <span id="yr"></span> <a href="https://seedwave.pt/hub/" id="hubLink">SeedWave</a> · <a data-mad href="https://seedwave.pt/madeira/?lang=pt&amp;utm_source=ndm&amp;utm_medium=footer&amp;utm_content=acidente">Madeira</a> · <a href="https://www.linkedin.com/in/igor-kartuzov/">Igor Kartuzov</a></footer>
+
+<div id="memo">
+  <h2 data-t="memoH"></h2>
+  <ol><li data-t="s1t"></li><li data-t="s2t"></li><li data-t="s3t"></li><li data-t="s4t"></li><li data-t="s5t"></li></ol>
+  <p data-t="m1"></p>
+  <ul class="ph" id="memoPh"></ul>
+  <div class="ln">🛡 Seguro · Assistência 24h:</div>
+  <div class="ln">📄 Apólice n.º:</div>
+  <p><small>ajuda.seedwave.pt/acidente · 112</small></p>
+</div>
+</div>
+
+<div id="veil"></div>
+<div id="sheet" role="dialog" aria-modal="true"><button class="x" type="button" id="sheetX" aria-label="close">✕</button><h3 id="shT"></h3><div id="shP"></div></div>
+<div id="big" role="dialog" aria-modal="true" aria-live="polite">
+  <div class="top"><span id="bigN"></span><button type="button" id="bigX" aria-label="close">✕</button></div>
+  <div class="pt" id="bigPt" lang="pt-PT"></div>
+  <p class="tr" id="bigTr"></p>
+  <div class="nav"><button type="button" id="bigPrev">‹</button><button type="button" class="say" id="bigSay"></button><button type="button" id="bigNext">›</button></div>
+</div>
+
+<script>
+const L = {};
+{{I18N}}
+</script>
+<script>
+(function(){
+var ORDER=['pt','en','ru','es','de'];
+/* Фразы для собеседника — всегда на PT-PT; перевод — из L[lang].ph в том же порядке.
+   top: показывать на первом экране. */
+var PH=[
+ {i:'🗣',pt:'Não falo português. Pode ler isto, por favor?',top:1},
+ {i:'🩹',pt:'Está tudo bem consigo? Alguém está ferido?',top:1},
+ {i:'📄',pt:'Tem a declaração amigável?',top:1},
+ {i:'✍️',pt:'Vamos preencher a declaração amigável juntos.',top:1},
+ {i:'🚦',pt:'Eu estava parado no semáforo vermelho. O seu carro bateu atrás.',top:1},
+ {i:'🪪',pt:'Pode mostrar-me a carta de condução, o documento do carro e o seguro?',top:1},
+ {i:'📸',pt:'Posso tirar fotografias aos documentos?'},
+ {i:'📱',pt:'Pode escrever o seu número de telefone, por favor?'},
+ {i:'💶',pt:'Obrigado, mas prefiro tratar pelo seguro. Não aceito dinheiro.'},
+ {i:'✋',pt:'Não concordo. Não vou assinar.'},
+ {i:'👮',pt:'Se não assinar a declaração, vou chamar a polícia.'},
+ {i:'☎️',pt:'Tive um pequeno acidente, sem feridos. Preciso da PSP. Estou em…'},
+ {i:'🔢',pt:'Qual é o número da participação?'},
+ {i:'🏢',pt:'Onde e até quando tenho de apresentar os documentos?'}
+];
+/* 17 обстоятельств пункта 12 — как напечатано на бланке */
+var CIRC=['estava estacionado / parado','saía de um estacionamento / abria uma porta','ia estacionar',
+ 'saía de um parque de estacionamento, de um local privado ou de um caminho particular',
+ 'entrava num parque de estacionamento, num local privado ou num caminho particular',
+ 'entrava numa rotunda','circulava numa rotunda',
+ 'embateu na traseira de outro veículo que circulava no mesmo sentido e na mesma fila',
+ 'circulava no mesmo sentido mas numa fila diferente','mudava de fila','ultrapassava',
+ 'virava à direita','virava à esquerda','recuava',
+ 'circulava na parte da faixa de rodagem reservada à circulação em sentido contrário',
+ 'apresentava-se pela direita (num cruzamento ou entroncamento)',
+ 'não respeitou um sinal de dar prioridade ou um semáforo vermelho'];
+/* Три случая: квадраты A, B; mb — «одно из» */
+var CASES={1:{a:[1],b:[8],f:[1,10,11,12,14]},2:{a:[1],b:[14],mb:[2,3],f:[3,12,14]},3:{a:[9],b:[10],f:[10,12,13,14]}};
+/* Бланк: [поле, x, y, w, h, колонка] — схема, не масштабная копия */
+var Z=[[1,8,8,92,40],[2,104,8,100,40],[3,208,8,84,40],[4,8,52,140,30],[5,152,52,140,30],
+ [6,8,88,100,44,'A'],[7,8,136,100,32,'A'],[8,8,172,100,44,'A'],[9,8,220,100,44,'A'],[10,8,268,100,40,'A'],[11,8,312,100,30,'A'],[14,8,346,100,22,'A'],
+ [12,112,88,76,220],[13,112,312,76,56],
+ [6,192,88,100,44,'B'],[7,192,136,100,32,'B'],[8,192,172,100,44,'B'],[9,192,220,100,44,'B'],[10,192,268,100,40,'B'],[11,192,312,100,30,'B'],[14,192,346,100,22,'B'],
+ [15,8,374,284,24]];
+var qs=new URLSearchParams(location.search);
+function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var lang=(window.NDM_LANG&&L[window.NDM_LANG])?window.NDM_LANG
+        :(qs.get('lang')||ls('ndm-lang')||(navigator.language||'pt').slice(0,2).toLowerCase());
+if(!L[lang])lang='pt';
+var theme=qs.get('theme')||ls('ndm-theme')||'light';
+var curCase=0;
+function tr(ev,p){try{window.swTrack&&window.swTrack(ev,p||{});}catch(e){}}
+function langPath(Lg){var p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&ORDER.indexOf(p[p.length-1])>=0)p.pop();
+  if(Lg!=='pt')p.push(Lg);
+  return '/'+(p.length?p.join('/')+'/':'');}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');document.getElementById('themeBtn').textContent=theme==='dark'?'☾':'☀';}
+function mset(sel,v){var e=document.querySelector(sel);if(e&&v)e.setAttribute('content',v);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function chips(){var t=L[lang];
+  var top=PH.map(function(p,i){return p.top?'<button type="button" data-p="'+i+'"><i>'+p.i+'</i><span>'+esc(t.ph[i])+'</span></button>':'';}).join('')
+    +'<button type="button" class="wide" data-p="0">'+t.allPh+'</button>';
+  document.getElementById('chipsTop').innerHTML=top;
+  document.getElementById('chipsAll').innerHTML=PH.map(function(p,i){return '<button type="button" data-p="'+i+'" style="background:var(--card);color:var(--ink);border:1px solid var(--line)"><i>'+p.i+'</i><span><b lang="pt-PT" style="display:block;font-weight:600">'+esc(p.pt)+'</b><small style="color:var(--ink-soft)">'+esc(t.ph[i])+'</small></span></button>';}).join('');
+  document.getElementById('memoPh').innerHTML=PH.slice(0,12).map(function(p,i){return '<li><b>'+esc(p.pt)+'</b> — '+esc(t.ph[i])+'</li>';}).join('');
+}
+function blank(){var t=L[lang],c=CASES[curCase]||{f:[]},s='';
+  s+='<rect x="0" y="0" width="300" height="404" rx="10" fill="var(--bg)"/>';
+  Z.forEach(function(z){var n=z[0],col=z[5],hl=c.f.indexOf(n)>=0;
+    var fill=col==='A'?'var(--blue-soft)':col==='B'?'var(--yel-soft)':'var(--card)';
+    var st=col==='A'?'var(--blue)':col==='B'?'var(--yel)':'var(--ink-soft)';
+    var nm=(t.fld[n]||['',''])[0];
+    s+='<g class="z'+(hl?' hl':'')+'" data-f="'+n+'" tabindex="0" role="button" aria-label="'+n+' '+esc(nm)+'"><rect x="'+z[1]+'" y="'+z[2]+'" width="'+z[3]+'" height="'+z[4]+'" rx="6" fill="'+fill+'" stroke="'+st+'" stroke-width="1.5"/>'
+      +'<text x="'+(z[1]+6)+'" y="'+(z[2]+15)+'" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="var(--ink)">'+n+(col?' '+col:'')+'</text>'
+      +(n===12?'':z[4]>=40?'<text x="'+(z[1]+6)+'" y="'+(z[2]+30)+'" font-family="IBM Plex Sans,sans-serif" font-size="9.5" fill="var(--ink-soft)">'+esc(short(nm,z[3]))+'</text>'
+        :(function(){var off=(String(n).length+(col?2:0))*7.6+10;return '<text x="'+(z[1]+off)+'" y="'+(z[2]+15)+'" font-family="IBM Plex Sans,sans-serif" font-size="9.5" fill="var(--ink-soft)">'+esc(short(nm,z[3]-off))+'</text>';})())+'</g>';});
+  // квадратики пункта 12
+  for(var i=0;i<17;i++){var y=106+i*11.6;
+    var a=(c.a||[]).indexOf(i+1)>=0,b=(c.b||[]).indexOf(i+1)>=0,mb=(c.mb||[]).indexOf(i+1)>=0;
+    s+='<rect x="118" y="'+y+'" width="8" height="8" rx="1.5" fill="'+(a?'var(--blue)':'var(--card)')+'" stroke="var(--blue)"/>'
+     +'<text x="150" y="'+(y+7.5)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="var(--ink-soft)">'+(i+1)+'</text>'
+     +'<rect x="174" y="'+y+'" width="8" height="8" rx="1.5" fill="'+(b?'var(--yel)':'var(--card)')+'" stroke="var(--yel)"'+(mb?' stroke-dasharray="2 1.5"':'')+'/>';}
+  var sv=document.getElementById('blankSvg');sv.innerHTML=s;
+  sv.querySelectorAll('.z').forEach(function(g){function o(){var n=+g.getAttribute('data-f');if(n===12){document.getElementById('circ').scrollIntoView({behavior:'smooth',block:'start'});return;}
+      var f=L[lang].fld[n];openSheet(n+' · '+f[0],'<p>'+f[1]+'</p>');tr('acidente_field',{field:n});}
+    g.addEventListener('click',o);g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});});
+}
+function short(s,w){var max=Math.floor(w/5.7);s=String(s).replace(/<[^>]*>/g,'');return s.length>max?s.slice(0,max-1)+'…':s;}
+function circ(){var t=L[lang],c=CASES[curCase]||{},h='<div class="hd"><span>A</span><span>'+t.circT+'</span><span>B</span></div>';
+  CIRC.forEach(function(p,i){var n=i+1,a=(c.a||[]).indexOf(n)>=0,b=(c.b||[]).indexOf(n)>=0,mb=(c.mb||[]).indexOf(n)>=0;
+    h+='<div class="r'+(a||b||mb?' hit':'')+'"><span class="bx a'+(a?' on':'')+'">'+(a?'✓':'')+'</span><span class="lb"><b lang="pt-PT"><em>'+n+'</em>'+esc(p)+'</b><small>'+esc(t.circ[i])+'</small></span><span class="bx b'+(b?' on':'')+(mb?' mb':'')+'">'+(b?'✓':'')+'</span></div>';});
+  document.getElementById('circ').innerHTML=h;}
+function faq(){document.getElementById('faq').innerHTML=L[lang].qa.map(function(q){return '<div class="qa"><h3>'+q[0]+'</h3><p>'+q[1]+'</p></div>';}).join('');}
+function setCase(n){curCase=n;document.querySelectorAll('#cases button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-c')===n);});
+  document.getElementById('cnote').innerHTML=L[lang]['cn'+n]||L[lang].c0;blank();circ();}
+function apply(){
+  var t=L[lang];
+  document.documentElement.lang=lang==='pt'?'pt-PT':lang;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(t[k]!==undefined)e.innerHTML=t[k];});
+  document.querySelectorAll('[data-t-aria]').forEach(function(e){var k=e.getAttribute('data-t-aria');if(t[k])e.setAttribute('aria-label',t[k].replace(/<[^>]*>/g,''));});
+  document.getElementById('langBtn').textContent=t.code;
+  document.getElementById('hubLink').href='https://seedwave.pt/hub/?lang='+lang+'&theme='+theme;
+  document.getElementById('carLink').href='https://seedwave.pt/carro/?lang='+lang+'&theme='+theme+'&utm_source=ndm&utm_medium=acidente';
+  document.getElementById('bigSay').textContent=t.say;
+  lsSet('ndm-lang',lang);
+  if(t.mt){document.title=t.mt;mset('meta[property="og:title"]',t.mt);}
+  if(t.md){mset('meta[name="description"]',t.md);mset('meta[property="og:description"]',t.md);}
+  chips();setCase(curCase);faq();zeSrc();
+}
+var m=document.getElementById('langmenu');
+function paintMenu(){m.innerHTML=ORDER.filter(function(k){return L[k];}).map(function(k){
+  return '<button type="button" data-l="'+k+'"'+(k===lang?' class="cur"':'')+'>'+L[k].code+'  '+L[k].name+'</button>';}).join('');}
+document.getElementById('langBtn').onclick=function(e){e.stopPropagation();m.classList.toggle('on');};
+m.onclick=function(e){var b=e.target.closest('button');if(!b)return;var k=b.getAttribute('data-l');
+  if(window.NDM_LANG){lsSet('ndm-lang',k);location.href=langPath(k)+(theme==='dark'?'?theme=dark':'');return;}
+  lang=k;m.classList.remove('on');paintMenu();apply();};
+document.addEventListener('click',function(){m.classList.remove('on');});
+document.getElementById('themeBtn').onclick=function(){theme=theme==='dark'?'light':'dark';lsSet('ndm-theme',theme);applyTheme();apply();};
+document.getElementById('cases').onclick=function(e){var b=e.target.closest('button');if(!b)return;var n=+b.getAttribute('data-c');setCase(curCase===n?0:n);tr('acidente_case',{c:n});};
+/* мультик с Зé — сессия 3: блок покажется сам, когда в /acidente/video/ появятся ролики (ZE=true) */
+var ZE=false;
+function zeSrc(){if(!ZE)return;var box=document.getElementById('ze');box.hidden=false;var v=document.getElementById('zeV');
+  if(v.getAttribute('data-k')===lang)return;v.setAttribute('data-k',lang);
+  var k=(lang==='pt'||lang==='ru'||lang==='en')?lang:'en';
+  v.poster='/acidente/video/ze_'+k+'.jpg';v.src='/acidente/video/ze_'+k+'.mp4';}
+/* полноэкранная фраза + голос PT-PT */
+var big=document.getElementById('big'),cur=0;
+function show(i){cur=(i+PH.length)%PH.length;document.getElementById('bigPt').textContent=PH[cur].pt;
+  document.getElementById('bigTr').textContent=L[lang].ph[cur];document.getElementById('bigN').textContent=(cur+1)+' / '+PH.length;}
+function openBig(i){show(i);big.classList.add('on');document.body.style.overflow='hidden';tr('acidente_phrase',{n:i+1});}
+function closeBig(){big.classList.remove('on');document.body.style.overflow='';try{speechSynthesis.cancel();}catch(e){}}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-p]');if(b){e.preventDefault();openBig(+b.getAttribute('data-p'));}});
+document.getElementById('bigX').onclick=closeBig;
+document.getElementById('bigPrev').onclick=function(){show(cur-1);};
+document.getElementById('bigNext').onclick=function(){show(cur+1);};
+document.getElementById('bigSay').onclick=function(){try{var u=new SpeechSynthesisUtterance(PH[cur].pt);u.lang='pt-PT';u.rate=.9;
+  var v=speechSynthesis.getVoices().filter(function(x){return /pt[-_]PT/i.test(x.lang);})[0];if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);tr('acidente_say',{n:cur+1});}catch(e){}};
+/* шторка */
+var veil=document.getElementById('veil'),sh=document.getElementById('sheet');
+function openSheet(h,p){document.getElementById('shT').innerHTML=h;document.getElementById('shP').innerHTML=p;veil.classList.add('on');sh.classList.add('on');}
+function closeSheet(){veil.classList.remove('on');sh.classList.remove('on');}
+document.querySelectorAll('a.t').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var k=a.getAttribute('data-d');openSheet(L[lang][k+'T'],L[lang][k]);});});
+veil.onclick=closeSheet;document.getElementById('sheetX').onclick=closeSheet;
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSheet();closeBig();}if(big.classList.contains('on')){if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1);}});
+/* расписка: текст PT + перевод, кнопка «скопировать» */
+var REC='Declaração\n\nEu, ____________, titular da carta de condução n.º ________, condutor do veículo ________, matrícula ________, com seguro na ________, apólice n.º ________, declaro que no dia ___/___/______, às ___:___, em ____________, embati na traseira do veículo ________, matrícula ________, conduzido por ____________, que se encontrava parado.\n\nAssumo a total responsabilidade pelo acidente e comprometo-me a pagar a totalidade da reparação, conforme o orçamento da oficina. Se o pagamento não for feito até ___/___/______, o lesado pode participar o sinistro à minha seguradora.\n\n____________, ___/___/______\nAssinatura: ____________';
+document.getElementById('recBtn').onclick=function(){var t=L[lang];
+  openSheet(t.recT,'<p>'+t.recHint+'</p><pre lang="pt-PT">'+esc(REC)+'</pre><button class="go" type="button" id="recCopy">'+t.copy+'</button>'+(lang!=='pt'?'<p style="margin-top:12px"><b>'+t.recTrT+'</b></p><p>'+t.recTr+'</p>':''));
+  document.getElementById('recCopy').onclick=function(){var b=this;try{navigator.clipboard.writeText(REC);}catch(e){}b.textContent=t.copied;setTimeout(function(){b.textContent=t.copy;},1600);};tr('acidente_receipt');};
+document.getElementById('printBtn').onclick=function(){tr('acidente_print');window.print();};
+document.getElementById('share').onclick=function(){var t=L[lang];var u=location.origin+langPath(lang)+'?utm_source=share&utm_medium=friend&utm_campaign=acidente';
+  var d={title:document.title,text:t.shareText,url:u};tr('acidente_share');
+  if(navigator.share){navigator.share(d).catch(function(){});}
+  else{try{navigator.clipboard.writeText(t.shareText+' '+u);}catch(e){}this.textContent=t.copied;var b=this;setTimeout(function(){b.textContent=t.share;},1600);}};
+document.getElementById('yr').textContent=new Date().getFullYear();
+applyTheme();paintMenu();apply();
+/* офлайн: страница остаётся в телефоне после первого открытия */
+if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('/acidente/sw.js',{scope:'/acidente/'}).catch(function(){});}
+})();
+</script>
