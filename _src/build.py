@@ -177,6 +177,91 @@ def lis_bridge(p, s):
     return s[:i] + (LIS_HTML % {"g": g, "t": LIS_T}) + s[i:]
 
 
+# ---------- сторож сроков: «Напомнить о следующем сроке» → @SeedWaveBot -----
+# Стоит перед мостом к Лису. Ссылка t.me/SeedWaveBot?start=porta_<дверь>_<full|lite>_<язык>
+# ведёт в ветку porta_ движка SeedWave Engine (6093348): приветствие → ✅ → строка в Notion
+# «🌙 Portas — подписчики» → напоминания сценарием 8437652 в 09:00. Двери: voos, cesd, acidente.
+# События PostHog: watch_view, watch_click. Один подписчик = один «пользователь» воронки.
+WATCH_PAGES = {
+    "subsidio/index.html": ("voos", "full"),
+    "cesd/index.html": ("cesd", "full"),
+    "cesd/lite/index.html": ("cesd", "lite"),
+    "acidente/index.html": ("acidente", "full"),
+    "acidente/lite/index.html": ("acidente", "lite"),
+}
+WATCH_T = r"""{
+ru:{h:"🔔 Бесплатный сторож сроков",btn:"Напомнить мне в Telegram",free:"Первым ста — и расширенная версия бесплатно, навсегда.",
+ voos:"Напомню в Telegram: после полёта — сохранить счёт, через два месяца — подать на возврат.",
+ cesd:"Напомню в Telegram: пришла ли карта, а позже — проверить её срок.",
+ acidente:"Напомню в Telegram: положить в машину бланк, жилет и знак, а через полгода — проверить полис."},
+pt:{h:"🔔 Vigia de prazos gratuito",btn:"Lembrar-me no Telegram",free:"Para os primeiros cem, a versão alargada também será grátis — para sempre.",
+ voos:"Lembro no Telegram: depois do voo — guardar a fatura; dois meses depois — pedir o reembolso.",
+ cesd:"Lembro no Telegram: se o cartão já chegou e, mais tarde, a sua validade.",
+ acidente:"Lembro no Telegram: pôr no carro a declaração, o colete e o triângulo e, daqui a seis meses, confirmar a apólice."},
+en:{h:"🔔 Free deadline watcher",btn:"Remind me on Telegram",free:"For the first hundred, the extended version will be free too — forever.",
+ voos:"I'll remind you on Telegram: after a flight — keep the invoice; two months later — claim the refund.",
+ cesd:"I'll remind you on Telegram: whether the card has arrived and, later, its expiry date.",
+ acidente:"I'll remind you on Telegram: put the form, vest and triangle in the car, and in six months — check the policy."},
+es:{h:"🔔 Vigilante de plazos gratuito",btn:"Recordármelo en Telegram",free:"Para los primeros cien, la versión ampliada también será gratis, para siempre.",
+ voos:"Se lo recuerdo en Telegram: tras el vuelo — guardar la factura; dos meses después — pedir el reembolso.",
+ cesd:"Se lo recuerdo en Telegram: si ya llegó la tarjeta y, más tarde, su validez.",
+ acidente:"Se lo recuerdo en Telegram: poner en el coche la declaración, el chaleco y el triángulo y, en seis meses, revisar la póliza."},
+de:{h:"🔔 Kostenloser Fristenwächter",btn:"Per Telegram erinnern",free:"Für die ersten hundert bleibt auch die erweiterte Version kostenlos — für immer.",
+ voos:"Ich erinnere Sie per Telegram: nach dem Flug — Rechnung aufheben; zwei Monate später — Erstattung beantragen.",
+ cesd:"Ich erinnere Sie per Telegram: ob die Karte da ist und später an ihr Ablaufdatum.",
+ acidente:"Ich erinnere Sie per Telegram: Unfallbericht, Weste und Dreieck ins Auto legen und in sechs Monaten die Police prüfen."}
+}"""
+WATCH_HTML = """<style>
+.swatch{box-sizing:border-box;max-width:560px;margin:36px auto 0;padding:16px 18px;border:1.5px dashed var(--accent,#B23A0E);border-radius:16px;
+ background:var(--card,var(--surface,#fff));color:var(--ink,#1A1512);font:400 16px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:left}
+.swatch *{box-sizing:border-box}
+.swatch h3{margin:0 0 6px;font:600 18px/1.3 "IBM Plex Sans",system-ui,sans-serif;color:var(--ink,#1A1512)}
+.swatch p{margin:0 0 10px;font-size:15.5px;color:var(--ink-soft,#6B5C51)}
+.swatch a.swatch-btn{display:block;margin:4px 0 10px;padding:13px 16px;border-radius:12px;background:#229ED9;color:#fff;font-weight:600;font-size:16.5px;text-align:center;text-decoration:none;min-height:48px}
+.swatch a.swatch-btn:hover,.swatch a.swatch-btn:focus-visible{background:#1A87BB;outline:none}
+.swatch p.swatch-free{font-size:13px;margin:0;color:var(--ink,#1A1512);font-weight:500}
+@media print{.swatch{display:none}}
+</style>
+<aside class="swatch" id="swWatch" data-door="%(door)s" data-zone="%(zone)s" aria-label="SeedWave">
+  <h3 data-sw="h"></h3>
+  <p data-sw="line"></p>
+  <a class="swatch-btn" id="swWatchBtn" href="https://t.me/SeedWaveBot?start=porta_%(door)s_%(zone)s_pt" target="_blank" rel="noopener"><span data-sw="btn"></span> →</a>
+  <p class="swatch-free" data-sw="free"></p>
+</aside>
+<script>
+(function(){
+var T=%(t)s;
+var box=document.getElementById('swWatch');if(!box)return;
+var door=box.getAttribute('data-door'),zone=box.getAttribute('data-zone'),btn=document.getElementById('swWatchBtn');
+function L(){var h=(document.documentElement.getAttribute('lang')||'pt').slice(0,2).toLowerCase();return T[h]?h:'pt';}
+function paint(){var k=L(),t=T[k],v={h:t.h,line:t[door],btn:t.btn,free:t.free};
+  box.querySelectorAll('[data-sw]').forEach(function(e){var n=e.getAttribute('data-sw');if(e.textContent!==v[n])e.textContent=v[n];});
+  btn.href='https://t.me/SeedWaveBot?start=porta_'+door+'_'+zone+'_'+k;}
+function tr(ev){try{window.swTrack&&window.swTrack(ev,{guide:door,zone:zone,lang:L()});}catch(e){}}
+paint();
+if(window.MutationObserver)new MutationObserver(paint).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+btn.addEventListener('click',function(){tr('watch_click');});
+if(window.IntersectionObserver){var seen=false;var io=new IntersectionObserver(function(en){
+  if(seen||!en[0].isIntersecting)return;seen=true;io.disconnect();
+  var n=0;(function go(){if(window.swTrack)tr('watch_view');else if(n++<20)setTimeout(go,500);})();},{threshold:.5});io.observe(box);}
+})();
+</script>
+"""
+
+
+def watch_block(p, s):
+    """Сторож сроков — перед мостом к Лису (или перед подвалом, если моста нет)."""
+    w = WATCH_PAGES.get(p.replace(os.sep, "/"))
+    if not w or 'id="swWatch"' in s:
+        return s
+    i = s.find('<style>\n.lisb{')
+    if i < 0:
+        i = s.find("<footer")
+    if i < 0:
+        return s
+    return s[:i] + (WATCH_HTML % {"door": w[0], "zone": w[1], "t": WATCH_T}) + s[i:]
+
+
 def read(p):
     return io.open(p, encoding="utf-8").read()
 
@@ -184,6 +269,7 @@ def read(p):
 def write(p, s):
     os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
     s = lis_bridge(p, s)
+    s = watch_block(p, s)
     io.open(p, "w", encoding="utf-8").write(s)
 
 
