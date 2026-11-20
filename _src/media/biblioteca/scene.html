@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<style>
+  :root{--bg:#FAF6F1;--ink:#1F1A17;--soft:#6B625C;--acc:#9E3B32;--accs:#F6E4E1;--grn:#0E6E63;--gold:#E3A21A;--golds:#FDF1D6;--teal:#2F6F8F;--skin:#F2C9A6;--paper:#FFFFFF;--line:#E6DED6;--red:#C0392B;--mus:#D9A23B;--cream:#F7EFE3}
+  html,body{margin:0;background:var(--bg)}
+  body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  #core{position:absolute;left:0;top:420px;width:1080px;height:1080px}
+  #topmark{position:absolute;left:0;right:0;top:300px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;letter-spacing:.14em;color:var(--acc)}
+  #botmark{position:absolute;left:0;right:0;top:1560px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:28px;color:var(--soft)}
+  #cap{position:absolute;left:0;right:0;top:30px;text-align:center;font-size:50px;font-weight:700;color:var(--ink);padding:0 40px;line-height:1.15}
+  #cap small{display:block;font-size:32px;font-weight:400;color:var(--soft);margin-top:10px}
+  #foot{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:"DejaVu Sans Mono",monospace;font-size:30px;color:var(--acc);font-weight:700}
+  #foot i{font-style:normal;color:var(--soft);font-size:22px;margin-left:24px;font-weight:400}
+  svg{position:absolute;left:0;top:0;overflow:visible}
+  text{font-family:Inter,system-ui,sans-serif}
+  .m{font-family:"DejaVu Sans Mono",monospace}
+  .serif{font-family:Lora,Georgia,serif;font-weight:700}
+</style></head>
+<body>
+<div id="topmark"></div>
+<div id="core">
+  <div id="cap"></div>
+  <svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+  <div id="foot"></div>
+</div>
+<div id="botmark"></div>
+<script>
+const L = {
+ pt:{top:"BIBLIOTECA · SEEDWAVE", bot:"livros · filmes · vídeos · 5 línguas",
+   c1:"Que livro me recomendas?", c1s:"pergunta o Zé",
+   c2:"Era um… com uma nave… esqueci-me!", c2s:"10 pesquisas — e nada",
+   c3:"E tu, Zé?", c3s:"o Zé tem a sua estante",
+   c4:"Uma ligação — e está tudo lá", c4s:"livros, filmes, vídeos",
+   c5:"1 ligação em vez de 10 pesquisas", c5s:"envias — e pronto",
+   c6:"E já tens a tua estante", c6s:"a tua ligação, para quem pedir conselho",
+   c7:"Cria a tua estante", c7s:"livros · filmes · vídeos",
+   foot:"seedwave.pt/biblioteca", ai:"animação criada com IA",
+   name:"Marta", app:"Biblioteca", plate:"1 ligação = 10 pesquisas"},
+ ru:{top:"БИБЛИОТЕКА · SEEDWAVE", bot:"книги · фильмы · видео · 5 языков",
+   c1:"Что посоветуешь почитать?", c1s:"спрашивает Зé",
+   c2:"Там был… с кораблём… забыла!", c2s:"10 поисков — и ничего",
+   c3:"А ты, Зé?", c3s:"у Зé есть своя полка",
+   c4:"Одна ссылка — и всё там", c4s:"книги, фильмы, видео",
+   c5:"1 ссылка вместо 10 поисков", c5s:"отправил — и готово",
+   c6:"И вот у тебя своя полка", c6s:"твоя ссылка — для тех, кто спросит совета",
+   c7:"Заведи свою полку", c7s:"книги · фильмы · видео",
+   foot:"seedwave.pt/biblioteca/ru", ai:"анимация создана с ИИ",
+   name:"Марта", app:"Библиотека", plate:"1 ссылка = 10 поисков"},
+ en:{top:"BIBLIOTECA · SEEDWAVE", bot:"books · films · videos · 5 languages",
+   c1:"Any book to recommend?", c1s:"asks Zé",
+   c2:"It had a… a spaceship… I forget!", c2s:"10 searches — nothing",
+   c3:"And you, Zé?", c3s:"Zé has his own shelf",
+   c4:"One link — and it's all there", c4s:"books, films, videos",
+   c5:"1 link instead of 10 searches", c5s:"send it — done",
+   c6:"Now you have your own shelf", c6s:"your link, for anyone who asks",
+   c7:"Start your shelf", c7s:"books · films · videos",
+   foot:"seedwave.pt/biblioteca/en", ai:"animation created with AI",
+   name:"Marta", app:"Biblioteca", plate:"1 link = 10 searches"},
+};
+let T=L.pt;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eo=x=>1-Math.pow(1-x,3);
+const bk=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const e=el('text',Object.assign({x,y},attrs),parent);e.textContent=s;return e}
+function op(e,v){e.setAttribute('opacity',clamp(v))} function tr(e,s){e.setAttribute('transform',s)}
+const S=$('s');
+const fmt=(n,l)=>{const s=Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,l==='en'?',':' ');return l==='en'?'€'+s:s+' €'};
+let LG='pt';
+
+// ---------- hero Zé (left), same as voos490 ----------
+const G=el('g',{id:'man'},S); const manRoot=el('g',{},G);
+const legs=el('g',{},manRoot);
+el('rect',{x:160,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs); el('rect',{x:226,y:600,width:44,height:150,rx:18,fill:'#3B3A48'},legs);
+el('ellipse',{cx:182,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs); el('ellipse',{cx:248,cy:752,rx:38,ry:14,fill:'#1F1A17'},legs);
+el('rect',{x:140,y:430,width:150,height:190,rx:40,fill:'var(--teal)'},manRoot);
+el('circle',{cx:215,cy:345,r:78,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:16,fill:'var(--skin)'},manRoot); el('circle',{cx:293,cy:350,r:16,fill:'var(--skin)'},manRoot);
+el('circle',{cx:137,cy:350,r:7,fill:'#E0A98A'},manRoot); el('circle',{cx:293,cy:350,r:7,fill:'#E0A98A'},manRoot);
+el('path',{d:'M172 292 q20 -22 48 -18',stroke:'#fff','stroke-width':8,'stroke-linecap':'round',fill:'none',opacity:.75},manRoot);
+el('path',{d:'M160 395 q55 46 110 0 q-10 26 -55 30 q-45 -4 -55 -30z',fill:'#8C8278',opacity:.35},manRoot);
+const browL=el('path',{d:'M180 312 l30 -4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const browR=el('path',{d:'M222 308 l30 4',stroke:'#4A2E1E','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const eyeL=el('ellipse',{cx:193,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot); const eyeR=el('ellipse',{cx:239,cy:338,rx:7,ry:8,fill:'#1F1A17'},manRoot);
+const cheekL=el('circle',{cx:176,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot); const cheekR=el('circle',{cx:254,cy:366,r:9,fill:'#F2A08A',opacity:0},manRoot);
+const mouth=el('path',{d:'M192 384 h44',stroke:'#8C3B2A','stroke-width':6,'stroke-linecap':'round',fill:'none'},manRoot);
+const armL=el('g',{},manRoot); el('path',{d:'M150 470 l-60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armL); el('circle',{cx:90,cy:580,r:22,fill:'var(--skin)'},armL);
+const armR=el('g',{},manRoot); el('path',{d:'M280 470 l60 110',stroke:'var(--skin)','stroke-width':30,'stroke-linecap':'round'},armR); const handR=el('circle',{cx:340,cy:580,r:22,fill:'var(--skin)'},armR);
+// pointing finger (for clicks)
+const finger=el('g',{opacity:0},armR);
+el('rect',{x:318,y:556,width:48,height:48,rx:14,fill:'var(--skin)'},finger);
+el('rect',{x:352,y:520,width:20,height:56,rx:10,fill:'var(--skin)',transform:'rotate(40 362 548)'},finger);
+const thumb=el('g',{opacity:0},armR);
+el('rect',{x:316,y:556,width:56,height:52,rx:14,fill:'var(--skin)'},thumb);
+el('path',{d:'M330 572 h30 M330 586 h30',stroke:'#E0A98A','stroke-width':3,'stroke-linecap':'round'},thumb);
+el('rect',{x:308,y:514,width:22,height:52,rx:11,fill:'var(--skin)',transform:'rotate(-14 319 540)'},thumb);
+const puff=el('g',{opacity:0},manRoot);
+el('ellipse',{cx:300,cy:395,rx:30,ry:20,fill:'#fff',stroke:'var(--line)','stroke-width':3},puff);
+txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
+
+Object.assign(L.pt,{p1:"1 ligação",p2:"10 pesquisas"});
+Object.assign(L.ru,{p1:"1 ссылка",p2:"10 поисков"});
+Object.assign(L.en,{p1:"1 link",p2:"10 searches"});
+
+// ---------- Marta (right): student, mustard sweater, ponytail, backpack ----------
+const R=el('g',{id:'marta'},S); const rRoot=el('g',{},R);
+el('path',{d:'M760 320 q-40 60 -20 150 q30 -20 40 -70z',fill:'#3A2A20'},rRoot);               // ponytail behind
+el('rect',{x:800,y:600,width:42,height:150,rx:18,fill:'#3E5A80'},rRoot); el('rect',{x:856,y:600,width:42,height:150,rx:18,fill:'#3E5A80'},rRoot);
+el('ellipse',{cx:820,cy:752,rx:36,ry:13,fill:'#F4F1EC',stroke:'#C9C0B6','stroke-width':3},rRoot); el('ellipse',{cx:876,cy:752,rx:36,ry:13,fill:'#F4F1EC',stroke:'#C9C0B6','stroke-width':3},rRoot);
+el('rect',{x:772,y:430,width:154,height:195,rx:40,fill:'var(--mus)'},rRoot);
+el('path',{d:'M792 440 v170 M906 440 v170',stroke:'#2F4F4A','stroke-width':12,'stroke-linecap':'round'},rRoot);   // backpack straps
+el('path',{d:'M812 432 q37 26 74 0',stroke:'#B8842A','stroke-width':8,fill:'none','stroke-linecap':'round'},rRoot); // collar
+el('circle',{cx:849,cy:345,r:74,fill:'#EDC19C'},rRoot);
+el('path',{d:'M773 340 q-4 -90 76 -94 q80 4 76 94 q-20 -50 -76 -54 q-50 0 -76 54z',fill:'#3A2A20'},rRoot);          // hair
+el('path',{d:'M790 300 q40 -30 100 -10 q-40 -10 -70 20z',fill:'#4A3628'},rRoot);
+const rEyeL=el('ellipse',{cx:827,cy:350,rx:6,ry:7,fill:'#1F1A17'},rRoot); const rEyeR=el('ellipse',{cx:871,cy:350,rx:6,ry:7,fill:'#1F1A17'},rRoot);
+const rBrowL=el('path',{d:'M812 328 l26 -2',stroke:'#3A2A20','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rBrowR=el('path',{d:'M860 326 l26 2',stroke:'#3A2A20','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rMouth=el('path',{d:'M836 388 h26',stroke:'#8C3B2A','stroke-width':5,'stroke-linecap':'round',fill:'none'},rRoot);
+const rCheeks=el('g',{opacity:0},rRoot); el('circle',{cx:808,cy:372,r:9,fill:'#F2A08A'},rCheeks); el('circle',{cx:890,cy:372,r:9,fill:'#F2A08A'},rCheeks);
+const rArmL=el('g',{},rRoot); el('path',{d:'M786 470 l-50 100',stroke:'var(--mus)','stroke-width':28,'stroke-linecap':'round'},rArmL); el('circle',{cx:736,cy:572,r:20,fill:'#EDC19C'},rArmL);
+const mPhone=el('g',{},rArmL); el('rect',{x:704,y:528,width:36,height:62,rx:7,fill:'#1F1A17'},mPhone);
+const mScreen=el('rect',{x:708,y:534,width:28,height:50,rx:4,fill:'#CFE6F2'},mPhone);
+const rArmR=el('g',{},rRoot); el('path',{d:'M912 470 l50 100',stroke:'var(--mus)','stroke-width':28,'stroke-linecap':'round'},rArmR); el('circle',{cx:962,cy:572,r:20,fill:'#EDC19C'},rArmR);
+const qms=[]; for(let i=0;i<3;i++){const q=txt(R,900+i*48,250-(i%2)*30,'?',{'font-size':50,'font-weight':800,fill:'var(--soft)',opacity:0});qms.push(q)}
+const sweat=el('path',{d:'M930 300 q-10 18 0 26 q10 -8 0 -26z',fill:'#7FB3D5',opacity:0},R);
+const nameTag=txt(R,849,800,'',{'font-size':28,fill:'var(--soft)','text-anchor':'middle'});
+
+// ---------- Zé extras: book bubble + phone in hand ----------
+const ask=el('g',{opacity:0},S);
+el('path',{d:'M330 250 q0 -50 60 -50 h80 q60 0 60 50 q0 50 -60 50 h-60 l-40 30 l8 -32 q-48 -6 -48 -48z',fill:'#fff',stroke:'var(--line)','stroke-width':4},ask);
+el('rect',{x:380,y:226,width:34,height:46,rx:4,fill:'var(--acc)'},ask); el('rect',{x:384,y:230,width:6,height:38,fill:'#7E2C25'},ask);
+txt(ask,450,272,'?',{'font-size':56,'font-weight':800,fill:'var(--acc)'});
+const zPhone=el('g',{opacity:0},armR);
+el('rect',{x:322,y:526,width:38,height:64,rx:7,fill:'#1F1A17'},zPhone);
+el('rect',{x:326,y:532,width:30,height:52,rx:4,fill:'var(--acc)'},zPhone);
+txt(zPhone,341,566,'B',{'font-size':22,'font-weight':900,'text-anchor':'middle',fill:'#fff'});
+
+// ---------- thought cloud + search counter (Marta forgets) ----------
+const CLOUD=el('g',{opacity:0},S);
+[[560,270,60],[630,240,70],[710,265,58],[640,300,62]].forEach(c=>el('circle',{cx:c[0],cy:c[1],r:c[2],fill:'#fff',stroke:'var(--line)','stroke-width':4},CLOUD));
+el('circle',{cx:740,cy:345,r:12,fill:'#fff',stroke:'var(--line)','stroke-width':3},CLOUD); el('circle',{cx:760,cy:372,r:7,fill:'#fff',stroke:'var(--line)','stroke-width':3},CLOUD);
+const ghosts=[]; [['#6B3B2E',150],['#2F5D62',120],['#C9A227',135]].forEach((g,i)=>{const r=el('rect',{x:640-g[1]/2,y:232+i*30,width:g[1],height:22,rx:4,fill:g[0]},CLOUD);ghosts.push(r)});
+const SEARCH=el('g',{opacity:0},S);
+el('circle',{cx:0,cy:0,r:34,fill:'none',stroke:'var(--soft)','stroke-width':10},SEARCH); el('path',{d:'M24 24 l34 34',stroke:'var(--soft)','stroke-width':14,'stroke-linecap':'round'},SEARCH);
+const sNum=txt(SEARCH,80,24,'',{'font-size':64,'font-weight':800,fill:'var(--soft)',class:'m'});
+
+// ---------- big phone (Zé shows the Biblioteca) ----------
+const BIG=el('g',{opacity:0},S);
+el('rect',{x:-120,y:-215,width:240,height:430,rx:30,fill:'#1F1A17'},BIG);
+el('rect',{x:-106,y:-196,width:212,height:392,rx:20,fill:'var(--cream)'},BIG);
+el('rect',{x:-106,y:-196,width:212,height:80,rx:20,fill:'var(--acc)'},BIG); el('rect',{x:-106,y:-140,width:212,height:24,fill:'var(--acc)'},BIG);
+el('rect',{x:-90,y:-182,width:52,height:52,rx:12,fill:'var(--cream)'},BIG);
+txt(BIG,-64,-145,'B',{'font-size':34,'font-weight':900,'text-anchor':'middle',fill:'var(--acc)'});
+el('path',{d:'M-86 -139 q10 -8 22 0 q12 8 22 0',stroke:'var(--acc)','stroke-width':4,fill:'none'},BIG);
+const bigT=txt(BIG,-28,-146,'',{'font-size':26,'font-weight':800,fill:'#fff'});
+[['#6B3B2E',176,30,-6],['#1F1A17',166,32,4],['#2F5D62',150,26,-3],['#C9A227',184,34,3],['#8E5BA8',140,24,-2]].forEach((b,i)=>{
+  const y=150-i*44; const g=el('g',{transform:`translate(${b[3]} ${y}) rotate(${b[3]*.5})`},BIG);
+  el('rect',{x:-b[1]/2,y:-b[2],width:b[1],height:b[2],rx:4,fill:b[0]},g);
+  if(b[0]==='#1F1A17'){for(let k=0;k<8;k++)el('rect',{x:-b[1]/2+8+k*20,y:-b[2]+4,width:8,height:5,fill:'#fff',opacity:.8},g)}
+  else el('rect',{x:-b[1]/2+14,y:-b[2]+6,width:b[1]*.5,height:5,rx:2,fill:'#fff',opacity:.6},g);
+});
+
+// ---------- link capsule ----------
+const LINK=el('g',{opacity:0},S);
+el('rect',{x:-190,y:-30,width:380,height:60,rx:30,fill:'var(--acc)'},LINK);
+txt(LINK,0,11,'seedwave.pt/biblioteca/ze',{'font-size':25,'font-weight':700,'text-anchor':'middle',fill:'#fff',class:'m'});
+const PLANE=el('path',{d:'M-26 0 L26 -14 L4 16 L0 4z',fill:'#fff',opacity:0},LINK);
+
+// ---------- living stack (fountain from Marta's phone) ----------
+// kinds: b=book, f=film box, p=video card
+const ITEMS=[
+ {k:'b',w:300,h:52,c:'#6B3B2E',r:-1.5,dx:-6},
+ {k:'f',w:270,h:54,c:'#1F1A17',r:1.2,dx:10},
+ {k:'b',w:250,h:40,c:'#2F5D62',r:-2,dx:-12},
+ {k:'p',w:280,h:50,c:'#fff',r:1.5,dx:6},
+ {k:'b',w:310,h:58,c:'#C9A227',r:-1,dx:-4},
+ {k:'b',w:230,h:36,c:'#8E5BA8',r:2,dx:12},
+ {k:'f',w:260,h:48,c:'#1F1A17',r:-1.5,dx:-8},
+];
+const STACKX=545, STACKB=770;
+let yy=STACKB; ITEMS.forEach(it=>{yy-=it.h+4; it.y=yy;});
+function drawItem(it,parent){
+  const g=el('g',{},parent);
+  if(it.k==='b'){el('rect',{x:-it.w/2,y:0,width:it.w,height:it.h,rx:6,fill:it.c},g);
+    el('rect',{x:-it.w/2+18,y:0,width:10,height:it.h,fill:'#000',opacity:.18},g); el('rect',{x:it.w/2-28,y:0,width:10,height:it.h,fill:'#000',opacity:.18},g);
+    el('rect',{x:-it.w/2+44,y:it.h/2-4,width:it.w*.45,height:8,rx:3,fill:'#fff',opacity:.7},g);}
+  else if(it.k==='f'){el('rect',{x:-it.w/2,y:0,width:it.w,height:it.h,rx:6,fill:it.c},g);
+    for(let k=0;k<Math.floor(it.w/26);k++){el('rect',{x:-it.w/2+10+k*26,y:5,width:12,height:7,rx:2,fill:'#fff',opacity:.85},g);el('rect',{x:-it.w/2+10+k*26,y:it.h-12,width:12,height:7,rx:2,fill:'#fff',opacity:.85},g)}
+    el('rect',{x:-50,y:it.h/2-8,width:100,height:16,rx:3,fill:'#E3A21A',opacity:.9},g);}
+  else {el('rect',{x:-it.w/2,y:0,width:it.w,height:it.h,rx:10,fill:'#fff',stroke:'var(--line)','stroke-width':4},g);
+    el('circle',{cx:-it.w/2+34,cy:it.h/2,r:16,fill:'var(--acc)'},g); el('path',{d:`M${-it.w/2+29} ${it.h/2-8} l14 8 l-14 8z`,fill:'#fff'},g);
+    el('rect',{x:-it.w/2+62,y:it.h/2-5,width:it.w*.5,height:10,rx:4,fill:'#CFC6BD'},g);}
+  return g;
+}
+const STACK=el('g',{},S); ITEMS.forEach(it=>{it.g=drawItem(it,STACK);});
+const NEW={k:'b',w:290,h:46,c:'var(--acc)',r:-1,dx:0}; NEW.y=ITEMS[ITEMS.length-1].y-NEW.h-4;
+NEW.g=drawItem(NEW,STACK); const NEWGLOW=el('rect',{x:-NEW.w/2-8,y:-8,width:NEW.w+16,height:NEW.h+16,rx:12,fill:'none',stroke:'var(--gold)','stroke-width':6},NEW.g);
+const PLUSB=el('g',{opacity:0},S); el('circle',{cx:0,cy:0,r:34,fill:'var(--acc)'},PLUSB); el('path',{d:'M-16 0 h32 M0 -16 v32',stroke:'#fff','stroke-width':8,'stroke-linecap':'round'},PLUSB);
+const MYLINK=el('g',{opacity:0},S);
+el('rect',{x:-182,y:-26,width:364,height:52,rx:26,fill:'#fff',stroke:'var(--acc)','stroke-width':5},MYLINK);
+txt(MYLINK,0,9,'seedwave.pt/biblioteca/marta',{'font-size':21,'font-weight':700,'text-anchor':'middle',fill:'var(--acc)',class:'m'});
+
+// ---------- gold plate + sparks ----------
+const PLATE=el('g',{opacity:0},S);
+el('rect',{x:-190,y:-74,width:380,height:148,rx:28,fill:'var(--golds)',stroke:'var(--gold)','stroke-width':6},PLATE);
+const pl1=txt(PLATE,0,-6,'',{'font-size':54,'font-weight':800,'text-anchor':'middle',fill:'var(--ink)'});
+const pl2=txt(PLATE,0,46,'',{'font-size':32,'font-weight':600,'text-anchor':'middle',fill:'var(--soft)'});
+const pl2s=el('path',{d:'M0 36 h0',stroke:'var(--red)','stroke-width':5,'stroke-linecap':'round'},PLATE);
+const sparks=[];for(let i=0;i<12;i++){const s=el('path',{d:'M0 -14 L4 -4 L14 0 L4 4 L0 14 L-4 4 L-14 0 L-4 -4z',fill:'var(--gold)',opacity:0},S);sparks.push(s)}
+
+function cap(a,b){$('cap').innerHTML=a?a+(b?'<small>'+b+'</small>':''):''}
+function setLang(l){T=L[l]||L.pt;LG=l;document.documentElement.lang=l;$('topmark').textContent=T.top;$('botmark').textContent=T.bot;nameTag.textContent=T.name;bigT.textContent=T.app;
+  pl1.textContent=T.p1; pl2.textContent=T.p2; bigT.setAttribute('font-size',T.app.length>=10?20:26);}
+setLang('pt');
+// 0–4 Zé asks · 4–9 Marta forgets (10 searches) · 9–12 "E tu?" big phone · 12–16 link flies, fountain → stack · 16–19 plate · 19–22 her own shelf · 22–25 finale
+const DUR=25;
+function render(t){
+  let c;
+  if(t<4)c=[T.c1,T.c1s]; else if(t<9)c=[T.c2,T.c2s]; else if(t<12)c=[T.c3,T.c3s]; else if(t<16)c=[T.c4,T.c4s]; else if(t<19)c=[T.c5,T.c5s]; else if(t<22)c=[T.c6,T.c6s]; else c=[T.c7,T.c7s];
+  cap(c[0],c[1]); $('cap').style.opacity=t<.5?seg(t,0,.5):1;
+  $('foot').innerHTML=T.foot+'<i>'+T.ai+'</i>'; $('foot').style.opacity=t>22.1?seg(t,22.1,22.7):0;
+  // ---- Zé ----
+  op(G,seg(t,0,.4)); let zs=t<.6?.6+.4*bk(seg(t,0,.6)):(t>9&&t<9.6?.85+.15*bk(seg(t,9,9.6)):1);
+  let zMood=(t>9)?'happy':'neutral';
+  mouth.setAttribute('d',zMood==='happy'?'M186 378 q29 30 58 0':(t<4?'M194 382 q22 10 40 0':'M192 384 h44')); op(cheekL,zMood==='happy'?1:0); op(cheekR,zMood==='happy'?1:0);
+  let ang=0,fi=0,th=0,wob=0,ph=0;
+  if(t>.6&&t<3.6){const u=seg(t,.6,1.1)*(1-seg(t,3.2,3.6));ang=-55*eio(u);wob=Math.sin(t*6)*5*u;}
+  if(t>9.2&&t<12.6){const u=seg(t,9.2,9.7)*(1-seg(t,12.2,12.6));ang=-115*eio(u);ph=u;}
+  if(t>22.4){const u=bk(seg(t,22.4,23));ang=-125*u;th=u;}
+  tr(armR,`rotate(${ang+wob} 280 470)`); op(finger,fi); op(thumb,th); op(zPhone,ph>.05?1:0); op(handR,1-Math.max(fi,th));
+  tr(thumb,`rotate(${-(ang+wob)} 340 580)`);
+  const wk=(t>23.6&&t<24.1)?1:0; eyeR.setAttribute('ry',wk?1.5:8);
+  op(puff,0); op(ask,seg(t,.7,1.1)*(1-seg(t,3.6,4)));
+  let dy=0,rot=0; if(t>22){const u=seg(t,22,22.4);dy=-24*Math.abs(Math.sin((t-22)*7))*u;rot=4*Math.sin((t-22)*7)*u;}
+  if(t>16&&t<19){dy=-6*Math.abs(Math.sin((t-16)*5));}
+  tr(manRoot,`translate(0 ${dy}) rotate(${rot} 215 600) translate(215 600) scale(${zs}) translate(-215 -600)`);
+  // ---- Marta ----
+  op(R,seg(t,0,.4));
+  let rm='calm'; if(t>4.2&&t<9)rm='worry'; if(t>9&&t<12.8)rm='calm'; if(t>13&&t<13.8)rm='shock'; if(t>13.8)rm='happy';
+  rMouth.setAttribute('d',rm==='happy'?'M832 382 q17 22 34 0':rm==='shock'?'M843 390 a6 8 0 1 0 12 0 a6 8 0 1 0 -12 0':rm==='worry'?'M836 392 q13 -8 26 0':'M836 388 h26');
+  rBrowL.setAttribute('d',rm==='worry'?'M812 322 l26 6':rm==='shock'?'M812 316 l26 -8':rm==='happy'?'M812 324 l26 -4':'M812 328 l26 -2');
+  rBrowR.setAttribute('d',rm==='worry'?'M860 328 l26 -6':rm==='shock'?'M860 308 l26 8':rm==='happy'?'M860 320 l26 4':'M860 326 l26 2');
+  op(rCheeks,rm==='happy'?1:0); op(sweat,t>5.2&&t<8.8?1:0); tr(sweat,`translate(0 ${((t*40)%30)})`);
+  qms.forEach((q,i)=>{const on=t>5+i*.4&&t<8.8;op(q,on?.5+.5*Math.abs(Math.sin(t*3+i)):0)});
+  let ra=0,la=0,rdy=0,rrot=0;
+  if(t>4.2&&t<8.9){const u=seg(t,4.2,4.6)*(1-seg(t,8.5,8.9));la=75*u+6*Math.sin(t*9)*u;ra=-125*u+10*Math.sin(t*8)*u;}
+  if(t>9&&t<11.8){const u=seg(t,9,9.3)*(1-seg(t,11.4,11.8));la=-25*u;}           // turns hand to Zé
+  if(t>12.6&&t<16){const u=seg(t,12.6,13)*(1-seg(t,15.6,16));la=55*u;}            // holds phone up for the link
+  if(t>16&&t<19){const u=seg(t,16,16.3)*(1-seg(t,18.7,19));ra=-150*u;la=30*u;}
+  if(t>19.2&&t<20.4){const u=seg(t,19.2,19.5)*(1-seg(t,20.1,20.4));la=95*u;}       // taps "+"
+  if(t>22){const u=seg(t,22,22.4);rdy=-22*Math.abs(Math.sin((t-22)*7+1))*u;rrot=-4*Math.sin((t-22)*7)*u;ra=-130*u;la=130*u;}
+  tr(rArmR,`rotate(${ra} 912 470)`); tr(rArmL,`rotate(${la} 786 470)`);
+  tr(rRoot,`translate(0 ${rdy}) rotate(${rrot} 849 600)`);
+  mScreen.setAttribute('fill',t>12.9&&t<16?'var(--acc)':'#CFE6F2');
+  // ---- cloud + search counter 4–9 ----
+  op(CLOUD,seg(t,4.4,4.8)*(1-seg(t,8.6,9)));
+  ghosts.forEach((g,i)=>{const ph=(t*1.2+i*.7)%2; op(g,Math.max(0,Math.sin(ph*Math.PI/2))*.8); tr(g,`translate(${Math.sin(t*3+i)*8} 0)`)});
+  op(SEARCH,seg(t,4.8,5.1)*(1-seg(t,8.6,9))); tr(SEARCH,`translate(470 560) rotate(${Math.sin(t*4)*6})`);
+  sNum.textContent=Math.min(10,Math.max(1,Math.floor(seg(t,5,8.2)*10)+1));
+  // ---- big phone 9.6–12.6 ----
+  {const a=bk(seg(t,9.6,10.2)); op(BIG,seg(t,9.6,9.9)*(1-seg(t,12.3,12.6))); tr(BIG,`translate(545 560) scale(${.3+.7*a})`);}
+  // ---- link flight 12.2–13.1 ----
+  {const u=eio(seg(t,12.3,13.1)); const x=545+(722-545)*u, y=600-260*Math.sin(Math.PI*u)+(560-600)*u;
+   op(LINK,seg(t,12.2,12.4)*(1-seg(t,13,13.2))); op(PLANE,u>0&&u<1?1:0); tr(LINK,`translate(${x} ${y}) scale(${1-.6*u})`);}
+  // ---- fountain + stack 13.1–25 ----
+  ITEMS.forEach((it,i)=>{
+    const t0=13.1+i*.3, u=seg(t,t0,t0+.8);
+    const sx=722, sy=560, tx=STACKX+it.dx, ty=it.y;
+    const peak=-150-i*10;
+    const x=sx+(tx-sx)*eo(u), y=sy+(ty-sy)*u+peak*Math.sin(Math.PI*u)*(1-u*.3);
+    const s=.15+.85*eo(u), r=it.r+(1-u)*45*(i%2?1:-1);
+    op(it.g,u>0?1:0); tr(it.g,`translate(${x} ${y}) rotate(${r}) scale(${s})`);
+  });
+  {const u=bk(seg(t,19.8,20.4)); op(NEW.g,seg(t,19.8,19.9)); tr(NEW.g,`translate(${STACKX} ${NEW.y-200*(1-u)}) rotate(${NEW.r})`); op(NEWGLOW,t<22?.5+.5*Math.sin(t*8):0);}
+  op(PLUSB,seg(t,19,19.3)*(1-seg(t,19.8,20))); tr(PLUSB,`translate(700 520) scale(${.9+.1*Math.sin(t*10)})`);
+  op(MYLINK,seg(t,20.3,20.7)); tr(MYLINK,`translate(545 ${NEW.y-56}) scale(${.9+.1*bk(seg(t,20.3,20.8))})`);
+  // ---- plate + sparks 16–19 ----
+  {const w=T.p2.length*16.5; pl2s.setAttribute('d',`M${-w/2-8} 36 h${w+16}`); const a=bk(seg(t,16.1,16.6)); op(PLATE,seg(t,16.1,16.3)*(1-seg(t,18.7,19))); tr(PLATE,`translate(530 290) scale(${a*(1+.03*Math.sin(t*6))})`);}
+  sparks.forEach((s,i)=>{const t0=16.3+(i%6)*.25+(i>5?1:0); const u=seg(t,t0,t0+.9); const ang=i*0.52;
+    op(s,u>0&&u<1?1-u:0); tr(s,`translate(${545+Math.cos(ang)*(150+u*120)} ${300+Math.sin(ang)*(70+u*60)}) scale(${.6+u})`)});
+}
+render(0);
+</script></body></html>
