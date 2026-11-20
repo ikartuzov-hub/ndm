@@ -56,6 +56,26 @@ const L = {
    c7:"Start your shelf", c7s:"books · films · videos",
    foot:"seedwave.pt/biblioteca/en", ai:"animation created with AI",
    name:"Marta", app:"Biblioteca", plate:"1 link = 10 searches"},
+ es:{top:"BIBLIOTECA · SEEDWAVE", bot:"libros · películas · vídeos · 5 idiomas",
+   c1:"¿Qué libro me recomiendas?", c1s:"pregunta Zé",
+   c2:"Uno con una nave… ¡ni me acuerdo!", c2s:"10 búsquedas — y nada",
+   c3:"¿Y tú, Zé?", c3s:"Zé tiene su estantería",
+   c4:"Un enlace — y está todo ahí", c4s:"libros, películas, vídeos",
+   c5:"1 enlace en vez de 10 búsquedas", c5s:"lo envías — y listo",
+   c6:"Y ya tienes tu estantería", c6s:"tu enlace, para quien te pida consejo",
+   c7:"Crea tu estantería", c7s:"libros · películas · vídeos",
+   foot:"seedwave.pt/biblioteca/es", ai:"animación creada con IA",
+   name:"Marta", app:"Biblioteca", plate:""},
+ de:{top:"BIBLIOTECA · SEEDWAVE", bot:"Bücher · Filme · Videos · 5 Sprachen",
+   c1:"Welches Buch empfiehlst du?", c1s:"fragt Zé",
+   c2:"Eins mit Raumschiff… vergessen!", c2s:"10 Suchen — nichts",
+   c3:"Und du, Zé?", c3s:"Zé hat sein eigenes Regal",
+   c4:"Ein Link — und alles ist da", c4s:"Bücher, Filme, Videos",
+   c5:"1 Link statt 10 Suchen", c5s:"senden — fertig",
+   c6:"Jetzt hast du dein eigenes Regal", c6s:"dein Link für alle, die um Rat fragen",
+   c7:"Leg dein Regal an", c7s:"Bücher · Filme · Videos",
+   foot:"seedwave.pt/biblioteca/de", ai:"Animation mit KI erstellt",
+   name:"Marta", app:"Biblioteca", plate:""},
 };
 let T=L.pt;
 const $=id=>document.getElementById(id);
@@ -105,6 +125,8 @@ txt(puff,282,404,'?',{'font-size':30,fill:'var(--acc)','font-weight':700});
 Object.assign(L.pt,{p1:"1 ligação",p2:"10 pesquisas"});
 Object.assign(L.ru,{p1:"1 ссылка",p2:"10 поисков"});
 Object.assign(L.en,{p1:"1 link",p2:"10 searches"});
+Object.assign(L.es,{p1:"1 enlace",p2:"10 búsquedas"});
+Object.assign(L.de,{p1:"1 Link",p2:"10 Suchen"});
 
 // ---------- Marta (right): student, mustard sweater, ponytail, backpack ----------
 const R=el('g',{id:'marta'},S); const rRoot=el('g',{},R);
