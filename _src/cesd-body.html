@@ -90,6 +90,8 @@ ol.sign{padding-left:22px}ol.sign li{margin:10px 0}
 .tl li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
 .tl li.wait:before{background:var(--card);border:2px solid var(--accent)}
 .tl b{display:block;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent)}
+.byline{font-size:14.5px;color:var(--ink-soft);margin:8px 0 0}
+.byline a{color:var(--accent);text-underline-offset:3px}
 .qa{margin:18px 0}.qa h3{font-size:17.5px}.qa p{margin:4px 0 0;color:var(--ink-soft)}
 .fb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px 16px;margin:40px 0 10px}
 .fb h2{margin-top:16px}
@@ -121,9 +123,14 @@ footer a{text-decoration:underline;text-decoration-color:var(--accent);text-unde
   </div>
   <h1 data-t="h1"></h1>
   <p data-t="lead" style="color:var(--ink-soft);font-size:16px;margin:0"></p>
+  <p class="byline" data-t="byline"></p>
   <a class="cta" href="#route" data-t="cta"></a>
   <a class="cta ghost" href="lite/" id="liteLink" data-t="liteCta"></a>
 </header>
+
+<h2 id="short" data-t="qaT"></h2>
+<p class="rule" data-t="qaA"></p>
+<p data-t="qaB"></p>
 
 <h2 data-t="whyT"></h2>
 <div class="grid2">
@@ -224,7 +231,11 @@ NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="cop
 </ul>
 
 <h2 data-t="faqT"></h2>
+<div class="qa"><h3 data-t="q9"></h3><p data-t="a9"></p></div>
+<div class="qa"><h3 data-t="q10"></h3><p data-t="a10"></p></div>
 <div class="qa"><h3 data-t="q1"></h3><p data-t="a1"></p></div>
+<div class="qa"><h3 data-t="q12"></h3><p data-t="a12"></p></div>
+<div class="qa"><h3 data-t="q13"></h3><p data-t="a13"></p></div>
 <div class="qa"><h3 data-t="q4"></h3><p data-t="a4"></p></div>
 <div class="qa"><h3 data-t="q6"></h3><p data-t="a6"></p></div>
 <div class="qa"><h3 data-t="q7"></h3><p data-t="a7"></p></div>
@@ -253,7 +264,9 @@ NISS [NÚMERO]</pre><button type="button" class="cp" data-for="tpl2" data-t="cop
 
 <h2 data-t="srcT"></h2>
 <ul class="src">
-<li><a href="https://seg-social.pt/documents/10152/14911/N39_cartao_europeu_seguro_doenca/3cd10933-cab7-420d-a234-6fa1792cf3aa" target="_blank" rel="noopener">Guia Prático — Cartão Europeu de Seguro de Doença</a> · Instituto da Segurança Social, N39 v4.23, 24.01.2025</li>
+<li><a href="https://www.seg-social.pt/ptss/pssd/documento/cmc20vvei00sskl2y4ybhqvom" target="_blank" rel="noopener">Guia Prático — Cartão Europeu de Seguro de Doença</a> · Instituto da Segurança Social, N 39 v4.27, 13.11.2026</li>
+<li><a href="https://www.gov.pt/servicos/requerer-o-cartao-europeu-de-seguro-de-doenca-da-seguranca-social" target="_blank" rel="noopener">gov.pt — Pedir o Cartão Europeu de Seguro de Doença</a> · Instituto da Segurança Social</li>
+<li><a href="https://www.gov.pt/servicos/renovar-o-cartao-europeu-de-seguro-de-doenca-da-seguranca-social" target="_blank" rel="noopener">gov.pt — Renovar o Cartão Europeu de Seguro de Doença</a> · renovação nos últimos 30 dias</li>
 <li><a href="https://europa.eu/youreurope/citizens/health/unplanned-healthcare/temporary-stays/index_en.htm" target="_blank" rel="noopener">Your Europe — Unplanned healthcare, temporary stays</a> · Comissão Europeia</li>
 <li><a href="https://www.seg-social.pt/formularios" target="_blank" rel="noopener">Segurança Social — Formulários</a> · Modelo GIT 53, Modelo MG 2</li>
 <li><a href="https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/Processes/DigitalSignature/DigitalSignatureIntro.aspx" target="_blank" rel="noopener">autenticacao.gov.pt — Assinatura de documentos com a Chave Móvel Digital</a></li>

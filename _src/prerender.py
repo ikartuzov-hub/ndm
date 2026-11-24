@@ -149,7 +149,12 @@ def jsonld(html, path, lang, ld):
             "dateModified": DATE, "totalTime": "PT20M",
             "author": {"@type": "Person", "name": "Igor Kartuzov",
                        "url": "https://www.linkedin.com/in/igor-kartuzov/"},
+            "publisher": {"@type": "Organization", "name": "SeedWave",
+                          "url": "https://seedwave.pt/"},
         }
+        if path == "cesd/":
+            # GEO-проход 24.11.2026: дата проверки по Guia Prático v4.27
+            how["dateModified"] = "2026-11-24"
         st = [x for x in ld.get("steps") or [] if x[0].strip()]
         if st:
             how["step"] = [{"@type": "HowToStep", "position": i + 1, "name": n.strip(),
