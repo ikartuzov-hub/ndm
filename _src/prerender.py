@@ -115,6 +115,22 @@ def jsonld(html, path, lang, ld):
                           "url": "https://seedwave.pt/"},
             "isAccessibleForFree": True,
         })
+    elif path == "renda/":
+        # GEO-проход 24.11.2026: калькулятор-статья, а не инструкция — Article с автором
+        # и датой проверки (FAQPage ниже собирается из видимого блока .qa)
+        blocks.append({
+            "@context": "https://schema.org", "@type": "Article",
+            "headline": ld["h1"], "description": ld["desc"],
+            "inLanguage": HTML_LANG[lang],
+            "datePublished": "2026-11-08", "dateModified": "2026-11-24",
+            "mainEntityOfPage": lurl, "url": lurl,
+            "image": SITE + "/renda/og-image.png",
+            "author": {"@type": "Person", "name": "Igor Kartuzov",
+                       "url": "https://www.linkedin.com/in/igor-kartuzov/"},
+            "publisher": {"@type": "Organization", "name": "SeedWave",
+                          "url": "https://seedwave.pt/"},
+            "isAccessibleForFree": True,
+        })
     elif path == "participar/":
         blocks.append({
             "@context": "https://schema.org", "@type": "ContactPage",
